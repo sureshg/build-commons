@@ -1,0 +1,255 @@
+name: Build
+
+on:
+  push:
+    branches:
+      - main
+    tags:
+      - '*'
+    paths-ignore:
+      - LICENSE
+      - '*.md'
+      - 'docs/**'
+      - '.github/config/labels.yml'
+  pull_request:
+    branches:
+      - main
+  schedule:
+    - cron: "0 0 * * *"
+  workflow_dispatch:
+
+defaults:
+  run:
+    shell: bash
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: write
+  issues: write
+  packages: write
+  repository-projects: write
+
+env:
+  releaseBuild: ${{ github.event_name == 'push' && contains(github.ref, 'refs/tags/') }}
+
+jobs:
+  build:
+    name: 🏗️ Gradle Build
+    permissions:
+      contents: write
+      packages: write
+      discussions: write
+    strategy:
+      fail-fast: true
+      max-parallel: 3
+      matrix:
+        os: [ ubuntu-latest, macos-latest ]
+        jdk: [ ea ]
+        include:
+          - os: macos-latest
+            native_task: :macosArm64Test
+          - os: ubuntu-latest
+            native_task: :linuxX64Test
+
+    runs-on: ${{ matrix.os }}
+    continue-on-error: false
+
+    outputs:
+      name: ${{ steps.gradle-build.outputs.name }}
+      group: ${{ steps.gradle-build.outputs.group }}
+      version: ${{ steps.gradle-build.outputs.version }}
+
+    steps:
+      - name: 🛎️ Check out the source code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: ⬇️ Download OpenJDK ${{ matrix.jdk }} latest build from ☁️jdk.java.net
+        id: download-jdk
+        uses: oracle-actions/setup-java@main
+        with:
+          website: jdk.java.net
+          release: ${{ matrix.jdk }}
+          version: latest
+          install: false
+
+      - name: ☕ Set up OpenJDK ${{ matrix.jdk }}
+        id: setup-java
+        uses: actions/setup-java@v4
+        if: always() && steps.download-jdk.outcome == 'success'
+        with:
+          distribution: jdkfile
+          java-version: ${{ steps.download-jdk.outputs.version }}
+          jdkFile: ${{ steps.download-jdk.outputs.archive }}
+          # cache: 'gradle'
+
+      - name: 🐘 Setup Gradle
+        if: ${{ false }}
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: wrapper
+
+      - name: 🚄 Cache Gradle
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-  
+
+      - name: 🏗️ Gradle Build & Run
+        id: gradle-build
+        run: |
+          MKTEMP_PATH="$(dirname "$(mktemp -u)")/"
+          echo "MKTEMP_PATH=$MKTEMP_PATH" >> $GITHUB_ENV
+          ./gradlew buildAndPublish --no-daemon
+          # echo "dist_path=backend/jvm/build/libs/jvm-all.jar" >> "$GITHUB_OUTPUT"
+        env:
+          GITHUB_USER: ${{ github.repository_owner }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ORG_GRADLE_PROJECT_mavenCentralUsername: ${{ secrets.MAVEN_CENTRAL_USERNAME }}
+          ORG_GRADLE_PROJECT_mavenCentralPassword: ${{ secrets.MAVEN_CENTRAL_PASSWORD }}
+          ORG_GRADLE_PROJECT_signingKeyId: ${{ secrets.GPG_SECRET_KEY_ID }}
+          ORG_GRADLE_PROJECT_signingKey: ${{ secrets.GPG_SECRET_KEY }}
+          ORG_GRADLE_PROJECT_signingPassword: ${{ secrets.GPG_SECRET_KEY_PASSWORD }}
+          ORG_GRADLE_PROJECT_githubActor: ${{ github.actor }}
+          ORG_GRADLE_PROJECT_githubToken: ${{ secrets.GITHUB_TOKEN }}
+          # JOB_CONTEXT: ${{ toJSON(job) }}
+          # STEPS_CONTEXT: ${{ toJSON(steps) }}
+          # RUNNER_CONTEXT: ${{ toJSON(runner) }}
+          # GITHUB_CONTEXT: ${{ toJSON(github) }}
+          # STRATEGY_CONTEXT: ${{ toJSON(strategy) }}
+          # MATRIX_CONTEXT: ${{ toJSON(matrix) }}
+
+      - name: 📤 Uploading ${{ matrix.os }} build artifacts
+        if: steps.gradle-build.outcome == 'success' && runner.os == 'Linux'
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ steps.gradle-build.outputs.artifact_name }}
+          path: |
+            backend/jvm/build/libs/jvm-app
+          if-no-files-found: error
+
+      - name: 🕸 Deploy Wasm, Js & Compose webapp to Github Pages
+        if: steps.gradle-build.outcome == 'success' && runner.os == 'Linux'
+        uses: JamesIves/github-pages-deploy-action@v4.6.6
+        with:
+          branch: gh-pages
+          folder: backend/jvm/build/resources/main/app
+          target-folder: app
+          clean: true
+          commit-message: 'web: Deployed web app'
+
+      - name: 🏖️ Publish documentation to Github Pages
+        if: steps.gradle-build.outcome == 'success' && runner.os == 'Linux'
+        uses: JamesIves/github-pages-deploy-action@v4.6.6
+        with:
+          branch: gh-pages
+          folder: build/dokka/htmlMultiModule
+          target-folder: docs
+          clean: true
+          commit-message: 'doc: Deployed dokka html documentation'
+
+      - name: 🏖️ Publish coverage report to Github Pages
+        if: steps.gradle-build.outcome == 'success' && runner.os == 'Linux'
+        uses: JamesIves/github-pages-deploy-action@v4.6.6
+        with:
+          branch: gh-pages
+          folder: build/reports/kover/html
+          target-folder: reports
+          clean: true
+          commit-message: 'report: Deployed coverage report'
+
+      - name: 🧪️ Publish test report to Github Pages
+        if: steps.gradle-build.outcome == 'success' && runner.os == 'Linux'
+        uses: JamesIves/github-pages-deploy-action@v4.6.6
+        with:
+          branch: gh-pages
+          folder: build/reports/tests/test
+          target-folder: tests
+          clean: true
+          commit-message: 'report: Deployed test results'
+
+      - name: 📌 Push the changes to Github
+        if: ${{ false }}
+        id: push-to-github
+        run: |
+          # date > generated.txt
+          git diff
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add .
+          # git commit -m "doc: Update generated.txt" || exit 0
+          if [ -z "$(git status --porcelain)" ]; then
+            echo 'No changes detected.'
+            exit 0
+          else
+            git commit --message "doc: Update generated.txt"
+            git push
+            # git push origin HEAD:${{ github.event.repository.default_branch }}
+          fi
+
+      - name: 💥 Uploading JVM error logs
+        if: steps.gradle-build.outcome == 'failure' && always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.os }}-jvm-error-logs
+          path: |
+            hs_err*
+            ${{ github.workspace }}/hs_err*
+            ${{ env.MKTEMP_PATH }}/*hs-err*
+          if-no-files-found: warn
+          retention-days: 30
+
+  # GitHub Release Action on tag push
+  release:
+    name: 🚰 Release new version.
+    needs: [ build ]
+    if: startsWith(github.ref, 'refs/tags/') && needs.build.result == 'success'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 🛎️Check out the source code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          submodules: recursive
+
+      - name: ⚙️Build Changelog
+        id: github_release
+        uses: mikepenz/release-changelog-builder-action@v5
+        with:
+          configuration: ".github/config/configuration.json"
+          commitMode: true
+          ignorePreReleases: ${{ !contains(github.ref, '-') }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: ⏬Download all the build artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: release-artifacts
+
+      - name: ✨Github Release (version = ${{ needs.build.outputs.version }})
+        uses: softprops/action-gh-release@v2
+        with:
+          # body_path: ${{ github.workspace }}-CHANGELOG.txt
+          body: ${{ steps.github_release.outputs.changelog }}
+          files: |
+            ${{ github.workspace }}/release-artifacts/**
+          generate_release_notes: true
+          fail_on_unmatched_files: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      # - name: Create release and upload dists
+      #   run: |
+      #     gh release create "${{ github.ref_name }}" ${{ github.workspace }}/release-artifacts/**/*.dmg -t "${{ github.ref_name }}" --generate-notes
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
