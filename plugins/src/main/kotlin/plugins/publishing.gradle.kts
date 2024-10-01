@@ -15,39 +15,6 @@ plugins {
 // Nexus plugin needs to apply to the root project only
 if (isRootProject) {
   apply(plugin = "io.github.gradle-nexus.publish-plugin")
-
-  val nativeBuild: String? by project
-  val composeBuild: String? by project
-  val springBoot: String? by project
-
-  nmcp {
-    publishAggregation {
-      project(":shared")
-      project(":dep-mgmt:bom")
-      project(":dep-mgmt:catalog")
-      project(":meta:ksp:processor")
-      project(":meta:compiler:plugin")
-      project(":backend:jvm")
-      project(":backend:data")
-      project(":backend:profiling")
-      project(":backend:security")
-      project(":web")
-      if (nativeBuild.toBoolean()) {
-        project(":backend:native")
-      }
-      if (springBoot.toBoolean()) {
-        project(":backend:boot")
-      }
-      if (composeBuild.toBoolean()) {
-        project(":compose:cmp")
-        // project(":compose:html")
-      }
-
-      username = mavenCentralUsername
-      password = mavenCentralPassword
-      publicationType = "AUTOMATIC"
-    }
-  }
 }
 
 group = libs.versions.group.get()

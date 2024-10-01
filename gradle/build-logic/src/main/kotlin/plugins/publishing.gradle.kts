@@ -12,16 +12,6 @@ plugins {
 // Nexus plugin needs to apply to the root project only
 if (isRootProject) {
   apply(plugin = "io.github.gradle-nexus.publish-plugin")
-
-  nmcp {
-    publishAggregation {
-      project(":plugins")
-      project(":catalog")
-      username = mavenCentralUsername
-      password = mavenCentralPassword
-      publicationType = "AUTOMATIC"
-    }
-  }
 }
 
 group = libs.versions.group.get()
