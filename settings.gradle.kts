@@ -16,4 +16,4 @@ rootProject.name = "build-commons"
 
 include("catalog")
 
-includeBuild("plugins")
+include("plugins")

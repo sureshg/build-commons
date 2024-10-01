@@ -190,6 +190,7 @@ foojay-resolver                = "0.8.0"
 gradle-develocity              = "3.18.1"
 nmcp                           = "0.0.9"
 nexus-publish                  = "2.0.0"
+vanniktech-publish             = "0.29.0"
 shadow                         = "8.3.2"
 spotless                       = "7.0.0.BETA2"
 semver-plugin                  = "0.7.1"
@@ -247,6 +248,7 @@ build-mrjar-plugin                   = { module = "me.champeau.gradle.mrjar:plug
 build-jte-plugin                     = { module = "gg.jte:jte-gradle-plugin"                                        , version.ref = "jte"}
 build-nmcp-plugin                    = { module = "com.gradleup.nmcp:nmcp"                                          , version.ref = "nmcp"}
 build-nexus-plugin                   = { module = "io.github.gradle-nexus:publish-plugin"                           , version.ref = "nexus-publish"}
+build-vanniktech-publish             = { module = "com.vanniktech:gradle-maven-publish-plugin"                      , version.ref = "vanniktech-publish"}
 build-spotless-plugin                = { module = "com.diffplug.spotless:spotless-plugin-gradle"                    , version.ref = "spotless"}
 build-shadow-plugin                  = { module = "com.gradleup.shadow:shadow-gradle-plugin"                        , version.ref = "shadow"}
 build-tasktree                       = { module = "com.dorongold.plugins:task-tree"                                 , version.ref = "tasktree" }
@@ -647,6 +649,7 @@ seskar                               = { id = "io.github.turansky.seskar"       
 jte                                  = { id = "gg.jte.gradle"                                                  , version.ref = "jte" }
 benmanes                             = { id = "com.github.ben-manes.versions"                                  , version.ref = "benmanes" }
 spotless                             = { id = "com.diffplug.spotless"                                          , version.ref = "spotless" }
+semver                               = { id = "com.javiersc.semver"                                            , version.ref = "semver-plugin" }
 reproducible-builds                  = { id = "org.gradlex.reproducible-builds"                                , version.ref = "reproducible-builds" }
 autonomousapps-depanalysis           = { id = "com.autonomousapps.dependency-analysis"                         , version.ref = "autonomousapps-depanalysis" }
 autonomousapps-bestpractices         = { id = "com.autonomousapps.plugin-best-practices-plugin"                , version.ref = "autonomousapps-bestpractices" }
@@ -655,6 +658,7 @@ sigstore-base                        = { id = "dev.sigstore.sign-base"          
 graalvm-nativeimage                  = { id = "org.graalvm.buildtools.native"                                  , version.ref = "graalvm-nativeimage"}
 buildkonfig                          = { id = "com.codingfeline.buildkonfig"                                   , version.ref = "buildkonfig"}
 detekt                               = { id = "io.github.detekt.gradle.compiler-plugin"                        , version.ref = "detekt"}
+vanniktech-publish                   = { id = "com.vanniktech.maven.publish"                                   , version.ref = "vanniktech-publish" }
 kobweb-application                   = { id = "com.varabyte.kobweb.application"                                , version.ref = "kobweb" }
 kobweb-library                       = { id = "com.varabyte.kobweb.library"                                    , version.ref = "kobweb" }
 kobwebx-markdown                     = { id = "com.varabyte.kobwebx.markdown"                                  , version.ref = "kobweb" }

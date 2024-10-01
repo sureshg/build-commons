@@ -1,5 +1,7 @@
 @file:Suppress("UnstableApiUsage")
 
+import com.vanniktech.maven.publish.SonatypeHost
+import gg.jte.gradle.GenerateJteTask
 import org.jetbrains.kotlin.gradle.dsl.*
 
 plugins {
@@ -9,8 +11,12 @@ plugins {
   alias(libs.plugins.jte)
   alias(libs.plugins.benmanes)
   alias(libs.plugins.spotless)
+  alias(libs.plugins.semver)
+  alias(libs.plugins.vanniktech.publish)
   // alias(libs.plugins.kotlin.dsl)
 }
+
+group = libs.versions.group.get()
 
 // Java version used for Kotlin Gradle precompiled script plugins.
 val dslJavaVersion = libs.versions.kotlin.dsl.jvmtarget
@@ -44,7 +50,7 @@ kotlin {
         "org.jetbrains.kotlin.gradle.targets.js.dsl.ExperimentalDceDsl")
   }
 
-  explicitApiWarning()
+  // explicitApiWarning()
 }
 
 spotless {
@@ -87,6 +93,8 @@ tasks {
     allprojects.mapNotNull { it.tasks.findByName("clean") }.forEach { dependsOn(it) }
     // doLast { delete(layout.buildDirectory) }
   }
+
+  withType<GenerateJteTask>().configureEach { mustRunAfter("sourcesJar") }
 }
 
 gradlePlugin {
@@ -214,4 +222,9 @@ dependencies {
   // For using kotlin-dsl in pre-compiled script plugins
   // implementation("${libs.build.kotlin.dsl.get().module}:${expectedKotlinDslPluginsVersion}")
   testImplementation(gradleTestKit())
+}
+
+mavenPublishing {
+  publishToMavenCentral(host = SonatypeHost.CENTRAL_PORTAL, automaticRelease = false)
+  signAllPublications()
 }
