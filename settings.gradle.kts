@@ -1,15 +1,19 @@
-pluginManagement {
+@file:Suppress("UnstableApiUsage")
+
+dependencyResolutionManagement {
   repositories {
     mavenCentral()
     gradlePluginPortal()
   }
-  includeBuild("gradle/build-logic")
+  repositoriesMode = RepositoriesMode.FAIL_ON_PROJECT_REPOS
 }
 
-plugins { id("settings.repos") }
+enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
+
+enableFeaturePreview("STABLE_CONFIGURATION_CACHE")
 
 rootProject.name = "build-commons"
 
-include("plugins")
-
 include("catalog")
+
+includeBuild("plugins")

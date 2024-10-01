@@ -3,18 +3,24 @@
 import org.jetbrains.kotlin.gradle.dsl.*
 
 plugins {
+  idea
   `kotlin-dsl`
   embeddedKotlin("plugin.serialization")
-  gg.jte.gradle
-  com.github.`ben-manes`.versions
-  com.diffplug.spotless
-  plugins.kotlin.docs
-  plugins.publishing
+  alias(libs.plugins.jte)
+  alias(libs.plugins.benmanes)
+  alias(libs.plugins.spotless)
   // alias(libs.plugins.kotlin.dsl)
 }
 
 // Java version used for Kotlin Gradle precompiled script plugins.
 val dslJavaVersion = libs.versions.kotlin.dsl.jvmtarget
+
+idea {
+  module {
+    isDownloadJavadoc = true
+    isDownloadSources = true
+  }
+}
 
 kotlin {
   compilerOptions {
@@ -37,6 +43,25 @@ kotlin {
         "org.jetbrains.kotlin.gradle.targets.js.dsl.ExperimentalDistributionDsl",
         "org.jetbrains.kotlin.gradle.targets.js.dsl.ExperimentalDceDsl")
   }
+
+  explicitApiWarning()
+}
+
+spotless {
+  val ktfmtVersion = libs.versions.ktfmt.get()
+  kotlin {
+    target("src/**/*.kts", "src/**/*.kt")
+    ktfmt(ktfmtVersion)
+    trimTrailingWhitespace()
+    endWithNewline()
+  }
+
+  kotlinGradle {
+    target("*.kts")
+    ktfmt(ktfmtVersion)
+    trimTrailingWhitespace()
+    endWithNewline()
+  }
 }
 
 tasks {
@@ -52,6 +77,15 @@ tasks {
   validatePlugins {
     failOnWarning = true
     enableStricterValidation = true
+  }
+
+  dependencyUpdates { checkConstraints = true }
+
+  register("cleanAll") {
+    description = "Cleans all projects"
+    group = LifecycleBasePlugin.CLEAN_TASK_NAME
+    allprojects.mapNotNull { it.tasks.findByName("clean") }.forEach { dependsOn(it) }
+    // doLast { delete(layout.buildDirectory) }
   }
 }
 
@@ -179,5 +213,5 @@ dependencies {
 
   // For using kotlin-dsl in pre-compiled script plugins
   // implementation("${libs.build.kotlin.dsl.get().module}:${expectedKotlinDslPluginsVersion}")
-  // testImplementation(gradleTestKit())
+  testImplementation(gradleTestKit())
 }
