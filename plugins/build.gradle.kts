@@ -2,6 +2,7 @@
 
 import com.vanniktech.maven.publish.SonatypeHost
 import gg.jte.gradle.GenerateJteTask
+import java.time.Year
 import org.jetbrains.kotlin.gradle.dsl.*
 
 plugins {
@@ -17,6 +18,8 @@ plugins {
 }
 
 group = libs.versions.group.get()
+
+description = "Gradle build plugins!"
 
 // Java version used for Kotlin Gradle precompiled script plugins.
 val dslJavaVersion = libs.versions.kotlin.dsl.jvmtarget
@@ -53,23 +56,6 @@ kotlin {
   // explicitApiWarning()
 }
 
-spotless {
-  val ktfmtVersion = libs.versions.ktfmt.get()
-  kotlin {
-    target("src/**/*.kts", "src/**/*.kt")
-    ktfmt(ktfmtVersion)
-    trimTrailingWhitespace()
-    endWithNewline()
-  }
-
-  kotlinGradle {
-    target("*.kts")
-    ktfmt(ktfmtVersion)
-    trimTrailingWhitespace()
-    endWithNewline()
-  }
-}
-
 tasks {
   // Restrict the java release version used in Gradle kotlin DSL to avoid
   // accidentally using higher version JDK API in build scripts.
@@ -84,8 +70,6 @@ tasks {
     failOnWarning = true
     enableStricterValidation = true
   }
-
-  dependencyUpdates { checkConstraints = true }
 
   register("cleanAll") {
     description = "Cleans all projects"
@@ -219,12 +203,45 @@ dependencies {
   // implementation(libs.build.includegit.plugin)
   // implementation(libs.build.cyclonedx.plugin)
 
+  testImplementation(gradleTestKit())
   // For using kotlin-dsl in pre-compiled script plugins
   // implementation("${libs.build.kotlin.dsl.get().module}:${expectedKotlinDslPluginsVersion}")
-  testImplementation(gradleTestKit())
 }
 
 mavenPublishing {
   publishToMavenCentral(host = SonatypeHost.CENTRAL_PORTAL, automaticRelease = false)
+
   signAllPublications()
+
+  pom {
+    val githubUser = libs.versions.dev.name.get().lowercase()
+    val githubRepo = "https://github.com/${githubUser}/${rootProject.name}"
+
+    name = provider { "${project.group}:${project.name}" }
+    description = provider { project.description }
+    inceptionYear = Year.now().toString()
+    url = githubRepo
+
+    developers {
+      developer {
+        name = libs.versions.dev.name
+        email = libs.versions.dev.email
+        organization = libs.versions.org.name
+        organizationUrl = libs.versions.org.url
+      }
+    }
+
+    licenses {
+      license {
+        name = "The Apache Software License, Version 2.0"
+        url = "https://www.apache.org/licenses/LICENSE-2.0.txt"
+      }
+    }
+
+    scm {
+      url = githubRepo
+      connection = "scm:git:$githubRepo.git"
+      developerConnection = "scm:git:$githubRepo.git"
+    }
+  }
 }

@@ -1,8 +1,13 @@
 plugins {
   idea
   wrapper
+  alias(libs.plugins.semver)
   alias(libs.plugins.benmanes)
   alias(libs.plugins.spotless)
+
+  // Workaround for vanniktech publish plugin
+  `kotlin-dsl`
+  alias(libs.plugins.vanniktech.publish) apply false
 }
 
 gradle.projectsEvaluated { logger.lifecycle("=== Projects Configuration Completed ===") }
@@ -13,6 +18,42 @@ idea {
     isDownloadSources = true
   }
   project.vcs = "Git"
+}
+
+spotless {
+  java {
+    // googleJavaFormat(libs.versions.google.javaformat.get())
+    palantirJavaFormat(libs.versions.palantir.javaformat.get()).formatJavadoc(true)
+    target("**/*.java")
+    targetExclude("**/build/**")
+  }
+  // if(plugins.hasPlugin(JavaPlugin::class.java)){ }
+
+  val ktfmtVersion = libs.versions.ktfmt.get()
+  kotlin {
+    ktfmt(ktfmtVersion)
+    target("**/*.kt")
+    targetExclude("**/build/**")
+    trimTrailingWhitespace()
+    endWithNewline()
+    // licenseHeader(rootProject.file("gradle/license-header.txt"))
+  }
+
+  kotlinGradle {
+    ktfmt(ktfmtVersion)
+    target("**/*.gradle.kts")
+    targetExclude("**/build/**")
+    trimTrailingWhitespace()
+    endWithNewline()
+  }
+
+  format("misc") {
+    target("**/*.md", "**/.gitignore", "**/.kte")
+    targetExclude("**/build/**")
+    trimTrailingWhitespace()
+    indentWithSpaces(2)
+    endWithNewline()
+  }
 }
 
 tasks {
@@ -45,7 +86,6 @@ tasks {
     }
   }
 
-  // Clean all composite builds
   register("cleanAll") {
     description = "Clean all projects including composite builds"
     group = LifecycleBasePlugin.CLEAN_TASK_NAME
