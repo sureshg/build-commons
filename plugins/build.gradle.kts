@@ -73,6 +73,14 @@ tasks {
     // doLast { delete(layout.buildDirectory) }
   }
 
+  // Hack to include the generated version catalog accessors to the final jar
+  named<Jar>("jar") {
+    from(sourceSets.main.get().output)
+    from(files(libs.javaClass.superclass.protectionDomain.codeSource.location))
+    // Ensure the JAR is not classified as a different artifact
+    archiveClassifier = ""
+  }
+
   withType<GenerateJteTask>().configureEach { mustRunAfter("sourcesJar") }
 }
 
