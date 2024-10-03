@@ -97,7 +97,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: 🛎️Check out the source code
+      - name: 🛎️ Check out the source code
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
@@ -114,7 +114,7 @@ jobs:
       - name: 🐘 Setup Gradle
         uses: gradle/actions/setup-gradle@v4
 
-      - name: ⚙️Build Changelog
+      - name: ⚙️ Build Changelog
         id: github_release
         uses: mikepenz/release-changelog-builder-action@v5
         with:
@@ -124,7 +124,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: 📡Publish to Maven Central
+      - name: 📡 Publish to Maven Central
         id: gradle-build
         run: |
           ./gradlew publishPluginMavenPublicationToMavenCentralRepository
@@ -140,13 +140,13 @@ jobs:
           ORG_GRADLE_PROJECT_githubActor: ${{ github.actor }}
           ORG_GRADLE_PROJECT_githubToken: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: ✨Github Release
+      - name: ✨ Github Release
         uses: softprops/action-gh-release@v2
         with:
           body: ${{ steps.github_release.outputs.changelog }}
           files: |
-            ${{ github.workspace }}/catalog/build/libs/plugins-*.jar
-            ${{ github.workspace }}/plugins/build/version-catalog/libs.versions.toml
+            ${{ github.workspace }}/plugins/build/libs/plugins-*.jar
+            ${{ github.workspace }}/catalog/build/version-catalog/libs.versions.toml
           generate_release_notes: true
           fail_on_unmatched_files: true
         env:
