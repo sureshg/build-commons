@@ -79,7 +79,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: plugin-jar
-          path: catalog/build/libs/plugins-*.jar
+          path: plugins/build/libs/plugins-*.jar
           if-no-files-found: error
 
       - name: 📄 Upload Version Catalog
@@ -87,7 +87,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: version-catalog
-          path: plugins/build/version-catalog/libs.versions.toml
+          path: catalog/build/version-catalog/libs.versions.toml
           if-no-files-found: error
 
   release:
