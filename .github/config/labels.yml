@@ -64,3 +64,6 @@
 - name: kotlin-multiplatform
   description: Kotlin Multiplatform changes
   color: 7f52ff
+- name: build-logic
+  description: Build Logic changes
+  color: 4CAF50
