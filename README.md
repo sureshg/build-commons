@@ -18,19 +18,27 @@ $ sdk i java 21.0.4-zulu
 $ sdk u java 21.0.4-zulu
 ```
 
-### Build & Test
+### Build & Testing
 
-```bash
-$ ./gradlew build
+  ```bash
+  $ ./gradlew build
+  ```
 
-# To test, run the sample sandbox project by changing the version in `settings.gradle.kts`
-$ ./gradlew publishToMavenLocal
-$ ./gradlew -p sandbox :build
-```
+For testing, a separate [sandbox project](/sandbox) is available with the plugin applied in `settings.gradle.kts`.
+First publish the plugin to the local maven repository and then run the sandbox project by setting the `test.version` in
+sandbox [gradle.properties](/sandbox/gradle.properties).
+
+   ```bash
+   $ ./gradlew publishToMavenLocal
+   # Set the test.version in sandbox/gradle.properties
+   $ ./gradlew -p sandbox :build
+   $ ./gradlew -p sandbox :dependencyUpdates
+   ```
 
 ### Publishing
 
-Push a new tag to trigger the [release](https://repo1.maven.org/maven2/dev/suresh/build/) workflow.
+Push a new tag to trigger the release workflow and publish the plugin
+to [maven central](https://repo1.maven.org/maven2/dev/suresh/build/). That's it!
 
    ```bash
    $ git tag -am "v1.0.0 release" v1.0.0

@@ -10,7 +10,7 @@ pluginManagement {
   resolutionStrategy {
     eachPlugin {
       if (requested.id.id.startsWith("settings.")) {
-        useModule("dev.suresh.build:plugins:0.5.0")
+        useModule("dev.suresh.build:plugins:${extra["test.version"]}")
       }
     }
   }
@@ -26,7 +26,7 @@ dependencyResolutionManagement {
 
   versionCatalogs {
     create("mylibs") {
-      from("dev.suresh.build:catalog:0.5.0")
+      from("dev.suresh.build:catalog:${extra["test.version"]}")
       version("java", "21")
     }
   }
