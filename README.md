@@ -18,10 +18,14 @@ $ sdk i java 21.0.4-zulu
 $ sdk u java 21.0.4-zulu
 ```
 
-### Build
+### Build & Test
 
 ```bash
 $ ./gradlew build
+
+# To test, run the sample sandbox project by changing the version in `settings.gradle.kts`
+$ ./gradlew publishToMavenLocal
+$ ./gradlew -p sandbox :build
 ```
 
 ### Publishing
