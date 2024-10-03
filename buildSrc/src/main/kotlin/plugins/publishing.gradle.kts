@@ -6,10 +6,10 @@ import kotlin.text.lowercase
 import libs
 
 plugins {
-  // https://github.com/vanniktech/gradle-maven-publish-plugin/issues/846
-  id("org.gradle.kotlin.kotlin-dsl")
-  id("com.vanniktech.maven.publish")
   id("com.javiersc.semver")
+  // https://github.com/vanniktech/gradle-maven-publish-plugin/issues/846
+  // id("org.gradle.kotlin.kotlin-dsl")
+  id("com.vanniktech.maven.publish")
 }
 
 group = libs.versions.group.get()

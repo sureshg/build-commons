@@ -1,0 +1,153 @@
+name: Build
+
+on:
+  push:
+    branches:
+      - main
+    tags:
+      - '*'
+    paths-ignore:
+      - LICENSE
+      - '*.md'
+      - 'docs/**'
+      - '.github/config/labels.yml'
+
+  pull_request:
+    branches:
+      - main
+
+  schedule:
+    - cron: "0 0 * * *"
+
+  workflow_dispatch:
+
+defaults:
+  run:
+    shell: bash
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: write
+  issues: write
+  packages: write
+  repository-projects: write
+
+env:
+  releaseBuild: ${{ github.event_name == 'push' && contains(github.ref, 'refs/tags/') }}
+
+jobs:
+  build:
+    name: 🏗️ Gradle Build
+    strategy:
+      fail-fast: true
+      matrix:
+        os: [ ubuntu-latest ]
+        distribution: [ zulu ]
+        java: [ 21 ]
+
+    runs-on: ${{ matrix.os }}
+    continue-on-error: false
+
+    steps:
+      - name: 🛎️ Check out the source code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: ☕ Install ${{ matrix.distribution }} JDK ${{ matrix.jdk }}
+        id: install-java
+        uses: actions/setup-java@v4
+        with:
+          distribution: ${{ matrix.distribution }}
+          java-version: ${{ matrix.java }}
+          check-latest: true
+          # cache: 'gradle'
+
+      - name: 🐘 Setup Gradle
+        uses: gradle/actions/setup-gradle@v4
+
+      - name: 🏗️ Gradle Build
+        id: gradle-build
+        run: |
+          ./gradlew build --no-daemon
+
+      - name: 📦 Upload Plugin artifact
+        if: steps.gradle-build.outcome == 'success'
+        uses: actions/upload-artifact@v4
+        with:
+          name: plugin-jar
+          path: catalog/build/libs/plugins-*.jar
+          if-no-files-found: error
+
+      - name: 📄 Upload Version Catalog
+        if: steps.gradle-build.outcome == 'success'
+        uses: actions/upload-artifact@v4
+        with:
+          name: version-catalog
+          path: plugins/build/version-catalog/libs.versions.toml
+          if-no-files-found: error
+
+  release:
+    name: 🚰 Release new version.
+    needs: [ build ]
+    if: startsWith(github.ref, 'refs/tags/') && needs.build.result == 'success' && github.repository == 'sureshg/build-commons'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 🛎️Check out the source code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          submodules: recursive
+
+      - name: ☕ Install Zulu JDK 21
+        id: install-java
+        uses: actions/setup-java@v4
+        with:
+          distribution: zulu
+          java-version: 21
+          check-latest: true
+
+      - name: 🐘 Setup Gradle
+        uses: gradle/actions/setup-gradle@v4
+
+      - name: ⚙️Build Changelog
+        id: github_release
+        uses: mikepenz/release-changelog-builder-action@v5
+        with:
+          configuration: ".github/config/configuration.json"
+          commitMode: true
+          ignorePreReleases: ${{ !contains(github.ref, '-') }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: 📡Publish to Maven Central
+        id: gradle-build
+        run: |
+          ./gradlew publishPluginMavenPublicationToMavenCentralRepository
+          ./gradlew :catalog:publishToMavenCentral
+        env:
+          GITHUB_USER: ${{ github.repository_owner }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ORG_GRADLE_PROJECT_mavenCentralUsername: ${{ secrets.MAVEN_CENTRAL_USERNAME }}
+          ORG_GRADLE_PROJECT_mavenCentralPassword: ${{ secrets.MAVEN_CENTRAL_PASSWORD }}
+          ORG_GRADLE_PROJECT_signingInMemoryKeyId: ${{ secrets.SIGNING_PRIVATE_KEY_ID }}
+          ORG_GRADLE_PROJECT_signingInMemoryKey: ${{ secrets.SIGNING_PRIVATE_KEY }}
+          ORG_GRADLE_PROJECT_signingInMemoryKeyPassword: ${{ secrets.SIGNING_PRIVATE_KEY_PASSWORD }}
+          ORG_GRADLE_PROJECT_githubActor: ${{ github.actor }}
+          ORG_GRADLE_PROJECT_githubToken: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: ✨Github Release
+        uses: softprops/action-gh-release@v2
+        with:
+          body: ${{ steps.github_release.outputs.changelog }}
+          files: |
+            ${{ github.workspace }}/catalog/build/libs/plugins-*.jar
+            ${{ github.workspace }}/plugins/build/version-catalog/libs.versions.toml
+          generate_release_notes: true
+          fail_on_unmatched_files: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
