@@ -78,7 +78,7 @@ jobs:
         if: steps.gradle-build.outcome == 'success'
         uses: actions/upload-artifact@v4
         with:
-          name: plugin-jar
+          name: plugin.jar
           path: plugins/build/libs/plugins-*.jar
           if-no-files-found: error
 
@@ -86,7 +86,7 @@ jobs:
         if: steps.gradle-build.outcome == 'success'
         uses: actions/upload-artifact@v4
         with:
-          name: version-catalog
+          name: libs.versions.toml
           path: catalog/build/version-catalog/libs.versions.toml
           if-no-files-found: error
 
