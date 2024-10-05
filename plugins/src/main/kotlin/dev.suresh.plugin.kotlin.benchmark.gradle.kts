@@ -1,5 +1,3 @@
-package plugins
-
 import common.libs
 import kotlinx.benchmark.gradle.BenchmarkTarget
 import kotlinx.benchmark.gradle.KotlinJvmBenchmarkTarget
@@ -13,7 +11,7 @@ import kotlinx.benchmark.gradle.benchmark
  * [For more details](https://github.com/gradle/gradle/issues/15383#issuecomment-900629378)
  */
 plugins {
-  id("plugins.kotlin.mpp")
+  id("dev.suresh.plugin.kotlin.mpp")
   kotlin("plugin.allopen")
   org.jetbrains.kotlinx.benchmark
 }

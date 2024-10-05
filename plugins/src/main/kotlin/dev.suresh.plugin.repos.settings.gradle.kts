@@ -1,7 +1,5 @@
 @file:Suppress("UnstableApiUsage")
 
-package settings
-
 import com.gradle.develocity.agent.gradle.scan.PublishedBuildScan
 import common.GithubAction
 import kotlinx.kover.gradle.aggregation.settings.dsl.KoverSettingsExtension
@@ -53,7 +51,7 @@ plugins {
   id("com.autonomousapps.build-health")
   id("com.javiersc.semver")
   // Include other pre-compiled settings plugin
-  id("settings.include")
+  // id("dev.suresh.plugin.settings.include")
 }
 
 // Centralizing repositories declaration

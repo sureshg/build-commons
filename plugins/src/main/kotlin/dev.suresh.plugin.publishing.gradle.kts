@@ -1,7 +1,6 @@
-package plugins
-
 import com.google.cloud.tools.jib.gradle.JibExtension
 import common.*
+import kotlin.text.get
 import nmcp.NmcpPublishTask
 import org.jetbrains.kotlin.gradle.tasks.KotlinNativeLink
 
