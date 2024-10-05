@@ -57,7 +57,7 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: ☕ Install ${{ matrix.distribution }} JDK ${{ matrix.jdk }}
+      - name: ☕ Install ${{ matrix.distribution }} JDK ${{ matrix.java }}
         id: install-java
         uses: actions/setup-java@v4
         with:
