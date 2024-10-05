@@ -6,7 +6,7 @@ plugins { com.vanniktech.maven.publish }
 group = libs.versions.group.get()
 
 mavenPublishing {
-  publishToMavenCentral(host = SonatypeHost.CENTRAL_PORTAL, automaticRelease = false)
+  publishToMavenCentral(host = SonatypeHost.CENTRAL_PORTAL, automaticRelease = true)
 
   if (hasSigningKey) {
     signAllPublications()
