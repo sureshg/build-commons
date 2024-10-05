@@ -127,8 +127,7 @@ jobs:
       - name: 📡 Publish to Maven Central
         id: gradle-build
         run: |
-          ./gradlew publishPluginMavenPublicationToMavenCentralRepository
-          ./gradlew :catalog:publishToMavenCentral
+          ./gradlew publishAllPublicationsToMavenCentralRepository
         env:
           GITHUB_USER: ${{ github.repository_owner }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
