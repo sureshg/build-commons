@@ -1,28 +1,18 @@
-package plugins
-
 import com.vanniktech.maven.publish.SonatypeHost
 import java.time.Year
-import kotlin.text.lowercase
-import libs
 
-plugins {
-  id("com.javiersc.semver")
-  // https://github.com/vanniktech/gradle-maven-publish-plugin/issues/846
-  // id("org.gradle.kotlin.kotlin-dsl")
-  id("com.vanniktech.maven.publish")
-}
+plugins { com.vanniktech.maven.publish }
 
 group = libs.versions.group.get()
 
 mavenPublishing {
-  publishToMavenCentral(host = SonatypeHost.CENTRAL_PORTAL, automaticRelease = true)
+  publishToMavenCentral(host = SonatypeHost.CENTRAL_PORTAL, automaticRelease = false)
 
-  signAllPublications()
+  if (hasSigningKey) {
+    signAllPublications()
+  }
 
   pom {
-    val githubUser = libs.versions.dev.name.get().lowercase()
-    val githubRepo = "https://github.com/${githubUser}/${rootProject.name}"
-
     name = provider { "${project.group}:${project.name}" }
     description = provider { project.description }
     inceptionYear = Year.now().toString()

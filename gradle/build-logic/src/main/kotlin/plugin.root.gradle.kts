@@ -1,16 +1,24 @@
-package plugins
-
-import libs
-
 plugins {
   idea
   wrapper
-  id("com.github.ben-manes.versions")
-  id("com.javiersc.semver")
-  id("com.diffplug.spotless")
+  com.github.`ben-manes`.versions
+  com.diffplug.spotless
 }
 
 group = libs.versions.group.get()
+
+if (hasCleanTask) {
+  logger.warn(
+      """
+      | CLEANING ALMOST NEVER FIXES YOUR BUILD!
+      | Cleaning is often a last-ditch effort to fix perceived build problems that aren't going to
+      | actually be fixed by cleaning. What cleaning will do though is make your next few builds
+      | significantly slower because all the incremental compilation data has to be regenerated,
+      | so you're really just making your day worse.
+      """
+          .trimMargin(),
+  )
+}
 
 gradle.projectsEvaluated { logger.lifecycle("=== Projects Configuration Completed ===") }
 

@@ -4,27 +4,19 @@ import gg.jte.gradle.GenerateJteTask
 import org.jetbrains.kotlin.gradle.dsl.*
 
 plugins {
-  idea
   // Just apply with `kotlin-dsl` id.
   id("org.gradle.kotlin.kotlin-dsl")
   embeddedKotlin("plugin.serialization")
   com.github.`ben-manes`.versions
   com.diffplug.spotless
-  alias(libs.plugins.jte)
-  plugins.publishing
+  gg.jte.gradle
+  plugin.publishing
 }
 
 description = "Gradle build plugins!"
 
 // Java version used for Kotlin Gradle precompiled script plugins.
 val dslJavaVersion = libs.versions.kotlin.dsl.jvmtarget
-
-idea {
-  module {
-    isDownloadJavadoc = true
-    isDownloadSources = true
-  }
-}
 
 kotlin {
   compilerOptions {
@@ -66,13 +58,6 @@ tasks {
     enableStricterValidation = true
   }
 
-  register("cleanAll") {
-    description = "Cleans all projects"
-    group = LifecycleBasePlugin.CLEAN_TASK_NAME
-    allprojects.mapNotNull { it.tasks.findByName("clean") }.forEach { dependsOn(it) }
-    // doLast { delete(layout.buildDirectory) }
-  }
-
   // Hack to include the generated version catalog accessors to the final jar
   named<Jar>("jar") {
     from(sourceSets.main.get().output)
@@ -82,6 +67,21 @@ tasks {
   }
 
   withType<GenerateJteTask>().configureEach { mustRunAfter("sourcesJar") }
+}
+
+jte {
+  contentType = gg.jte.ContentType.Plain
+  generate()
+  jteExtension("gg.jte.models.generator.ModelExtension") {
+    property("language", "Kotlin")
+    // property("interfaceAnnotation", "@foo.bar.MyAnnotation")
+    // property("implementationAnnotation", "@foo.bar.MyAnnotation")
+  }
+
+  // sourceDirectory = sourceSets.main.map { it.resources.srcDirs.first().toPath() }
+  // jteExtension("gg.jte.nativeimage.NativeResourcesExtension")
+  // binaryStaticContent = true
+  // kotlinCompileArgs = arrayOf("-jvm-target", dslJavaVersion.get())
 }
 
 gradlePlugin {
@@ -112,31 +112,8 @@ gradlePlugin {
       tags = listOf("Generic Plugin", "build-logic")
     }
 
-    // Re-exposure of plugin from dependency. Gradle doesn't expose the plugin itself.
-    create("com.gradle.develocity") {
-      id = "com.gradle.develocity"
-      implementationClass = "com.gradle.develocity.agent.gradle.DevelocityPlugin"
-      displayName = "Develocity Gradle Plugin"
-      description = "Develocity gradle settings plugin re-exposed from dependency"
-    }
-
     // val settingsPlugin by registering {}
   }
-}
-
-// Jte is used for generating build config.
-jte {
-  contentType = gg.jte.ContentType.Plain
-  generate()
-  jteExtension("gg.jte.models.generator.ModelExtension") {
-    property("language", "Kotlin")
-    // property("interfaceAnnotation", "@foo.bar.MyAnnotation")
-    // property("implementationAnnotation", "@foo.bar.MyAnnotation")
-  }
-  // sourceDirectory = sourceSets.main.map { it.resources.srcDirs.first().toPath() }
-  // jteExtension("gg.jte.nativeimage.NativeResourcesExtension")
-  // binaryStaticContent = true
-  // kotlinCompileArgs = arrayOf("-jvm-target", dslJavaVersion.get())
 }
 
 dependencies {

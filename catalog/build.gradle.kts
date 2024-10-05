@@ -1,6 +1,6 @@
 plugins {
   `version-catalog`
-  plugins.publishing
+  plugin.publishing
 }
 
 description = "Gradle version catalog!"

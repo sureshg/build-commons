@@ -1,1 +1,1 @@
-plugins { plugins.root }
+plugins { plugin.root }
