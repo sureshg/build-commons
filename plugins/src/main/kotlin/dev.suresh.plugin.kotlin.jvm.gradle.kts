@@ -30,6 +30,9 @@ plugins {
 // Apply the regular plugin
 apply(plugin = "dev.suresh.plugin.depreports")
 
+// Load the build script from a file
+// apply(from = rootDir.resolve("project.plugin.gradle.kts"))
+
 java {
   withSourcesJar()
   withJavadocJar()
