@@ -45,6 +45,21 @@ to [maven central](https://repo1.maven.org/maven2/dev/suresh/build/). That's it!
    $ git push origin main --follow-tags
    ```
 
+### Published Plugins
+
+| **Gradle Plugin ID**                 | **Version**                                                                                                                                                                                                                                |
+|--------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `dev.suresh.plugin.root`             | [![Maven Central](https://img.shields.io/maven-central/v/dev.suresh.plugin.root/dev.suresh.plugin.root.gradle.plugin?logo=gradle&logoColor=white&color=00B4E6)](https://repo1.maven.org/maven2/dev/suresh/plugin/)                         |
+| `dev.suresh.plugin.common`           | [![Maven Central](https://img.shields.io/maven-central/v/dev.suresh.plugin.common/dev.suresh.plugin.common.gradle.plugin?logo=gradle&logoColor=white&color=00B4E6)](https://repo1.maven.org/maven2/dev/suresh/plugin/)                     |
+| `dev.suresh.plugin.graalvm`          | [![Maven Central](https://img.shields.io/maven-central/v/dev.suresh.plugin.graalvm/dev.suresh.plugin.graalvm.gradle.plugin?logo=gradle&logoColor=white&color=00B4E6)](https://repo1.maven.org/maven2/dev/suresh/plugin/)                   |
+| `dev.suresh.plugin.kotlin.jvm`       | [![Maven Central](https://img.shields.io/maven-central/v/dev.suresh.plugin.kotlin.jvm/dev.suresh.plugin.kotlin.jvm.gradle.plugin?logo=gradle&logoColor=white&color=00B4E6)](https://repo1.maven.org/maven2/dev/suresh/plugin/)             |
+| `dev.suresh.plugin.kotlin.mpp`       | [![Maven Central](https://img.shields.io/maven-central/v/dev.suresh.plugin.kotlin.mpp/dev.suresh.plugin.kotlin.mpp.gradle.plugin?logo=gradle&logoColor=white&color=00B4E6)](https://repo1.maven.org/maven2/dev/suresh/plugin/)             |
+| `dev.suresh.plugin.kotlin.docs`      | [![Maven Central](https://img.shields.io/maven-central/v/dev.suresh.plugin.kotlin.docs/dev.suresh.plugin.kotlin.docs.gradle.plugin?logo=gradle&logoColor=white&color=00B4E6)](https://repo1.maven.org/maven2/dev/suresh/plugin/)           |
+| `dev.suresh.plugin.kotlin.benchmark` | [![Maven Central](https://img.shields.io/maven-central/v/dev.suresh.plugin.kotlin.benchmark/dev.suresh.plugin.kotlin.benchmark.gradle.plugin?logo=gradle&logoColor=white&color=00B4E6)](https://repo1.maven.org/maven2/dev/suresh/plugin/) |
+| `dev.suresh.plugin.publishing`       | [![Maven Central](https://img.shields.io/maven-central/v/dev.suresh.plugin.publishing/dev.suresh.plugin.publishing.gradle.plugin?logo=gradle&logoColor=white&color=00B4E6)](https://repo1.maven.org/maven2/dev/suresh/plugin/)             |
+| `dev.suresh.plugin.repos`            | [![Maven Central](https://img.shields.io/maven-central/v/dev.suresh.plugin.repos/dev.suresh.plugin.repos.gradle.plugin?logo=gradle&logoColor=white&color=00B4E6)](https://repo1.maven.org/maven2/dev/suresh/plugin/)                       |
+| `dev.suresh.plugin.catalog`          | [![Maven Central](https://img.shields.io/maven-central/v/dev.suresh.plugin.catalog/dev.suresh.plugin.catalog.gradle.plugin?logo=gradle&logoColor=white&color=00B4E6)](https://repo1.maven.org/maven2/dev/suresh/plugin/)                   |
+
 <details>
 <summary>Misc</summary>
 
