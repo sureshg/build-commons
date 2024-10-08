@@ -36,7 +36,7 @@ kotlinx-metadata               = "0.9.0"
 kotlinx-reflect-lite           = "1.1.0"
 kotlinx-bcv                    = "0.16.3"
 kotlin-dokka                   = "1.9.20"
-kotlin-wrappers                = "1.0.0-pre.815"
+kotlin-wrappers                = "1.0.0-pre.816"
 kotlin-redacted                = "1.11.0-alpha01"
 kotlinx-multik                 = "0.2.3"
 kotlinx-dataframe              = "0.13.1"
@@ -49,7 +49,7 @@ akkurate                       = "0.10.0"
 konsist                        = "0.16.1"
 karakum                        = "1.0.0-alpha.40-K2"
 seskar                         = "3.42.0"
-spring-boot                    = "3.3.3"
+spring-boot                    = "3.3.4"
 spring-depmgmt                 = "1.1.6"
 ktor                           = "3.0.0-rc-2"
 ktor-cohort                    = "2.5.1"
@@ -68,7 +68,7 @@ ajalt-mordant                  = "3.0.0"
 ajalt-clikt                    = "5.0.1"
 ajalt-colormath                = "3.6.0"
 classgraph                     = "4.8.177"
-cache4k                        = "0.13.0"
+cache4k                        = "0.11.0"
 intellij-coverage              = "1.0.754"
 intellij-markdown              = "0.7.3"
 jgit                           = "6.5.0.202303070854-r"
@@ -92,7 +92,7 @@ log4j                          = "3.0.0-beta2"
 jmh                            = "1.37"
 mrjar                          = "0.1.1"
 ktfmt                          = "0.52"
-google-javaformat              = "1.23.0"
+google-javaformat              = "1.24.0"
 palantir-javaformat            = "2.50.0"
 google-auto-service            = "1.1.1"
 google-tink                    = "1.15.0"
@@ -146,8 +146,8 @@ reflect-typetools              = "0.6.3"
 async-profiler                 = "3.0"
 ap-loader-all                  = "3.0-9"
 openjdk-jmc                    = "9.0.0"
-airlift-aircompressor          = "0.27"
-airlift-security               = "271"
+airlift-aircompressor          = "2.0.2"
+airlift-security               = "273"
 directory-keystore             = "1.1.0"
 maven-mima                     = "3.0.0-alpha-3"
 maven-archeologist             = "0.0.10"
@@ -175,6 +175,7 @@ detekt-compose-rules           = "0.4.12"
 compose-icons                  = "1.1.0"
 compose-routing                = "0.4.0"
 kottie                         = "2.0.0"
+mosaic                         = "0.14.0"
 
 # NPM Dependencies
 npm-highlightjs                = "11.10.0"
@@ -353,6 +354,7 @@ ktor-server-websockets               = { module = "io.ktor:ktor-server-websocket
 ktor-server-sse                      = { module = "io.ktor:ktor-server-sse"                                         , version.ref = "ktor"}
 ktor-server-test-host                = { module = "io.ktor:ktor-server-test-host"                                   , version.ref = "ktor"}
 ktor-serialization-json              = { module = "io.ktor:ktor-serialization-kotlinx-json"                         , version.ref = "ktor"}
+ktor-serialization-xml               = { module = "io.ktor:ktor-serialization-kotlinx-xml"                         , version.ref = "ktor"}
 
 ktor-client-core                     = { module = "io.ktor:ktor-client-core"                                   , version.ref = "ktor"}
 ktor-client-cio                      = { module = "io.ktor:ktor-client-cio"                                    , version.ref = "ktor"}
@@ -460,6 +462,7 @@ ajalt-colormath                      = { module = "com.github.ajalt.colormath:co
 ajalt-clikt-core                     = { module = "com.github.ajalt.clikt:clikt-core"                          , version.ref = "ajalt-clikt"}
 ajalt-clikt                          = { module = "com.github.ajalt.clikt:clikt"                               , version.ref = "ajalt-clikt"}
 ajalt-clikt-markdown                 = { module = "com.github.ajalt.clikt:clikt-markdown"                      , version.ref = "ajalt-clikt"}
+mosaic-runtime                       = { module = "com.jakewharton.mosaic:mosaic-runtime"                      , version.ref = "mosaic"}
 jgit                                 = { module = "org.eclipse.jgit:org.eclipse.jgit"                          , version.ref = "jgit" }
 jte                                  = { module = "gg.jte:jte"                                                 , version.ref = "jte" }
 jte-runtime                          = { module = "gg.jte:jte-runtime"                                         , version.ref = "jte" }

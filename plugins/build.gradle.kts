@@ -6,6 +6,7 @@ import org.jetbrains.kotlin.gradle.dsl.*
 plugins {
   // Just apply with `kotlin-dsl` id.
   id("org.gradle.kotlin.kotlin-dsl")
+  // embeddedKotlin("jvm")
   embeddedKotlin("plugin.serialization")
   com.github.`ben-manes`.versions
   com.diffplug.spotless

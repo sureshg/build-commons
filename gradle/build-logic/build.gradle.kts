@@ -90,6 +90,7 @@ dependencies {
   implementation(libs.build.nmcp.plugin)
   implementation(libs.build.foojay.resolver)
   implementation(libs.build.jte.plugin)
+  implementation(libs.ajalt.mordant.coroutines)
   // implementation(libs.build.tomlj)
 
   // For using `kotlin-dsl` in pre-compiled script plugins
