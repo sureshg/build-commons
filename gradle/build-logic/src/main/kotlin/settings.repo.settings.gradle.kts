@@ -1,6 +1,6 @@
 @file:Suppress("UnstableApiUsage")
 
-import com.javiersc.semver.project.gradle.plugin.SemverExtension
+import com.javiersc.semver.settings.gradle.plugin.SemverSettingsExtension
 import org.gradle.toolchains.foojay.FoojayToolchainResolver
 import org.tomlj.Toml
 
@@ -39,16 +39,9 @@ toolchainManagement {
   }
 }
 
-gradle.beforeProject {
-  pluginManager.withPlugin("com.javiersc.semver.project") {
-    configure<SemverExtension> {
-      // Change version to include kotlin version
-      // val ktVersion = versionCatalog.getString("kotlin").orEmpty()
-      // mapVersion {
-      //   it.copy(metadata = ktVersion).toString()
-      // }
-    }
-  }
+configure<SemverSettingsExtension> {
+  // val ktVersion = versionCatalog.getString("kotlin").orEmpty()
+  // mapVersion { it.copy(metadata = ktVersion).toString() }
 }
 
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
