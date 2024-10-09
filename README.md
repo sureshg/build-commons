@@ -42,11 +42,13 @@ to [maven central](https://repo1.maven.org/maven2/dev/suresh/build/). That's it 
 The next version will be based on the semantic version scope (`major`, `minor`, `patch`)
 
    ```bash
-   $ ./gradlew createSemverTag "-Psemver.scope=patch"
-   $ git push origin main --follow-tags
-
-   # OR in one step
    $ ./gradlew pushSemverTag "-Psemver.scope=patch"
+
+   # To see the current version
+   # ./gradlew v
+
+   # Print the new version
+   # ./gradlew printSemver "-Psemver.scope=patch"
    ```
 
 ### Published Plugins
