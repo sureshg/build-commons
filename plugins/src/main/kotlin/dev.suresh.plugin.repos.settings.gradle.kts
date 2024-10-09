@@ -1,6 +1,7 @@
 @file:Suppress("UnstableApiUsage")
 
 import com.gradle.develocity.agent.gradle.scan.PublishedBuildScan
+import com.javiersc.semver.settings.gradle.plugin.SemverSettingsExtension
 import common.GithubAction
 import kotlinx.kover.gradle.aggregation.settings.dsl.KoverSettingsExtension
 import org.gradle.api.JavaVersion.VERSION_17
@@ -50,8 +51,7 @@ plugins {
   id("org.jetbrains.kotlinx.kover.aggregation")
   id("com.autonomousapps.build-health")
   id("com.javiersc.semver")
-  // Include other pre-compiled settings plugin
-  // id("dev.suresh.plugin.settings.include")
+  // id("dev.suresh.plugin.include")
 }
 
 // Centralizing repositories declaration
@@ -75,6 +75,11 @@ toolchainManagement {
       repository("foojay") { resolverClass = FoojayToolchainResolver::class.java }
     }
   }
+}
+
+configure<SemverSettingsExtension> {
+  // val ktVersion = versionCatalog.getString("kotlin").orEmpty()
+  // mapVersion { it.copy(metadata = ktVersion).toString() }
 }
 
 configure<KoverSettingsExtension> {

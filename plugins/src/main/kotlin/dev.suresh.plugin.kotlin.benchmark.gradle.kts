@@ -1,7 +1,6 @@
 import common.libs
 import kotlinx.benchmark.gradle.BenchmarkTarget
 import kotlinx.benchmark.gradle.KotlinJvmBenchmarkTarget
-import kotlinx.benchmark.gradle.benchmark
 
 /**
  * It's not allowed to access `libs` from pre-compiled script plugins. The `plugins {}` block in the
