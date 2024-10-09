@@ -1,7 +1,14 @@
 @file:Suppress("UnstableApiUsage")
 
-import org.gradle.kotlin.dsl.*
+import com.javiersc.semver.project.gradle.plugin.SemverExtension
 import org.gradle.toolchains.foojay.FoojayToolchainResolver
+import org.tomlj.Toml
+
+val versionCatalog by lazy {
+  // A hack to read version catalog from settings
+  Toml.parse(file("$rootDir/gradle/libs.versions.toml").readText()).getTable("versions")
+      ?: error("Unable to parse the version catalog!")
+}
 
 pluginManagement {
   repositories {
@@ -28,6 +35,18 @@ toolchainManagement {
   jvm {
     javaRepositories {
       repository("foojay") { resolverClass = FoojayToolchainResolver::class.java }
+    }
+  }
+}
+
+gradle.beforeProject {
+  pluginManager.withPlugin("com.javiersc.semver.project") {
+    configure<SemverExtension> {
+      // Change version to include kotlin version
+      // val ktVersion = versionCatalog.getString("kotlin").orEmpty()
+      // mapVersion {
+      //   it.copy(metadata = ktVersion).toString()
+      // }
     }
   }
 }

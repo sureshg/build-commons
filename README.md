@@ -38,11 +38,15 @@ sandbox [gradle.properties](/sandbox/gradle.properties).
 ### Publishing
 
 Push a new tag to trigger the release workflow and publish the plugin
-to [maven central](https://repo1.maven.org/maven2/dev/suresh/build/). That's it!
+to [maven central](https://repo1.maven.org/maven2/dev/suresh/build/). That's it 🎉.
+The next version will be based on the semantic version scope (`major`, `minor`, `patch`)
 
    ```bash
-   $ git tag -am "v1.0.0 release" v1.0.0
+   $ ./gradlew createSemverTag "-Psemver.scope=patch"
    $ git push origin main --follow-tags
+
+   # OR in one step
+   $ ./gradlew pushSemverTag "-Psemver.scope=patch"
    ```
 
 ### Published Plugins

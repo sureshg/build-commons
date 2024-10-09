@@ -91,7 +91,7 @@ dependencies {
   implementation(libs.build.foojay.resolver)
   implementation(libs.build.jte.plugin)
   implementation(libs.ajalt.mordant.coroutines)
-  // implementation(libs.build.tomlj)
+  implementation(libs.build.tomlj)
 
   // For using `kotlin-dsl` in pre-compiled script plugins
   implementation("${libs.build.kotlin.dsl.get().module}:${expectedKotlinDslPluginsVersion}")
