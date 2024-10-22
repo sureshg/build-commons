@@ -26,17 +26,19 @@ val Project.githubRepo
   get() = "https://github.com/${githubUser}/${rootProject.name}"
 
 /** For publishing to maven central and GitHub */
-val Project.signingKey
+val Project.signingInMemoryKey
   get() = providers.gradleProperty("signingInMemoryKey")
 
-val Project.signingKeyId
+val Project.signingInMemoryKeyId
   get() = providers.gradleProperty("signingInMemoryKeyId")
 
-val Project.signingPassword
+val Project.signingInMemoryKeyPassword
   get() = providers.gradleProperty("signingInMemoryKeyPassword")
 
 val Project.hasSigningKey
-  get() = signingKey.orNull.isNullOrBlank().not() && signingPassword.orNull.isNullOrBlank().not()
+  get() =
+      signingInMemoryKey.orNull.isNullOrBlank().not() &&
+          signingInMemoryKeyPassword.orNull.isNullOrBlank().not()
 
 val Project.mavenCentralUsername
   get() = providers.gradleProperty("mavenCentralUsername")
@@ -44,8 +46,8 @@ val Project.mavenCentralUsername
 val Project.mavenCentralPassword
   get() = providers.gradleProperty("mavenCentralPassword")
 
-val Project.githubActor
-  get() = providers.gradleProperty("githubActor")
+val Project.githubPackagesUsername
+  get() = providers.gradleProperty("githubPackagesUsername")
 
-val Project.githubToken
-  get() = providers.gradleProperty("githubToken")
+val Project.githubPackagesPassword
+  get() = providers.gradleProperty("githubPackagesPassword")
