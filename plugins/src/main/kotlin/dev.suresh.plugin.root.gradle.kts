@@ -82,14 +82,8 @@ tasks {
   withType<AbstractArchiveTask>().configureEach {
     isPreserveFileTimestamps = false
     isReproducibleFileOrder = true
-    dirPermissions {
-      // 0b111111101
-      unix("rwxrwxr-x")
-    }
-    filePermissions {
-      // 0b110110100
-      unix("rw-rw-r--")
-    }
+    dirPermissions { unix("rwxrwxr-x") }
+    filePermissions { unix("rw-rw-r--") }
   }
 
   val githubActionOutput by registering {
@@ -113,12 +107,7 @@ tasks {
     group = BasePlugin.BUILD_GROUP
 
     dependsOn(allprojects.map { it.tasks.build })
-    dependsOn(
-        ":allTestReports",
-        ":dokkaHtmlMultiModule",
-        ":koverHtmlReport",
-        /*":testAggregateTestReport"*/
-    )
+    dependsOn(":allTestReports", ":dokkaGenerate", ":koverHtmlReport")
 
     when {
       // Publishing to all repos on GitHub Action tag build
@@ -183,7 +172,7 @@ tasks {
     // distributionUrl = "${Repo.GRADLE_DISTRO}/gradle-$gradleVersion-bin.zip"
   }
 
-  // dependencyAnalysis { issues { this.all { onAny { severity("warn") } } } }
+  // withType<UpdateDaemonJvm> { jvmVersion = gradleDaemonJvm }
 
   defaultTasks("clean", "tasks", "--all")
 }

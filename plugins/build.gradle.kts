@@ -4,7 +4,6 @@ import gg.jte.gradle.GenerateJteTask
 import org.jetbrains.kotlin.gradle.dsl.*
 
 plugins {
-  // Just apply with `kotlin-dsl` id.
   id("org.gradle.kotlin.kotlin-dsl")
   // embeddedKotlin("jvm")
   embeddedKotlin("plugin.serialization")
@@ -118,9 +117,6 @@ gradlePlugin {
 }
 
 dependencies {
-  // Hack to access version catalog from pre-compiled script plugins.
-  // https://github.com/gradle/gradle/issues/15383#issuecomment-779893192
-  implementation(files(libs.javaClass.superclass.protectionDomain.codeSource.location))
   implementation(platform(libs.kotlin.bom))
   implementation(libs.kotlin.stdlib)
   implementation(libs.kotlinx.coroutines.core)
@@ -153,7 +149,6 @@ dependencies {
   implementation(libs.build.kotlinx.benchmark)
   implementation(libs.build.kotlinx.bcv)
   implementation(libs.build.dokka.plugin)
-  implementation(libs.build.dokka.base)
   implementation(libs.build.redacted.plugin)
   implementation(libs.build.gradle.develocity)
   implementation(libs.build.nmcp.plugin)
@@ -175,6 +170,9 @@ dependencies {
   implementation(libs.build.modulegraph.plugin)
   implementation(libs.build.kopy.plugin)
   implementation(libs.build.tomlj)
+
+  // https://github.com/gradle/gradle/issues/15383#issuecomment-779893192
+  implementation(files(libs.javaClass.superclass.protectionDomain.codeSource.location))
 
   // implementation(libs.build.kotlin.compose.compiler)
   // implementation(libs.build.karakum.plugin)
