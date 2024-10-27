@@ -24,13 +24,11 @@ $ sdk u java 21.0.4-zulu
   $ ./gradlew build
   ```
 
-For testing, a separate [sandbox project](/sandbox) is available with the plugin applied in `settings.gradle.kts`.
-First publish the plugin to the local maven repository and then run the sandbox project by setting the `test.version` in
-sandbox [gradle.properties](/sandbox/gradle.properties).
+For testing, a separate [sandbox project](/sandbox) is available with the plugin and version catalog applied in
+`settings.gradle.kts`. First publish the plugin to the local maven repository and then run the sandbox project.
 
    ```bash
    $ ./gradlew publishToMavenLocal
-   # Set the test.version in sandbox/gradle.properties
    $ ./gradlew -p sandbox :build
    $ ./gradlew -p sandbox :dependencyUpdates
    ```

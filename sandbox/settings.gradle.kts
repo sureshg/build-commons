@@ -3,45 +3,49 @@
 pluginManagement {
   repositories {
     gradlePluginPortal()
-    mavenCentral()
     mavenLocal()
+    mavenCentral()
   }
 
-  val testVersion = extra["test.version"].toString()
-  plugins {
-    listOf("repos", "root", "kotlin.jvm", "kotlin.mpp").forEach {
-      // Use individual plugin marker artifact
-      // id("dev.suresh.plugin.$it") version testVersion
-    }
-  }
+  // val testVersion = extra["test.version"].toString()
+  //
+  // 1. Use individual plugin marker artifact
+  //
+  // plugins {
+  //   listOf("repos", "root", "kotlin.jvm", "kotlin.mpp").forEach {
+  //     id("dev.suresh.plugin.$it") version testVersion
+  //   }
+  // }
 
-  resolutionStrategy {
-    eachPlugin {
-      if (requested.id.id.startsWith("dev.suresh.plugin")) {
-        // Or directly use the plugin artifact
-        useModule("dev.suresh.build:plugins:$testVersion")
-      }
-    }
-  }
+  // 2. Or directly use the main plugin artifact
+  //
+  // resolutionStrategy {
+  //   eachPlugin {
+  //     if (requested.id.id.startsWith("dev.suresh.plugin")) {
+  //       useModule("dev.suresh.build:plugins:$testVersion")
+  //     }
+  //   }
+  // }
 }
 
 dependencyResolutionManagement {
   repositories {
+    mavenLocal()
     mavenCentral()
     gradlePluginPortal()
-    mavenLocal()
   }
-  repositoriesMode = RepositoriesMode.FAIL_ON_PROJECT_REPOS
+
+  repositoriesMode = RepositoriesMode.PREFER_SETTINGS
 
   versionCatalogs {
-    create("mylibs") {
-      from("dev.suresh.build:catalog:${extra["test.version"]}")
+    create("libs") {
+      from("dev.suresh.build:catalog:+")
       version("java", "21")
     }
   }
 }
 
-plugins { id("dev.suresh.plugin.repos") }
+plugins { id("dev.suresh.plugin.repos") version "+" }
 
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
