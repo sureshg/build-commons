@@ -2,6 +2,7 @@
 @file:OptIn(ExperimentalKotlinGradlePluginApi::class, ExperimentalBCVApi::class)
 
 import com.google.devtools.ksp.gradle.KspAATask
+import com.javiersc.kotlin.kopy.args.KopyFunctions
 import common.*
 import java.time.ZonedDateTime
 import java.time.format.DateTimeFormatter
@@ -23,7 +24,7 @@ plugins {
   id("dev.suresh.plugin.kotlin.docs")
   com.google.devtools.ksp
   dev.zacsweers.redacted
-  // com.javiersc.kotlin.kopy
+  com.javiersc.kotlin.kopy
   org.jetbrains.kotlinx.atomicfu
   // kotlin("plugin.atomicfu")
   // kotlin("plugin.compose")
@@ -96,7 +97,7 @@ redacted {
   replacementString = "█"
 }
 
-// kopy { functions = KopyFunctions.Copy }
+kopy { functions = KopyFunctions.Copy }
 
 tasks {
   if (isSharedProject) {
@@ -177,6 +178,25 @@ tasks {
   }
 }
 
+var npmEnabled: String? by rootProject.extra
+
+plugins.withType<NodeJsPlugin> {
+  the<NodeJsEnvSpec>().apply {
+    download = true
+    // version = libs.versions.nodejs.version.get()
+    // downloadBaseUrl = "https://nodejs.org/download/nightly"
+  }
+
+  if (!npmEnabled.toBoolean()) {
+    rootProject.the<NpmExtension>().apply {
+      lockFileDirectory = project.rootDir.resolve("gradle/kotlin-js-store")
+      packageLockMismatchReport = LockFileMismatchReport.WARNING
+      packageLockAutoReplace = false
+    }
+    npmEnabled = "true"
+  }
+}
+
 // Expose shared js/wasm resource as configuration to be consumed by other projects.
 // https://docs.gradle.org/current/userguide/cross_project_publications.html#sec:simple-sharing-artifacts-between-projects
 artifacts {
@@ -189,27 +209,6 @@ artifacts {
     tasks.findByName("wasmJsProcessResources")?.let {
       val sharedWasmResources by configurations.consumable("sharedWasmResources")
       add(sharedWasmResources.name, provider { it })
-    }
-  }
-}
-
-// Initialize Node.js and NPM extensions only once in a multi-module project
-var nodeJsEnabled: String? by rootProject.extra
-
-if (nodeJsEnabled.toBoolean().not()) {
-  rootProject.plugins.withType<NodeJsRootPlugin> {
-    rootProject.extensions.configure<NodeJsRootExtension> {
-      download = true
-      nodeJsEnabled = "true"
-      // version = libs.versions.nodejs.version.get()
-      // nodeDownloadBaseUrl = "https://nodejs.org/download/nightly"
-    }
-
-    rootProject.extensions.configure<NpmExtension> {
-      lockFileDirectory = project.rootDir.resolve("gradle/kotlin-js-store")
-      packageLockMismatchReport = LockFileMismatchReport.WARNING
-      packageLockAutoReplace = false
-      nodeJsEnabled = "true"
     }
   }
 }

@@ -187,10 +187,12 @@ fun Project.jvmArguments(appRun: Boolean = false, headless: Boolean = true) = bu
             "-XX:+PrintCommandLineFlags",
             "--enable-native-access=ALL-UNNAMED",
             "--illegal-native-access=warn",
+            // "--sun-misc-unsafe-memory-access=warn",
             "-Xmx128M",
             "-XX:+UseZGC",
             "-XX:+UseStringDeduplication",
             "-XX:+UnlockExperimentalVMOptions",
+            "-XX:+UseCompactObjectHeaders",
             "-XX:MaxRAMPercentage=0.8",
             // "-XX:+UseEpsilonGC",
             // "-XX:+AlwaysPreTouch",
@@ -242,6 +244,7 @@ fun Project.jvmArguments(appRun: Boolean = false, headless: Boolean = true) = bu
             "-Djava.security.egd=file:/dev/./urandom",
             "-Djdk.includeInExceptions=hostInfo,jar",
             "-Dkotlinx.coroutines.debug",
+            "-Djdk.incubator.vector.VECTOR_ACCESS_OOB_CHECK=0",
             "-Dcom.sun.management.jmxremote",
             "-Dcom.sun.management.jmxremote.local.only=false",
             "-Dcom.sun.management.jmxremote.port=9898",
@@ -259,7 +262,6 @@ fun Project.jvmArguments(appRun: Boolean = false, headless: Boolean = true) = bu
             // "-XshowSettings:system",
             // "-XshowSettings:properties",
             // "--show-module-resolution",
-            // "-XX:+UseCompactObjectHeaders",
             // "-XX:+ShowHiddenFrames",
             // "-verbose:module",
             // "-XX:ConcGCThreads=2",
@@ -390,12 +392,16 @@ fun KotlinCommonCompilerOptions.configureKotlinCommon(project: Project) =
       apiVersion = kotlinApiVersion
       languageVersion = kotlinLangVersion
       progressiveMode = true
+      extraWarnings = false
       allWarningsAsErrors = false
       suppressWarnings = false
       verbose = false
       freeCompilerArgs.addAll(
           "-Xexpect-actual-classes",
           "-Xskip-prerelease-check",
+          "-Xwhen-guards",
+          "-Xmulti-dollar-interpolation",
+          "-Xnon-local-break-continue",
           // "-XXLanguage:+ExplicitBackingFields",
           // "-Xsuppress-version-warnings",
           // "-P",
@@ -403,16 +409,14 @@ fun KotlinCommonCompilerOptions.configureKotlinCommon(project: Project) =
       )
       optIn.addAll(
           "kotlin.ExperimentalStdlibApi",
-          "kotlin.contracts.ExperimentalContracts",
           "kotlin.ExperimentalUnsignedTypes",
+          "kotlin.contracts.ExperimentalContracts",
           "kotlin.io.encoding.ExperimentalEncodingApi",
           "kotlin.time.ExperimentalTime",
           "kotlinx.coroutines.ExperimentalCoroutinesApi",
           "kotlinx.serialization.ExperimentalSerializationApi",
           "kotlin.ExperimentalMultiplatform",
           "kotlin.js.ExperimentalJsExport",
-          "kotlin.experimental.ExperimentalNativeApi",
-          "kotlinx.cinterop.ExperimentalForeignApi",
           "kotlin.uuid.ExperimentalUuidApi",
           // "org.jetbrains.kotlin.compiler.plugin.ExperimentalCompilerApi",
       )
@@ -430,6 +434,7 @@ fun KspAATask.configureKspConfig() =
 
 /**
  * JVM backend compiler options can be found in,
+ * - [CommonCompilerArgs](https://github.com/JetBrains/kotlin/blob/master/compiler/cli/cli-common/src/org/jetbrains/kotlin/cli/common/arguments/CommonCompilerArguments.kt)
  * - [K2JVMCompilerArguments.kt](https://github.com/JetBrains/kotlin/blob/master/compiler/cli/cli-common/src/org/jetbrains/kotlin/cli/common/arguments/K2JVMCompilerArguments.kt)
  * - [JvmTarget.kt](https://github.com/JetBrains/kotlin/blob/master/compiler/config.jvm/src/org/jetbrains/kotlin/config/JvmTarget.kt)
  * - [ApiVersion.kt](https://github.com/JetBrains/kotlin/blob/master/compiler/util/src/org/jetbrains/kotlin/config/ApiVersion.kt#L35)

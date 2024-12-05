@@ -14,8 +14,8 @@ Kotlin JVM & Multiplatform projects.
 
 ```bash
 $ curl -s "https://get.sdkman.io" | bash
-$ sdk i java 21.0.4-zulu
-$ sdk u java 21.0.4-zulu
+$ sdk i java 21.0.5-zulu
+$ sdk u java 21.0.5-zulu
 ```
 
 ### Build & Testing
@@ -63,6 +63,16 @@ The next version will be based on the semantic version scope (`major`, `minor`, 
 | `dev.suresh.plugin.publishing`       | [![Maven Central](https://img.shields.io/maven-central/v/dev.suresh.plugin.publishing/dev.suresh.plugin.publishing.gradle.plugin?logo=gradle&logoColor=white&color=00B4E6)](https://repo1.maven.org/maven2/dev/suresh/plugin/)             |
 | `dev.suresh.plugin.repos`            | [![Maven Central](https://img.shields.io/maven-central/v/dev.suresh.plugin.repos/dev.suresh.plugin.repos.gradle.plugin?logo=gradle&logoColor=white&color=00B4E6)](https://repo1.maven.org/maven2/dev/suresh/plugin/)                       |
 | `dev.suresh.plugin.catalog`          | [![Maven Central](https://img.shields.io/maven-central/v/dev.suresh.plugin.catalog/dev.suresh.plugin.catalog.gradle.plugin?logo=gradle&logoColor=white&color=00B4E6)](https://repo1.maven.org/maven2/dev/suresh/plugin/)                   |
+
+### Verifying Artifacts
+
+The published artifacts are signed using this [key][signing_key]. The best way to verify artifacts
+is [automatically with Gradle][gradle_verification].
+
+[gradle_verification]: https://docs.gradle.org/current/userguide/dependency_verification.html#sec:signature-verification
+
+[signing_key]: https://keyserver.ubuntu.com/pks/lookup?op=get&search=0xc124db3a8ad1c13f7153decdf209c085c8b53ca1
+
 
 <details>
 <summary>Misc</summary>

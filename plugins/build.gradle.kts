@@ -178,7 +178,7 @@ dependencies {
   // implementation(libs.jte.native)
   // implementation(libs.build.kmp.hierarchy)
   // implementation(libs.build.includegit.plugin)
-  // implementation(libs.build.cyclonedx.plugin)
+  // implementation(libs.build.dependencyanalysis)
 
   testImplementation(gradleTestKit())
   // For using kotlin-dsl in pre-compiled script plugins
