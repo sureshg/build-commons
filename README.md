@@ -22,6 +22,9 @@ $ sdk u java 21.0.5-zulu
 
   ```bash
   $ ./gradlew build
+
+  # Check dep updates
+  $ ./gradlew dependencyUpdates --no-configuration-cache
   ```
 
 For testing, a separate [sandbox project](/sandbox) is available with the plugin and version catalog applied in
@@ -30,7 +33,7 @@ For testing, a separate [sandbox project](/sandbox) is available with the plugin
    ```bash
    $ ./gradlew publishToMavenLocal
    $ ./gradlew -p sandbox :build
-   $ ./gradlew -p sandbox :dependencyUpdates
+   $ ./gradlew -p sandbox :dependencyUpdates --no-configuration-cache
    ```
 
 ### Publishing
@@ -84,7 +87,7 @@ is [automatically with Gradle][gradle_verification].
   ```bash
   # Publish to local maven repository
   $ ./gradlew publishToMavenLocal
-  $  tree  ~/.m2/repository/dev/suresh/build/
+  $ tree ~/.m2/repository/dev/suresh
 
   # Publish the plugins to maven central
   $ ./gradlew publishPluginMavenPublicationToMavenCentralRepository

@@ -66,7 +66,7 @@ spotless {
     target("**/*.md", "**/.gitignore", "**/.kte")
     targetExclude("**/build/**")
     trimTrailingWhitespace()
-    indentWithSpaces(2)
+    leadingTabsToSpaces(2)
     endWithNewline()
   }
 }

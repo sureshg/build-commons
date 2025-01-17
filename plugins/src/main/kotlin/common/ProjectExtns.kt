@@ -187,7 +187,7 @@ fun Project.jvmArguments(appRun: Boolean = false, headless: Boolean = true) = bu
             "-XX:+PrintCommandLineFlags",
             "--enable-native-access=ALL-UNNAMED",
             "--illegal-native-access=warn",
-            // "--sun-misc-unsafe-memory-access=warn",
+            "--sun-misc-unsafe-memory-access=warn",
             "-Xmx128M",
             "-XX:+UseZGC",
             "-XX:+UseStringDeduplication",
@@ -476,6 +476,7 @@ fun KotlinJvmCompilerOptions.configureKotlinJvm(project: Project) =
     }
 
 fun Test.configureJavaTest() {
+  enabled = true
   useJUnitPlatform()
   jvmArgs(project.jvmArguments())
 
@@ -483,6 +484,7 @@ fun Test.configureJavaTest() {
   systemProperty("ktorTest", project.hasProperty("ktorTest"))
   systemProperty("k8sTest", project.hasProperty("k8sTest"))
   systemProperty("spring.classformat.ignore", true)
+
   // Custom hosts file for tests
   val customHostFile = project.layout.projectDirectory.file("src/test/resources/hosts").asFile
   if (customHostFile.exists()) {

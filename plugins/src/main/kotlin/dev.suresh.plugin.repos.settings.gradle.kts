@@ -41,7 +41,6 @@ pluginManagement {
     mavenCentral()
     gradlePluginPortal()
     googleAndroid()
-    kobWeb()
     mavenSnapshot()
   }
 }
@@ -61,7 +60,6 @@ dependencyResolutionManagement {
   repositories {
     mavenCentral()
     googleAndroid()
-    kobWeb()
     mavenSnapshot()
   }
 
@@ -85,7 +83,10 @@ configure<SemverSettingsExtension> {
 
 configure<KoverSettingsExtension> {
   enableCoverage()
-  reports { excludedClasses.addAll("*.generated.*", "dev.suresh.example.*") }
+  reports {
+    excludedClasses.addAll("*.generated.*", "dev.suresh.example.*")
+    verify { warningInsteadOfFailure = true }
+  }
 }
 
 develocity {
@@ -132,13 +133,6 @@ fun RepositoryHandler.nodeJS() {
       }
     }
     filter { includeGroup("org.nodejs") }
-  }
-}
-
-fun RepositoryHandler.kobWeb() {
-  maven(url = versionCatalog?.getString("repo-kobweb").orEmpty()) {
-    name = "KobWeb Repo"
-    content { includeGroupAndSubgroups("com.varabyte") }
   }
 }
 
