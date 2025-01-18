@@ -86,6 +86,7 @@ is [automatically with Gradle][gradle_verification].
 
   ```bash
   # Publish to local maven repository
+  $ rm -rf ~/.m2/repository/dev/suresh
   $ ./gradlew publishToMavenLocal
   $ tree ~/.m2/repository/dev/suresh
 
