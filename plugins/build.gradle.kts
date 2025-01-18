@@ -59,12 +59,12 @@ tasks {
 
   withType<GenerateJteTask>().configureEach { mustRunAfter("sourcesJar") }
 
-  // Hack to include the generated version catalog accessors to the final jar
-  //  named<Jar>("jar") {
-  //    from(sourceSets.main.get().output)
-  //    from(files(libs.javaClass.superclass.protectionDomain.codeSource.location))
-  //    archiveClassifier = ""
-  //  }
+  // Include the generated build version catalog (blibs) accessors to the final jar
+  named<Jar>("jar") {
+    from(sourceSets.main.get().output)
+    from(files(blibs.javaClass.superclass.protectionDomain.codeSource.location))
+    archiveClassifier = ""
+  }
 }
 
 jte {
@@ -170,7 +170,7 @@ dependencies {
   implementation(libs.build.tomlj)
 
   // https://github.com/gradle/gradle/issues/15383#issuecomment-779893192
-  implementation(files(libs.javaClass.superclass.protectionDomain.codeSource.location))
+  implementation(files(blibs.javaClass.superclass.protectionDomain.codeSource.location))
 
   // implementation(libs.build.kotlin.compose.compiler)
   // implementation(libs.build.karakum.plugin)

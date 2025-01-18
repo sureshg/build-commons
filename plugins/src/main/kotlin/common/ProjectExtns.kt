@@ -7,7 +7,7 @@ import java.io.ByteArrayOutputStream
 import java.io.File
 import java.nio.file.Path
 import org.graalvm.buildtools.gradle.dsl.GraalVMExtension
-import org.gradle.accessors.dm.LibrariesForLibs
+import org.gradle.accessors.dm.LibrariesForBlibs
 import org.gradle.api.Action
 import org.gradle.api.JavaVersion
 import org.gradle.api.Project
@@ -32,9 +32,9 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 // val logger = LoggerFactory.getLogger("build-logic")
 
-/** Returns version catalog of this project. */
+/** Returns the version catalog of this project. */
 internal val Project.libs
-  get() = the<LibrariesForLibs>()
+  get() = the<LibrariesForBlibs>()
 
 /**
  * Returns version catalog extension of this project. Give access to all version catalogs available.
