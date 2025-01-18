@@ -69,10 +69,12 @@ jobs:
       - name: 🐘 Setup Gradle
         uses: gradle/actions/setup-gradle@v4
 
-      - name: 🏗️ Gradle Build
+      - name: 🏗️ Gradle Build & Test
         id: gradle-build
         run: |
           ./gradlew build --no-daemon
+          ./gradlew publishToMavenLocal
+          ./gradlew -p sandbox :build
 
       - name: 📦 Upload Plugin artifact
         if: steps.gradle-build.outcome == 'success'
