@@ -149,9 +149,7 @@ jobs:
         with:
           body: ${{ steps.github_release.outputs.changelog }}
           files: |
-            ${{ github.workspace }}/plugins/**/build/libs/*.jar
-            !${{ github.workspace }}/plugins/**/build/libs/*-sources.jar
-            !${{ github.workspace }}/plugins/**/build/libs/*-javadoc.jar
+            ${{ github.workspace }}/plugins/**/build/libs/*[0-9].jar
             ${{ github.workspace }}/catalog/build/version-catalog/libs.versions.toml
           generate_release_notes: true
           fail_on_unmatched_files: true
