@@ -115,7 +115,7 @@ is [automatically with Gradle][gradle_verification].
 
 [kt_img]: https://img.shields.io/github/v/release/Jetbrains/kotlin?include_prereleases&color=7f53ff&label=Kotlin&logo=kotlin&logoColor=7f53ff
 
-[maven_img]: https://img.shields.io/maven-central/v/dev.suresh.build/plugins?logo=gradle&logoColor=white&color=00B4E6
+[maven_img]: https://img.shields.io/maven-central/v/dev.suresh.build/project?logo=gradle&logoColor=white&color=00B4E6
 
 [maven_url]: https://central.sonatype.com/search?namespace=dev.suresh.build
 
