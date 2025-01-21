@@ -80,8 +80,11 @@ jobs:
         if: steps.gradle-build.outcome == 'success'
         uses: actions/upload-artifact@v4
         with:
-          name: plugin.jar
-          path: plugins/build/libs/plugins-*.jar
+          name: plugin-artifacts
+          path: |
+            plugins/**/build/libs/*.jar
+            !plugins/**/build/libs/*-sources.jar
+            !plugins/**/build/libs/*-javadoc.jar
           if-no-files-found: error
 
       - name: 📄 Upload Version Catalog
@@ -146,7 +149,9 @@ jobs:
         with:
           body: ${{ steps.github_release.outputs.changelog }}
           files: |
-            ${{ github.workspace }}/plugins/build/libs/plugins-*.jar
+            ${{ github.workspace }}/plugins/**/build/libs/*.jar
+            !${{ github.workspace }}/plugins/**/build/libs/*-sources.jar
+            !${{ github.workspace }}/plugins/**/build/libs/*-javadoc.jar
             ${{ github.workspace }}/catalog/build/version-catalog/libs.versions.toml
           generate_release_notes: true
           fail_on_unmatched_files: true
