@@ -54,8 +54,8 @@ spotless {
 }
 
 tasks {
-  // Restrict the java release version used in Gradle kotlin DSL to avoid
-  // accidentally using higher version JDK API in build scripts.
+  // Restrict the java release version used in Gradle kotlin DSL to
+  // avoid accidentally using higher version JDK API in build scripts.
   compileJava {
     options.apply {
       release = dslJavaVersion.map { it.toInt() }

@@ -38,7 +38,7 @@ dependencyResolutionManagement {
   repositoriesMode = RepositoriesMode.PREFER_SETTINGS
 
   versionCatalogs {
-    create("blibs") {
+    create("libs") {
       from("dev.suresh.build:catalog:+")
       version("java", "21")
     }

@@ -3,9 +3,9 @@ import org.gradle.kotlin.dsl.*
 import tasks.*
 
 plugins {
-  dev.suresh.plugin.root
-  dev.suresh.plugin.kotlin.mpp
-  com.gradleup.shadow
+  id("dev.suresh.plugin.root") version "+"
+  id("dev.suresh.plugin.kotlin.mpp") version "+"
+  alias(libs.plugins.shadow)
 }
 
 kotlin { jvmTarget(project) }

@@ -699,6 +699,7 @@ serviceloader-compiler               = { id = "app.softwork.serviceloader-compil
 jte                                  = { id = "gg.jte.gradle"                                                  , version.ref = "jte" }
 benmanes                             = { id = "com.github.ben-manes.versions"                                  , version.ref = "benmanes" }
 spotless                             = { id = "com.diffplug.spotless"                                          , version.ref = "spotless" }
+shadow                               = { id = "com.gradleup.shadow"                                            , version.ref = "shadow" }
 semver                               = { id = "com.javiersc.semver"                                            , version.ref = "semver-plugin" }
 reproducible-builds                  = { id = "org.gradlex.reproducible-builds"                                , version.ref = "reproducible-builds" }
 autonomousapps-depanalysis           = { id = "com.autonomousapps.dependency-analysis"                         , version.ref = "autonomousapps-depanalysis" }

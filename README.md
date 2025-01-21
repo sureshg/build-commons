@@ -100,6 +100,10 @@ is [automatically with Gradle][gradle_verification].
 
 </details>
 
+### References
+
+- [Kotlin DSL Plugin](https://docs.gradle.org/current/userguide/kotlin_dsl.html#sec:kotlin-dsl_plugin)
+- [Pre-compiled Script Plugins](https://docs.gradle.org/current/userguide/implementing_gradle_plugins_precompiled.html#sec:applying_external_plugins)
 
 <!-- Badges -->
 
