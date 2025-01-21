@@ -20,6 +20,7 @@ org-name                       = "suresh.dev"
 org-url                        = "https://suresh.dev"
 
 # Gradle Dependencies Versions
+bc-plugins                     = "0.23.0"
 kotlinx-kover                  = "0.9.1"
 kotlinx-bcv                    = "0.17.0"
 kotlin-dokka                   = "2.0.0"
@@ -170,7 +171,7 @@ kmp-process                    = "0.1.2"
 langchain4j                    = "1.0.0-alpha1"
 jlama                          = "0.8.4"
 mcp-kotlin                     = "0.3.0"
-mcp4k                          = "0.3.0"
+mcp4k                          = "0.3.1"
 dflib                          = "1.1.0"
 ldaptive                       = "2.4.0"
 chicory                        = "1.0.0"
@@ -179,10 +180,10 @@ rwmutex                        = "1.0.0"
 bluesky-ozone                  = "0.3.1"
 
 # Compose
-jetbrains-compose              = "1.8.0-alpha01"
-jetbrains-compose-viewmodel    = "2.9.0-alpha01"
-jetbrains-compose-nav          = "2.8.0-alpha11"
-jetbrains-compose-adaptive     = "1.1.0-alpha01"
+jetbrains-compose              = "1.8.0-alpha02"
+jetbrains-compose-viewmodel    = "2.9.0-alpha02"
+jetbrains-compose-nav          = "2.8.0-alpha12"
+jetbrains-compose-adaptive     = "1.1.0-alpha02"
 kobweb                         = "0.20.2"
 detekt                         = "1.23.7"
 detekt-compose-rules           = "0.4.22"
@@ -720,3 +721,16 @@ kopy                                 = { id = "com.javiersc.kotlin.kopy"        
 mappie                               = { id = "tech.mappie.plugin"                                             , version.ref = "mappie" }
 poko                                 = { id = "dev.drewhamilton.poko"                                          , version.ref = "poko" }
 mcp4k                                = { id = "sh.ondr.mcp4k"                                                  , version.ref = "mcp4k"}
+
+
+# Common build and settings plugin
+project-root                         = { id = "dev.suresh.plugin.root"                                         , version.ref = "bc-plugins" }
+project-common                       = { id = "dev.suresh.plugin.common"                                       , version.ref = "bc-plugins" }
+project-graalvm                      = { id = "dev.suresh.plugin.graalvm"                                      , version.ref = "bc-plugins" }
+project-kotlin-jvm                   = { id = "dev.suresh.plugin.kotlin.jvm"                                   , version.ref = "bc-plugins" }
+project-kotlin-mpp                   = { id = "dev.suresh.plugin.kotlin.mpp"                                   , version.ref = "bc-plugins" }
+project-kotlin-docs                  = { id = "dev.suresh.plugin.kotlin.docs"                                  , version.ref = "bc-plugins" }
+project-kotlin-benchmark             = { id = "dev.suresh.plugin.kotlin.benchmark"                             , version.ref = "bc-plugins" }
+project-publishing                   = { id = "dev.suresh.plugin.publishing"                                   , version.ref = "bc-plugins" }
+settings-repos                       = { id = "dev.suresh.plugin.repos"                                        , version.ref = "bc-plugins" }
+settings-catalog                     = { id = "dev.suresh.plugin.catalog"                                      , version.ref = "bc-plugins" }
