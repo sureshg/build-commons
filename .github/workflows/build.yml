@@ -80,7 +80,7 @@ jobs:
         if: steps.gradle-build.outcome == 'success'
         uses: actions/upload-artifact@v4
         with:
-          name: plugin-artifacts
+          name: plugin-artifacts.zip
           path: |
             plugins/**/build/libs/*.jar
             !plugins/**/build/libs/*-sources.jar
