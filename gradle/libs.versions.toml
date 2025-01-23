@@ -204,7 +204,7 @@ swagger-style                  = "https://unpkg.com/swagger-ui-themes@3.0.1/them
 # Plugin versions
 benmanes                       = "0.52.0"
 foojay-resolver                = "0.9.0"
-gradle-develocity              = "3.19"
+gradle-develocity              = "3.19.1"
 nmcp                           = "0.0.9"
 nexus-publish                  = "2.0.0"
 vanniktech-publish             = "0.30.0"
