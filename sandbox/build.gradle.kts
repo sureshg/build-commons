@@ -8,8 +8,17 @@ plugins {
   alias(libs.plugins.shadow)
 }
 
-kotlin { jvmTarget(project) }
-
 description = "Sandbox App"
+
+buildConfig {
+  enabled = true
+  projectName = rootProject.name
+  projectVersion = project.version.toString()
+  projectDesc = rootProject.description
+  gitCommit = semver.commits.get().first()
+  catalogVersions = project.versionCatalogMapOf()
+}
+
+kotlin { jvmTarget(project) }
 
 application { mainClass = "MainKt" }

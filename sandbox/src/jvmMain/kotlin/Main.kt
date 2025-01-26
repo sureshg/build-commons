@@ -1,4 +1,4 @@
 fun main() {
-  println("Hello, sandbox project! 🏖")
-  println("Java: ${System.getProperty("java.runtime.version")},  Kotlin: ${KotlinVersion.CURRENT}")
+  println("Hello, ${BuildConfig.name}! 🏖")
+  println("Java: ${BuildConfig.java}, Kotlin: ${BuildConfig.kotlin}")
 }
