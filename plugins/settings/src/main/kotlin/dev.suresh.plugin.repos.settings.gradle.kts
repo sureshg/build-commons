@@ -4,7 +4,7 @@ import com.gradle.develocity.agent.gradle.scan.PublishedBuildScan
 import com.javiersc.semver.settings.gradle.plugin.SemverSettingsExtension
 import common.GithubAction
 import kotlinx.kover.gradle.aggregation.settings.dsl.KoverSettingsExtension
-import org.gradle.api.JavaVersion.VERSION_17
+import org.gradle.api.JavaVersion.VERSION_21
 import org.gradle.kotlin.dsl.*
 import org.gradle.toolchains.foojay.FoojayToolchainResolver
 import org.tomlj.Toml
@@ -18,8 +18,8 @@ val versionCatalog by lazy {
 }
 
 pluginManagement {
-  require(JavaVersion.current().isCompatibleWith(VERSION_17)) {
-    "This build requires Gradle to be run with at least Java $VERSION_17"
+  require(JavaVersion.current().isCompatibleWith(VERSION_21)) {
+    "This build requires Gradle to be run with at least Java $VERSION_21"
   }
 
   resolutionStrategy {

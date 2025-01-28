@@ -1,5 +1,13 @@
 @file:Suppress("UnstableApiUsage")
 
+// val kotlinVersion =
+//    file(rootDir)
+//        .resolveSibling("libs.versions.toml")
+//        .readLines()
+//        .first { it.contains("kotlin") }
+//        .split("\"")[1]
+//        .trim()
+
 dependencyResolutionManagement {
   repositories {
     mavenCentral()

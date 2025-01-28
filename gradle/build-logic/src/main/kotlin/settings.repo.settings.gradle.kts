@@ -6,8 +6,10 @@ import org.tomlj.Toml
 
 val versionCatalog by lazy {
   // A hack to read version catalog from settings
-  Toml.parse(file("$rootDir/gradle/libs.versions.toml").readText()).getTable("versions")
-      ?: error("Unable to parse the version catalog!")
+  runCatching {
+        Toml.parse(file("$rootDir/gradle/libs.versions.toml").readText()).getTable("versions")
+      }
+      .getOrNull()
 }
 
 pluginManagement {
