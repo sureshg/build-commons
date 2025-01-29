@@ -138,9 +138,7 @@ tasks {
 
   // Auto-format all source files
   pluginManager.withPlugin("com.diffplug.spotless") {
-    processResources {
-      // dependsOn(":spotlessApply")
-    }
+    // tasks.withType<ProcessResources>().configureEach { dependsOn(":spotlessApply") }
   }
 
   // Run the checkBestPractices check for build-logic included builds.

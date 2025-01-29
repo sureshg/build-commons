@@ -5,6 +5,7 @@ import tasks.*
 plugins {
   id("dev.suresh.plugin.root") version "+"
   id("dev.suresh.plugin.kotlin.mpp") version "+"
+  application
   alias(libs.plugins.shadow)
 }
 
