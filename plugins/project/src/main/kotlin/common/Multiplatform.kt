@@ -100,6 +100,14 @@ fun KotlinMultiplatformExtension.jvmTarget(project: Project) =
         // val test by testRuns.existing
         testRuns.configureEach { executionTask.configure { configureJavaTest() } }
 
+        // binaries {
+        //   executable {
+        //     mainClass = libs.versions.app.mainclass
+        //     applicationDefaultJvmArgs = jvmRunArgs
+        //     applicationDistribution.duplicatesStrategy = DuplicatesStrategy.WARN
+        //   }
+        // }
+
         // Register a task to execute a class using jvm runtime dependencies.
         // compilations.getByName("test") {
         //   tasks.register<JavaExec>("ktExec") {
@@ -108,35 +116,7 @@ fun KotlinMultiplatformExtension.jvmTarget(project: Project) =
         //   }
         // }
 
-        // attributes.attribute(mppTargetAttr, platformType.name)
         // attributes.attribute(KotlinPlatformType.attribute, KotlinPlatformType.jvm)
-
-        // https://youtrack.jetbrains.com/issue/KT-41409
-        // binaries {
-        //          // Configures JavaExec task with name "runJvm" and Gradle distrbition for the
-        // "main" compilation in this target
-        //          executable {
-        //            mainClass = "foo.MainKt"
-        //          }
-        //
-        //          // Configures JavaExec task with name "runJvmAnother" and Gradle distribution
-        // for the "main" compilation
-        //          executable(KotlinCompilation.MAIN_COMPILATION_NAME, "another") {
-        //            mainClass = "foo.MainAnotherKt" // Class to run is different from above
-        //          }
-        //
-        //          // Configures JavaExec task with name "runJvmTest" and Gradle distribution for
-        // the "test" compilation
-        //          executable(KotlinCompilation.TEST_COMPILATION_NAME) {
-        //            mainClass = "foo.MainTestKt"
-        //          }
-        //
-        //          // Configures JavaExec task with name "runJvmTestAnother" and Gradle
-        // distribution for the "test" compilation
-        //          executable(KotlinCompilation.TEST_COMPILATION_NAME, "another") {
-        //            mainClass = "foo.MainAnotherTestKt"
-        //          }
-        //        }
       }
 
       sourceSets {
