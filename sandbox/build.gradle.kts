@@ -2,6 +2,8 @@ import common.*
 import org.gradle.kotlin.dsl.*
 import tasks.*
 
+val enableExec by extra(false)
+
 plugins {
   id("dev.suresh.plugin.root") version "+"
   id("dev.suresh.plugin.kotlin.mpp") version "+"
