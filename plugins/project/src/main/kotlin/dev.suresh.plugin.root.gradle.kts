@@ -145,7 +145,11 @@ tasks {
   register("checkBuildLogicBestPractices") {
     description = "Run the checkBestPractices check for build-logic included builds!"
     group = BasePlugin.BUILD_GROUP
-    dependsOn(gradle.includedBuild("build-logic").task(":checkBestPractices"))
+
+    dependsOn(
+        gradle.includedBuilds
+            .filter { it.name == buildLogicProjectName }
+            .mapNotNull { it.task(":checkBestPractices") })
   }
 
   register<Copy>("setUpGitHooks") {
