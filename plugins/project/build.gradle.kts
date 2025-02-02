@@ -3,7 +3,7 @@
 import gg.jte.gradle.GenerateJteTask
 
 plugins {
-  id("plugin.kotlin-dsl")
+  plugin.kotlin.dsl
   embeddedKotlin("plugin.serialization")
   // embeddedKotlin("jvm")
   gg.jte.gradle

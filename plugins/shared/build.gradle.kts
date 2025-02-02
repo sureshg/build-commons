@@ -1,7 +1,7 @@
 @file:Suppress("UnstableApiUsage")
 
 plugins {
-  id("plugin.kotlin-dsl")
+  plugin.kotlin.dsl
   embeddedKotlin("plugin.serialization")
   plugin.publishing
 }
