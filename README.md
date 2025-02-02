@@ -14,8 +14,7 @@ Kotlin JVM & Multiplatform projects.
 
 ```bash
 $ curl -s "https://get.sdkman.io" | bash
-$ sdk i java 21.0.5-zulu
-$ sdk u java 21.0.5-zulu
+$ sdk i java 21.0.6-zulu
 ```
 
 ### Build & Testing
