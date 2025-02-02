@@ -1,70 +1,24 @@
 @file:Suppress("UnstableApiUsage")
 
 import gg.jte.gradle.GenerateJteTask
-import org.jetbrains.kotlin.gradle.dsl.*
 
 plugins {
-  id("org.gradle.kotlin.kotlin-dsl")
+  id("plugin.kotlin-dsl")
   embeddedKotlin("plugin.serialization")
   // embeddedKotlin("jvm")
-  com.github.`ben-manes`.versions
-  com.diffplug.spotless
   gg.jte.gradle
   plugin.publishing
 }
 
 description = "Gradle build project plugins!"
 
-// Java version used for Kotlin Gradle precompiled script plugins.
-val dslJavaVersion = libs.versions.kotlin.dsl.jvmtarget
-
 kotlin {
-  compilerOptions {
-    jvmTarget = dslJavaVersion.map(JvmTarget::fromTarget)
-    freeCompilerArgs.addAll(
-        "-Xjdk-release=${dslJavaVersion.get()}",
-        "-Xno-param-assertions",
-        "-Xno-call-assertions",
-        "-Xno-receiver-assertions")
-    optIn.addAll(
-        "kotlin.ExperimentalStdlibApi",
-        "kotlin.time.ExperimentalTime",
-        "kotlin.io.encoding.ExperimentalEncodingApi",
-        "kotlinx.validation.ExperimentalBCVApi",
-        "kotlinx.coroutines.ExperimentalCoroutinesApi",
-        "kotlinx.serialization.ExperimentalSerializationApi",
-        "org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi",
-        "org.jetbrains.kotlin.gradle.ExperimentalWasmDsl",
-        "org.jetbrains.kotlin.gradle.targets.js.dsl.ExperimentalDistributionDsl",
-        "org.jetbrains.kotlin.gradle.targets.js.dsl.ExperimentalDceDsl")
-  }
-
-  // explicitApiWarning()
-}
-
-tasks {
-  // Restrict the java release version used in Gradle kotlin DSL to
-  // avoid accidentally using higher version JDK API in build scripts.
-  compileJava {
-    options.apply {
-      release = dslJavaVersion.map { it.toInt() }
-      isIncremental = true
-    }
-  }
-
-  validatePlugins {
-    failOnWarning = true
-    enableStricterValidation = true
-  }
-
-  withType<GenerateJteTask>().configureEach { mustRunAfter("sourcesJar") }
-
-  // Include the generated build version catalog accessors to the final jar
-  // named<Jar>("jar") {
-  //    from(sourceSets.main.get().output)
-  //    from(files(libs.javaClass.superclass.protectionDomain.codeSource.location))
-  //    archiveClassifier = ""
-  // }
+  compilerOptions.optIn.addAll(
+      "kotlinx.validation.ExperimentalBCVApi",
+      "org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi",
+      "org.jetbrains.kotlin.gradle.ExperimentalWasmDsl",
+      "org.jetbrains.kotlin.gradle.targets.js.dsl.ExperimentalDistributionDsl",
+      "org.jetbrains.kotlin.gradle.targets.js.dsl.ExperimentalDceDsl")
 }
 
 jte {
@@ -112,6 +66,17 @@ gradlePlugin {
 
     // val settingsPlugin by registering {}
   }
+}
+
+tasks {
+  withType<GenerateJteTask>().configureEach { mustRunAfter("sourcesJar") }
+
+  // Include the generated catalog accessors to the final jar
+  // named<Jar>("jar") {
+  //    from(sourceSets.main.get().output)
+  //    from(files(libs.javaClass.superclass.protectionDomain.codeSource.location))
+  //    archiveClassifier = ""
+  // }
 }
 
 dependencies {
@@ -163,7 +128,6 @@ dependencies {
   // implementation(libs.build.includegit.plugin)
   // implementation(libs.build.dependencyanalysis)
 
-  testImplementation(gradleTestKit())
   // For using kotlin-dsl in pre-compiled script plugins
   // implementation("${libs.build.kotlin.dsl.get().module}:${expectedKotlinDslPluginsVersion}")
 }

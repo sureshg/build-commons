@@ -93,6 +93,8 @@ dependencies {
   implementation(libs.ajalt.mordant.coroutines)
   implementation(libs.build.tomlj)
 
-  // For using `kotlin-dsl` in pre-compiled script plugins
+  // For "Kotlin Gradle plugin" in pre-compiled script plugins
+  implementation(embeddedKotlin("gradle-plugin"))
+  // For "kotlin-dsl" plugin in pre-compiled script plugins
   implementation("${libs.build.kotlin.dsl.get().module}:${expectedKotlinDslPluginsVersion}")
 }
