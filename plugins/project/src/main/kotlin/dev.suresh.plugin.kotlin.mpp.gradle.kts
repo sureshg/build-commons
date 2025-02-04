@@ -33,6 +33,8 @@ plugins {
   // dev.mokkery
 }
 
+configurations.configureEach { resolutionStrategy { failOnNonReproducibleResolution() } }
+
 kotlin {
   commonTarget(project)
   when (project.name) {
