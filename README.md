@@ -6,16 +6,59 @@
 [![OpenJDK Version][java_img]][java_url]
 [![Kotlin release][kt_img]][kt_url]
 
-Common project and
-settings [gradle convention plugin](https://docs.gradle.org/current/samples/sample_convention_plugins.html) to bootstrap
-Kotlin JVM & Multiplatform projects.
+Gradle project and settings [plugins](https://docs.gradle.org/current/samples/sample_convention_plugins.html) to
+simplify the bootstrapping of `Kotlin/Java` projects targeting JVM, Multiplatform (Native/JS/Wasm), and GraalVM
+native-image. The plugin will take care of configuring most common build tasks, including:
 
-### Install Java 21
+* Maven central publishing for artifacts & Container image (`Jib`) of Kotlin/Java projects
+* Custom repo (`GHCR`) for artifacts and container images
+* Code coverage supporting JVM, Kotlin Multiplatform projects.
+* Project Versioning (`SemVer`) based on Git tags
+* Code Formatting to enforce consistent code style
+* Artifact Signing
+* Java/Kotlin Toolchains configuration
+* Target platforms (`JVM`, `JS`, `WASM`, `Native`) configuration
+* Testing & Reports
+* `KSP` & Annotation processors
+* GraalVM Native Image
+* Documentation (`JavaDoc`, `Dokka`)
+* Benchmarking (`JMH`)
+* API binary compatibility validation
+* Deprecated API scanning (using `jdeprscan`)
+* Builds truly executable JAR files
+* Build config generation
+* Version catalog to control artifact versions and build configurations.
+* Automatic configuration of essential dependencies such as:
+    * `kotlinx-datetime`
+    * `kotlinx-coroutines`
+    * `ktor-client`,
+    * `kotlinx-serialization`
+    * `kotlinx-io`
+    * `Logging`
+* Automatic configuration of `compiler plugins` like
+    * `redacted`
+    * `kopy`
+    * `power-assert`
+    * `atomicfu`
+* And other common build tasks.
 
-```bash
-$ curl -s "https://get.sdkman.io" | bash
-$ sdk i java 21.0.6-zulu
-```
+This plugin helps you focus on writing code, not configuring your build. It provides a solid foundation for your
+Kotlin/Java projects, handling the boilerplate and common tasks so you can get started quickly.
+
+## Dev Env Setup
+
+* Install Java 21 or later
+
+  ```bash
+  $ curl -s "https://get.sdkman.io" | bash
+  $ sdk i java 21.0.6-zulu
+  ```
+
+* Import the Gradle project. The initial sync may take some time as it downloads all dependencies.
+
+> [!IMPORTANT]
+> For a better, faster experience, use the latest version of [IntelliJ IDEA](https://www.jetbrains.com/idea/download).
+> Upgrade now!
 
 ### Build & Testing
 
@@ -53,18 +96,18 @@ The next version will be based on the semantic version scope (`major`, `minor`, 
 
 ### Published Plugins
 
-| **Gradle Plugin ID**                 | **Version**                                                                                                                                                                                                                                |
-|--------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `dev.suresh.plugin.root`             | [![Maven Central](https://img.shields.io/maven-central/v/dev.suresh.plugin.root/dev.suresh.plugin.root.gradle.plugin?logo=gradle&logoColor=white&color=00B4E6)](https://repo1.maven.org/maven2/dev/suresh/plugin/)                         |
-| `dev.suresh.plugin.common`           | [![Maven Central](https://img.shields.io/maven-central/v/dev.suresh.plugin.common/dev.suresh.plugin.common.gradle.plugin?logo=gradle&logoColor=white&color=00B4E6)](https://repo1.maven.org/maven2/dev/suresh/plugin/)                     |
-| `dev.suresh.plugin.graalvm`          | [![Maven Central](https://img.shields.io/maven-central/v/dev.suresh.plugin.graalvm/dev.suresh.plugin.graalvm.gradle.plugin?logo=gradle&logoColor=white&color=00B4E6)](https://repo1.maven.org/maven2/dev/suresh/plugin/)                   |
-| `dev.suresh.plugin.kotlin.jvm`       | [![Maven Central](https://img.shields.io/maven-central/v/dev.suresh.plugin.kotlin.jvm/dev.suresh.plugin.kotlin.jvm.gradle.plugin?logo=gradle&logoColor=white&color=00B4E6)](https://repo1.maven.org/maven2/dev/suresh/plugin/)             |
-| `dev.suresh.plugin.kotlin.mpp`       | [![Maven Central](https://img.shields.io/maven-central/v/dev.suresh.plugin.kotlin.mpp/dev.suresh.plugin.kotlin.mpp.gradle.plugin?logo=gradle&logoColor=white&color=00B4E6)](https://repo1.maven.org/maven2/dev/suresh/plugin/)             |
-| `dev.suresh.plugin.kotlin.docs`      | [![Maven Central](https://img.shields.io/maven-central/v/dev.suresh.plugin.kotlin.docs/dev.suresh.plugin.kotlin.docs.gradle.plugin?logo=gradle&logoColor=white&color=00B4E6)](https://repo1.maven.org/maven2/dev/suresh/plugin/)           |
-| `dev.suresh.plugin.kotlin.benchmark` | [![Maven Central](https://img.shields.io/maven-central/v/dev.suresh.plugin.kotlin.benchmark/dev.suresh.plugin.kotlin.benchmark.gradle.plugin?logo=gradle&logoColor=white&color=00B4E6)](https://repo1.maven.org/maven2/dev/suresh/plugin/) |
-| `dev.suresh.plugin.publishing`       | [![Maven Central](https://img.shields.io/maven-central/v/dev.suresh.plugin.publishing/dev.suresh.plugin.publishing.gradle.plugin?logo=gradle&logoColor=white&color=00B4E6)](https://repo1.maven.org/maven2/dev/suresh/plugin/)             |
-| `dev.suresh.plugin.repos`            | [![Maven Central](https://img.shields.io/maven-central/v/dev.suresh.plugin.repos/dev.suresh.plugin.repos.gradle.plugin?logo=gradle&logoColor=white&color=00B4E6)](https://repo1.maven.org/maven2/dev/suresh/plugin/)                       |
-| `dev.suresh.plugin.catalog`          | [![Maven Central](https://img.shields.io/maven-central/v/dev.suresh.plugin.catalog/dev.suresh.plugin.catalog.gradle.plugin?logo=gradle&logoColor=white&color=00B4E6)](https://repo1.maven.org/maven2/dev/suresh/plugin/)                   |
+| **Gradle Plugin ID**                 | **Version**                                                                                                                                                                             |
+|--------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `dev.suresh.plugin.root`             | [![](https://img.shields.io/maven-central/v/dev.suresh.plugin.root/dev.suresh.plugin.root.gradle.plugin?logo=gradle&logoColor=white&color=00B4E6)][plugins_url]                         |
+| `dev.suresh.plugin.common`           | [![](https://img.shields.io/maven-central/v/dev.suresh.plugin.common/dev.suresh.plugin.common.gradle.plugin?logo=gradle&logoColor=white&color=00B4E6)][plugins_url]                     |
+| `dev.suresh.plugin.graalvm`          | [![](https://img.shields.io/maven-central/v/dev.suresh.plugin.graalvm/dev.suresh.plugin.graalvm.gradle.plugin?logo=gradle&logoColor=white&color=00B4E6)][plugins_url]                   |
+| `dev.suresh.plugin.kotlin.jvm`       | [![](https://img.shields.io/maven-central/v/dev.suresh.plugin.kotlin.jvm/dev.suresh.plugin.kotlin.jvm.gradle.plugin?logo=gradle&logoColor=white&color=00B4E6)][plugins_url]             |
+| `dev.suresh.plugin.kotlin.mpp`       | [![](https://img.shields.io/maven-central/v/dev.suresh.plugin.kotlin.mpp/dev.suresh.plugin.kotlin.mpp.gradle.plugin?logo=gradle&logoColor=white&color=00B4E6)][plugins_url]             |
+| `dev.suresh.plugin.kotlin.docs`      | [![](https://img.shields.io/maven-central/v/dev.suresh.plugin.kotlin.docs/dev.suresh.plugin.kotlin.docs.gradle.plugin?logo=gradle&logoColor=white&color=00B4E6)][plugins_url]           |
+| `dev.suresh.plugin.kotlin.benchmark` | [![](https://img.shields.io/maven-central/v/dev.suresh.plugin.kotlin.benchmark/dev.suresh.plugin.kotlin.benchmark.gradle.plugin?logo=gradle&logoColor=white&color=00B4E6)][plugins_url] |
+| `dev.suresh.plugin.publishing`       | [![](https://img.shields.io/maven-central/v/dev.suresh.plugin.publishing/dev.suresh.plugin.publishing.gradle.plugin?logo=gradle&logoColor=white&color=00B4E6)][plugins_url]             |
+| `dev.suresh.plugin.repos`            | [![](https://img.shields.io/maven-central/v/dev.suresh.plugin.repos/dev.suresh.plugin.repos.gradle.plugin?logo=gradle&logoColor=white&color=00B4E6)][plugins_url]                       |
+| `dev.suresh.plugin.catalog`          | [![](https://img.shields.io/maven-central/v/dev.suresh.plugin.catalog/dev.suresh.plugin.catalog.gradle.plugin?logo=gradle&logoColor=white&color=00B4E6)][plugins_url]                   |
 
 ### Verifying Artifacts
 
@@ -119,6 +162,8 @@ is [automatically with Gradle][gradle_verification].
 [maven_url]: https://central.sonatype.com/search?namespace=dev.suresh.build
 
 [maven_dl]: https://search.maven.org/remote_content?g=dev.suresh.build&a=plugins&v=LATEST
+
+[plugins_url]: https://repo.maven.apache.org/maven2/dev/suresh/plugin
 
 [gha_url]: https://github.com/sureshg/build-commons/actions/workflows/build.yml
 
