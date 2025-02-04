@@ -12,9 +12,9 @@ native-image. The plugin will take care of configuring most common build tasks, 
 
 * Maven central publishing for artifacts & Container image (`Jib`) of Kotlin/Java projects
 * Custom repo (`GHCR`) for artifacts and container images
-* Code coverage supporting JVM, Kotlin Multiplatform projects.
+* Code coverage supporting JVM, Kotlin Multiplatform projects
 * Project Versioning (`SemVer`) based on Git tags
-* Code Formatting to enforce consistent code style
+* Code Formatting to enforce a consistent code style
 * Artifact Signing
 * Java/Kotlin Toolchains configuration
 * Target platforms (`JVM`, `JS`, `WASM`, `Native`) configuration
@@ -27,7 +27,7 @@ native-image. The plugin will take care of configuring most common build tasks, 
 * Deprecated API scanning (using `jdeprscan`)
 * Builds truly executable JAR files
 * Build config generation
-* Version catalog to control artifact versions and build configurations.
+* Version catalog to control artifact versions and build configurations
 * Automatic configuration of essential dependencies such as:
     * `kotlinx-datetime`
     * `kotlinx-coroutines`
