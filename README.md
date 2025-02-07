@@ -1,4 +1,4 @@
-🐘 Common Build Plugins
+~~🐘 Common Build Plugins
 ----------
 
 [![GitHub Workflow Status][gha_badge]][gha_url]
@@ -10,7 +10,7 @@ Gradle project and settings [plugins](https://docs.gradle.org/current/samples/sa
 simplify the bootstrapping of `Kotlin/Java` projects targeting JVM, Multiplatform (Native/JS/Wasm), and GraalVM
 native-image. The plugin will take care of configuring most common build tasks, including:
 
-* Maven central publishing for artifacts & Container image (`Jib`) of Kotlin/Java projects
+* `Maven central` publishing for artifacts & Container image (`Jib`) of Kotlin/Java projects
 * Custom repo (`GHCR`) for artifacts and container images
 * Code coverage supporting JVM, Kotlin Multiplatform projects
 * Project Versioning (`SemVer`) based on Git tags
@@ -171,4 +171,4 @@ is [automatically with Gradle][gradle_verification].
 
 [sty_url]: https://kotlinlang.org/docs/coding-conventions.html
 
-[sty_img]: https://img.shields.io/badge/style-Kotlin--Official-40c4ff.svg?style=for-the-badge&logo=kotlin&logoColor=40c4ff
+[sty_img]: https://img.shields.io/badge/style-Kotlin--Official-40c4ff.svg?style=for-the-badge&logo=kotlin&logoColor=40c4ff~~
