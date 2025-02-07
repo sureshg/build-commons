@@ -37,20 +37,6 @@ configurations.configureEach { resolutionStrategy { failOnNonReproducibleResolut
 
 kotlin {
   commonTarget(project)
-  when (project.name) {
-    sharedProjectName -> {
-      jvmTarget(project)
-      jsTarget(project)
-      wasmJsTarget(project)
-      nativeTargets(project) {}
-    }
-
-    "web",
-    "frontend" -> {
-      jsTarget(project)
-      wasmJsTarget(project)
-    }
-  }
 
   // applyDefaultHierarchyTemplate {
   //    common {

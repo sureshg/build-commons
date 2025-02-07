@@ -275,38 +275,33 @@ fun KotlinMultiplatformExtension.nativeTargets(
     configure: KotlinNativeTarget.() -> Unit = {}
 ) =
     with(project) {
-      val nativeBuild: String? by project
-      val nativeWinTarget: String? by project
-
-      if (nativeBuild.toBoolean()) {
-        fun KotlinNativeTarget.configureAll() {
-          compilerOptions {
-            // freeCompilerArgs.addAll("-Xverbose-phases=Linker", "-Xruntime-logs=gc=info")
-          }
-          configure()
-        }
-
+      fun KotlinNativeTarget.configureAll() {
         compilerOptions {
-          optIn.addAll(
-              "kotlinx.cinterop.ExperimentalForeignApi",
-              "kotlin.experimental.ExperimentalNativeApi",
-          )
+          // freeCompilerArgs.addAll("-Xverbose-phases=Linker", "-Xruntime-logs=gc=info")
         }
+        configure()
+      }
 
-        macosX64 { configureAll() }
-        macosArm64 { configureAll() }
-        linuxX64 { configureAll() }
-        linuxArm64 { configureAll() }
-        if (nativeWinTarget.toBoolean()) {
-          mingwX64 { configureAll() }
-        }
+      compilerOptions {
+        optIn.addAll(
+            "kotlinx.cinterop.ExperimentalForeignApi",
+            "kotlin.experimental.ExperimentalNativeApi",
+        )
+      }
 
-        sourceSets {
-          nativeMain {
-            dependencies {
-              api(libs.ktor.client.cio)
-              // api(libs.arrow.suspendapp.ktor)
-            }
+      macosX64 { configureAll() }
+      macosArm64 { configureAll() }
+      linuxX64 { configureAll() }
+      linuxArm64 { configureAll() }
+      if (isWinTargetEnabled) {
+        mingwX64 { configureAll() }
+      }
+
+      sourceSets {
+        nativeMain {
+          dependencies {
+            api(libs.ktor.client.cio)
+            // api(libs.arrow.suspendapp.ktor)
           }
         }
       }

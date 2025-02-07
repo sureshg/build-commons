@@ -12,7 +12,6 @@ import kotlin.math.pow
 import kotlin.properties.ReadOnlyProperty
 import kotlin.reflect.full.isSubtypeOf
 import kotlin.reflect.typeOf
-import kotlinx.coroutines.*
 
 internal val DEC_FORMAT = DecimalFormat("#.##")
 
@@ -152,3 +151,23 @@ inline fun <reified T> sysProp(): ReadOnlyProperty<Any?, T> = ReadOnlyProperty {
   }
       as T
 }
+
+/**
+ * Generates the URL for the GitHub package repository based on the owner and repository name.
+ *
+ * @param owner The owner of the GitHub repository.
+ * @param repository The name of the GitHub repository.
+ * @return The URL of the GitHub package repository.
+ */
+fun githubPackage(owner: String, repository: String) =
+    "https://maven.pkg.github.com/${owner.lowercase()}/$repository"
+
+/**
+ * Returns the latest download URL for a given [groupId] and [artifactId] from Maven Central.
+ *
+ * @param groupId the group ID of the Maven artifact
+ * @param artifactId the artifact ID of the Maven artifact
+ * @return the latest download URL for the specified Maven artifact
+ */
+fun mavenDownloadUrl(groupId: String, artifactId: String) =
+    "https://search.maven.org/remote_content?g=${groupId}&a=${artifactId}&v=LATEST"
