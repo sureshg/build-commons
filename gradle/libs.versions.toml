@@ -47,7 +47,7 @@ kotlin-statistics              = "0.4.0-RC1"
 evas                           = "1.2.0"
 kopy                           = "0.14.0+2.1.10"
 poko                           = "0.18.2"
-mappie                         = "0.10.0"
+mappie                         = "1.0.0"
 akkurate                       = "0.11.0"
 kaml                           = "0.70.0"
 snakeyaml-engine-kmp           = "3.1.0"
@@ -56,7 +56,7 @@ spring-boot                    = "3.4.2"
 spring-depmgmt                 = "1.1.7"
 ktor                           = "3.0.3"
 ktor-cohort                    = "2.6.1"
-otel                           = "1.46.0"
+otel                           = "1.47.0"
 otel-instr                     = "2.12.0"
 otel-instr-alpha               = "2.12.0-alpha"
 otel-semconv                   = "1.30.0-rc.1"
@@ -173,7 +173,7 @@ langchain4j                    = "1.0.0-beta1"
 jlama                          = "0.8.4"
 mcp-kotlin                     = "0.3.0"
 mcp4k                          = "0.3.4"
-dflib                          = "1.1.0"
+dflib                          = "1.2.0"
 ldaptive                       = "2.4.0"
 chicory                        = "1.0.0"
 log4k                          = "0.30.0"
@@ -414,7 +414,6 @@ kotlinx-rpc-transport-ktor-server       = { module = "org.jetbrains.kotlinx:kotl
 kotlinx-rpc-runtime-serialization-json  = { module = "org.jetbrains.kotlinx:kotlinx-rpc-runtime-serialization-json" , version.ref = "kotlinx-rpc"}
 
 evas                                 = { module = "io.sellmair:evas"                                           , version.ref = "evas"}
-mappie-api                           = { module = "tech.mappie:mappie-api"                                     , version.ref = "mappie" }
 konsist                              = { module = "com.lemonappdev:konsist"                                    , version.ref = "konsist" }
 akkurate-core                        = { module = "dev.nesk.akkurate:akkurate-core"                            , version.ref = "akkurate"}
 akkurate-ksp-plugin                  = { module = "dev.nesk.akkurate:akkurate-ksp-plugin"                      , version.ref = "akkurate"}
