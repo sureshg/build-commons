@@ -280,7 +280,6 @@ build-sigstore-base                  = { module = "dev.sigstore:sigstore-gradle-
 build-dependencyanalysis             = { module = "com.autonomousapps:dependency-analysis-gradle-plugin"            , version.ref = "autonomousapps-depanalysis" }
 build-bestpractices-plugin           = { module = "com.autonomousapps:plugin-best-practices-plugin"                 , version.ref = "autonomousapps-bestpractices" }
 build-semver-plugin                  = { module = "com.javiersc.semver:semver-gradle-plugin"                        , version.ref = "semver-plugin" }
-build-vercraft                       = { module = "com.akuleshov7.vercraft.plugin-gradle"                           , version.ref = "vercraft" }
 build-kmpmt                          = { module = "com.jakewharton.kmpmt:kmpmt-gradle-plugin"                       , version.ref = "kmpmt" }
 build-zip-prefixer                   = { module = "net.e175.klaus:zip-prefixer"                                     , version.ref = "zip-prefixer" }
 build-foojay-resolver                = { module = "org.gradle.toolchains:foojay-resolver"                           , version.ref = "foojay-resolver" }
@@ -729,7 +728,8 @@ kopy                                 = { id = "com.javiersc.kotlin.kopy"        
 mappie                               = { id = "tech.mappie.plugin"                                             , version.ref = "mappie" }
 poko                                 = { id = "dev.drewhamilton.poko"                                          , version.ref = "poko" }
 mcp4k                                = { id = "sh.ondr.mcp4k"                                                  , version.ref = "mcp4k"}
-animalsniffer                        = { id = "ru.vyarus.animalsniffer'"                                       , version.ref = "animalsniffer"}
+animalsniffer                        = { id = "ru.vyarus.animalsniffer"                                        , version.ref = "animalsniffer"}
+build-vercraft                       = { id = "com.akuleshov7.vercraft.plugin-gradle"                          , version.ref = "vercraft" }
 
 # Common build and settings plugin
 project-root                         = { id = "dev.suresh.plugin.root"                                         , version.ref = "bc-plugins" }
