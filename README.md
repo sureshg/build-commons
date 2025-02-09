@@ -10,8 +10,7 @@ Gradle project and settings [plugins](https://docs.gradle.org/current/samples/sa
 simplify the bootstrapping of `Kotlin/Java` projects targeting JVM, Multiplatform (Native/JS/Wasm), and GraalVM
 native-image. The plugin will take care of configuring most common build tasks, including:
 
-* `Maven central` publishing for artifacts & Container image (`Jib`) of Kotlin/Java projects
-* Custom repo (`GHCR`) for artifacts and container images
+* `Maven Central` & `GHCR` publishing for artifacts & Container image (`Jib`)
 * Code coverage supporting JVM, Kotlin Multiplatform projects
 * Project Versioning (`SemVer`) based on Git tags
 * Code Formatting to enforce a consistent code style
