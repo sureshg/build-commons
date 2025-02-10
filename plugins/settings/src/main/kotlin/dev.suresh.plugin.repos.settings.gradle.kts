@@ -12,7 +12,7 @@ import org.tomlj.Toml
 val versionCatalog by lazy {
   // A hack to read version catalog from settings
   runCatching {
-        Toml.parse(file("$rootDir/gradle/libs.versions.toml").readText()).getTable("versions")
+        Toml.parse(settingsDir.resolve("gradle/libs.versions.toml").readText()).getTable("versions")
       }
       .getOrNull()
 }
@@ -77,7 +77,7 @@ toolchainManagement {
 }
 
 configure<SemverSettingsExtension> {
-  // val ktVersion = versionCatalog.getString("kotlin").orEmpty()
+  // val ktVersion = versionCatalog?.getString("kotlin").orEmpty()
   // mapVersion { it.copy(metadata = ktVersion).toString() }
 }
 
