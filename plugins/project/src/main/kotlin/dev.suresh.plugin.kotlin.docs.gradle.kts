@@ -67,7 +67,7 @@ dokka {
     // https://github.com/Kotlin/dokka/issues/3373
     // samples.from("src/test/kotlin")
 
-    // dokkaPublicationDirectory = rootProject.layout.buildDirectory.dir("dokkaDir")
+    // basePublicationsDirectory = layout.settingsDirectory.dir("dokkaDir")
   }
 
   pluginsConfiguration.html {

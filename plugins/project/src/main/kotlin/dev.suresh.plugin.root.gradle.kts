@@ -179,7 +179,9 @@ tasks {
     // distributionUrl = "${Repo.GRADLE_DISTRO}/gradle-$gradleVersion-bin.zip"
   }
 
-  // withType<UpdateDaemonJvm> { jvmVersion = gradleDaemonJvm }
+  withType<UpdateDaemonJvm> {
+    languageVersion = libs.versions.kotlin.dsl.jvmtarget.map { JavaLanguageVersion.of(it) }
+  }
 
   defaultTasks("clean", "tasks", "--all")
 }

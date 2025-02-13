@@ -267,6 +267,7 @@ build-kmp-hierarchy                  = { module = "io.github.terrakok:kmp-hierar
 build-benmanesversions               = { module = "com.github.ben-manes:gradle-versions-plugin"                     , version.ref = "benmanes"}
 build-gradle-develocity              = { module = "com.gradle:develocity-gradle-plugin"                             , version.ref = "gradle-develocity" }
 build-mrjar-plugin                   = { module = "me.champeau.gradle.mrjar:plugin"                                 , version.ref = "mrjar"}
+build-ktor-plugin                    = { module = "io.ktor.plugin:io.ktor.plugin.gradle.plugin"                     , version.ref = "ktor"}
 build-jte-plugin                     = { module = "gg.jte:jte-gradle-plugin"                                        , version.ref = "jte"}
 build-nmcp-plugin                    = { module = "com.gradleup.nmcp:nmcp"                                          , version.ref = "nmcp"}
 build-nexus-plugin                   = { module = "io.github.gradle-nexus:publish-plugin"                           , version.ref = "nexus-publish"}
@@ -391,6 +392,7 @@ ktor-serialization-xml               = { module = "io.ktor:ktor-serialization-ko
 ktor-client-core                     = { module = "io.ktor:ktor-client-core"                                   , version.ref = "ktor"}
 ktor-client-cio                      = { module = "io.ktor:ktor-client-cio"                                    , version.ref = "ktor"}
 ktor-client-java                     = { module = "io.ktor:ktor-client-java"                                   , version.ref = "ktor"}
+ktor-client-curl                     = { module = "io.ktor:ktor-client-curl"                                   , version.ref = "ktor"}
 ktor-client-js                       = { module = "io.ktor:ktor-client-js"                                     , version.ref = "ktor"}
 ktor-client-okhttp                   = { module = "io.ktor:ktor-client-okhttp"                                 , version.ref = "ktor"}
 ktor-client-jetty                    = { module = "io.ktor:ktor-client-jetty"                                  , version.ref = "ktor"}
@@ -559,6 +561,8 @@ java-keychain                        = { module = "pt.davidafsilva.apple:jkeycha
 webjars-xterm                        = { module = "org.webjars.npm:xterm"                                      , version.ref = "webjars-xterm" }
 
 kotlin-wrappers-bom                  = { module = "org.jetbrains.kotlin-wrappers:kotlin-wrappers-bom"          , version.ref = "kotlin-wrappers" }
+kotlin-wrappers-browser              = { module = "org.jetbrains.kotlin-wrappers:kotlin-browser"               , version.ref = "kotlin-wrappers" }
+kotlin-wrappers-css                  = { module = "org.jetbrains.kotlin-wrappers:kotlin-css"                   , version.ref = "kotlin-wrappers" }
 multiplatform-settings-core          = { module = "com.russhwolf:multiplatform-settings"                       , version.ref = "kmp-settings" }
 multiplatform-settings-coroutines    = { module = "com.russhwolf:multiplatform-settings-coroutines"            , version.ref = "kmp-settings" }
 multiplatform-settings-no-arg        = { module = "com.russhwolf:multiplatform-settings-no-arg"                , version.ref = "kmp-settings" }

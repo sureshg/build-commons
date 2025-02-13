@@ -121,9 +121,7 @@ is [automatically with Gradle][gradle_verification].
 <details>
 <summary>Misc</summary>
 
-### Maven Central
-
-* Publishing
+### Maven Central Publishing
 
   ```bash
   # Publish to local maven repository
@@ -137,6 +135,13 @@ is [automatically with Gradle][gradle_verification].
   # Publish the catalog to maven central
   $ ./gradlew :catalog:publishToMavenCentral
   $ ./gradlew :catalog:publishAndReleaseToMavenCentral
+  ```
+
+### Misc
+
+  ```bash
+  # Update the Gradle Daemon JVM
+  $ ./gradlew updateDaemonJvm --jvm-version=21 --jvm-vendor=adoptium
   ```
 
 </details>
