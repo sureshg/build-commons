@@ -7,6 +7,7 @@ import org.gradle.kotlin.dsl.*
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 import org.jetbrains.kotlin.gradle.plugin.KotlinPlatformType
 import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
+import org.jetbrains.kotlin.gradle.targets.js.dsl.KotlinJsBinaryMode
 import org.jetbrains.kotlin.gradle.targets.js.webpack.KotlinWebpackConfig
 
 fun KotlinMultiplatformExtension.commonTarget(project: Project) =
@@ -253,6 +254,37 @@ fun KotlinMultiplatformExtension.wasmJsTarget(project: Project) =
           }
         }
         wasmJsTest { kotlin {} }
+      }
+    }
+
+fun KotlinMultiplatformExtension.wasmWasiTarget(project: Project) =
+    with(project) {
+      wasmWasi {
+        nodejs()
+        if (isSharedProject.not()) {
+          binaries
+              .executable()
+              .filter { it.mode == KotlinJsBinaryMode.PRODUCTION }
+              .forEach { binary ->
+                val wasmFilename = binary.mainFileName.map { it.replaceAfterLast(".", "wasm") }
+                val wasmFile =
+                    binary.linkTask.flatMap { it.destinationDirectory.file(wasmFilename) }
+                // Add generated WASM binary as maven publication
+                mavenPublication { artifact(wasmFile) { classifier = targetName } }
+              }
+        }
+
+        compilations.all {
+          compileTaskProvider.configure {
+            compilerOptions.freeCompilerArgs.addAll(
+                listOf("-Xwasm-use-traps-instead-of-exceptions"))
+          }
+        }
+      }
+
+      sourceSets {
+        wasmWasiMain { dependencies {} }
+        wasmWasiTest { kotlin {} }
       }
     }
 

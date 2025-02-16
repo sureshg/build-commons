@@ -7,19 +7,19 @@
 [![Kotlin release][kt_img]][kt_url]
 
 Gradle project and settings [plugins](https://docs.gradle.org/current/samples/sample_convention_plugins.html) to
-simplify the bootstrapping of `Kotlin/Java` projects targeting JVM, Multiplatform (Native/JS/Wasm), and GraalVM
+simplify the bootstrapping of `Kotlin/Java` projects targeting JVM, Multiplatform (Native/JS/Wasm/Wasi), and GraalVM
 native-image. The plugin will take care of configuring most common build tasks, including:
 
 * `Maven Central` & `GHCR` publishing for artifacts & Container image (`Jib`)
-* Code coverage supporting JVM, Kotlin Multiplatform projects
-* Project Versioning (`SemVer`) based on Git tags
+* Code coverage supporting `JVM`, `Kotlin Multiplatform` projects
+* Project Versioning (`SemVer`) based on `Git tags`
 * Code Formatting to enforce a consistent code style
 * Artifact Signing
 * Java/Kotlin Toolchains configuration
-* Target platforms (`JVM`, `JS`, `WASM`, `Native`) configuration
+* Target platforms (`JVM`, `JS`, `WASM`, `WASI`, `Native`) configuration
 * Testing & Reports
 * `KSP` & Annotation processors
-* GraalVM Native Image
+* `GraalVM Native` Image
 * Documentation (`JavaDoc`, `Dokka`)
 * Benchmarking (`JMH`)
 * API binary compatibility validation
@@ -59,7 +59,7 @@ Kotlin/Java projects, handling the boilerplate and common tasks so you can get s
 > For a better, faster experience, use the latest version of [IntelliJ IDEA](https://www.jetbrains.com/idea/download).
 > Upgrade now!
 
-### Build & Testing
+## Build & Testing
 
   ```bash
   $ ./gradlew build
@@ -77,7 +77,7 @@ For testing, a separate [sandbox project](/sandbox) is available with the plugin
    $ ./gradlew -p sandbox :dependencyUpdates --no-configuration-cache
    ```
 
-### Publishing
+## Publishing
 
 Push a new tag to trigger the release workflow and publish the plugin
 to [maven central](https://repo1.maven.org/maven2/dev/suresh/build/). That's it 🎉.
@@ -91,9 +91,13 @@ The next version will be based on the semantic version scope (`major`, `minor`, 
 
    # Print the new version
    # ./gradlew printSemver "-Psemver.scope=patch"
+
+   # For a specific version
+   # git tag -am "v1.2.3 release" v1.2.3
+   # git push origin --tags
    ```
 
-### Published Plugins
+## Published Plugins
 
 | **Gradle Plugin ID**                 | **Version**                                                                                                                                                                             |
 |--------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -108,7 +112,65 @@ The next version will be based on the semantic version scope (`major`, `minor`, 
 | `dev.suresh.plugin.repos`            | [![](https://img.shields.io/maven-central/v/dev.suresh.plugin.repos/dev.suresh.plugin.repos.gradle.plugin?logo=gradle&logoColor=white&color=00B4E6)][plugins_url]                       |
 | `dev.suresh.plugin.catalog`          | [![](https://img.shields.io/maven-central/v/dev.suresh.plugin.catalog/dev.suresh.plugin.catalog.gradle.plugin?logo=gradle&logoColor=white&color=00B4E6)][plugins_url]                   |
 
-### Verifying Artifacts
+## How to use it?
+
+- Apply the following config to `settings.gradle.kts` of your project
+
+   ```kotlin
+    pluginManagement {
+       resolutionStrategy {
+         eachPlugin {
+           if (requested.id.id.startsWith("dev.suresh.plugin")) {
+             useVersion("<plugin version>")
+           }
+         }
+       }
+
+       repositories {
+         gradlePluginPortal()
+         mavenCentral()
+       }
+    }
+
+    plugins { id("dev.suresh.plugin.repos") }
+   ```
+
+- Apply the required plugins to `root` or `sub` project `build.gradle.kts`
+
+  ```kotlin
+  // Kotlin JVM
+  plugins {
+    id("dev.suresh.plugin.root")
+    id("dev.suresh.plugin.kotlin.jvm")
+    id("dev.suresh.plugin.publishing")
+    // id("dev.suresh.plugin.graalvm")
+    application
+  }
+
+  // Kotlin Multiplatform
+  plugins {
+    id("dev.suresh.plugin.root")
+    id("dev.suresh.plugin.kotlin.mpp")
+    id("dev.suresh.plugin.publishing")
+    application
+  }
+
+  kotlin {
+    jvmTarget(project)
+    jsTarget(project)
+    wasmJsTarget(project)
+    wasmWasiTarget(project)
+    nativeTargets(project) {}
+  }
+  ```
+
+- Use the version catalog by copying [gradle/libs.versions.toml](gradle/libs.versions.toml) and change the
+  project-related metadata like `group`, `app-mainclass` etc.
+
+> [!IMPORTANT]
+> **Don't change** the existing version names in the catalog as it's being referenced in the plugins.
+
+## Verifying Artifacts
 
 The published artifacts are signed using this [key][signing_key]. The best way to verify artifacts
 is [automatically with Gradle][gradle_verification].
@@ -146,7 +208,7 @@ is [automatically with Gradle][gradle_verification].
 
 </details>
 
-### References
+## References
 
 - [Kotlin DSL Plugin](https://docs.gradle.org/current/userguide/kotlin_dsl.html#sec:kotlin-dsl_plugin)
 - [Pre-compiled Script Plugins](https://docs.gradle.org/current/userguide/implementing_gradle_plugins_precompiled.html#sec:applying_external_plugins)
