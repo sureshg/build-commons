@@ -102,7 +102,7 @@ fun KotlinMultiplatformExtension.jvmTarget(project: Project) =
         // val test by testRuns.existing
         testRuns.configureEach { executionTask.configure { configureJavaTest() } }
 
-        // Configure application executable only it's enabled
+        // Configures JavaExec task with name "runJvm" and Gradle distribution "jvmDistZip"
         if (isKmpExecEnabled) {
           binaries {
             executable {
@@ -112,14 +112,6 @@ fun KotlinMultiplatformExtension.jvmTarget(project: Project) =
             }
           }
         }
-
-        // Register a task to execute a class using jvm runtime dependencies.
-        // compilations.getByName("test") {
-        //   tasks.register<JavaExec>("ktExec") {
-        //     classpath(runtimeDependencyFiles, output)
-        //     mainClass = "dev.suresh.test.ExecMain"
-        //   }
-        // }
 
         // attributes.attribute(KotlinPlatformType.attribute, KotlinPlatformType.jvm)
       }

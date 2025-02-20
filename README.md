@@ -72,8 +72,16 @@ For testing, a separate [sandbox project](/sandbox) is available with the plugin
 `settings.gradle.kts`. First publish the plugin to the local maven repository and then run the sandbox project.
 
    ```bash
+   # Publish the plugins to maven local
    $ ./gradlew publishToMavenLocal
-   $ ./gradlew -p sandbox :build
+
+   # Build the sandbox app using published plugin
+   $ ./gradlew -p sandbox :build -PjvmArgs=
+
+   # Run the sandbox app
+   $ sandbox/build/libs/sandbox-app
+
+   # Run other plugin tasks
    $ ./gradlew -p sandbox :dependencyUpdates --no-configuration-cache
    ```
 
