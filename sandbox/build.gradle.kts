@@ -2,12 +2,11 @@ import common.*
 import org.gradle.kotlin.dsl.*
 import tasks.*
 
-val enableKmpExec by extra(false)
+val enableKmpExec by extra(true)
 
 plugins {
   id("dev.suresh.plugin.root") version "+"
   id("dev.suresh.plugin.kotlin.mpp") version "+"
-  application
   alias(libs.plugins.shadow)
 }
 
@@ -23,5 +22,3 @@ buildConfig {
 }
 
 kotlin { jvmTarget(project) }
-
-application { mainClass = "MainKt" }
