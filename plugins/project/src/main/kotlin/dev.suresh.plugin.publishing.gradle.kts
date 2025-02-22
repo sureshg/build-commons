@@ -56,6 +56,8 @@ publishing {
 
       // Add an executable artifact if exists
       withType<MavenPublication>().configureEach {
+        // configurations.findByName("customFile")?.artifacts?.forEach { artifact(it) }
+
         // val execJar = tasks.findByName("buildExecutable") as? ReallyExecJar
         // if (execJar != null) {
         //   artifact(execJar.execJarFile)

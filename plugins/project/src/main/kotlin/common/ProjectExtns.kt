@@ -689,7 +689,11 @@ fun Project.printTaskGraph() {
   }
 }
 
-/** Adds [file] as an outgoing variant to publication. */
+/**
+ * Adds [file] as an outgoing variant to publication. Refer
+ * [Customizing publishing](https://docs.gradle.org/current/userguide/publishing_customization.html)
+ * for more details.
+ */
 @Suppress("UnstableApiUsage")
 fun Project.addFileToJavaComponent(file: File) {
   // Here's a configuration to declare the outgoing variant
