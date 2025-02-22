@@ -79,6 +79,9 @@ val Project.isSnapshotVersion
 val Project.isKmpExecEnabled
   get() = extra.has("enableKmpExec") && extra["enableKmpExec"] as Boolean
 
+val Project.isNativeTargetEnabled: Boolean
+  get() = gradleBooleanProperty("kotlin.target.native.enabled").get()
+
 val Project.isWinTargetEnabled: Boolean
   get() = gradleBooleanProperty("kotlin.target.win.enabled").get()
 
@@ -208,6 +211,7 @@ fun Project.jvmArguments(appRun: Boolean = false, headless: Boolean = true) = bu
             "-XX:+UnlockExperimentalVMOptions",
             "-XX:+UseCompactObjectHeaders",
             "-XX:MaxRAMPercentage=0.8",
+            // "-XX:+UseLargePages",
             // "-XX:+UseEpsilonGC",
             // "-XX:+AlwaysPreTouch",
             """-Xlog:gc*,stringdedup*:
@@ -276,6 +280,7 @@ fun Project.jvmArguments(appRun: Boolean = false, headless: Boolean = true) = bu
             // "-XshowSettings:system",
             // "-XshowSettings:properties",
             // "--show-module-resolution",
+            // "-XX:-StackTraceInThrowable",
             // "-XX:+ShowHiddenFrames",
             // "-verbose:module",
             // "-XX:ConcGCThreads=2",
