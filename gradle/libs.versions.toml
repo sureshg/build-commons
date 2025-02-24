@@ -178,7 +178,7 @@ mcp4k                          = "0.3.4"
 dflib                          = "2.0.0-M2"
 ldaptive                       = "2.4.0"
 chicory                        = "1.1.0"
-weh-bindings                   = "0.2"
+weh-bindings                   = "0.3"
 log4k                          = "0.30.0"
 rwmutex                        = "1.0.0"
 bluesky-ozone                  = "0.3.1"
@@ -230,7 +230,7 @@ wire-plugin                    = "5.3.0"
 buildkonfig                    = "0.16.0"
 gmazzo-buildconfig             = "3.1.0"
 cyclonedx-plugin               = "1.10.0"
-modulegraph                    = "0.11.0"
+modulegraph                    = "0.12.0"
 cash-molecule                  = "1.4.3"
 npm-publish-plugin             = "3.5.2"
 exposed-plugin                 = "0.2.1"
@@ -240,6 +240,8 @@ includegit-plugin              = "0.1.6"
 kmp-hierarchy                  = "1.1"
 tomlj                          = "1.1.1"
 animalsniffer                  = "2.0.0"
+badass-runtime                 = "1.13.1-patch-1"
+badass-jlink                   = "3.1.0"
 
 # Repositories
 repo-mvn-central               = "https://repo.maven.apache.org/maven2/"
@@ -310,7 +312,8 @@ build-includegit-plugin              = { module = "me.champeau.gradle.includegit
 build-tomlj                          = { module = "org.tomlj:tomlj"                                                 , version.ref = "tomlj" }
 build-reproducible-builds            = { module = "org.gradlex:reproducible-builds"                                 , version.ref = "reproducible-builds" }
 build-bytesize                       = { module = "me.saket.bytesize:bytesize"                                      , version.ref = "bytesize" }
-
+build-badass-jlink                   = { module = "com.dua3.gradle.jlink:com.dua3.gradle.jlink.gradle.plugin"       , version.ref = "badass-jlink" }
+build-badass-runtime                 = { module = "com.dua3.gradle.runtime:com.dua3.gradle.runtime.gradle.plugin"   , version.ref = "badass-runtime" }
 
 # Gradle Dependencies
 kotlin-bom                           = { module = "org.jetbrains.kotlin:kotlin-bom"                                 , version.ref = "kotlin"}
@@ -757,6 +760,8 @@ mcp4k                                = { id = "sh.ondr.mcp4k"                   
 animalsniffer                        = { id = "ru.vyarus.animalsniffer"                                        , version.ref = "animalsniffer"}
 build-vercraft                       = { id = "com.akuleshov7.vercraft.plugin-gradle"                          , version.ref = "vercraft" }
 kmbed-plugin                         = { id = "io.karma.kmbed.kmbed-gradle-plugin"                             , version.ref = "kmbed" }
+badass-jlink                         = { id = "com.dua3.gradle.jlink"                                          , version.ref = "badass-jlink" }
+badass-runtime                       = { id = "com.dua3.gradle.runtime"                                        , version.ref = "badass-runtime" }
 
 # Common build and settings plugin
 project-root                         = { id = "dev.suresh.plugin.root"                                         , version.ref = "bc-plugins" }
