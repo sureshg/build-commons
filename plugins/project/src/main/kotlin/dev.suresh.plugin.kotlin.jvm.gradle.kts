@@ -123,7 +123,7 @@ tasks {
           Attributes.Name.IMPLEMENTATION_VENDOR.toString() to project.group,
       )
     }
-    duplicatesStrategy = DuplicatesStrategy.WARN
+    duplicatesStrategy = DuplicatesStrategy.INCLUDE
   }
 
   processResources {
