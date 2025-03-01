@@ -48,7 +48,7 @@ kotlin-statistics              = "0.4.0-RC1"
 evas                           = "1.2.0"
 kopy                           = "0.14.0+2.1.10"
 poko                           = "0.18.2"
-mappie                         = "1.0.0"
+mappie                         = "1.1.1"
 akkurate                       = "0.11.0"
 kaml                           = "0.72.0"
 snakeyaml-engine-kmp           = "3.1.1"
@@ -242,6 +242,9 @@ tomlj                          = "1.1.1"
 animalsniffer                  = "2.0.0"
 badass-runtime                 = "1.13.1-patch-1"
 badass-jlink                   = "3.1.0"
+maven-plugin-api               = "3.9.9"
+maven-plugin-annotations       = "3.15.1"
+gradlex-maven-plugin           = "1.0.3"
 
 # Repositories
 repo-mvn-central               = "https://repo.maven.apache.org/maven2/"
@@ -314,6 +317,7 @@ build-reproducible-builds            = { module = "org.gradlex:reproducible-buil
 build-bytesize                       = { module = "me.saket.bytesize:bytesize"                                      , version.ref = "bytesize" }
 build-badass-jlink                   = { module = "com.dua3.gradle.jlink:com.dua3.gradle.jlink.gradle.plugin"       , version.ref = "badass-jlink" }
 build-badass-runtime                 = { module = "com.dua3.gradle.runtime:com.dua3.gradle.runtime.gradle.plugin"   , version.ref = "badass-runtime" }
+
 
 # Gradle Dependencies
 kotlin-bom                           = { module = "org.jetbrains.kotlin:kotlin-bom"                                 , version.ref = "kotlin"}
@@ -685,6 +689,10 @@ ozone-jetstream                      = { module = "sh.christian.ozone:jetstream"
 # Misc
 ldaptive                             = { module = "org.ldaptive:ldaptive"                                                   , version.ref = "ldaptive" }
 
+# Maven Plugin
+maven-plugin-api                     = { module = "org.apache.maven:maven-plugin-api"                                       , version.ref = "maven-plugin-api" }
+maven-plugin-annotations             = { module = "rg.apache.maven.plugin-tools:maven-plugin-annotations"           , version.ref = "maven-plugin-annotations" }
+
 [bundles]
 ajalt                                = ["ajalt-colormath",
                                         "ajalt-mordant",
@@ -763,6 +771,7 @@ build-vercraft                       = { id = "com.akuleshov7.vercraft.plugin-gr
 kmbed-plugin                         = { id = "io.karma.kmbed.kmbed-gradle-plugin"                             , version.ref = "kmbed" }
 badass-jlink                         = { id = "com.dua3.gradle.jlink"                                          , version.ref = "badass-jlink" }
 badass-runtime                       = { id = "com.dua3.gradle.runtime"                                        , version.ref = "badass-runtime" }
+gradlex-maven-plugin                 = { id = "org.gradlex.maven-plugin-development"                           , version.ref = "gradlex-maven-plugin" }
 
 # Common build and settings plugin
 project-root                         = { id = "dev.suresh.plugin.root"                                         , version.ref = "bc-plugins" }
