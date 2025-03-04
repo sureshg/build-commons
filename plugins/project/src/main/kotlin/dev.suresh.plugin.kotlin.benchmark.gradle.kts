@@ -13,6 +13,7 @@ plugins {
   id("dev.suresh.plugin.kotlin.mpp")
   kotlin("plugin.allopen")
   org.jetbrains.kotlinx.benchmark
+  // org.jetbrains.kotlinx.fuzz
 }
 
 group = libs.versions.group.get()
