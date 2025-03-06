@@ -2,7 +2,7 @@
 
 import com.gradle.develocity.agent.gradle.scan.PublishedBuildScan
 import com.javiersc.semver.settings.gradle.plugin.SemverSettingsExtension
-import common.GithubAction
+import common.*
 import kotlinx.kover.gradle.aggregation.settings.dsl.KoverSettingsExtension
 import org.gradle.api.JavaVersion.VERSION_21
 import org.gradle.kotlin.dsl.*
@@ -137,11 +137,13 @@ fun RepositoryHandler.nodeJS() {
 }
 
 fun RepositoryHandler.mavenSnapshot() {
-  val mvnSnapshot = providers.gradleProperty("enableMavenSnapshot").orNull.toBoolean()
+  val mvnSnapshot = gradleBooleanProperty("maven.snapshot.repo.enabled").get()
   if (mvnSnapshot) {
     logger.lifecycle("❖ Maven Snapshot is enabled!")
     maven(url = versionCatalog?.getString("repo-mvn-snapshot").orEmpty()) {
+      name = "Central Portal Snapshots"
       mavenContent { snapshotsOnly() }
+      // content { includeModule("dev.suresh", "app") }
     }
   }
 }
