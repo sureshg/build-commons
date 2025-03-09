@@ -1,8 +1,6 @@
 @file:Suppress("UnstableApiUsage")
 
-import com.javiersc.semver.project.gradle.plugin.SemverExtension
 import common.*
-import common.GithubAction
 import common.Platform
 import org.jetbrains.kotlin.gradle.utils.extendsFrom
 
@@ -17,7 +15,7 @@ val muslEnabled = project.hasProperty("musl")
 val reportsEnabled = project.hasProperty("reports")
 val agentEnabled = project.hasProperty("agent")
 
-val semverExtn = extensions.getByType<SemverExtension>()
+// val semverExtn = extensions.getByType<SemverExtension>()
 
 graalvmNative {
   binaries.all {
@@ -35,30 +33,29 @@ graalvmNative {
       add("--enable-https")
       add("--install-exit-handlers")
       add("-R:MaxHeapSize=64m")
-      add("-EBUILD_NUMBER=${project.version}")
-      add("-ECOMMIT_HASH=${semverExtn.commits.get().first().hash}")
-
       add("-H:+UnlockExperimentalVMOptions")
-      add("-H:+VectorAPISupport")
       add("-H:+CompactingOldGen")
       add("-H:+ReportExceptionStackTraces")
       add("-O3")
       // add("-Os")
       // add("-H:+ForeignAPISupport")
-      // add("--features=graal.aot.RuntimeFeature")
+      // add("-H:+VectorAPISupport")
       // add("-H:+AddAllCharsets")
       // add("-H:+IncludeAllLocales")
       // add("-H:+IncludeAllTimeZones")
       // add("-H:IncludeResources=.*(message\\.txt|\\app.properties)\$")
+      // add("--features=graal.aot.RuntimeFeature")
       // add("--enable-url-protocols=http,https,jar,unix")
       // add("--initialize-at-build-time=kotlinx,kotlin,org.slf4j")
+      // add("-EBUILD_NUMBER=${project.version}")
+      // add("-ECOMMIT_HASH=${semverExtn.commits.get().first().hash}")
 
       val monOpts = buildString {
         append("heapdump,jfr,jvmstat,threaddump,nmt")
-        if (Platform.isUnix) {
-          append(",")
-          append("jcmd")
-        }
+        // if (Platform.isUnix) {
+        //   append(",")
+        //   append("jcmd")
+        // }
       }
       add("--enable-monitoring=$monOpts")
 
@@ -104,8 +101,7 @@ graalvmNative {
     // }
 
     jvmArgs = jvmArguments()
-    systemProperties =
-        mapOf("java.awt.headless" to "false", "jdk.incubator.vector.VECTOR_ACCESS_OOB_CHECK" to "0")
+    systemProperties = mapOf("java.awt.headless" to "false")
     javaLauncher = javaToolchains.launcherFor { configureJvmToolchain(project) }
   }
 
@@ -120,7 +116,7 @@ graalvmNative {
   }
 
   metadataRepository { enabled = true }
-  toolchainDetection = false
+  toolchainDetection = true
 }
 
 /**
