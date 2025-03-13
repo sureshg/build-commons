@@ -203,9 +203,9 @@ fun Project.withJavaModule(moduleName: String, supportedInNative: Boolean = fals
     }
 
 /**
- * Returns the Gradle plugin marker dependency notation in the format
- * 'pluginId:pluginId.gradle.plugin:version'. This format is used to declare plugin dependencies in
- * the buildscript classpath.
+ * Returns the Gradle plugin marker dependency notation in the format '<plugin id>:<plugin
+ * id>.gradle.plugin:<plugin version>'. This format is used to declare plugin dependencies in the
+ * buildscript classpath.
  */
 val Provider<PluginDependency>.pluginMarker
   get() = "${get().pluginId}:${get().pluginId}.gradle.plugin:${get().version}"

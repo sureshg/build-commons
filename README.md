@@ -77,12 +77,12 @@ For testing, a separate [sandbox project](/sandbox) is available with the plugin
 
    # Build the sandbox app using published plugin
    $ ./gradlew -p sandbox :build -PjvmArgs=
-
-   # Run the sandbox app
    $ sandbox/build/libs/sandbox-app
 
    # Run other plugin tasks
    $ ./gradlew -p sandbox :dependencyUpdates --no-configuration-cache
+   # To see the plugin classpath
+   $ ./gradlew -p sandbox :buildEnvironment | grep -i "dev.suresh"
    ```
 
 ## Publishing
