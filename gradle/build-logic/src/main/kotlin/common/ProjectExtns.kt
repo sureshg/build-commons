@@ -3,7 +3,9 @@ package common
 import org.gradle.accessors.dm.LibrariesForLibs
 import org.gradle.api.Project
 import org.gradle.api.artifacts.VersionCatalogsExtension
+import org.gradle.api.provider.Provider
 import org.gradle.kotlin.dsl.the
+import org.gradle.plugin.use.PluginDependency
 
 /** Returns the version catalog of this project. */
 internal val Project.libs
@@ -51,3 +53,10 @@ val Project.githubPackagesUsername
 
 val Project.githubPackagesPassword
   get() = providers.gradleProperty("githubPackagesPassword")
+
+/**
+ * Converts a Plugin Dependency to Gradle's standard dependency notation format. This is used to
+ * declare plugin dependencies in the buildscript classpath.
+ */
+val Provider<PluginDependency>.dep: Provider<String>
+  get() = map { "${it.pluginId}:${it.pluginId}.gradle.plugin:${it.version}" }

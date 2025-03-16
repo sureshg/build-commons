@@ -1,5 +1,7 @@
 @file:Suppress("UnstableApiUsage")
 
+import common.*
+
 plugins {
   plugin.kotlin.dsl
   embeddedKotlin("plugin.serialization")
@@ -10,9 +12,9 @@ description = "Gradle build settings plugins!"
 
 dependencies {
   implementation(projects.plugins.shared)
-  implementation(libs.build.kotlinx.kover)
-  implementation(libs.build.gradle.develocity)
-  implementation(libs.build.semver.plugin)
-  implementation(libs.build.foojay.resolver)
-  implementation(libs.build.tomlj)
+  implementation(libs.plugins.kotlinx.kover.dep)
+  implementation(libs.plugins.gradle.develocity.dep)
+  implementation(libs.plugins.semver.dep)
+  implementation(libs.plugins.foojay.resolver.dep)
+  implementation(libs.tomlj)
 }

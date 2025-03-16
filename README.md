@@ -88,7 +88,7 @@ For testing, a separate [sandbox project](/sandbox) is available with the plugin
 ## Publishing
 
 Push a new tag to trigger the release workflow and publish the plugin
-to [maven central](https://repo1.maven.org/maven2/dev/suresh/build/). That's it 🎉.
+to [maven central](https://repo.maven.apache.org/maven2/dev/suresh/build/). That's it 🎉.
 The next version will be based on the semantic version scope (`major`, `minor`, `patch`)
 
    ```bash

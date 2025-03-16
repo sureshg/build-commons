@@ -30,7 +30,6 @@ import org.gradle.internal.os.OperatingSystem
 import org.gradle.jvm.toolchain.*
 import org.gradle.kotlin.dsl.*
 import org.gradle.kotlin.dsl.extra
-import org.gradle.plugin.use.PluginDependency
 import org.jetbrains.kotlin.gradle.dsl.*
 import org.jetbrains.kotlin.gradle.plugin.*
 import org.jetbrains.kotlin.gradle.targets.js.npm.tasks.KotlinNpmInstallTask
@@ -201,14 +200,6 @@ fun Project.withJavaModule(moduleName: String, supportedInNative: Boolean = fals
         }
       }
     }
-
-/**
- * Returns the Gradle plugin marker dependency notation in the format '<plugin id>:<plugin
- * id>.gradle.plugin:<plugin version>'. This format is used to declare plugin dependencies in the
- * buildscript classpath.
- */
-val Provider<PluginDependency>.pluginMarker
-  get() = "${get().pluginId}:${get().pluginId}.gradle.plugin:${get().version}"
 
 /**
  * JVM arguments for running (**java**) or compiling (**javac**) java/kotlin build tasks.
@@ -446,6 +437,7 @@ fun KotlinCommonCompilerOptions.configureKotlinCommon(project: Project) =
           "-Xwhen-guards",
           "-Xmulti-dollar-interpolation",
           "-Xnon-local-break-continue",
+          // "-Xexpected-type-guided-resolution",
           // "-XXLanguage:+ExplicitBackingFields",
           // "-Xsuppress-version-warnings",
           // "-P",

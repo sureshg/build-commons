@@ -82,19 +82,27 @@ dependencies {
   // Hack to access the version catalog from pre-compiled script plugins.
   // https://github.com/gradle/gradle/issues/15383#issuecomment-779893192
   implementation(files(libs.javaClass.superclass.protectionDomain.codeSource.location))
-  implementation(libs.build.spotless.plugin)
-  implementation(libs.build.shadow.plugin)
-  implementation(libs.build.semver.plugin)
-  implementation(libs.build.benmanesversions)
-  implementation(libs.build.vanniktech.publish)
-  implementation(libs.build.nmcp.plugin)
-  implementation(libs.build.foojay.resolver)
-  implementation(libs.build.jte.plugin)
+  implementation(libs.plugins.spotless.dep)
+  implementation(libs.plugins.shadow.dep)
+  implementation(libs.plugins.semver.dep)
+  implementation(libs.plugins.benmanes.dep)
+  implementation(libs.plugins.vanniktech.publish.dep)
+  implementation(libs.plugins.foojay.resolver.dep)
+  implementation(libs.plugins.jte.dep)
   implementation(libs.ajalt.mordant.coroutines)
-  implementation(libs.build.tomlj)
+  implementation(libs.tomlj)
 
-  // For "Kotlin Gradle plugin" in pre-compiled script plugins
+  // For 'Kotlin Gradle plugin' in pre-compiled script plugins
   implementation(embeddedKotlin("gradle-plugin"))
-  // For "kotlin-dsl" plugin in pre-compiled script plugins
-  implementation("${libs.build.kotlin.dsl.get().module}:${expectedKotlinDslPluginsVersion}")
+  // For 'kotlin-dsl' plugin in pre-compiled script plugins
+  implementation(libs.plugins.kotlin.dsl.dep) {
+    version { strictly(expectedKotlinDslPluginsVersion) }
+  }
 }
+
+/**
+ * Converts a Plugin Dependency to Gradle's standard dependency notation format. This is used to
+ * declare plugin dependencies in the buildscript classpath.
+ */
+val Provider<PluginDependency>.dep: Provider<String>
+  get() = map { "${it.pluginId}:${it.pluginId}.gradle.plugin:${it.version}" }
