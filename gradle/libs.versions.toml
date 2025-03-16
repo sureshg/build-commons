@@ -634,7 +634,7 @@ ldaptive                             = { module = "org.ldaptive:ldaptive"       
 
 # Maven Plugin
 maven-plugin-api                     = { module = "org.apache.maven:maven-plugin-api"                                       , version.ref = "maven-plugin-api" }
-maven-plugin-annotations             = { module = "rg.apache.maven.plugin-tools:maven-plugin-annotations"           , version.ref = "maven-plugin-annotations" }
+maven-plugin-annotations             = { module = "rg.apache.maven.plugin-tools:maven-plugin-annotations"                   , version.ref = "maven-plugin-annotations" }
 
 [bundles]
 ajalt                                = ["ajalt-colormath",
