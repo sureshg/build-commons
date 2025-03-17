@@ -182,7 +182,7 @@ ldaptive                       = "2.4.0"
 chicory                        = "1.1.1"
 weh-bindings                   = "0.4"
 wasm2class                     = "0.2"
-log4k                          = "0.30.0"
+log4k                          = "0.32.0"
 rwmutex                        = "1.0.0"
 bluesky-ozone                  = "0.3.2"
 
