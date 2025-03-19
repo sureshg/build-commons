@@ -121,14 +121,8 @@ tasks {
   }
 
   pluginManager.withPlugin("com.gradleup.shadow") {
-    val shadowJar by
-        existing(ShadowJar::class) {
-          // https://gradleup.com/shadow/kmp-plugin/
-          manifest {
-            attributes[Attributes.Name.MAIN_CLASS.toString()] = libs.versions.app.mainclass
-          }
-        }
-
+    // https://gradleup.com/shadow/kmp-plugin/
+    val shadowJar by existing(ShadowJar::class)
     val buildExecutable by
         registering(ReallyExecJar::class) {
           jarFile = shadowJar.flatMap { it.archiveFile }
