@@ -5,7 +5,6 @@ import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 import com.google.devtools.ksp.gradle.KspAATask
 import com.javiersc.kotlin.kopy.args.KopyFunctions
 import common.*
-import java.util.jar.Attributes
 import kotlinx.validation.*
 import org.gradle.internal.os.OperatingSystem
 import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
@@ -143,7 +142,6 @@ tasks {
       configurations = listOf(runtimeDepConfig)
       archiveClassifier = "jvm-all"
       mergeServiceFiles()
-      manifest { attributes[Attributes.Name.MAIN_CLASS.toString()] = libs.versions.app.mainclass }
       duplicatesStrategy = DuplicatesStrategy.INCLUDE
     }
   }
