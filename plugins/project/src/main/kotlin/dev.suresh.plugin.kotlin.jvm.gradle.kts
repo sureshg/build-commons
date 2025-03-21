@@ -1,7 +1,6 @@
 import com.github.ajalt.mordant.rendering.TextColors
 import com.google.cloud.tools.jib.gradle.BuildDockerTask
 import com.google.devtools.ksp.gradle.KspAATask
-import com.javiersc.kotlin.kopy.args.KopyFunctions
 import common.*
 import java.io.PrintWriter
 import java.io.StringWriter
@@ -82,7 +81,7 @@ redacted {
   replacementString = "█"
 }
 
-kopy { functions = KopyFunctions.Copy }
+kopy { copyFunctions = listOf(KopyCopyFunctions.Copy) }
 
 // Java agent configuration for jib
 val javaAgent by configurations.registering { isTransitive = false }

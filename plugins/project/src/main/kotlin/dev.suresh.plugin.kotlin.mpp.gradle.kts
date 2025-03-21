@@ -3,7 +3,6 @@
 
 import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 import com.google.devtools.ksp.gradle.KspAATask
-import com.javiersc.kotlin.kopy.args.KopyFunctions
 import common.*
 import kotlinx.validation.*
 import org.gradle.internal.os.OperatingSystem
@@ -24,7 +23,6 @@ plugins {
   dev.zacsweers.redacted
   com.javiersc.kotlin.kopy
   org.jetbrains.kotlinx.atomicfu
-  // kotlin("plugin.atomicfu")
   // kotlin("plugin.compose")
   // io.github.terrakok.`kmp-hierarchy`
   // org.gradle.kotlin.`kotlin-dsl`
@@ -79,7 +77,7 @@ redacted {
   replacementString = "█"
 }
 
-kopy { functions = KopyFunctions.Copy }
+kopy { copyFunctions = listOf(KopyCopyFunctions.Copy) }
 
 tasks {
   val buildConfigExtn = extensions.create<BuildConfigExtension>("buildConfig")
