@@ -20,7 +20,7 @@ org-name                       = "suresh.dev"
 org-url                        = "https://suresh.dev"
 
 # Dependency Versions
-bc-plugins                     = "1.20.0"
+bc-plugins                     = "1.21.0"
 kotlinx-kover                  = "0.9.1"
 kotlinx-bcv                    = "0.17.0"
 kotlin-dokka                   = "2.0.0"
@@ -107,6 +107,7 @@ graalvm                        = "24.1.2"
 jspecify                       = "1.0.0"
 rsocket                        = "0.20.0"
 jctools                        = "4.0.5"
+caffeine-coroutines            = "2.0.0"
 kotlin-codepoints              = "0.9.0"
 kotlin-logging                 = "7.0.5"
 kotlin-bignum                  = "0.3.10"
@@ -514,6 +515,7 @@ log4j-jpl                            = { module = "org.apache.logging.log4j:log4
 java-keyring                         = { module = "com.github.javakeyring:java-keyring"                        , version.ref = "java-keyring"}
 java-keychain                        = { module = "pt.davidafsilva.apple:jkeychain"                            , version.ref = "java-keychain"}
 webjars-xterm                        = { module = "org.webjars.npm:xterm"                                      , version.ref = "webjars-xterm" }
+caffeine-coroutines                  = { module = "dev.hsbrysk:caffeine-coroutines"                            , version.ref = "caffeine-coroutines" }
 
 kotlin-wrappers-bom                  = { module = "org.jetbrains.kotlin-wrappers:kotlin-wrappers-bom"          , version.ref = "kotlin-wrappers" }
 kotlin-wrappers-browser              = { module = "org.jetbrains.kotlin-wrappers:kotlin-browser"               , version.ref = "kotlin-wrappers" }
