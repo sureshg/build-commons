@@ -18,7 +18,6 @@ plugins {
   com.google.devtools.ksp
   dev.zacsweers.redacted
   com.javiersc.kotlin.kopy
-  org.jetbrains.kotlinx.atomicfu
   id("dev.suresh.plugin.common")
   id("dev.suresh.plugin.kotlin.docs")
   // kotlin("plugin.atomicfu")
@@ -61,11 +60,6 @@ testing {
     // Configure all test suites
     targets.configureEach { testTask { configureJavaTest() } }
   }
-}
-
-atomicfu {
-  transformJvm = true
-  jvmVariant = "VH"
 }
 
 ksp {

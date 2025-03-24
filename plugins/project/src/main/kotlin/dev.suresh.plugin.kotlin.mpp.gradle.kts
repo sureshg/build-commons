@@ -22,7 +22,6 @@ plugins {
   com.google.devtools.ksp
   dev.zacsweers.redacted
   com.javiersc.kotlin.kopy
-  org.jetbrains.kotlinx.atomicfu
   // kotlin("plugin.compose")
   // io.github.terrakok.`kmp-hierarchy`
   // org.gradle.kotlin.`kotlin-dsl`
@@ -56,11 +55,6 @@ kotlin {
 
   // kotlinDaemonJvmArgs = jvmArguments
   // explicitApiWarning()
-}
-
-atomicfu {
-  transformJvm = true
-  jvmVariant = "VH"
 }
 
 ksp {
