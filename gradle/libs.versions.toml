@@ -49,7 +49,7 @@ kotlin-statistics              = "0.4.0-RC1"
 evas                           = "1.2.0"
 kopy                           = "0.15.0+2.1.20"
 poko                           = "0.18.5"
-mappie                         = "2.1.20-1.2.0"
+mappie                         = "2.1.20-1.2.1"
 akkurate                       = "0.11.0"
 kaml                           = "0.74.0"
 snakeyaml-engine-kmp           = "3.1.1"
@@ -59,7 +59,7 @@ spring-boot                    = "3.4.4"
 spring-depmgmt                 = "1.1.7"
 ktor                           = "3.1.2"
 ktor-cohort                    = "2.6.2"
-otel                           = "1.48.0"
+otel                           = "1.49.0"
 otel-instr                     = "2.14.0"
 otel-instr-alpha               = "2.14.0-alpha"
 otel-semconv                   = "1.32.0"
@@ -88,6 +88,7 @@ oshi                           = "6.8.0"
 junit                          = "5.13.0-M2"
 koin                           = "4.1.0-Beta6"
 koin-annotations               = "2.0.0"
+metro                          = "0.1.1"
 kotest                         = "6.0.0.M3"
 mockk                          = "1.13.17"
 mokkery                        = "2.7.2"
@@ -699,6 +700,7 @@ serviceloader-compiler               = { id = "app.softwork.serviceloader-compil
 kopy                                 = { id = "com.javiersc.kotlin.kopy"                                       , version.ref = "kopy"}
 semver                               = { id = "com.javiersc.semver"                                            , version.ref = "semver-plugin" }
 redacted                             = { id = "dev.zacsweers.redacted"                                         , version.ref = "kotlin-redacted"}
+metro                                = { id = "dev.zacsweers.metro"                                            , version.ref = "metro"}
 gradle-develocity                    = { id = "com.gradle.develocity"                                          , version.ref = "gradle-develocity" }
 mrjar                                = { id = "me.champeau.mrjar"                                              , version.ref = "mrjar"}
 nexus-publish                        = { id = "io.github.gradle-nexus.publish-plugin"                          , version.ref = "nexus-publish"}
