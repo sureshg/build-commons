@@ -39,7 +39,7 @@ kotlinx-benchmark              = "0.4.13"
 kotlinx-fuzz                   = "0.2.2"
 kotlinx-metadata               = "0.9.0"
 kotlinx-reflect-lite           = "1.1.0"
-kotlin-wrappers                = "2025.4.4"
+kotlin-wrappers                = "2025.4.5"
 kotlin-redacted                = "1.13.0"
 kotlin-serviceloader           = "0.0.15"
 kotlinx-multik                 = "0.2.3"
@@ -567,9 +567,8 @@ okapibarcode                         = { module = "uk.org.okapibarcode:okapibarc
 # OpenTelemetry
 otel-bom                             = { module = "io.opentelemetry:opentelemetry-bom"                                                      , version.ref = "otel"}
 otel-api                             = { module = "io.opentelemetry:opentelemetry-api"                                                      , version.ref = "otel"}
-otel-autoconfigure                   = { module = "io.opentelemetry:opentelemetry-sdk-extension-autoconfigure"                              , version.ref = "otel"}
-otel-autoconfigure-spi               = { module = "io.opentelemetry:opentelemetry-sdk-extension-autoconfigure-spi"                          , version.ref = "otel"}
 otel-exporter-otlp                   = { module = "io.opentelemetry:opentelemetry-exporter-otlp"                                            , version.ref = "otel"}
+otel-autoconfigure                   = { module = "io.opentelemetry:opentelemetry-sdk-extension-autoconfigure"                              , version.ref = "otel"}
 otel-semconv                         = { module = "io.opentelemetry.semconv:opentelemetry-semconv"                                          , version.ref = "otel-semconv"}
 otel-samplers                        = { module = "io.opentelemetry.contrib:opentelemetry-samplers"                                         , version.ref = "otel-samplers"}
 
@@ -666,10 +665,8 @@ otel                                 = ["otel-instr-annotations",
                                         "otel-instr-ktor",
                                         "otel-instr-logback-mdc",
                                         "otel-instr-logback-appender"]
-otel-agent-extn                      = ["otel-autoconfigure-spi",
-                                        "otel-instr-api",
-                                        "otel-instr-extension-api",
-                                        "otel-semconv"]
+otel-agent-extn                      = ["otel-instr-api",
+                                        "otel-instr-extension-api"]
 
 
 [plugins]
