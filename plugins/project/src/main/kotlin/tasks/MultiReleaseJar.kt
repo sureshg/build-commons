@@ -12,10 +12,10 @@ import org.gradle.process.CommandLineArgumentProvider
 import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinJvmCompilation
 
 private val Project.sourceSets: SourceSetContainer
-  get() = this.extensions.getByName("sourceSets") as SourceSetContainer
+  get() = extensions.getByName("sourceSets") as SourceSetContainer
 
 private val Project.javaToolchains: JavaToolchainService
-  get() = this.extensions.getByName("javaToolchains") as JavaToolchainService
+  get() = extensions.getByName("javaToolchains") as JavaToolchainService
 
 /**
  * Setup tasks to compile `module-info.java` file for a module named [moduleName] from a source set
