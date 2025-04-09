@@ -58,8 +58,6 @@ kotlin {
 }
 
 ksp {
-  arg("autoserviceKsp.verify", "true")
-  arg("autoserviceKsp.verbose", "true")
   allWarningsAsErrors = false
   // excludedSources.from(generateCodeTask)
 }
