@@ -380,6 +380,7 @@ fun KotlinTarget.setTargetAttribute() {
 fun JavaToolchainSpec.configureJvmToolchain(project: Project) =
     with(project) {
       languageVersion = toolchainVersion
+      nativeImageCapable = pluginManager.hasPlugin("org.graalvm.buildtools.native")
       // vendor = toolchainVendor
     }
 
@@ -460,8 +461,8 @@ fun KotlinCommonCompilerOptions.configureKotlinCommon(project: Project) =
 fun KspAATask.configureKspConfig() =
     with(project) {
       kspConfig.apply {
-        apiVersion = kotlinApiVersion.map { it.version }
         jvmTarget = kotlinJvmTarget.map { it.target }
+        apiVersion = kotlinApiVersion.map { it.version }
         languageVersion = kotlinLangVersion.map { it.version }
         allWarningsAsErrors = false
       }
