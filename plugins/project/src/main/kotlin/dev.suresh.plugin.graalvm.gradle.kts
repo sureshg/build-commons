@@ -202,7 +202,8 @@ val niArchiveName
 
 dependencies {
   // Dependencies required for native-image build. Use "graalCompileOnly" for compile only deps.
-  // "graalCompileOnly"(libs.graalvm.sdk)
-  // "graalImplementation"(libs.classgraph)
+  "graalCompileOnly"(libs.graal.sdk)
   nativeImageCompileOnly(graal.map { it.output })
+  compileOnly(libs.graal.sdk)
+  // "graalImplementation"(libs.classgraph)
 }
