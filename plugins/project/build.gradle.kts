@@ -18,8 +18,7 @@ kotlin {
       "kotlinx.validation.ExperimentalBCVApi",
       "org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi",
       "org.jetbrains.kotlin.gradle.ExperimentalWasmDsl",
-      "org.jetbrains.kotlin.gradle.targets.js.dsl.ExperimentalDistributionDsl",
-      "org.jetbrains.kotlin.gradle.targets.js.dsl.ExperimentalDceDsl")
+      "org.jetbrains.kotlin.gradle.targets.js.dsl.ExperimentalDistributionDsl")
 }
 
 jte {
@@ -86,6 +85,7 @@ dependencies {
   implementation(libs.jte.runtime)
   jteGenerate(libs.jte.models)
   // External plugins deps to use in precompiled script plugins
+  // implementation(platform(libs.kotlin.bom))
   implementation(libs.plugins.kotlin.multiplatform.dep)
   implementation(libs.plugins.kotlin.allopen.dep)
   implementation(libs.plugins.kotlin.powerassert.dep)

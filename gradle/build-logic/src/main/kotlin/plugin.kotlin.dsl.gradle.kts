@@ -51,7 +51,6 @@ tasks {
 }
 
 dependencies {
-  implementation(platform(libs.kotlin.bom))
   implementation(libs.kotlinx.coroutines.core)
   implementation(libs.kotlinx.datetime)
   implementation(libs.kotlinx.serialization.json)
