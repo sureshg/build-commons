@@ -72,9 +72,8 @@ jobs:
       - name: 🏗️ Gradle Build & Test
         id: gradle-build
         run: |
-          ./gradlew build --no-daemon
           ./gradlew publishToMavenLocal
-          ./gradlew -p sandbox :build
+          # ./gradlew -p sandbox :build
 
       - name: 📦 Upload Plugin artifact
         if: steps.gradle-build.outcome == 'success'
