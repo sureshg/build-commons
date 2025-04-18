@@ -35,19 +35,20 @@ kotlin {
   commonTarget(project)
 
   // applyDefaultHierarchyTemplate {
-  //    common {
-  //      group("posix") {
-  //        // Using group will add the intermediate source sets
-  //        group("linux")
-  //        group("apple")
-  //      }
+  //   common {
+  //     group("posix") {
+  //       // Using group will add the intermediate source sets
+  //       group("linux")
+  //       group("apple")
+  //     }
   //
-  //      group("jsCommon") {
-  //        withJs()
-  //        withWasmJs()
-  //      }
-  //    }
-  //  }
+  //     group("jsAndWasmShared") {
+  //       withJs()
+  //       withWasmJs()
+  //       withWasmWasi()
+  //     }
+  //   }
+  // }
 
   // ==== To configure specific targets ====
   // targets.withType<KotlinJvmTarget>().configureEach { compilerOptions {} }
