@@ -73,7 +73,7 @@ jobs:
         id: gradle-build
         run: |
           ./gradlew publishToMavenLocal
-          # ./gradlew -p sandbox :build
+          ./gradlew -p sandbox :build
 
       - name: 📦 Upload Plugin artifact
         if: steps.gradle-build.outcome == 'success'
