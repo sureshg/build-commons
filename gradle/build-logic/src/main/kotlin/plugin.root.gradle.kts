@@ -28,7 +28,7 @@ gradle.projectsEvaluated { logger.lifecycle(magenta("=== Projects Configuration 
 
 idea {
   module {
-    isDownloadJavadoc = true
+    isDownloadJavadoc = false
     isDownloadSources = true
   }
   project.vcs = "Git"
