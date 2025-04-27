@@ -85,6 +85,18 @@ val Project.isNativeTargetEnabled: Boolean
 val Project.isWinTargetEnabled: Boolean
   get() = gradleBooleanProp("kotlin.target.win.enabled").get()
 
+val Project.isComposeModuleEnabled: Boolean
+  get() = gradleBooleanProp("module.compose.enabled").get()
+
+val Project.isBootModuleEnabled: Boolean
+  get() = gradleBooleanProp("module.boot.enabled").get()
+
+val Project.isMvnSnapshotRepoEnabled: Boolean
+  get() = gradleBooleanProp("maven.snapshot.repo.enabled").get()
+
+val Project.isAutomaticModuleEnabled
+  get() = gradleBooleanProp("java.automatic.module.enabled").get()
+
 /** Java version properties. */
 val Project.javaVersion
   get() = libs.versions.java.asProvider().map { JavaVersion.toVersion(it) }
@@ -100,9 +112,6 @@ val Project.toolchainVendor
 
 val Project.addModules
   get() = libs.versions.java.addModules.get()
-
-val Project.isAutomaticModuleEnabled
-  get() = gradleBooleanProp("java.automatic.module.enabled").get()
 
 val Project.defaultJarManifest
   get() = buildMap {

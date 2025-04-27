@@ -12,8 +12,14 @@ val Settings.isNativeTargetEnabled: Boolean
 val Settings.isWinTargetEnabled: Boolean
   get() = gradleBooleanProp("kotlin.target.win.enabled").get()
 
-val Settings.isComposeEnabled: Boolean
-  get() = gradleBooleanProp("compose.enabled").get()
+val Settings.isComposeModuleEnabled: Boolean
+  get() = gradleBooleanProp("module.compose.enabled").get()
 
-val Settings.isSpringBootEnabled: Boolean
-  get() = gradleBooleanProp("springboot.enabled").get()
+val Settings.isBootModuleEnabled: Boolean
+  get() = gradleBooleanProp("module.boot.enabled").get()
+
+val Settings.isMvnSnapshotRepoEnabled: Boolean
+  get() = gradleBooleanProp("maven.snapshot.repo.enabled").get()
+
+val Settings.isAutomaticModuleEnabled: Boolean
+  get() = gradleBooleanProp("java.automatic.module.enabled").get()

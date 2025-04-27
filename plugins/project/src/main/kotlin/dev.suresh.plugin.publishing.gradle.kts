@@ -1,13 +1,10 @@
 import com.google.cloud.tools.jib.gradle.JibExtension
+import com.vanniktech.maven.publish.SonatypeHost
 import common.*
 import java.time.Year
 import org.jetbrains.kotlin.gradle.tasks.KotlinNativeLink
 
-plugins {
-  `maven-publish`
-  signing
-  com.gradleup.nmcp
-}
+plugins { com.vanniktech.maven.publish }
 
 group = libs.versions.group.get()
 
@@ -31,99 +28,55 @@ publishing {
   publications {
     // Kotlin Multiplatform
     pluginManager.withPlugin("org.jetbrains.kotlin.multiplatform") {
-      val javadocJar by
-          tasks.registering(Jar::class) {
-            archiveClassifier = "javadoc"
-            duplicatesStrategy = DuplicatesStrategy.WARN
-            // Contents are deliberately left empty
-            // from(tasks.named("dokkaJavadoc"))
-          }
-
-      // KMP will automatically create the publications
-      withType<MavenPublication>().configureEach {
-        artifact(javadocJar)
-        configurePom()
-      }
+      // withType<MavenPublication>().configureEach { artifact(taskName..) }
     }
 
     // Kotlin JVM ("org.jetbrains.kotlin.jvm")
     pluginManager.withPlugin("java") {
-      register<MavenPublication>("maven") {
-        from(components["java"])
-        configurePom()
-      }
+      register<MavenPublication>("maven") { from(components["java"]) }
 
-      // Add an executable artifact if exists
       withType<MavenPublication>().configureEach {
         // configurations.findByName("customFile")?.artifacts?.forEach { artifact(it) }
 
+        // Add an executable artifact if exists
         // val execJar = tasks.findByName("buildExecutable") as? ReallyExecJar
-        // if (execJar != null) {
-        //   artifact(execJar.execJarFile)
-        // }
+        // if (execJar != null) { artifact(execJar.execJarFile) }
       }
     }
 
     // Java Platform (BOM)
     pluginManager.withPlugin("java-platform") {
-      register<MavenPublication>("maven") {
-        from(components["javaPlatform"])
-        configurePom()
-      }
+      register<MavenPublication>("maven") { from(components["javaPlatform"]) }
     }
 
     // Gradle version catalog
     pluginManager.withPlugin("version-catalog") {
-      register<MavenPublication>("maven") {
-        from(components["versionCatalog"])
-        configurePom()
-      }
+      register<MavenPublication>("maven") { from(components["versionCatalog"]) }
     }
 
-    // Add Dokka html doc to all publications
-    pluginManager.withPlugin("org.jetbrains.dokka") {
-      val dokkaGenerateJar by
-          tasks.registering(Jar::class) {
-            from(tasks.named("dokkaGenerate"))
-            archiveClassifier = "html-docs"
+    // Configures GHCR credentials for Jib
+    pluginManager.withPlugin("com.google.cloud.tools.jib") {
+      configure<JibExtension> {
+        to {
+          if (image.orEmpty().startsWith("ghcr.io", ignoreCase = true)) {
+            auth {
+              username = githubPackagesUsername.orNull
+              password = githubPackagesPassword.orNull
+            }
           }
-
-      withType<MavenPublication>().configureEach { artifact(dokkaGenerateJar) }
-    }
-  }
-}
-
-// Configures GHCR credentials for Jib
-pluginManager.withPlugin("com.google.cloud.tools.jib") {
-  configure<JibExtension> {
-    to {
-      if (image.orEmpty().startsWith("ghcr.io", ignoreCase = true)) {
-        auth {
-          username = githubPackagesUsername.orNull
-          password = githubPackagesPassword.orNull
         }
       }
     }
   }
 }
 
-signing {
-  setRequired { hasSigningKey }
+mavenPublishing {
+  publishToMavenCentral(host = SonatypeHost.CENTRAL_PORTAL, automaticRelease = true)
+
   if (hasSigningKey) {
-    useInMemoryPgpKeys(
-        signingInMemoryKeyId.orNull, signingInMemoryKey.orNull, signingInMemoryKeyPassword.orNull)
-    sign(publishing.publications)
+    signAllPublications()
   }
-}
 
-nmcp {
-  centralPortal {
-    username = mavenCentralUsername
-    password = mavenCentralPassword
-  }
-}
-
-fun MavenPublication.configurePom() {
   pom {
     name = provider { "${project.group}:${project.name}" }
     description = provider { project.description }
