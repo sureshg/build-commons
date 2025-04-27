@@ -8,6 +8,8 @@ plugins {
   id("dev.suresh.plugin.root") version "+"
   id("dev.suresh.plugin.kotlin.mpp") version "+"
   alias(libs.plugins.shadow)
+  id("dev.suresh.plugin.kotlin.docs") version "+"
+  id("dev.suresh.plugin.publishing") version "+"
 }
 
 description = "Sandbox App"
