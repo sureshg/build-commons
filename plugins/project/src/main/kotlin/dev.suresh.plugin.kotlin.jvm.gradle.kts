@@ -137,7 +137,7 @@ tasks {
         registering(ReallyExecJar::class) {
           jarFile = shadowJar.flatMap { it.archiveFile }
           // javaOpts = application.applicationDefaultJvmArgs
-          javaOpts = named<JavaExec>("run").get().jvmArgs
+          javaOpts = jvmRunArgs
           execJarFile = layout.buildDirectory.dir("libs").map { it.file("${project.name}-app") }
           onlyIf { OperatingSystem.current().isUnix }
         }

@@ -28,31 +28,18 @@ publishing {
   publications {
     // Kotlin Multiplatform
     pluginManager.withPlugin("org.jetbrains.kotlin.multiplatform") {
-      // withType<MavenPublication>().configureEach { artifact(taskName..) }
+      // val customFiles = configurations.findByName("customFiles")?.artifacts.orEmpty()
+      // withType<MavenPublication>().configureEach { customFiles.forEach { artifact(it) } }
     }
 
-    // Kotlin JVM ("org.jetbrains.kotlin.jvm")
-    pluginManager.withPlugin("java") {
-      register<MavenPublication>("maven") { from(components["java"]) }
+    // Kotlin JVM - components["java"]
+    pluginManager.withPlugin("java") {}
 
-      withType<MavenPublication>().configureEach {
-        // configurations.findByName("customFile")?.artifacts?.forEach { artifact(it) }
+    // Java Platform (BOM) - components["javaPlatform"]
+    pluginManager.withPlugin("java-platform") {}
 
-        // Add an executable artifact if exists
-        // val execJar = tasks.findByName("buildExecutable") as? ReallyExecJar
-        // if (execJar != null) { artifact(execJar.execJarFile) }
-      }
-    }
-
-    // Java Platform (BOM)
-    pluginManager.withPlugin("java-platform") {
-      register<MavenPublication>("maven") { from(components["javaPlatform"]) }
-    }
-
-    // Gradle version catalog
-    pluginManager.withPlugin("version-catalog") {
-      register<MavenPublication>("maven") { from(components["versionCatalog"]) }
-    }
+    // Gradle version catalog - components["versionCatalog"]
+    pluginManager.withPlugin("version-catalog") {}
 
     // Configures GHCR credentials for Jib
     pluginManager.withPlugin("com.google.cloud.tools.jib") {
