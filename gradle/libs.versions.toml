@@ -1,7 +1,7 @@
 [versions]
 java                           = "25"
-kotlin                         = "2.1.20"
-kotlin-ksp                     = "2.1.20-2.0.0"
+kotlin                         = "2.2.0-Beta2"
+kotlin-ksp                     = "2.2.0-Beta1-2.0.0"
 kotlin-jvmtarget               = "21"
 kotlin-dsl-jvmtarget           = "21"
 kotlin-api-version             = "2.1"
@@ -47,6 +47,10 @@ kotlinx-dataframe              = "1.0.0-dev-6805"
 kotlinx-kandy                  = "0.8.0"
 kotlin-statistics              = "0.4.0-RC1"
 gradle-kotlin-dsl              = "6.1.0"
+exoquery-plugin                = "2.1.0-1.0.1.PL"
+exoquery                       = "1.0.1.PL-1.0.1"
+exposed                        = "0.61.0"
+postgresql                     = "42.7.5"
 evas                           = "1.2.0"
 kopy                           = "0.15.0+2.1.20"
 poko                           = "0.18.6"
@@ -87,7 +91,7 @@ pty4j                          = "0.13.4"
 oshi                           = "6.8.1"
 junit                          = "5.13.0-M2"
 koin                           = "4.1.0-Beta7"
-koin-annotations               = "2.0.1-Beta1"
+koin-annotations               = "2.0.1-RC1"
 metro                          = "0.2.0"
 kotest                         = "6.0.0.M3"
 mockk                          = "1.14.2"
@@ -118,10 +122,11 @@ kotlin-diff                    = "1.0.0"
 kotlin-retry                   = "2.0.1"
 kotlinx-jsonpath               = "3.0.2"
 kotlin-cryptography            = "0.4.0"
-kotlin-json-schema             = "0.1.1"
+koja                           = "0.3.3"
 json-sugar                     = "0.7.0"
 json-schema-validator          = "0.5.1"
 pwall-json-schema              = "0.56"
+schema-kenerator               = "2.1.2"
 uri-kmp                        = "0.0.19"
 urlencoder                     = "1.5.0"
 bytesize                       = "2.0.0-beta04"
@@ -136,8 +141,6 @@ java-keyring                   = "1.0.4"
 java-keychain                  = "1.1.0"
 webjars-xterm                  = "5.1.0"
 arrow-suspendapp               = "2.1.0"
-exposed                        = "0.61.0"
-postgresql                     = "42.7.5"
 hikariCP                       = "6.3.0"
 h2                             = "2.3.232"
 micrometer                     = "1.14.6"
@@ -179,7 +182,7 @@ kmp-process                    = "0.2.0"
 kmbed                          = "1.8.4"
 langchain4j                    = "1.0.0-beta3"
 jlama                          = "0.8.4"
-mcp-kotlin                     = "0.4.0"
+mcp-kotlin                     = "0.5.1"
 mcp4k                          = "0.4.0"
 dflib                          = "2.0.0-M2"
 ldaptive                       = "2.4.1"
@@ -404,7 +407,7 @@ uri-kmp                              = { module = "com.eygraber:uri-kmp"        
 kotlinx-jsonpath                     = { module = "com.eygraber:jsonpathkt-kotlinx"                            , version.ref = "kotlinx-jsonpath"}
 json-sugar                           = { module = "com.eygraber:json-sugar"                                    , version.ref = "json-sugar"}
 json-schema-validator                = { module = "io.github.optimumcode:json-schema-validator"                , version.ref = "json-schema-validator"}
-json-schema-gen                      = { module = "sh.ondr:kotlin-json-schema"                                 , version.ref = "kotlin-json-schema"}
+json-schema-kenerator                = { module = "io.github.smiley4:schema-kenerator-jsonschema"              , version.ref = "schema-kenerator"}
 pwall-json-schema                    = { module = "net.pwall.json:json-kotlin-schema"                          , version.ref = "pwall-json-schema"}
 urlencoder                           = { module = "net.thauvin.erik.urlencoder:urlencoder-lib"                 , version.ref = "urlencoder"}
 
@@ -421,6 +424,8 @@ exposed-money                        = { module = "org.jetbrains.exposed:exposed
 exposed-migration                    = { module = "org.jetbrains.exposed:exposed-migration"                    , version.ref = "exposed"}
 postgresql                           = { module = "org.postgresql:postgresql"                                  , version.ref = "postgresql"}
 hikariCP                             = { module = "com.zaxxer:HikariCP"                                        , version.ref = "hikariCP"}
+exoquery-jdbc                        = { module = "io.exoquery:exoquery-runner-jdbc"                           , version.ref = "exoquery"}
+exoquery-native                      = { module = "io.exoquery:exoquery-runner-native"                         , version.ref = "exoquery"}
 micrometer-prometheus                = { module = "io.micrometer:micrometer-registry-prometheus"               , version.ref = "micrometer"}
 h2                                   = { module = "com.h2database:h2"                                          , version.ref = "h2"}
 shedlock-jdbc                        = { module = "net.javacrumbs.shedlock:shedlock-provider-jdbc"             , version.ref = "shedlock"}
@@ -701,6 +706,7 @@ jetbrains-dokka                      = { id = "org.jetbrains.dokka"             
 decoroutinator                       = { id = "dev.reformator.stacktracedecoroutinator"                        , version.ref = "decoroutinator"}
 graalvm-nativeimage                  = { id = "org.graalvm.buildtools.native"                                  , version.ref = "graalvm-nativeimage"}
 serviceloader-compiler               = { id = "app.softwork.serviceloader-compiler"                            , version.ref = "kotlin-serviceloader" }
+exoquery                             = { id = "io.exoquery.exoquery-plugin"                                    , version.ref = "exoquery-plugin" }
 kopy                                 = { id = "com.javiersc.kotlin.kopy"                                       , version.ref = "kopy"}
 semver                               = { id = "com.javiersc.semver"                                            , version.ref = "semver-plugin" }
 redacted                             = { id = "dev.zacsweers.redacted"                                         , version.ref = "kotlin-redacted"}
@@ -739,6 +745,7 @@ gradlex-maven-plugin                 = { id = "org.gradlex.maven-plugin-developm
 typesafe-conventions                 = { id = "dev.panuszewski.typesafe-conventions"                           , version.ref = "typesafe-conventions" }
 wasm2class                           = { id = "at.released.wasm2class.plugin"                                  , version.ref = "wasm2class" }
 mcp4k                                = { id = "sh.ondr.mcp4k"                                                  , version.ref = "mcp4k"}
+koja                                 = { id = "sh.ondr.koja"                                                   , version.ref = "koja"}
 tasktree                             = { id = "com.dorongold.task-tree"                                        , version.ref = "tasktree" }
 foojay-resolver                      = { id = "org.gradle.toolchains.foojay-resolver"                          , version.ref = "foojay-resolver" }
 gratatouille                         = { id = "com.gradleup.gratatouille"                                      , version.ref = "gratatouille" }
