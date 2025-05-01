@@ -506,7 +506,6 @@ fun KotlinJvmCompilerOptions.configureKotlinJvm(project: Project) =
           "-Xassertions=jvm",
           "-Xemit-jvm-type-annotations",
           "-Xjspecify-annotations=strict",
-          "-Xextended-compiler-checks",
           "-Xskip-prerelease-check",
           // Remove null check intrinsics from bytecode
           "-Xno-param-assertions",
@@ -594,8 +593,8 @@ fun TestLoggingContainer.configureLogEvents() {
 }
 
 fun KotlinJsCompilerOptions.configureKotlinJs() {
-  // freeCompilerArgs.addAll("-Xir-per-file")
-  // target = "es2015"
+  freeCompilerArgs.addAll("-Xir-per-file")
+  target = "es2015"
   // sourceMap = true
   // sourceMapEmbedSources = "always"
 }

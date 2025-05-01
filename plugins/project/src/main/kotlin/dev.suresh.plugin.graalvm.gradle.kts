@@ -7,7 +7,6 @@ import org.jetbrains.kotlin.gradle.utils.extendsFrom
 plugins {
   application
   org.graalvm.buildtools.native
-  // `distribution-base`
 }
 
 val quickBuildEnabled = project.hasProperty("quick")

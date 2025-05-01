@@ -1,15 +1,15 @@
 @file:Suppress("UnstableApiUsage")
-@file:OptIn(ExperimentalKotlinGradlePluginApi::class, ExperimentalBCVApi::class)
 
 import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 import com.google.devtools.ksp.gradle.KspAATask
 import common.*
 import kotlinx.validation.*
 import org.gradle.internal.os.OperatingSystem
-import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.targets.js.nodejs.*
 import org.jetbrains.kotlin.gradle.targets.js.npm.*
-import org.jetbrains.kotlin.gradle.targets.js.npm.tasks.KotlinNpmInstallTask
+import org.jetbrains.kotlin.gradle.targets.js.npm.tasks.*
+import org.jetbrains.kotlin.gradle.targets.wasm.nodejs.*
+import org.jetbrains.kotlin.gradle.targets.wasm.npm.*
 import tasks.*
 
 plugins {
@@ -20,13 +20,10 @@ plugins {
   id("dev.suresh.plugin.common")
   id("dev.suresh.plugin.kotlin.docs")
   com.google.devtools.ksp
-  dev.zacsweers.redacted
-  com.javiersc.kotlin.kopy
+  // dev.zacsweers.redacted
+  // com.javiersc.kotlin.kopy
   // kotlin("plugin.compose")
-  // io.github.terrakok.`kmp-hierarchy`
   // org.gradle.kotlin.`kotlin-dsl`
-  // app.cash.molecule
-  // dev.mokkery
 }
 
 configurations.configureEach { resolutionStrategy { failOnNonReproducibleResolution() } }
@@ -63,14 +60,22 @@ ksp {
   // excludedSources.from(generateCodeTask)
 }
 
-powerAssert { functions = listOf("kotlin.assert", "kotlin.test.assertTrue") }
-
-redacted {
-  enabled = true
-  replacementString = "█"
+powerAssert {
+  functions =
+      listOf(
+          "kotlin.assert",
+          "kotlin.test.assertTrue",
+          "kotlin.test.assertEquals",
+          "kotlin.test.assertNull",
+          "kotlin.require")
 }
 
-kopy { copyFunctions = listOf(KopyCopyFunctions.Copy) }
+// redacted {
+//   enabled = true
+//   replacementString = "█"
+// }
+
+// kopy { copyFunctions = listOf(KopyCopyFunctions.Copy) }
 
 tasks {
   val buildConfigExtn = extensions.create<BuildConfigExtension>("buildConfig")
@@ -111,11 +116,10 @@ tasks {
   }
 
   pluginManager.withPlugin("com.gradleup.shadow") {
-    // https://gradleup.com/shadow/kmp-plugin/
-    val shadowJar by existing(ShadowJar::class)
     val buildExecutable by
         registering(ReallyExecJar::class) {
-          jarFile = shadowJar.flatMap { it.archiveFile }
+          // https://gradleup.com/shadow/kotlin-plugins/
+          jarFile = named<ShadowJar>("shadowJar").flatMap { it.archiveFile }
           javaOpts = jvmRunArgs
           execJarFile = layout.buildDirectory.dir("libs").map { it.file("${project.name}-app") }
           onlyIf { OperatingSystem.current().isUnix }
@@ -146,12 +150,12 @@ tasks {
     }
 
     withType<KotlinApiBuildTask>().configureEach {
-      // inputJar = named<Jar>("shadowJar").flatMap { it.archiveFile }
+      // inputJar = named<ShadowJar>("shadowJar").flatMap { it.archiveFile }
     }
   }
 }
 
-var npmEnabled: String? by rootProject.extra
+// var npmEnabled: String? by rootProject.extra
 
 plugins.withType<NodeJsPlugin> {
   the<NodeJsEnvSpec>().apply {
@@ -160,13 +164,23 @@ plugins.withType<NodeJsPlugin> {
     // downloadBaseUrl = "https://nodejs.org/download/nightly"
   }
 
-  if (!npmEnabled.toBoolean()) {
-    rootProject.the<NpmExtension>().apply {
-      lockFileDirectory = project.rootDir.resolve("gradle/kotlin-js-store")
-      packageLockMismatchReport = LockFileMismatchReport.WARNING
-      packageLockAutoReplace = false
-    }
-    npmEnabled = "true"
+  rootProject.the<NpmExtension>().apply {
+    lockFileDirectory = project.rootDir.resolve("gradle/kotlin-js-store")
+    packageLockMismatchReport = LockFileMismatchReport.WARNING
+    packageLockAutoReplace = false
+  }
+}
+
+plugins.withType<WasmNodeJsPlugin> {
+  the<WasmNodeJsEnvSpec>().apply {
+    download = true
+    // version = libs.versions.nodejs.version.get()
+    // downloadBaseUrl = "https://nodejs.org/download/nightly"
+  }
+  rootProject.the<WasmNpmExtension>().apply {
+    lockFileDirectory = project.rootDir.resolve("gradle/kotlin-js-store/wasm")
+    packageLockMismatchReport = LockFileMismatchReport.WARNING
+    packageLockAutoReplace = false
   }
 }
 
