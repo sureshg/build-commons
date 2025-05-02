@@ -69,8 +69,8 @@ otel                           = "1.49.0"
 otel-alpha                     = "1.49.0-alpha"
 otel-instr                     = "2.15.0"
 otel-instr-alpha               = "2.15.0-alpha"
-otel-semconv                   = "1.33.0"
-otel-samplers                  = "1.46.0-alpha"
+otel-semconv                   = "1.32.0"
+otel-contrib                   = "1.46.0-alpha"
 okio                           = "3.11.0"
 sslcontext-kickstart           = "9.1.0"
 ksp-auto-service               = "1.2.0"
@@ -584,7 +584,9 @@ otel-exporter-logging                = { module = "io.opentelemetry:opentelemetr
 otel-sdk-autoconf                    = { module = "io.opentelemetry:opentelemetry-sdk-extension-autoconfigure"                              , version.ref = "otel"}
 otel-sdk-extn                        = { module = "io.opentelemetry:opentelemetry-sdk-extension-incubator"                                  , version.ref = "otel-alpha"}
 otel-semconv                         = { module = "io.opentelemetry.semconv:opentelemetry-semconv"                                          , version.ref = "otel-semconv"}
-otel-samplers                        = { module = "io.opentelemetry.contrib:opentelemetry-samplers"                                         , version.ref = "otel-samplers"}
+otel-contrib-noop                    = { module = "io.opentelemetry.contrib:opentelemetry-noop-api"                                         , version.ref = "otel-contrib"}
+otel-contrib-samplers                = { module = "io.opentelemetry.contrib:opentelemetry-samplers"                                         , version.ref = "otel-contrib"}
+otel-contrib-jfrevents               = { module = "io.opentelemetry.contrib:opentelemetry-jfr-events"                                       , version.ref = "otel-contrib"}
 
 otel-instr-bom                       = { module = "io.opentelemetry.instrumentation:opentelemetry-instrumentation-bom"                      , version.ref = "otel-instr"}
 otel-instr-javaagent                 = { module = "io.opentelemetry.javaagent:opentelemetry-javaagent"                                      , version.ref = "otel-instr"}
