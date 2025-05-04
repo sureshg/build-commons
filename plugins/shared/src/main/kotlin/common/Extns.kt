@@ -50,10 +50,6 @@ inline fun <reified T> mock() =
       // InvocationHandler.invokeDefault(proxy, method, args)
     } as T
 
-/** Returns the file size in a human-readable format. */
-val File.displaySize
-  get() = length().byteDisplaySize()
-
 val Long.compactFmt: String
   get() = NumberFormat.getCompactNumberInstance().format(this)
 
@@ -71,7 +67,7 @@ val String.camelCase: String
  * - [SI](https://en.wikipedia.org/wiki/International_System_of_Units#Prefixes)
  * - [Binary](https://en.wikipedia.org/wiki/Binary_prefix)
  */
-fun Long.byteDisplaySize(si: Boolean = true): String {
+private fun Long.byteDisplaySize(si: Boolean = true): String {
   require(this >= 0) { "Bytes can't be negative" }
   val unit = if (si) 1000 else 1024
   return when (this < unit) {

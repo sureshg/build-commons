@@ -91,6 +91,7 @@ dependencies {
   implementation(libs.plugins.jte.dep)
   implementation(libs.ajalt.mordant.coroutines)
   implementation(libs.tomlj)
+  implementation(libs.bytesize)
 
   // For 'Kotlin Gradle plugin' in pre-compiled script plugins
   implementation(embeddedKotlin("gradle-plugin"))

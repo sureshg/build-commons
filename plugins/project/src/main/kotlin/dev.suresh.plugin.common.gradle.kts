@@ -1,5 +1,6 @@
 import com.github.ajalt.mordant.rendering.TextColors.*
 import common.*
+import me.saket.bytesize.*
 import org.gradle.kotlin.dsl.*
 
 tasks {
@@ -29,7 +30,7 @@ tasks {
           val isLast = index == config.outgoing.artifacts.size - 1
           val prefix = if (isLast) "   └─" else "   ├─"
           logger.lifecycle(
-              "$prefix ${cyan(artifact.file.name)} (${artifact.file.length().byteDisplaySize()})")
+              "$prefix ${cyan(artifact.file.name)} (${artifact.file.length().decimalBytes})")
         }
       }
     }
