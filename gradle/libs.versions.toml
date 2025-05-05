@@ -192,7 +192,7 @@ weh-bindings                   = "0.5"
 wasm2class                     = "0.3"
 log4k                          = "0.50.0"
 rwmutex                        = "1.0.0"
-bluesky-ozone                  = "0.3.2"
+bluesky-ozone                  = "0.3.3"
 
 # Compose
 jetbrains-compose              = "1.8.0-rc01"
