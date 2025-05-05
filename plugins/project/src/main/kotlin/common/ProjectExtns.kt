@@ -18,6 +18,7 @@ import org.gradle.api.Task
 import org.gradle.api.artifacts.Configuration
 import org.gradle.api.artifacts.ExternalDependency
 import org.gradle.api.artifacts.VersionCatalogsExtension
+import org.gradle.api.artifacts.component.*
 import org.gradle.api.attributes.*
 import org.gradle.api.component.AdhocComponentWithVariants
 import org.gradle.api.plugins.JavaPluginExtension
@@ -621,17 +622,21 @@ fun KotlinSourceSet.ksp(dependencyNotation: Any) {
   project.dependencies.add("ksp$kspConfiguration", dependencyNotation)
 }
 
-/** Returns the path of dependency jar in the runtime classpath. */
-fun Project.depPathOf(dep: ExternalDependency) = provider {
-  configurations
-      .named("runtimeClasspath")
-      .get()
-      .resolvedConfiguration
-      .resolvedArtifacts
-      .find { it.moduleVersion.id.module == dep.module }
-      ?.file
-      ?.path
-}
+/** Returns the path of the dependency jar in the runtime classpath. */
+fun Project.depPathOf(dep: ExternalDependency): Provider<String?> =
+    configurations
+        .named("runtimeClasspath")
+        .flatMap { it.incoming.artifacts.resolvedArtifacts }
+        .map {
+          it.find { artifact ->
+                when (val id = artifact.id) {
+                  is ModuleComponentIdentifier -> id.module == dep.module.name
+                  else -> false
+                }
+              }
+              ?.file
+              ?.path
+        }
 
 /** Returns the application `run` command. */
 fun Project.appRunCmd(binary: Path, args: List<String>): String {

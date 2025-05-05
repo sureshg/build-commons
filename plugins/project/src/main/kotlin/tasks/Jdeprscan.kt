@@ -1,7 +1,6 @@
 package tasks
 
-import common.javaToolchainPath
-import common.libs
+import common.*
 import java.io.*
 import javax.inject.*
 import org.gradle.api.*
@@ -104,9 +103,8 @@ constructor(
       val resolvedRuntimeClasspath =
           project.configurations
               .named("runtimeClasspath")
+              .flatMap { it.incoming.artifacts.resolvedArtifacts }
               .get()
-              .resolvedConfiguration
-              .resolvedArtifacts
               .joinToString(separator = File.pathSeparator) { it.file.absolutePath }
       logger.debug("resolvedRuntimeClasspath: $resolvedRuntimeClasspath")
     }

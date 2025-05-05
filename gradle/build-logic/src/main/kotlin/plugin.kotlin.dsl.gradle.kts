@@ -55,6 +55,7 @@ dependencies {
   implementation(libs.kotlinx.datetime)
   implementation(libs.kotlinx.serialization.json)
   implementation(libs.ajalt.mordant.coroutines)
+  implementation(libs.bytesize)
   testImplementation(gradleTestKit())
   // implementation(libs.ktor.client.java)
   // implementation(libs.ktor.client.content.negotiation)
