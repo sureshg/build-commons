@@ -38,9 +38,9 @@ configurations.configureEach {
 }
 
 java {
-  withSourcesJar()
-  withJavadocJar()
   toolchain { configureJvmToolchain(project) }
+  // withSourcesJar()
+  // withJavadocJar()
 }
 
 kotlin {
