@@ -174,7 +174,7 @@ tasks {
 
   wrapper {
     gradleVersion = libs.versions.gradle.asProvider().get()
-    distributionType = Wrapper.DistributionType.ALL
+    distributionType = Wrapper.DistributionType.BIN
     // distributionUrl = "${Repo.GRADLE_DISTRO}/gradle-$gradleVersion-bin.zip"
   }
 

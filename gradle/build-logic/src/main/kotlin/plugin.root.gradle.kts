@@ -29,7 +29,7 @@ gradle.projectsEvaluated { logger.lifecycle(magenta("=== Projects Configuration 
 idea {
   module {
     isDownloadJavadoc = false
-    isDownloadSources = true
+    isDownloadSources = false
   }
   project.vcs = "Git"
 }
@@ -117,7 +117,7 @@ tasks {
 
   wrapper {
     gradleVersion = libs.versions.gradle.asProvider().get()
-    distributionType = Wrapper.DistributionType.ALL
+    distributionType = Wrapper.DistributionType.BIN
     // distributionUrl = "${Repo.GRADLE_DISTRO}/gradle-$gradleVersion-bin.zip"
   }
 
