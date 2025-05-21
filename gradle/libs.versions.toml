@@ -73,6 +73,7 @@ otel-instr                     = "2.16.0"
 otel-instr-alpha               = "2.16.0-alpha"
 otel-semconv                   = "1.32.0"
 otel-contrib                   = "1.46.0-alpha"
+otel-kotlin                    = "0.1.1"
 okio                           = "3.11.0"
 sslcontext-kickstart           = "9.1.0"
 ksp-auto-service               = "1.2.0"
@@ -600,6 +601,10 @@ otel-instr-extension-api             = { module = "io.opentelemetry.javaagent:op
 otel-instr-ktor                      = { module = "io.opentelemetry.instrumentation:opentelemetry-ktor-3.0"                                 , version.ref = "otel-instr-alpha"}
 otel-instr-logback-appender          = { module = "io.opentelemetry.instrumentation:opentelemetry-logback-appender-1.0"                     , version.ref = "otel-instr-alpha"}
 otel-instr-logback-mdc               = { module = "io.opentelemetry.instrumentation:opentelemetry-logback-mdc-1.0"                          , version.ref = "otel-instr-alpha"}
+
+otel-kotlin-api                      = { module = "io.embrace.opentelemetry.kotlin:opentelemetry-kotlin-api"                                , version.ref = "otel-kotlin" }
+otel-kotlin-apiext                   = { module = "io.embrace.opentelemetry.kotlin:opentelemetry-kotlin-api-ext"                            , version.ref = "otel-kotlin" }
+otel-kotlin-compat                   = { module = "io.embrace.opentelemetry.kotlin:compat-kotlin-to-official"                               , version.ref = "otel-kotlin" }
 
 # Compose
 compose-runtime                      = { module = "org.jetbrains.compose.runtime:runtime"                                   , version.ref = "jetbrains-compose" }
