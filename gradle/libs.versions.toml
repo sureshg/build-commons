@@ -8,8 +8,8 @@ kotlin-api-version             = "2.2"
 kotlin-lang-version            = "2.2"
 gradle                         = "8.14"
 java-vendor                    = "Oracle"
-java-jvmArguments              = "--enable-preview"
-java-addModules                = "jdk.incubator.vector"
+java-jvmargs                   = "--enable-preview"
+java-addmodules                = "jdk.incubator.vector"
 
 # Project specifc config
 group                          = "dev.suresh.build"
