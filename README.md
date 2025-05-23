@@ -160,7 +160,6 @@ The next version will be based on the semantic version scope (`major`, `minor`, 
     id("dev.suresh.plugin.root")
     id("dev.suresh.plugin.kotlin.mpp")
     id("dev.suresh.plugin.publishing")
-    application
   }
 
   kotlin {
