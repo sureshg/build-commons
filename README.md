@@ -76,8 +76,8 @@ For testing, a separate [sandbox project](/sandbox) is available with the plugin
    $ ./gradlew publishToMavenLocal
 
    # Build the sandbox app using published plugin
-   $ ./gradlew -p sandbox :build -PjvmArgs=
-   $ sandbox/build/libs/sandbox-app
+   $ ./gradlew -p sandbox :build
+   $ sandbox/build/libs/sandbox
 
    # Run other plugin tasks
    $ ./gradlew -p sandbox :dependencyUpdates --no-configuration-cache

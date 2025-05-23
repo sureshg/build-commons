@@ -50,7 +50,7 @@ abstract class ReallyExecJar : DefaultTask() {
             ?: throw GradleException("Can't find executable shell stub!")
     logger.debug("Exec jar shell stub: $shellStub")
 
-    // Make a copy of jar file
+    // Make a copy of the jar file
     val binFile =
         Path(jarFile.get().asFile.path).copyTo(execJarFile.get().asFile.toPath(), overwrite = true)
 

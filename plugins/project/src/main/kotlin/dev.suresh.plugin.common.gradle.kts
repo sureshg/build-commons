@@ -1,7 +1,5 @@
 import com.github.ajalt.mordant.rendering.TextColors.*
-import me.saket.bytesize.*
-import org.gradle.api.internal.artifacts.result.*
-import org.gradle.kotlin.dsl.*
+import me.saket.bytesize.decimalBytes
 
 tasks {
   register("printArtifacts") {
@@ -53,7 +51,7 @@ tasks {
           configuration
               .flatMap { it.incoming.artifacts.resolvedArtifacts }
               .get()
-              .filterIsInstance<DefaultResolvedArtifactResult>()
+              .filterIsInstance<ResolvedArtifactResult>()
       logger.lifecycle("Found ${allResolvedArtifacts.size} resolved artifacts")
     }
   }

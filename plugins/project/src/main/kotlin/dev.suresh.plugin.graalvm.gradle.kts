@@ -100,7 +100,7 @@ graalvmNative {
     //   }
     // }
 
-    jvmArgs = jvmArguments()
+    jvmArgs = defaultJvmArgs
     systemProperties = mapOf("java.awt.headless" to "false")
     javaLauncher = javaToolchains.launcherFor { configureJvmToolchain(project) }
   }
