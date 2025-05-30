@@ -131,7 +131,7 @@ jobs:
       - name: 📡 Publish to Maven Central
         id: gradle-build
         run: |
-          ./gradlew publishAllPublicationsToMavenCentralRepository
+          ./gradlew publishAllPublicationsToMavenCentralRepository --no-configuration-cache
         env:
           GITHUB_USER: ${{ github.repository_owner }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
