@@ -361,7 +361,7 @@ val Project.runJvmArgs
 fun JavaToolchainSpec.configureJvmToolchain(project: Project) =
     with(project) {
       languageVersion = toolchainVersion
-      nativeImageCapable = toolchainVendor.map { it.matches("graalvm community") }
+      // nativeImageCapable = toolchainVendor.map { it.matches("graalvm community") }
       // vendor = toolchainVendor
     }
 
