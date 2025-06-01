@@ -20,7 +20,7 @@ org-name                       = "suresh.dev"
 org-url                        = "https://suresh.dev"
 
 # Dependency Versions
-bc-plugins                     = "2.1.0"
+bc-plugins                     = "2.2.0"
 kotlinx-kover                  = "0.9.1"
 kotlinx-bcv                    = "0.17.0"
 kotlin-dokka                   = "2.0.0"
@@ -39,7 +39,7 @@ kotlinx-benchmark              = "0.4.14"
 kotlinx-fuzz                   = "0.2.2"
 kotlinx-metadata               = "0.9.0"
 kotlinx-reflect-lite           = "1.2.0-RC"
-kotlin-wrappers                = "2025.5.9"
+kotlin-wrappers                = "2025.5.10"
 kotlin-redacted                = "1.14.0-alpha01"
 kotlin-serviceloader           = "0.0.16"
 kotlinx-multik                 = "0.2.3"
@@ -261,6 +261,7 @@ animalsniffer                  = "2.0.1"
 badass-runtime                 = "1.13.1-patch-1"
 badass-jlink                   = "3.1.0"
 jlink-jib                      = "0.4.1"
+jextract                       = "0.5.0"
 maven-plugin-api               = "4.0.0-rc-3"
 maven-plugin-annotations       = "3.15.1"
 gradlex-maven-plugin           = "1.0.3"
@@ -762,6 +763,7 @@ kmbed-plugin                         = { id = "io.karma.kmbed.kmbed-gradle-plugi
 badass-jlink                         = { id = "com.dua3.gradle.jlink"                                          , version.ref = "badass-jlink" }
 badass-runtime                       = { id = "com.dua3.gradle.runtime"                                        , version.ref = "badass-runtime" }
 jlink-jib                            = { id = "com.ryandens.jlink-jib"                                         , version.ref = "jlink-jib" }
+jextract                             = { id = "de.infolektuell.jextract"                                       , version.ref = "jextract" }
 gradlex-maven-plugin                 = { id = "org.gradlex.maven-plugin-development"                           , version.ref = "gradlex-maven-plugin" }
 typesafe-conventions                 = { id = "dev.panuszewski.typesafe-conventions"                           , version.ref = "typesafe-conventions" }
 wasm2class                           = { id = "at.released.wasm2class.plugin"                                  , version.ref = "wasm2class" }
