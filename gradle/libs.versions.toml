@@ -270,6 +270,7 @@ typesafe-conventions           = "0.7.3"
 # Repositories
 repo-mvn-central               = "https://repo.maven.apache.org/maven2/"
 repo-mvn-snapshot              = "https://central.sonatype.com/repository/maven-snapshots/"
+repo-mvn-kotlindev             = "https://redirector.kotlinlang.org/maven/dev/"
 repo-nodejs                    = "https://nodejs.org/dist/"
 
 [libraries]
