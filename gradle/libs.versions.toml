@@ -644,10 +644,10 @@ rwmutex                              = { module = "com.mayakapps.rwmutex:rwmutex
 kmbed-runtime                        = { module = "io.karma.kmbed:kmbed-runtime"                                            , version.ref = "kmbed" }
 
 # Wasm
-chicory                              = { module = "com.dylibso.chicory:runtime"                                             , version.ref = "chicory" }
 chicory-bom                          = { module = "com.dylibso.chicory:bom"                                                 , version.ref = "chicory" }
-chicory-aot                          = { module = "com.dylibso.chicory:aot-experimental"                                    , version.ref = "chicory" }
-chicory-hostmodule-annproc           = { module = "com.dylibso.chicory:host-module-annotations-experimental"                , version.ref = "chicory" }
+chicory-runtime                      = { module = "com.dylibso.chicory:runtime"                                             , version.ref = "chicory" }
+chicory-compiler                     = { module = "com.dylibso.chicory:compiler"                                            , version.ref = "chicory" }
+chicory-annotations                  = { module = "com.dylibso.chicory:annotations"                                         , version.ref = "chicory" }
 chicory-wasi                         = { module = "com.dylibso.chicory:wasi"                                                , version.ref = "chicory" }
 chicory-simd                         = { module = "com.dylibso.chicory:simd"                                                , version.ref = "chicory" }
 chasm                                = { module = "io.github.charlietap.chasm:chasm"                                        , version.ref = "chasm" }
