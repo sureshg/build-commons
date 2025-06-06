@@ -31,7 +31,6 @@ graalvmNative {
       add("--enable-preview")
       add("--enable-native-access=ALL-UNNAMED")
       add("--enable-https")
-      add("--install-exit-handlers")
       add("--future-defaults=all")
       add("-R:MaxHeapSize=64m")
       add("-H:+UnlockExperimentalVMOptions")
