@@ -39,7 +39,7 @@ kotlinx-benchmark              = "0.4.14"
 kotlinx-fuzz                   = "0.2.2"
 kotlinx-metadata               = "0.9.0"
 kotlinx-reflect-lite           = "1.2.0-RC"
-kotlin-wrappers                = "2025.6.2"
+kotlin-wrappers                = "2025.6.3"
 kotlin-redacted                = "1.14.0-alpha01"
 kotlin-serviceloader           = "0.0.16"
 kotlinx-multik                 = "0.2.3"
@@ -226,7 +226,7 @@ swagger-style                  = "https://unpkg.com/swagger-ui-themes@3.0.1/them
 
 # Plugin versions
 benmanes                       = "0.52.0"
-caupain                        = "1.2.0"
+caupain                        = "1.2.1"
 foojay-resolver                = "1.0.0"
 gradle-develocity              = "4.0.2"
 nmcp                           = "0.1.5"
