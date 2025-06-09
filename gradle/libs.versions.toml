@@ -20,7 +20,7 @@ org-name                       = "suresh.dev"
 org-url                        = "https://suresh.dev"
 
 # Dependency Versions
-bc-plugins                     = "2.3.0"
+bc-plugins                     = "2.4.0"
 kotlinx-kover                  = "0.9.1"
 kotlinx-bcv                    = "0.17.0"
 kotlin-dokka                   = "2.0.0"
@@ -678,6 +678,11 @@ ldaptive                             = { module = "org.ldaptive:ldaptive"       
 # Maven Plugin
 maven-plugin-api                     = { module = "org.apache.maven:maven-plugin-api"                                       , version.ref = "maven-plugin-api" }
 maven-plugin-annotations             = { module = "rg.apache.maven.plugin-tools:maven-plugin-annotations"                   , version.ref = "maven-plugin-annotations" }
+
+# Formatting
+google-javaformat                    = { module = "com.google.googlejavaformat:google-java-format"                          , version.ref = "google-javaformat" }
+palantir-javaformat                  = { module = "com.palantir.javaformat:palantir-java-format"                            , version.ref = "palantir-javaformat" }
+
 
 [bundles]
 ajalt                                = ["ajalt-colormath",
