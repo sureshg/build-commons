@@ -260,6 +260,7 @@ val Project.runJvmArgs
                   |+jdk.TLSHandshake#stackTrace=true,
                   |+jdk.X509Certificate#enabled=true,
                   |+jdk.X509Validation#enabled=true,
+                  |+jdk.CPUTimeSample#enabled=true,
                   |settings=profile"""
                     .joinToConfigString(),
                 "-XX:FlightRecorderOptions:stackdepth=64",
