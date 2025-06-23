@@ -1,8 +1,7 @@
-import com.google.cloud.tools.jib.gradle.JibExtension
-import com.vanniktech.maven.publish.SonatypeHost
+import com.google.cloud.tools.jib.gradle.*
 import common.*
 import java.time.Year
-import org.jetbrains.kotlin.gradle.tasks.KotlinNativeLink
+import org.jetbrains.kotlin.gradle.tasks.*
 
 plugins { com.vanniktech.maven.publish }
 
@@ -58,7 +57,7 @@ publishing {
 }
 
 mavenPublishing {
-  publishToMavenCentral(host = SonatypeHost.CENTRAL_PORTAL, automaticRelease = true)
+  publishToMavenCentral(automaticRelease = true)
 
   if (hasSigningKey) {
     signAllPublications()

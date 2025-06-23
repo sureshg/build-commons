@@ -1,4 +1,3 @@
-import com.vanniktech.maven.publish.SonatypeHost
 import common.*
 import java.time.Year
 
@@ -7,7 +6,7 @@ plugins { com.vanniktech.maven.publish }
 group = libs.versions.group.get()
 
 mavenPublishing {
-  publishToMavenCentral(host = SonatypeHost.CENTRAL_PORTAL, automaticRelease = true)
+  publishToMavenCentral(automaticRelease = true)
 
   if (hasSigningKey) {
     signAllPublications()
