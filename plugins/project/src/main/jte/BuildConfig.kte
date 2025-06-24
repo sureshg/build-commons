@@ -18,6 +18,7 @@
 /* GENERATED, DO NOT EDIT MANUALLY! */
 @if(pkg.isNotBlank())package ${pkg}@endif
 
+import kotlin.time.*
 import kotlinx.datetime.*
 
 data object ${className} {
