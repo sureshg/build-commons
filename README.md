@@ -202,11 +202,7 @@ is [automatically with Gradle][gradle_verification].
   $ tree ~/.m2/repository/dev/suresh
 
   # Publish the plugins to maven central
-  $ ./gradlew publishPluginMavenPublicationToMavenCentralRepository
-
-  # Publish the catalog to maven central
-  $ ./gradlew :catalog:publishToMavenCentral
-  $ ./gradlew :catalog:publishAndReleaseToMavenCentral
+  $ ./gradlew publishToMavenCentral
   ```
 
 ### Misc
