@@ -1,7 +1,7 @@
 @file:Suppress("UnstableApiUsage")
 
 import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
-import com.google.devtools.ksp.gradle.KspAATask
+import com.google.cloud.tools.jib.gradle.JibTask
 import common.*
 import kotlinx.validation.*
 import org.gradle.internal.os.OperatingSystem
@@ -71,7 +71,7 @@ powerAssert {
 }
 
 redacted {
-  enabled = true
+  enabled = false
   replacementString = "█"
 }
 
@@ -83,8 +83,6 @@ tasks {
   buildConfig.configure { enabled = buildConfigExtn.enabled.get() }
   kotlin.sourceSets.commonMain { kotlin.srcDirs(buildConfig) }
   // compileKotlinMetadata { dependsOn(buildConfig) }
-
-  withType<KspAATask>().configureEach { configureKspConfig() }
 
   withType<KotlinNpmInstallTask>().configureEach { configureKotlinNpm() }
 
@@ -141,6 +139,10 @@ tasks {
     }
   }
 
+  pluginManager.withPlugin("com.google.cloud.tools.jib") {
+    withType<JibTask>().configureEach { notCompatibleWithConfigurationCache("because Jib#3132") }
+  }
+
   pluginManager.withPlugin("org.jetbrains.kotlinx.binary-compatibility-validator") {
     configure<ApiValidationExtension> {
       ignoredPackages.add("dev.suresh.test")
@@ -166,8 +168,6 @@ plugins.withType<NodeJsPlugin> {
 
   rootProject.the<NpmExtension>().apply {
     lockFileDirectory = project.rootDir.resolve("gradle/kotlin-js-store")
-    packageLockMismatchReport = LockFileMismatchReport.WARNING
-    packageLockAutoReplace = false
   }
 }
 
@@ -179,8 +179,6 @@ plugins.withType<WasmNodeJsPlugin> {
   }
   rootProject.the<WasmNpmExtension>().apply {
     lockFileDirectory = project.rootDir.resolve("gradle/kotlin-js-store/wasm")
-    packageLockMismatchReport = LockFileMismatchReport.WARNING
-    packageLockAutoReplace = false
   }
 }
 

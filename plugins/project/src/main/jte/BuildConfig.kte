@@ -19,7 +19,8 @@
 @if(pkg.isNotBlank())package ${pkg}@endif
 
 import kotlin.time.*
-import kotlinx.datetime.*
+import kotlinx.datetime.TimeZone
+import kotlinx.datetime.toLocalDateTime
 
 data object ${className} {
 

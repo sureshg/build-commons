@@ -11,7 +11,7 @@ plugins {
 description = "Gradle build settings plugins!"
 
 dependencies {
-  implementation(projects.plugins.shared)
+  implementation(project(":plugins:shared"))
   implementation(libs.plugins.kotlinx.kover.dep)
   implementation(libs.plugins.gradle.develocity.dep)
   implementation(libs.plugins.semver.dep)

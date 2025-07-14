@@ -1,5 +1,5 @@
 import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
-import com.google.devtools.ksp.gradle.KspAATask
+import com.google.cloud.tools.jib.gradle.JibTask
 import common.*
 import java.io.*
 import java.util.spi.ToolProvider
@@ -72,7 +72,7 @@ powerAssert {
 }
 
 redacted {
-  enabled = true
+  enabled = false
   replacementString = "█"
 }
 
@@ -94,9 +94,6 @@ tasks {
 
   // Configure jvm args for JavaExec tasks except `run`
   withType<JavaExec>().matching { it.name != "run" }.configureEach { jvmArgs(defaultJvmArgs) }
-
-  // Configure KSP
-  withType<KspAATask>().configureEach { configureKspConfig() }
 
   withType<Jar>().configureEach {
     manifest { attributes(defaultJarManifest) }
@@ -129,11 +126,13 @@ tasks {
       encoding = Charsets.UTF_8.name()
       linkSource(true)
       addBooleanOption("-enable-preview", true)
-      addStringOption("-add-modules", addModules)
+      if (addModules.isNotBlank()) {
+        addStringOption("-add-modules", addModules)
+      }
       addStringOption("-release", javaRelease.get().toString())
       addStringOption("Xdoclint:none", "-quiet")
     }
-    exclude("**/Main.java")
+    // exclude("**/Main.java")
   }
 
   pluginManager.withPlugin("com.gradleup.shadow") {
@@ -204,6 +203,8 @@ tasks {
         }
 
     processResources { dependsOn(copyOtelAgent) }
+
+    withType<JibTask>().configureEach { notCompatibleWithConfigurationCache("because Jib#3132") }
   }
 
   pluginManager.withPlugin("org.jetbrains.kotlinx.binary-compatibility-validator") {
@@ -249,7 +250,7 @@ dependencies {
   testImplementation(kotlin("reflect"))
   testImplementation(kotlin("test-junit5"))
   testImplementation(libs.junit.jupiter)
-  testImplementation(libs.kotlinx.lincheck)
+  testImplementation(libs.kotlin.lincheck)
   testImplementation(libs.kotlinx.coroutines.test)
   testImplementation(libs.mockk)
   // testImplementation(libs.slf4j.simple)

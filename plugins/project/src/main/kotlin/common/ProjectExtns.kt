@@ -203,7 +203,9 @@ val Project.containerLabels
 val Project.defaultJvmArgs
   get() = buildList {
     addAll(libs.versions.java.jvmargs.get().split(",", " ").filter(String::isNotBlank))
-    add("--add-modules=$addModules")
+    if (addModules.isNotBlank()) {
+      add("--add-modules=$addModules")
+    }
   }
 
 /**

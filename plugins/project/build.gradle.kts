@@ -80,7 +80,7 @@ tasks {
 }
 
 dependencies {
-  implementation(projects.plugins.shared)
+  implementation(project(":plugins:shared"))
   implementation(libs.zip.prefixer)
   implementation(libs.jte.runtime)
   jteGenerate(libs.jte.models)

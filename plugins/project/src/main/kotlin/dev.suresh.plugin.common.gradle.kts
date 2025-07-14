@@ -5,6 +5,8 @@ import me.saket.bytesize.*
 import org.gradle.kotlin.dsl.*
 
 tasks {
+  withType<AbstractTestTask>().configureEach { failOnNoDiscoveredTests = false }
+
   pluginManager.withPlugin("com.google.cloud.tools.jib") {
     withType<BuildDockerTask>().configureEach {
       doLast {

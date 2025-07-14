@@ -65,6 +65,9 @@ Kotlin/Java projects, handling the boilerplate and common tasks so you can get s
   $ ./gradlew build
 
   # Check dep updates
+  $ caupain --gradle-stability-level=milestone
+
+  # OR
   $ ./gradlew dependencyUpdates --no-configuration-cache
   ```
 
