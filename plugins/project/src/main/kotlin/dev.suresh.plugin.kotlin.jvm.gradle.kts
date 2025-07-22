@@ -253,5 +253,6 @@ dependencies {
   testImplementation(libs.kotlin.lincheck)
   testImplementation(libs.kotlinx.coroutines.test)
   testImplementation(libs.mockk)
+  testImplementation(libs.mockk.bdd)
   // testImplementation(libs.slf4j.simple)
 }
