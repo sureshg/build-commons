@@ -1,7 +1,7 @@
 {
   "categories": [
     {
-      "title": "## 🚀 New Features",
+      "title": "### 🚀 New Features",
       "labels": [
         "feat",
         "feature",
@@ -9,7 +9,7 @@
       ]
     },
     {
-      "title": "## 🐛 Bug Fixes",
+      "title": "### 🐛 Bug Fixes",
       "labels": [
         "fix",
         "bug",
@@ -17,7 +17,7 @@
       ]
     },
     {
-      "title": "## 💥 Breaking Changes",
+      "title": "### 💥 Breaking Changes",
       "labels": [
         "breaking",
         "breaking-change",
@@ -25,7 +25,7 @@
       ]
     },
     {
-      "title": "## 🧰 Maintenance & Refactoring",
+      "title": "### 🧰 Maintenance & Refactoring",
       "labels": [
         "chore",
         "refactor",
@@ -33,14 +33,14 @@
       ]
     },
     {
-      "title": "## 🧪 Tests",
+      "title": "### 🧪 Tests",
       "labels": [
         "test",
         "tests"
       ]
     },
     {
-      "title": "## 📚 Documentation",
+      "title": "### 📚 Documentation",
       "labels": [
         "doc",
         "docs",
@@ -48,7 +48,7 @@
       ]
     },
     {
-      "title": "## 📦 Dependencies",
+      "title": "### 📦 Dependencies",
       "labels": [
         "deps",
         "dependencies",
@@ -57,7 +57,7 @@
       ]
     },
     {
-      "title": "## 🔧 Build & CI",
+      "title": "### 🔧 Build & CI",
       "labels": [
         "ci",
         "build",
@@ -65,7 +65,7 @@
       ]
     },
     {
-      "title": "## 💬 Other Changes",
+      "title": "### 💬 Other Changes",
       "labels": [
         "other",
         "misc"
@@ -86,7 +86,7 @@
       "target": "$1"
     }
   },
-  "template": "## 📋 What's Changed\n\n${{CHANGELOG}}\n\n## 📦 Maven Central Release\n\n🎉 **This release v${{TO_TAG}} is now available on Maven Central!**\n\n[![Maven Central](https://img.shields.io/maven-central/v/dev.suresh.build/project?logo=gradle&logoColor=white&color=00B4E6)](https://central.sonatype.com/search?namespace=dev.suresh.build)\n\n### 🔗 Quick Links\n- **Maven Central**: https://central.sonatype.com/search?namespace=dev.suresh.build\n- **Repository**: https://repo.maven.apache.org/maven2/dev/suresh/build/project/${{TO_TAG}}/\n- **Release**: https://github.com/${{OWNER}}/${{REPO}}/releases/tag/v${{TO_TAG}}\n\n### 📥 How to Use\n\nAdd to your `settings.gradle.kts`:\n```kotlin\npluginManagement {\n  resolutionStrategy {\n    eachPlugin {\n      if (requested.id.id.startsWith(\"dev.suresh.plugin\")) {\n        useVersion(\"${{TO_TAG}}\")\n      }\n    }\n  }\n  repositories {\n    gradlePluginPortal()\n    mavenCentral()\n  }\n}\n\nplugins { id(\"dev.suresh.plugin.repos\") }\n```\n\n### 🔐 Artifact Verification\n\nAll artifacts are signed with GPG key: `C124DB3A8AD1C13F7153DECDF209C085C8B53CA1`\n\n<details>\n<summary>📝 Uncategorized Changes</summary>\n\n${{UNCATEGORIZED}}\n\n</details>",
+  "template": "## 📋 What's Changed\n\n${{CHANGELOG}}\n\n## 📦 Maven Central Release\n\n🎉 **This release ${{TO_TAG}} is now available on Maven Central!**\n\n[![Maven Central](https://img.shields.io/maven-central/v/dev.suresh.build/project?logo=gradle&logoColor=white&color=00B4E6)](https://central.sonatype.com/search?namespace=dev.suresh.build)\n\n### 🔗 Quick Links\n- **Maven Central**: https://central.sonatype.com/search?namespace=dev.suresh.build\n- **Repository**: https://repo.maven.apache.org/maven2/dev/suresh/build/project/${{TO_TAG}}/\n- **Release**: https://github.com/${{OWNER}}/${{REPO}}/releases/tag/${{TO_TAG}}\n\n### 📥 How to Use\n\nAdd to your `settings.gradle.kts`:\n```kotlin\npluginManagement {\n  resolutionStrategy {\n    eachPlugin {\n      if (requested.id.id.startsWith(\"dev.suresh.plugin\")) {\n        useVersion(\"${{TO_TAG}}\")\n      }\n    }\n  }\n  repositories {\n    gradlePluginPortal()\n    mavenCentral()\n  }\n}\n\nplugins { id(\"dev.suresh.plugin.repos\") }\n```\n\n### 🔐 Artifact Verification\n\nAll artifacts are signed with GPG key: `C124DB3A8AD1C13F7153DECDF209C085C8B53CA1`\n\n<details>\n<summary>📝 Uncategorized Changes</summary>\n\n${{UNCATEGORIZED}}\n\n</details>",
   "pr_template": "- ${{TITLE}} (#${{NUMBER}}) @${{AUTHOR}}",
   "commit_template": "- ${{TITLE}} (${{MERGE_SHA}}) @${{AUTHOR}}",
   "empty_template": "- No changes in this release",
