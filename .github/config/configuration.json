@@ -1,34 +1,50 @@
 {
   "categories": [
     {
-      "title": "## 🚀 Features",
+      "title": "## 🚀 New Features",
       "labels": [
-        "feat"
+        "feat",
+        "feature",
+        "enhancement"
       ]
     },
     {
-      "title": "## 🐛 Fixes",
+      "title": "## 🐛 Bug Fixes",
       "labels": [
-        "fix"
+        "fix",
+        "bug",
+        "bugfix"
       ]
     },
     {
-      "title": "## 🧰 Maintenance",
+      "title": "## 💥 Breaking Changes",
       "labels": [
-        "chore"
+        "breaking",
+        "breaking-change",
+        "Semver-Major"
+      ]
+    },
+    {
+      "title": "## 🧰 Maintenance & Refactoring",
+      "labels": [
+        "chore",
+        "refactor",
+        "maintenance"
       ]
     },
     {
       "title": "## 🧪 Tests",
       "labels": [
-        "test"
+        "test",
+        "tests"
       ]
     },
     {
-      "title": "## 🖍️ Documentation",
+      "title": "## 📚 Documentation",
       "labels": [
         "doc",
-        "docs"
+        "docs",
+        "documentation"
       ]
     },
     {
@@ -41,7 +57,15 @@
       ]
     },
     {
-      "title": "## 💬 Other",
+      "title": "## 🔧 Build & CI",
+      "labels": [
+        "ci",
+        "build",
+        "workflow"
+      ]
+    },
+    {
+      "title": "## 💬 Other Changes",
       "labels": [
         "other",
         "misc"
@@ -49,10 +73,14 @@
     }
   ],
   "sort": "ASC",
-  "template": "${{CHANGELOG}}\n\n<details>\n<summary>Uncategorized</summary>\n\n${{UNCATEGORIZED}}\n</details>",
-  "pr_template": "${{TITLE}}",
-  "empty_template": "- no changes",
+  "template": "## 📋 What's Changed\n\n${{CHANGELOG}}\n\n## 📦 Maven Central Release\n\n🎉 **This release ${{TO_TAG}} is now available on Maven Central!**\n\n[![Maven Central](https://img.shields.io/maven-central/v/dev.suresh.build/project?logo=gradle&logoColor=white&color=00B4E6)](https://central.sonatype.com/search?namespace=dev.suresh.build)\n\n### 🔗 Quick Links\n- **Maven Central**: https://central.sonatype.com/search?namespace=dev.suresh.build\n- **Repository**: https://repo.maven.apache.org/maven2/dev/suresh/build/project/${{TO_TAG}}/\n- **Plugin Portal**: https://plugins.gradle.org/search?term=dev.suresh.plugin\n- **Release**: https://github.com/${{OWNER}}/${{REPO}}/releases/tag/${{TO_TAG}}\n\n### 📥 How to Use\n\nAdd to your `settings.gradle.kts`:\n```kotlin\npluginManagement {\n  resolutionStrategy {\n    eachPlugin {\n      if (requested.id.id.startsWith(\"dev.suresh.plugin\")) {\n        useVersion(\"${{TO_TAG}}\")\n      }\n    }\n  }\n  repositories {\n    gradlePluginPortal()\n    mavenCentral()\n  }\n}\n\nplugins { id(\"dev.suresh.plugin.repos\") }\n```\n\n### 🔐 Artifact Verification\n\nAll artifacts are signed with GPG key: `C124DB3A8AD1C13F7153DECDF209C085C8B53CA1`\n\n---\n\n<details>\n<summary>📝 Uncategorized Changes</summary>\n\n${{UNCATEGORIZED}}\n\n</details>\n\n---\n\n**Full Changelog**: https://github.com/${{OWNER}}/${{REPO}}/compare/${{FROM_TAG}}...${{TO_TAG}}",
+  "pr_template": "- ${{TITLE}} (#${{NUMBER}}) @${{AUTHOR}}",
+  "empty_template": "- No changes in this release",
   "label_extractor": [
+    {
+      "pattern": "^(\\w+)(\\(.+\\))?!?:",
+      "target": "$1"
+    },
     {
       "pattern": "(.+): (.+)",
       "target": "$1"
@@ -60,6 +88,24 @@
   ],
   "exclude_merge_branches": [
     "merge pull request",
-    "Merge pull request"
+    "Merge pull request",
+    "Merge branch"
+  ],
+  "transformers": [
+    {
+      "pattern": "[\\-\\*] (\\[(...|TEST|CI|SKIP)\\])( )?(.+)",
+      "target": "- $4"
+    }
+  ],
+  "max_tags_to_fetch": 200,
+  "max_pull_requests": 200,
+  "max_back_track_time_days": 365,
+  "exclude_labels": [
+    "ignore-for-release",
+    "skip-changelog",
+    "duplicate",
+    "question",
+    "invalid",
+    "wontfix"
   ]
 }
