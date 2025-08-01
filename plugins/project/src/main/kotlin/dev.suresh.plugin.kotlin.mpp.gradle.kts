@@ -146,7 +146,7 @@ tasks {
   pluginManager.withPlugin("org.jetbrains.kotlinx.binary-compatibility-validator") {
     configure<ApiValidationExtension> {
       ignoredPackages.add("dev.suresh.test")
-      ignoredClasses.addAll(listOf("BuildConfig", "BuildConfig\$Host"))
+      ignoredClasses.addAll(listOf("BuildConfig", $$"BuildConfig$Host"))
       validationDisabled = true
       klib { enabled = true }
     }
