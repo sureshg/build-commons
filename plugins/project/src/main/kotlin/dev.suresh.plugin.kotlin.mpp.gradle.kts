@@ -30,6 +30,7 @@ configurations.configureEach { resolutionStrategy { failOnNonReproducibleResolut
 
 kotlin {
   commonTarget(project)
+  applyDefaultHierarchyTemplate()
 
   // applyDefaultHierarchyTemplate {
   //   common {
@@ -71,7 +72,7 @@ powerAssert {
 }
 
 redacted {
-  enabled = false
+  enabled = true
   replacementString = "█"
 }
 
