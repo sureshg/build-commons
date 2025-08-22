@@ -3,7 +3,6 @@
 import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 import com.google.cloud.tools.jib.gradle.JibTask
 import common.*
-import kotlinx.validation.*
 import org.gradle.internal.os.OperatingSystem
 import org.jetbrains.kotlin.gradle.targets.js.nodejs.*
 import org.jetbrains.kotlin.gradle.targets.js.npm.*
@@ -21,7 +20,7 @@ plugins {
   id("dev.suresh.plugin.kotlin.docs")
   com.google.devtools.ksp
   dev.zacsweers.redacted
-  // com.javiersc.kotlin.kopy
+  com.javiersc.kotlin.kopy
   // kotlin("plugin.compose")
   // org.gradle.kotlin.`kotlin-dsl`
 }
@@ -29,8 +28,49 @@ plugins {
 configurations.configureEach { resolutionStrategy { failOnNonReproducibleResolution() } }
 
 kotlin {
-  commonTarget(project)
   applyDefaultHierarchyTemplate()
+  jvmToolchain { configureJvmToolchain(project) }
+  compilerOptions { configureKotlinCommon(project) }
+
+  @OptIn(org.jetbrains.kotlin.gradle.dsl.abi.ExperimentalAbiValidation::class)
+  abiValidation {
+    enabled = false
+    filters { excluded { byNames.addAll("BuildConfig", $$"BuildConfig$Host") } }
+    klib { keepUnsupportedTargets = false }
+  }
+
+  dependencies {
+    api(platform(libs.kotlin.bom))
+    api(platform(libs.kotlinx.coroutines.bom))
+    api(platform(libs.kotlinx.serialization.bom))
+    api(platform(libs.ktor.bom))
+    api(platform(libs.kotlin.wrappers.bom))
+
+    api(libs.kotlinx.coroutines.core)
+    api(libs.kotlinx.datetime)
+    api(libs.kotlinx.io.core)
+    api(libs.kotlinx.serialization.json)
+    api(libs.kotlinx.serialization.json.io)
+    api(libs.kotlinx.collections.immutable)
+    api(libs.kotlin.redacted.annotations)
+    api(libs.kotlin.retry)
+    api(libs.kotlin.logging)
+    api(libs.kotlinx.html)
+    api(libs.ktor.client.core)
+    api(libs.ktor.client.cio)
+    api(libs.ktor.client.content.negotiation)
+    api(libs.ktor.client.encoding)
+    api(libs.ktor.client.logging)
+    api(libs.ktor.client.resources)
+    api(libs.ktor.client.auth)
+    api(libs.ktor.client.serialization)
+    api(libs.ktor.client.websockets)
+    api(libs.ktor.serialization.json)
+
+    testImplementation(kotlin("test"))
+    testImplementation(libs.kotlinx.coroutines.test)
+    testImplementation(libs.ktor.client.mock)
+  }
 
   // applyDefaultHierarchyTemplate {
   //   common {
@@ -48,9 +88,22 @@ kotlin {
   //   }
   // }
 
-  // ==== To configure specific targets ====
+  // ---- Configure specific targets/compilations/source-sets ----
   // targets.withType<KotlinJvmTarget>().configureEach { compilerOptions {} }
   // targets.matching { it.platformType == js }.configureEach { apply(plugin = ...) }
+
+  // Get target compilations
+  // val commonTarget = targets.first { it.platformType == KotlinPlatformType.common }
+  // OR targets["metadata"]
+  // val compilation = commonTarget.compilations["main"]
+
+  // Add a task output as sourceSet
+  // compilation.defaultSourceSet.kotlin.srcDir(buildConfig)
+
+  // Add new sourceSet
+  // val newSourceSet = sourceSets.create("gen")
+  // compilation.defaultSourceSet.dependsOn(newSourceSet)
+  // ---- Done ----
 
   // kotlinDaemonJvmArgs = defaultJvmArgs
   // explicitApiWarning()
@@ -68,15 +121,14 @@ powerAssert {
           "kotlin.test.assertTrue",
           "kotlin.test.assertEquals",
           "kotlin.test.assertNull",
-          "kotlin.require")
+          "kotlin.require",
+      )
 }
 
 redacted {
   enabled = true
   replacementString = "█"
 }
-
-// kopy { copyFunctions = listOf(KopyCopyFunctions.Copy) }
 
 tasks {
   val buildConfigExtn = extensions.create<BuildConfigExtension>("buildConfig")
@@ -142,19 +194,6 @@ tasks {
 
   pluginManager.withPlugin("com.google.cloud.tools.jib") {
     withType<JibTask>().configureEach { notCompatibleWithConfigurationCache("because Jib#3132") }
-  }
-
-  pluginManager.withPlugin("org.jetbrains.kotlinx.binary-compatibility-validator") {
-    configure<ApiValidationExtension> {
-      ignoredPackages.add("dev.suresh.test")
-      ignoredClasses.addAll(listOf("BuildConfig", $$"BuildConfig$Host"))
-      validationDisabled = true
-      klib { enabled = true }
-    }
-
-    withType<KotlinApiBuildTask>().configureEach {
-      // inputJar = named<ShadowJar>("shadowJar").flatMap { it.archiveFile }
-    }
   }
 }
 

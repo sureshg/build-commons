@@ -64,7 +64,7 @@ object GithubAction {
       line: Int = 0,
       endLine: Int = 0,
       col: Int = 0,
-      endColumn: Int = 0
+      endColumn: Int = 0,
   ) =
       echo(
           message(
@@ -75,7 +75,9 @@ object GithubAction {
               line = line,
               endLine = endLine,
               col = col,
-              endColumn = endColumn))
+              endColumn = endColumn,
+          )
+      )
 
   /**
    * Creates a warning message and prints the message to the log. This message will create an
@@ -89,7 +91,7 @@ object GithubAction {
       line: Int = 0,
       endLine: Int = 0,
       col: Int = 0,
-      endColumn: Int = 0
+      endColumn: Int = 0,
   ) =
       echo(
           message(
@@ -100,7 +102,9 @@ object GithubAction {
               line = line,
               endLine = endLine,
               col = col,
-              endColumn = endColumn))
+              endColumn = endColumn,
+          )
+      )
 
   /**
    * Creates an error message and prints the message to the log. This message will create an
@@ -114,7 +118,7 @@ object GithubAction {
       line: Int = 0,
       endLine: Int = 0,
       col: Int = 0,
-      endColumn: Int = 0
+      endColumn: Int = 0,
   ) =
       echo(
           message(
@@ -125,7 +129,9 @@ object GithubAction {
               line = line,
               endLine = endLine,
               col = col,
-              endColumn = endColumn))
+              endColumn = endColumn,
+          )
+      )
 
   /** Creates an expandable group with a title in the log. */
   fun group(title: String, logs: List<String>) {
@@ -163,9 +169,9 @@ object GithubAction {
           """
           |::stop-commands::$token
           |${messages.joinToString(System.lineSeparator())}
-          |::$token::
-          """
-              .trimMargin())
+          |::$token::"""
+              .trimMargin()
+      )
     }
   }
 
@@ -183,8 +189,7 @@ object GithubAction {
               """
               |$name<<EOF
               |$value
-              |EOF
-              """
+              |EOF"""
                   .trimMargin()
           else -> "$name=$value"
         }
@@ -247,7 +252,8 @@ object GithubAction {
                 charset = Charsets.UTF_8,
                 CREATE,
                 if (truncate) TRUNCATE_EXISTING else APPEND,
-                WRITE)
+                WRITE,
+            )
       }
     }
   }
@@ -274,7 +280,7 @@ object GithubAction {
       line: Int = 0,
       endLine: Int = 0,
       col: Int = 0,
-      endColumn: Int = 0
+      endColumn: Int = 0,
   ) = buildString {
     append("::")
     append(type.name.lowercase())
@@ -303,7 +309,7 @@ object GithubAction {
     DEBUG,
     NOTICE,
     WARNING,
-    ERROR
+    ERROR,
   }
 
   /**

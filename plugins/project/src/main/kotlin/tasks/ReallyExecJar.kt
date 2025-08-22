@@ -45,7 +45,9 @@ abstract class ReallyExecJar : DefaultTask() {
             ?.readBytes()
             ?.decodeToString()
             ?.replace(
-                oldValue = """"${'$'}JAVA_OPTS"""", newValue = javaOpts.get().joinToString(" "))
+                oldValue = """"${'$'}JAVA_OPTS"""",
+                newValue = javaOpts.get().joinToString(" "),
+            )
             ?.replace(tmp, "${'$'}TMPDIR/")
             ?: throw GradleException("Can't find executable shell stub!")
     logger.debug("Exec jar shell stub: $shellStub")
@@ -60,6 +62,8 @@ abstract class ReallyExecJar : DefaultTask() {
     binFile.setPosixFilePermissions(PosixFilePermissions.fromString("rwxr-xr-x"))
     logger.quiet(
         TextColors.magenta(
-            "Executable Binary: ${binFile.pathString} ${binFile.fileSize().decimalBytes}"))
+            "Executable Binary: ${binFile.pathString} ${binFile.fileSize().decimalBytes}"
+        )
+    )
   }
 }

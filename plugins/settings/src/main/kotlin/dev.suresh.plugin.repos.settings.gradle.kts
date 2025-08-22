@@ -154,9 +154,9 @@ fun PublishedBuildScan.addJobSummary() =
       setOutput("build_scan_uri", buildScanUri)
       addJobSummary(
           """
-          | ##### 🚀 Gradle BuildScan [URL](${buildScanUri.toASCIIString()})
-          """
-              .trimMargin())
+          | ##### 🚀 Gradle BuildScan [URL](${buildScanUri.toASCIIString()})"""
+              .trimMargin()
+      )
     }
 
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")

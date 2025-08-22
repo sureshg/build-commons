@@ -29,7 +29,8 @@ kotlin {
         "-Xno-param-assertions",
         "-Xno-call-assertions",
         "-Xno-receiver-assertions",
-        "-Xreturn-value-checker=check")
+        "-Xreturn-value-checker=check",
+    )
     optIn.addAll(
         "kotlin.ExperimentalStdlibApi",
         "kotlin.time.ExperimentalTime",

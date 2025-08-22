@@ -20,7 +20,7 @@ constructor(
     private val objects: ObjectFactory,
     private val providers: ProviderFactory,
     private val execOps: ExecOperations,
-    private val extension: JdeprscanExtension
+    private val extension: JdeprscanExtension,
 ) : DefaultTask() {
 
   @get:InputFile
@@ -95,9 +95,10 @@ constructor(
 
       val runtimeClasspath =
           project.configurations.named("runtimeClasspath").get().files.joinToString(
-              separator = File.pathSeparator) {
-                it.absolutePath
-              }
+              separator = File.pathSeparator
+          ) {
+            it.absolutePath
+          }
       logger.debug("runtimeClasspath: $runtimeClasspath")
 
       val resolvedRuntimeClasspath =

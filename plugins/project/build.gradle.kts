@@ -15,10 +15,10 @@ description = "Gradle build project plugins!"
 
 kotlin {
   compilerOptions.optIn.addAll(
-      "kotlinx.validation.ExperimentalBCVApi",
       "org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi",
       "org.jetbrains.kotlin.gradle.ExperimentalWasmDsl",
-      "org.jetbrains.kotlin.gradle.targets.js.dsl.ExperimentalDistributionDsl")
+      "org.jetbrains.kotlin.gradle.targets.js.dsl.ExperimentalDistributionDsl",
+  )
 }
 
 jte {
@@ -95,7 +95,6 @@ dependencies {
   implementation(libs.plugins.kotlinx.serialization.dep)
   implementation(libs.plugins.kotlinx.kover.dep)
   implementation(libs.plugins.kotlinx.benchmark.dep)
-  implementation(libs.plugins.kotlinx.bcv.dep)
   implementation(libs.plugins.jetbrains.dokka.dep)
   implementation(libs.plugins.graalvm.nativeimage.dep)
   implementation(libs.plugins.redacted.dep)

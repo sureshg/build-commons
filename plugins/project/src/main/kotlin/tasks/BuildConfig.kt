@@ -68,7 +68,8 @@ abstract class BuildConfig @Inject constructor(@Nested val extn: BuildConfigExte
                 projectProps = rootProjectProps,
                 gitCommit = gitCommit,
                 catalogVersions = extn.catalogVersions.get(),
-                dependencies = extn.dependencies.get())
+                dependencies = extn.dependencies.get(),
+            )
             .render()
 
     file.writeText(content)

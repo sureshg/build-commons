@@ -2,7 +2,6 @@
 
 package common
 
-import com.google.devtools.ksp.gradle.KspAATask
 import java.io.ByteArrayOutputStream
 import java.io.File
 import java.nio.file.Path
@@ -176,7 +175,8 @@ val Project.defaultJarManifest
     put("Built-Jdk", System.getProperty("java.runtime.version"))
     put(
         "Built-OS",
-        "${System.getProperty("os.name")} ${System.getProperty("os.arch")} ${System.getProperty("os.version")}")
+        "${System.getProperty("os.name")} ${System.getProperty("os.arch")} ${System.getProperty("os.version")}",
+    )
     put("Build-Timestamp", DateTimeFormatter.ISO_INSTANT.format(ZonedDateTime.now()))
     put("Created-By", "Gradle ${gradle.gradleVersion}")
     put(Attributes.Name.IMPLEMENTATION_TITLE.toString(), project.name)
@@ -198,7 +198,8 @@ val Project.containerLabels
           "org.opencontainers.image.vendor" to project.githubUser,
           "org.opencontainers.image.url" to project.githubRepo,
           "org.opencontainers.image.source" to project.githubRepo,
-          "org.opencontainers.image.licenses" to "Apache-2.0")
+          "org.opencontainers.image.licenses" to "Apache-2.0",
+      )
 
 val Project.defaultJvmArgs
   get() = buildList {
@@ -357,7 +358,8 @@ val Project.runJvmArgs
                 // "-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005",
                 // "-agentlib:jdwp=transport=dt_socket,server=n,address=host:5005,suspend=y,onthrow=<FQ
                 // exception class name>,onuncaught=<y/n>"
-            ))
+            )
+        )
       }
     }
   }
@@ -391,14 +393,17 @@ fun JavaCompile.configureJavac(project: Project) =
               // add("--patch-module")
               // add("$moduleName=${sourceSets.main.get().output.asPath}")
               // add("-Xplugin:unchecked") // compiler plugin
-            })
+            }
+        )
 
         // Add the Kotlin classes to the module path (compileKotlinJvm)
         val compileKotlin = tasks.findByName("compileKotlin") as? KotlinCompile
         if (compileKotlin != null) {
           compilerArgumentProviders +=
               PatchModuleArgProvider(
-                  provider { project.group.toString() }, compileKotlin.destinationDirectory)
+                  provider { project.group.toString() },
+                  compileKotlin.destinationDirectory,
+              )
         }
       }
     }
@@ -440,19 +445,8 @@ fun KotlinCommonCompilerOptions.configureKotlinCommon(project: Project) =
           "kotlin.ExperimentalMultiplatform",
           "kotlin.js.ExperimentalJsExport",
           "kotlin.uuid.ExperimentalUuidApi",
-          "kotlin.concurrent.atomics.ExperimentalAtomicApi"
-          // "org.jetbrains.kotlin.compiler.plugin.ExperimentalCompilerApi",
-          )
-    }
-
-fun KspAATask.configureKspConfig() =
-    with(project) {
-      kspConfig.apply {
-        jvmTarget = kotlinJvmTarget.map { it.target }
-        apiVersion = kotlinApiVersion.map { it.version }
-        languageVersion = kotlinLangVersion.map { it.version }
-        allWarningsAsErrors = false
-      }
+          "kotlin.concurrent.atomics.ExperimentalAtomicApi",
+      )
     }
 
 /**
@@ -482,6 +476,7 @@ fun KotlinJvmCompilerOptions.configureKotlinJvm(project: Project) =
           "-Xemit-jvm-type-annotations",
           "-Xjspecify-annotations=strict",
           "-Xskip-prerelease-check",
+          "-Xwhen-expressions=indy",
           // Remove null check intrinsics from bytecode
           "-Xno-param-assertions",
           "-Xno-call-assertions",
@@ -538,11 +533,12 @@ fun Test.configureJavaTest() {
               |Passed   : ${result.successfulTestCount}
               |Failed   : ${result.failedTestCount}
               |Skipped  : ${result.skippedTestCount}
-              |
-              """
-                  .trimMargin())
+              |"""
+                  .trimMargin()
+          )
         }
-      }))
+      })
+  )
 }
 
 fun TestLoggingContainer.configureLogEvents() {
@@ -568,7 +564,8 @@ fun TestLoggingContainer.configureLogEvents() {
             TestLogEvent.PASSED,
             TestLogEvent.SKIPPED,
             TestLogEvent.STANDARD_ERROR,
-            TestLogEvent.STANDARD_OUT)
+            TestLogEvent.STANDARD_OUT,
+        )
     exceptionFormat = TestExceptionFormat.FULL
   }
 }
@@ -595,7 +592,8 @@ fun KotlinSourceSet.ksp(dependencyNotation: Any) {
         name in
             listOf(
                 KotlinSourceSet.COMMON_MAIN_SOURCE_SET_NAME,
-                KotlinSourceSet.COMMON_TEST_SOURCE_SET_NAME) -> "commonMainMetadata"
+                KotlinSourceSet.COMMON_TEST_SOURCE_SET_NAME,
+            ) -> "commonMainMetadata"
 
         name.endsWith("Main") -> name.substringBeforeLast("Main")
         else -> name

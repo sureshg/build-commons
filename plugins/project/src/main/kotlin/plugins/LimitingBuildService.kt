@@ -26,6 +26,8 @@ abstract class LimitingBuildService : BuildService<BuildServiceParameters.None> 
 val Project.limitingService: Provider<LimitingBuildService>
   get() =
       gradle.sharedServices.registerIfAbsent(
-          LimitingBuildService.KEY, LimitingBuildService::class.java) {
-            maxParallelUsages = 2
-          }
+          LimitingBuildService.KEY,
+          LimitingBuildService::class.java,
+      ) {
+        maxParallelUsages = 2
+      }

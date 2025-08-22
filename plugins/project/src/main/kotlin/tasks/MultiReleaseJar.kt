@@ -30,7 +30,7 @@ fun Project.configureJava9ModuleInfoCompilation(
     sourceSetName: String,
     toolchainVersion: JavaLanguageVersion,
     parentCompilation: KotlinJvmCompilation,
-    moduleName: String
+    moduleName: String,
 ) {
   val moduleOutputs = listOf(parentCompilation.output.allOutputs)
   val compileClasspathConfiguration =
@@ -56,14 +56,15 @@ fun Project.configureJava9ModuleInfoCompilation(
     dependsOn(modulePath)
     classpath = objects.fileCollection().from()
     options.compilerArgumentProviders.add(
-        JigsawArgumentsProvider(moduleName, moduleFiles, modulePath))
+        JigsawArgumentsProvider(moduleName, moduleFiles, modulePath)
+    )
   }
 }
 
 private class JigsawArgumentsProvider(
     private val moduleName: String,
     private val moduleFiles: FileCollection,
-    private val modulePath: FileCollection
+    private val modulePath: FileCollection,
 ) : CommandLineArgumentProvider {
   override fun asArguments(): Iterable<String> =
       listOf(
@@ -72,5 +73,6 @@ private class JigsawArgumentsProvider(
           "--patch-module",
           "$moduleName=${moduleFiles.asPath}",
           "--release",
-          "9")
+          "9",
+      )
 }

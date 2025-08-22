@@ -3,7 +3,6 @@ import com.google.cloud.tools.jib.gradle.JibTask
 import common.*
 import java.io.*
 import java.util.spi.ToolProvider
-import kotlinx.validation.*
 import org.gradle.internal.os.OperatingSystem
 import org.gradle.kotlin.dsl.*
 import tasks.*
@@ -15,7 +14,7 @@ plugins {
   kotlin("plugin.power-assert")
   com.google.devtools.ksp
   dev.zacsweers.redacted
-  // com.javiersc.kotlin.kopy
+  com.javiersc.kotlin.kopy
   id("dev.suresh.plugin.common")
   id("dev.suresh.plugin.kotlin.docs")
   // `test-suite-base`
@@ -47,6 +46,13 @@ kotlin {
     configureKotlinCommon(project)
     configureKotlinJvm(project)
   }
+
+  @OptIn(org.jetbrains.kotlin.gradle.dsl.abi.ExperimentalAbiValidation::class)
+  abiValidation {
+    enabled = false
+    filters { excluded { byNames.addAll("BuildConfig", $$"BuildConfig$Host") } }
+  }
+
   // sourceSets.all { kotlin.setSrcDirs(listOf("src/kotlin")) }
 }
 
@@ -68,15 +74,14 @@ powerAssert {
           "kotlin.test.assertTrue",
           "kotlin.test.assertEquals",
           "kotlin.test.assertNull",
-          "kotlin.require")
+          "kotlin.require",
+      )
 }
 
 redacted {
   enabled = true
   replacementString = "█"
 }
-
-// kopy { copyFunctions = listOf(KopyCopyFunctions.Copy) }
 
 // Java agent configuration for jib
 val javaAgent by configurations.registering { isTransitive = false }
@@ -176,7 +181,8 @@ tasks {
             |${modules.split(",").mapIndexed { i, module -> " ${(i + 1).toString()
                       .padStart(2)}) $module" }.joinToString(System.lineSeparator())}
             """
-                .trimMargin())
+                .trimMargin()
+        )
       }
       dependsOn(shadowJar)
     }
@@ -205,19 +211,6 @@ tasks {
     processResources { dependsOn(copyOtelAgent) }
 
     withType<JibTask>().configureEach { notCompatibleWithConfigurationCache("because Jib#3132") }
-  }
-
-  pluginManager.withPlugin("org.jetbrains.kotlinx.binary-compatibility-validator") {
-    configure<ApiValidationExtension> {
-      ignoredPackages.add("dev.suresh.test")
-      ignoredClasses.addAll(listOf("BuildConfig", $$"BuildConfig$Host"))
-      validationDisabled = false
-      klib { enabled = true }
-    }
-
-    withType<KotlinApiBuildTask>().configureEach {
-      // inputJar = named<Jar>("shadowJar").flatMap { it.archiveFile }
-    }
   }
 }
 

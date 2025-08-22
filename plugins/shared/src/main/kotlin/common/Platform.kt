@@ -6,13 +6,13 @@ object Platform {
     Linux("linux"),
     MacOS("macos"),
     Windows("windows"),
-    Unknown("unknown")
+    Unknown("unknown"),
   }
 
   enum class Arch(val isa: String) {
     X64("x64"),
     Arm64("aarch64"),
-    Unknown("unknown")
+    Unknown("unknown"),
   }
 
   data class Target(

@@ -19,7 +19,8 @@ if (hasCleanTask) {
             | actually be fixed by cleaning. What cleaning will do though is make your next few builds
             | significantly slower because all the incremental compilation data has to be regenerated,
             | so you're really just making your day worse.
-            """)
+            """
+          )
           .trimMargin(),
   )
 }

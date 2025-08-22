@@ -66,7 +66,8 @@ tasks {
           val isLast = index == config.outgoing.artifacts.size - 1
           val prefix = if (isLast) "   └─" else "   ├─"
           logger.lifecycle(
-              "$prefix ${cyan(artifact.file.name)} (${artifact.file.length().decimalBytes})")
+              "$prefix ${cyan(artifact.file.name)} (${artifact.file.length().decimalBytes})"
+          )
         }
       }
     }

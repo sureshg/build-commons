@@ -39,7 +39,8 @@ abstract class XvfbServer : BuildService<XvfbParameters>, AutoCloseable {
               parameters.executable.get(),
               "-displayfd",
               "1",
-              *parameters.arguments.get().toTypedArray())
+              *parameters.arguments.get().toTypedArray(),
+          )
           .redirectInput(ProcessBuilder.Redirect.from(File("/dev/null")))
           .start()
 

@@ -22,7 +22,7 @@ native-image. The plugin will take care of configuring most common build tasks, 
 * `GraalVM Native` Image
 * Documentation (`JavaDoc`, `Dokka`)
 * Benchmarking (`JMH`)
-* API binary compatibility validation
+* Binary compatibility (`ABI`) validation
 * Deprecated API scanning (using `jdeprscan`)
 * Builds truly executable JAR files
 * Build config generation
