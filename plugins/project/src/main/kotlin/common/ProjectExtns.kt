@@ -427,9 +427,7 @@ fun KotlinCommonCompilerOptions.configureKotlinCommon(project: Project) =
           "-Xnested-type-aliases",
           "-Xreport-all-warnings",
           "-Xreturn-value-checker=check",
-          // "-Wextra",
-          // "-Xexpected-type-guided-resolution",
-          // "-XXLanguage:+ExplicitBackingFields",
+          "-Xcontext-sensitive-resolution",
           // "-Xsuppress-version-warnings",
           // "-P",
           // "plugin:...=..."
@@ -470,25 +468,13 @@ fun KotlinJvmCompilerOptions.configureKotlinJvm(project: Project) =
       suppressWarnings = false
       freeCompilerArgs.addAll(
           "-Xadd-modules=$addModules",
-          "-Xjsr305=strict",
-          "-Xjvm-default=all",
-          "-Xassertions=jvm",
-          "-Xemit-jvm-type-annotations",
-          "-Xjspecify-annotations=strict",
           "-Xskip-prerelease-check",
           "-Xwhen-expressions=indy",
-          // Remove null check intrinsics from bytecode
-          "-Xno-param-assertions",
-          "-Xno-call-assertions",
-          "-Xno-receiver-assertions",
           // "-Xjdk-release=${kotlinJvmTarget.get().target}",
           // "-Xadd-modules=ALL-MODULE-PATH",
           // "-Xmodule-path=",
           // "-Xjvm-enable-preview",
           // "-Xjavac-arguments=\"--add-exports java.base/sun.nio.ch=ALL-UNNAMED\"",
-          // "-Xexplicit-api={strict|warning|disable}",
-          // "-Xgenerate-strict-metadata-version",
-          // "-Xuse-kapt4",
       )
       // jvmDefault = JvmDefaultMode.NO_COMPATIBILITY
     }

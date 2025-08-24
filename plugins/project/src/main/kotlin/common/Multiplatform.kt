@@ -1,6 +1,5 @@
 package common
 
-import org.gradle.api.GradleException
 import org.gradle.api.Project
 import org.gradle.api.file.DuplicatesStrategy
 import org.gradle.kotlin.dsl.*
@@ -52,7 +51,6 @@ fun KotlinMultiplatformExtension.jvmTarget(project: Project) =
             api(libs.kotlinx.coroutines.slf4j)
             api(libs.jspecify)
             api(libs.bundles.keystore)
-            // https://kotlinlang.org/docs/ksp-multiplatform.html
             api(libs.google.auto.annotations)
             ksp(libs.ksp.auto.service)
           }
@@ -72,6 +70,25 @@ fun KotlinMultiplatformExtension.jvmTarget(project: Project) =
             // api(libs.konsist)
           }
         }
+      }
+    }
+
+fun KotlinMultiplatformExtension.webDeps(project: Project) =
+    with(project) {
+      sourceSets {
+        webMain {
+          dependencies {
+            api(libs.ktor.client.js)
+            api(libs.kotlinx.browser)
+            // api(npm("@js-joda/timezone", libs.versions.npm.jsjoda.tz.get()))
+            // ksp(project(":meta:ksp:processor"))
+          }
+
+          // kotlin.srcDir("src/main/kotlin")
+          // resources.srcDir("src/main/resources")
+        }
+
+        webTest { kotlin {} }
       }
     }
 
@@ -103,23 +120,7 @@ fun KotlinMultiplatformExtension.jsTarget(project: Project) =
         compilerOptions { configureKotlinJs() }
         testRuns.configureEach { executionTask.configure {} }
       }
-
-      sourceSets {
-        jsMain {
-          dependencies {
-            api(libs.ktor.client.js)
-            api(libs.kotlin.wrappers.browser)
-            api(libs.kotlin.wrappers.css)
-            // api(npm("@js-joda/timezone", libs.versions.npm.jsjoda.tz.get()))
-            // ksp(project(":meta:ksp:processor"))
-          }
-
-          // kotlin.srcDir("src/main/kotlin")
-          // resources.srcDir("src/main/resources")
-        }
-
-        jsTest { kotlin {} }
-      }
+      webDeps(project)
     }
 
 fun KotlinMultiplatformExtension.wasmJsTarget(project: Project) =
@@ -159,18 +160,7 @@ fun KotlinMultiplatformExtension.wasmJsTarget(project: Project) =
         compilerOptions { configureKotlinJs() }
         testRuns.configureEach { executionTask.configure {} }
       }
-
-      sourceSets {
-        wasmJsMain {
-          dependencies {
-            api(libs.ktor.client.js)
-            api(libs.kotlinx.browser)
-            api(libs.kotlin.wrappers.browser)
-            // api(npm("@js-joda/timezone", libs.versions.npm.jsjoda.tz.get()))
-          }
-        }
-        wasmJsTest { kotlin {} }
-      }
+      webDeps(project)
     }
 
 fun KotlinMultiplatformExtension.wasmWasiTarget(project: Project) =
@@ -205,21 +195,6 @@ fun KotlinMultiplatformExtension.wasmWasiTarget(project: Project) =
       }
     }
 
-fun KotlinMultiplatformExtension.hostNativeTarget(configure: KotlinNativeTarget.() -> Unit = {}) =
-    when {
-      Platform.isMac -> {
-        macosArm64 { configure() }
-        macosX64 { configure() }
-      }
-      Platform.isLinux -> {
-        linuxArm64 { configure() }
-        linuxX64 { configure() }
-      }
-      Platform.isWin -> mingwX64 { configure() }
-      else ->
-          throw GradleException("Host OS '${Platform.currentOS}' is not supported in Kotlin/Native")
-    }
-
 fun KotlinMultiplatformExtension.nativeTargets(
     project: Project,
     configure: KotlinNativeTarget.() -> Unit = {},
@@ -247,14 +222,7 @@ fun KotlinMultiplatformExtension.nativeTargets(
         mingwX64 { configureAll() }
       }
 
-      sourceSets {
-        nativeMain {
-          dependencies {
-            // On native targets, only curl currently supports TLS
-            api(libs.ktor.client.curl)
-          }
-        }
-      }
+      sourceSets { nativeMain { dependencies { api(libs.ktor.client.curl) } } }
     }
 
 fun KotlinMultiplatformExtension.addKspDependencyForAllTargets(
