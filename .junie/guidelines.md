@@ -31,10 +31,6 @@ org.gradle.configuration-cache.parallel=true
 # Kotlin settings
 kotlin.code.style=official
 kotlin.jvm.target.validation.mode=warning
-
-# Dokka experimental features
-org.jetbrains.dokka.experimental.gradle.pluginMode=V2Enabled
-org.jetbrains.dokka.experimental.tryK2=true
 ```
 
 ### Version Catalog Integration
