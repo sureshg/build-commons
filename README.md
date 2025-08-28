@@ -1,50 +1,49 @@
-🐘 Common Build Plugins
-----------
+# 🐘 Common Build Plugins
 
 [![GitHub Workflow Status][gha_badge]][gha_url]
 [![Maven Central Version][maven_img]][maven_url]
 [![OpenJDK Version][java_img]][java_url]
 [![Kotlin release][kt_img]][kt_url]
 
-Gradle project and settings [plugins](https://docs.gradle.org/current/samples/sample_convention_plugins.html) to
-simplify the bootstrapping of `Kotlin/Java` projects targeting JVM, Multiplatform (Native/JS/Wasm/Wasi), and GraalVM
-native-image. The plugin will take care of configuring most common build tasks, including:
+Gradle project and settings [plugins](https://docs.gradle.org/current/samples/sample_convention_plugins.html) that
+simplify bootstrapping `Kotlin/Java` projects targeting JVM, Multiplatform (Native/JS/Wasm/Wasi), and GraalVM
+native-image. These plugins handle configuring the most common build tasks, including:
 
-* `Maven Central` & `GHCR` publishing for artifacts & Container image (`Jib`)
-* Code coverage supporting `JVM`, `Kotlin Multiplatform` projects
-* Project Versioning (`SemVer`) based on `Git tags`
-* Code Formatting to enforce a consistent code style
-* Artifact Signing
-* Java/Kotlin Toolchains configuration
-* Target platforms (`JVM`, `JS`, `WASM`, `WASI`, `Native`) configuration
-* Testing & Reports
-* `KSP` & Annotation processors
-* `GraalVM Native` Image
+* `Maven Central` & `GHCR` publishing for artifacts & container images (`Jib`)
+* Code coverage for `JVM` and `Kotlin Multiplatform` projects
+* Project versioning (`SemVer`) based on `Git tags`
+* Code formatting to enforce consistent code style
+* Artifact signing
+* Java/Kotlin toolchain configuration
+* Target platform (`JVM`, `JS`, `WASM`, `WASI`, `Native`) configuration
+* Testing & reports
+* `KSP` & annotation processors
+* `GraalVM Native` image
 * Documentation (`JavaDoc`, `Dokka`)
 * Benchmarking (`JMH`)
 * Binary compatibility (`ABI`) validation
 * Deprecated API scanning (using `jdeprscan`)
-* Builds truly executable JAR files
-* Build config generation
+* Building truly executable JAR files
+* Build configuration generation
 * Version catalog to control artifact versions and build configurations
 * Automatic configuration of essential dependencies such as:
     * `kotlinx-datetime`
     * `kotlinx-coroutines`
-    * `ktor-client`,
+    * `ktor-client`
     * `kotlinx-serialization`
     * `kotlinx-io`
     * `Logging`
-* Automatic configuration of `compiler plugins` like
+* Automatic configuration of `compiler plugins` such as:
     * `redacted`
     * `kopy`
     * `power-assert`
     * `atomicfu`
-* And other common build tasks.
+* And many other common build tasks
 
-This plugin helps you focus on writing code, not configuring your build. It provides a solid foundation for your
+These plugins help you focus on writing code, not configuring your build. They provide a solid foundation for your
 Kotlin/Java projects, handling the boilerplate and common tasks so you can get started quickly.
 
-## Dev Env Setup
+## Development Environment Setup
 
 * Install Java 21 or later
 
@@ -56,7 +55,7 @@ Kotlin/Java projects, handling the boilerplate and common tasks so you can get s
 * Import the Gradle project. The initial sync may take some time as it downloads all dependencies.
 
 > [!IMPORTANT]
-> For a better, faster experience, use the latest version of [IntelliJ IDEA](https://www.jetbrains.com/idea/download).
+> For the best and fastest experience, use the latest version of [IntelliJ IDEA](https://www.jetbrains.com/idea/download).
 > Upgrade now!
 
 ## Build & Testing
@@ -64,7 +63,7 @@ Kotlin/Java projects, handling the boilerplate and common tasks so you can get s
   ```bash
   $ ./gradlew build
 
-  # Check dep updates
+  # Check dependency updates
   $ caupain --gradle-stability-level=milestone
 
   # OR
@@ -72,13 +71,13 @@ Kotlin/Java projects, handling the boilerplate and common tasks so you can get s
   ```
 
 For testing, a separate [sandbox project](/sandbox) is available with the plugin and version catalog applied in
-`settings.gradle.kts`. First publish the plugin to the local maven repository and then run the sandbox project.
+`settings.gradle.kts`. First, publish the plugin to the local Maven repository, then run the sandbox project.
 
    ```bash
-   # Publish the plugins to maven local
+   # Publish the plugins to Maven local
    $ ./gradlew publishToMavenLocal
 
-   # Build the sandbox app using published plugin
+   # Build the sandbox app using the published plugin
    $ ./gradlew -p sandbox :build
    $ sandbox/build/libs/sandbox
 
@@ -91,8 +90,8 @@ For testing, a separate [sandbox project](/sandbox) is available with the plugin
 ## Publishing
 
 Push a new tag to trigger the release workflow and publish the plugin
-to [maven central](https://repo.maven.apache.org/maven2/dev/suresh/build/). That's it 🎉.
-The next version will be based on the semantic version scope (`major`, `minor`, `patch`)
+to [Maven Central](https://repo.maven.apache.org/maven2/dev/suresh/build/). That's it! 🎉
+The next version will be based on the semantic version scope (`major`, `minor`, `patch`).
 
    ```bash
    $ ./gradlew pushSemverTag "-Psemver.scope=patch"
@@ -123,9 +122,9 @@ The next version will be based on the semantic version scope (`major`, `minor`, 
 | `dev.suresh.plugin.repos`            | [![](https://img.shields.io/maven-central/v/dev.suresh.plugin.repos/dev.suresh.plugin.repos.gradle.plugin?logo=gradle&logoColor=white&color=00B4E6)][plugins_url]                       |
 | `dev.suresh.plugin.catalog`          | [![](https://img.shields.io/maven-central/v/dev.suresh.plugin.catalog/dev.suresh.plugin.catalog.gradle.plugin?logo=gradle&logoColor=white&color=00B4E6)][plugins_url]                   |
 
-## How to use it?
+## How to Use
 
-- Apply the following config to `settings.gradle.kts` of your project
+- Apply the following configuration to `settings.gradle.kts` of your project:
 
    ```kotlin
     pluginManagement {
@@ -146,7 +145,7 @@ The next version will be based on the semantic version scope (`major`, `minor`, 
     plugins { id("dev.suresh.plugin.repos") }
    ```
 
-- Apply the required plugins to `root` or `sub` project `build.gradle.kts`
+- Apply the required plugins to your `root` or `sub` project `build.gradle.kts`:
 
   ```kotlin
   // Kotlin JVM
@@ -174,11 +173,11 @@ The next version will be based on the semantic version scope (`major`, `minor`, 
   }
   ```
 
-- Use the version catalog by copying [gradle/libs.versions.toml](gradle/libs.versions.toml) and change the
-  project-related metadata like `group`, `app-mainclass` etc.
+- Use the version catalog by copying [gradle/libs.versions.toml](gradle/libs.versions.toml) and changing the
+  project-related metadata like `group`, `app-mainclass`, etc.
 
 > [!IMPORTANT]
-> **Don't change** the existing version names in the catalog as it's being referenced in the plugins.
+> **Don't change** the existing version names in the catalog as they are referenced by the plugins.
 
 ## Verifying Artifacts
 
