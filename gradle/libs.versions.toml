@@ -1,6 +1,6 @@
 [versions]
 java                           = "26"
-kotlin                         = "2.2.20-RC"
+kotlin                         = "2.2.20-RC2"
 kotlin-ksp                     = "2.2.20-RC-2.0.2"
 kotlin-jvmtarget               = "21"
 kotlin-dsl-jvmtarget           = "21"
