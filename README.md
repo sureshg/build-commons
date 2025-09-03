@@ -83,10 +83,10 @@ For testing, a separate [sandbox project](/sandbox) is available with the plugin
 
    # Show task graph
    $ ./gradlew build  --task-graph
-    
+
    # Run other plugin tasks
    $ ./gradlew -p sandbox :dependencyUpdates --no-configuration-cache
-   
+
    # To see the plugin classpath
    $ ./gradlew -p sandbox :buildEnvironment | grep -i "dev.suresh"
    ```
