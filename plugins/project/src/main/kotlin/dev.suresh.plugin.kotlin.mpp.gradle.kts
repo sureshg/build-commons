@@ -20,7 +20,7 @@ plugins {
   id("dev.suresh.plugin.kotlin.docs")
   com.google.devtools.ksp
   dev.zacsweers.redacted
-  com.javiersc.kotlin.kopy
+  // com.javiersc.kotlin.kopy
   // kotlin("plugin.compose")
   // org.gradle.kotlin.`kotlin-dsl`
 }

@@ -107,12 +107,12 @@ dependencies {
   implementation(libs.plugins.mokkery.dep)
   implementation(libs.plugins.jte.dep)
   implementation(libs.plugins.jib.dep)
-  implementation(libs.plugins.kopy.dep)
   implementation(libs.plugins.github.changelog.dep)
   implementation(libs.plugins.vanniktech.publish.dep)
   implementation(libs.jib.nativeimage.extn)
   implementation(libs.kmpmt)
   implementation(files(libs.javaClass.superclass.protectionDomain.codeSource.location))
+  // implementation(libs.plugins.kopy.dep)
   // implementation(libs.plugins.nexus.publish.dep)
   // compileOnly(libs.jte.kotlin)
 }

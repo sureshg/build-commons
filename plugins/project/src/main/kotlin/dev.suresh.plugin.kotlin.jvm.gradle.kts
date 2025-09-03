@@ -14,9 +14,9 @@ plugins {
   kotlin("plugin.power-assert")
   com.google.devtools.ksp
   dev.zacsweers.redacted
-  com.javiersc.kotlin.kopy
   id("dev.suresh.plugin.common")
   id("dev.suresh.plugin.kotlin.docs")
+  // com.javiersc.kotlin.kopy
   // `test-suite-base`
 }
 

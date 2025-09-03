@@ -112,8 +112,9 @@ tasks {
   }
 
   register("v") {
+    val version = rootProject.version.toString()
     description = "Print the ${rootProject.name} version!"
-    doLast { println(rootProject.version.toString()) }
+    doLast { println(version) }
   }
 
   wrapper {
