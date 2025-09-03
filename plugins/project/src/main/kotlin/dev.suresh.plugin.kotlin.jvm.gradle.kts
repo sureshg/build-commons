@@ -241,7 +241,7 @@ dependencies {
   testImplementation(platform(libs.junit.bom))
   testImplementation(platform(libs.testcontainers.bom))
   testImplementation(kotlin("reflect"))
-  testImplementation(kotlin("test-junit5"))
+  testImplementation(kotlin("test"))
   testImplementation(libs.junit.jupiter)
   testImplementation(libs.kotlin.lincheck)
   testImplementation(libs.kotlinx.coroutines.test)
