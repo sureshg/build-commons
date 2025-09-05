@@ -38,7 +38,7 @@ kotlinx-fuzz                   = "0.2.2"
 kotlinx-metadata               = "0.9.0"
 kotlinx-reflect-lite           = "1.2.0-RC"
 kotlin-lincheck                = "3.2"
-kotlin-wrappers                = "2025.9.0"
+kotlin-wrappers                = "2025.9.2"
 kotlin-redacted                = "1.15.0-2.2.20-Beta2-alpha01"
 kotlin-serviceloader           = "0.0.19"
 kotlinx-multik                 = "0.2.3"
@@ -73,7 +73,8 @@ otel-instr                     = "2.19.0"
 otel-instr-alpha               = "2.19.0-alpha"
 otel-semconv                   = "1.37.0"
 otel-contrib                   = "1.49.0-alpha"
-otel-kotlin                    = "0.4.1"
+otel-kotlin                    = "0.4.2"
+bc                             = "1.81"
 okio                           = "3.16.0"
 ayza                           = "10.0.0"
 ksp-auto-service               = "1.2.0"
@@ -402,6 +403,8 @@ arrow-suspendapp                     = { module = "io.arrow-kt:suspendapp"      
 arrow-suspendapp-ktor                = { module = "io.arrow-kt:suspendapp-ktor"                                , version.ref = "arrow-suspendapp" }
 kmp-appdirs                          = { module = "ca.gosyer:kotlin-multiplatform-appdirs"                     , version.ref = "kmp-appdirs"}
 
+bc-prov-jdk18on                      = { module = "org.bouncycastle:bcprov-jdk18on"                            , version.ref = "bc"}
+bc-pkix-jdk18on 				     = { module = "org.bouncycastle:bcpkix-jdk18on"                            , version.ref = "bc"}
 airlift-aircompressor                = { module = "io.airlift:aircompressor"                                   , version.ref = "airlift-aircompressor"}
 airlift-security                     = { module = "io.airlift:security"                                        , version.ref = "airlift-security"}
 airlift-security-jwks                = { module = "io.airlift:security-jwks"                                   , version.ref = "airlift-security"}
