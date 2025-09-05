@@ -428,6 +428,7 @@ fun KotlinCommonCompilerOptions.configureKotlinCommon(project: Project) =
           "-Xreport-all-warnings",
           "-Xreturn-value-checker=check",
           "-Xcontext-sensitive-resolution",
+          "-Xannotation-default-target=param-property",
           // "-Xsuppress-version-warnings",
           // "-P",
           // "plugin:...=..."
