@@ -67,8 +67,8 @@ ktor                           = "3.2.3"
 swagger-codegen                = "3.0.72"
 ktor-cohort                    = "2.8.0"
 fusionauth-http                = "0.4.0-RC.4"
-otel                           = "1.53.0"
-otel-alpha                     = "1.53.0-alpha"
+otel                           = "1.54.0"
+otel-alpha                     = "1.54.0-alpha"
 otel-instr                     = "2.19.0"
 otel-instr-alpha               = "2.19.0-alpha"
 otel-semconv                   = "1.37.0"
@@ -113,6 +113,7 @@ mrjar                          = "0.1.1"
 ktfmt                          = "0.58"
 google-javaformat              = "1.28.0"
 palantir-javaformat            = "2.73.0"
+google-auto-value              = "1.11.0"
 google-auto-service            = "1.1.1"
 google-tink                    = "1.18.0"
 graalvm                        = "24.2.2"
@@ -523,6 +524,8 @@ graal-polyglot                       = { module = "org.graalvm.polyglot:polyglot
 graal-wasm                           = { module = "org.graalvm.polyglot:wasm"                                  , version.ref = "graalvm"}
 google-auto-service-apt              = { module = "com.google.auto.service:auto-service"                       , version.ref = "google-auto-service"}
 google-auto-annotations              = { module = "com.google.auto.service:auto-service-annotations"           , version.ref = "google-auto-service"}
+google-auto-value-apt                = { module = "com.google.auto.value:auto-value"                           , version.ref = "google-auto-value"}
+google-auto-value-annotations        = { module = "com.google.auto.value:auto-value-annotations"               , version.ref = "google-auto-value"}
 google-tink                          = { module = "com.google.crypto.tink:tink"                                , version.ref = "google-tink"}
 ksp-auto-service                     = { module = "dev.zacsweers.autoservice:auto-service-ksp"                 , version.ref = "ksp-auto-service"}
 sweetspi-runtime                     = { module = "dev.whyoleg.sweetspi:sweetspi-runtime"                      , version.ref = "sweetspi"}
