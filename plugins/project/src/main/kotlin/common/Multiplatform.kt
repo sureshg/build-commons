@@ -7,7 +7,7 @@ import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 import org.jetbrains.kotlin.gradle.plugin.KotlinPlatformType
 import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
 import org.jetbrains.kotlin.gradle.targets.js.dsl.KotlinJsBinaryMode
-import org.jetbrains.kotlin.gradle.targets.js.webpack.KotlinWebpackConfig
+import org.jetbrains.kotlin.gradle.targets.js.dsl.KotlinJsTargetDsl
 
 fun KotlinMultiplatformExtension.jvmTarget(project: Project) =
     with(project) {
@@ -72,6 +72,34 @@ fun KotlinMultiplatformExtension.jvmTarget(project: Project) =
       }
     }
 
+fun KotlinJsTargetDsl.webConfig(project: Project) =
+    with(project) {
+      browser {
+        commonWebpackConfig {
+          cssSupport { enabled = true }
+          // outputFileName = "app.js"
+          // scssSupport { enabled = true }
+          // sourceMaps = true
+        }
+
+        runTask { sourceMaps = false }
+        testTask {
+          enabled = true
+          testLogging { configureLogEvents() }
+          useKarma { useChromeHeadless() }
+        }
+
+        // distribution { outputDirectory = file("$projectDir/docs") }
+      }
+
+      if (isSharedProject.not()) {
+        binaries.executable()
+      }
+      generateTypeScriptDefinitions()
+      compilerOptions { configureKotlinJs() }
+      testRuns.configureEach { executionTask.configure {} }
+    }
+
 fun KotlinMultiplatformExtension.webDeps(project: Project) =
     with(project) {
       sourceSets {
@@ -80,87 +108,22 @@ fun KotlinMultiplatformExtension.webDeps(project: Project) =
             api(libs.ktor.client.js)
             api(libs.kotlinx.browser)
             // api(npm("@js-joda/timezone", libs.versions.npm.jsjoda.tz.get()))
-            // ksp(project(":meta:ksp:processor"))
           }
-
           // kotlin.srcDir("src/main/kotlin")
           // resources.srcDir("src/main/resources")
         }
-
-        webTest { kotlin {} }
       }
     }
 
-fun KotlinMultiplatformExtension.jsTarget(project: Project) =
-    with(project) {
-      js {
-        browser {
-          commonWebpackConfig {
-            cssSupport { enabled = true }
-            // outputFileName = "js-app.js"
-            // scssSupport { enabled = true }
-            // sourceMaps = true
-          }
+fun KotlinMultiplatformExtension.jsTarget(project: Project) {
+  js { webConfig(project) }
+  webDeps(project)
+}
 
-          runTask { sourceMaps = false }
-          testTask {
-            enabled = true
-            testLogging { configureLogEvents() }
-            useKarma { useChromeHeadless() }
-          }
-
-          // distribution { outputDirectory = file("$projectDir/docs") }
-        }
-
-        if (isSharedProject.not()) {
-          binaries.executable()
-        }
-        generateTypeScriptDefinitions()
-        compilerOptions { configureKotlinJs() }
-        testRuns.configureEach { executionTask.configure {} }
-      }
-      webDeps(project)
-    }
-
-fun KotlinMultiplatformExtension.wasmJsTarget(project: Project) =
-    with(project) {
-      wasmJs {
-        // moduleName = "wasm-app"
-        browser {
-          val rootDirPath = project.rootDir.path
-          val projectDirPath = project.projectDir.path
-          commonWebpackConfig {
-            cssSupport { enabled = true }
-            // outputFileName = "wasm-app.js"
-            // sourceMaps = true
-            devServer =
-                (devServer ?: KotlinWebpackConfig.DevServer()).apply {
-                  static =
-                      (static ?: mutableListOf()).apply {
-                        // Serve sources to debug inside the browser
-                        add(projectDirPath)
-                        add(rootDirPath)
-                      }
-                }
-          }
-
-          runTask { sourceMaps = false }
-          testTask {
-            enabled = true
-            testLogging { configureLogEvents() }
-            useKarma { useChromeHeadless() }
-          }
-        }
-
-        if (isSharedProject.not()) {
-          binaries.executable()
-        }
-        generateTypeScriptDefinitions()
-        compilerOptions { configureKotlinJs() }
-        testRuns.configureEach { executionTask.configure {} }
-      }
-      webDeps(project)
-    }
+fun KotlinMultiplatformExtension.wasmJsTarget(project: Project) {
+  wasmJs { webConfig(project) }
+  webDeps(project)
+}
 
 fun KotlinMultiplatformExtension.wasmWasiTarget(project: Project) =
     with(project) {

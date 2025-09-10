@@ -28,9 +28,9 @@ plugins {
 configurations.configureEach { resolutionStrategy { failOnNonReproducibleResolution() } }
 
 kotlin {
-  applyDefaultHierarchyTemplate()
   jvmToolchain { configureJvmToolchain(project) }
   compilerOptions { configureKotlinCommon(project) }
+  applyDefaultHierarchyTemplate()
 
   @OptIn(org.jetbrains.kotlin.gradle.dsl.abi.ExperimentalAbiValidation::class)
   abiValidation {

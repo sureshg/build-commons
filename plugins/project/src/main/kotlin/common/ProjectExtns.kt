@@ -551,7 +551,7 @@ fun TestLoggingContainer.configureLogEvents() {
 }
 
 fun KotlinJsCompilerOptions.configureKotlinJs() {
-  freeCompilerArgs.addAll("-Xir-per-file")
+  freeCompilerArgs.addAll("-Xir-per-file", "-Xes-long-as-bigint")
   target = "es2015"
   // sourceMap = true
   // sourceMapEmbedSources = "always"
