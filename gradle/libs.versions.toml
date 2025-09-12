@@ -55,7 +55,7 @@ embedded-postgres-bom          = "17.6.0"
 evas                           = "1.3.0"
 kopy                           = "0.18.0+2.2.10"
 poko                           = "0.20.0"
-mappie                         = "2.2.10-1.5.0"
+mappie                         = "2.2.20-1.5.0"
 akkurate                       = "0.11.0"
 kaml                           = "0.95.0"
 snakeyaml-engine-kmp           = "3.2.0"
@@ -231,7 +231,7 @@ swagger-style                  = "https://unpkg.com/swagger-ui-themes@3.0.1/them
 
 # Plugin versions
 benmanes                       = "0.52.0"
-caupain                        = "1.5.1"
+caupain                        = "1.6.0"
 foojay-resolver                = "1.0.0"
 gradle-develocity              = "4.1.1"
 nmcp                           = "1.1.0"
