@@ -2,6 +2,7 @@
 
 import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 import com.google.cloud.tools.jib.gradle.JibTask
+import com.google.devtools.ksp.gradle.KspAATask
 import common.*
 import org.gradle.internal.os.OperatingSystem
 import org.jetbrains.kotlin.gradle.targets.js.nodejs.*
@@ -134,7 +135,9 @@ tasks {
   val buildConfigExtn = extensions.create<BuildConfigExtension>("buildConfig")
   val buildConfig = register<BuildConfig>("buildConfig", buildConfigExtn)
   buildConfig.configure { enabled = buildConfigExtn.enabled.get() }
+
   kotlin.sourceSets.commonMain { kotlin.srcDirs(buildConfig) }
+  withType<KspAATask>().configureEach { dependsOn(buildConfig) }
   // compileKotlinMetadata { dependsOn(buildConfig) }
 
   withType<KotlinNpmInstallTask>().configureEach { configureKotlinNpm() }
