@@ -553,6 +553,7 @@ fun TestLoggingContainer.configureLogEvents() {
 fun KotlinJsCompilerOptions.configureKotlinJs() {
   freeCompilerArgs.addAll("-Xir-per-file", "-Xes-long-as-bigint")
   target = "es2015"
+  optIn.add("kotlin.js.ExperimentalJsExport")
   // sourceMap = true
   // sourceMapEmbedSources = "always"
 }

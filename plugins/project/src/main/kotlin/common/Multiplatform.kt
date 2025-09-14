@@ -92,6 +92,7 @@ fun KotlinJsTargetDsl.webConfig(project: Project) =
         // distribution { outputDirectory = file("$projectDir/docs") }
       }
 
+      // useEsModules()
       if (isSharedProject.not()) {
         binaries.executable()
       }
