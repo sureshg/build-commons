@@ -104,7 +104,6 @@ dependencies {
   implementation(libs.plugins.semver.dep)
   implementation(libs.plugins.benmanes.dep)
   implementation(libs.plugins.tasktree.dep)
-  implementation(libs.plugins.mokkery.dep)
   implementation(libs.plugins.jte.dep)
   implementation(libs.plugins.jib.dep)
   implementation(libs.plugins.github.changelog.dep)
