@@ -128,7 +128,6 @@ kotlin-diff                    = "1.1.0"
 kotlin-retry                   = "2.0.2"
 kotlinx-jsonpath               = "3.0.2"
 kotlin-cryptography            = "0.5.0"
-koja                           = "0.4.3"
 json-sugar                     = "0.7.2"
 json-schema-validator          = "0.5.2"
 pwall-json-schema              = "0.57"
@@ -790,7 +789,6 @@ gradlex-maven-plugin                 = { id = "org.gradlex.maven-plugin-developm
 typesafe-conventions                 = { id = "dev.panuszewski.typesafe-conventions"                           , version.ref = "typesafe-conventions" }
 wasm2class                           = { id = "at.released.wasm2class.plugin"                                  , version.ref = "wasm2class" }
 mcp4k                                = { id = "sh.ondr.mcp4k"                                                  , version.ref = "mcp4k"}
-koja                                 = { id = "sh.ondr.koja"                                                   , version.ref = "koja"}
 tasktree                             = { id = "com.dorongold.task-tree"                                        , version.ref = "tasktree" }
 foojay-resolver                      = { id = "org.gradle.toolchains.foojay-resolver"                          , version.ref = "foojay-resolver" }
 gratatouille                         = { id = "com.gradleup.gratatouille"                                      , version.ref = "gratatouille" }
