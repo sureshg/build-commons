@@ -64,10 +64,10 @@ Kotlin/Java projects, handling the boilerplate and common tasks so you can get s
   $ ./gradlew build
 
   # Check dependency updates
-  $ caupain --gradle-stability-level=milestone
+  $ caupain
 
   # OR
-  $ ./gradlew dependencyUpdates --no-configuration-cache
+  $ ./gradlew dependencyUpdates --no-parallel
   ```
 
 For testing, a separate [sandbox project](/sandbox) is available with the plugin and version catalog applied in
@@ -85,7 +85,7 @@ For testing, a separate [sandbox project](/sandbox) is available with the plugin
    $ ./gradlew build  --task-graph
 
    # Run other plugin tasks
-   $ ./gradlew -p sandbox :dependencyUpdates --no-configuration-cache
+   $ ./gradlew -p sandbox :dependencyUpdates --no-parallel
 
    # To see the plugin classpath
    $ ./gradlew -p sandbox :buildEnvironment | grep -i "dev.suresh"
