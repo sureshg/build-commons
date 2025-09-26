@@ -38,7 +38,7 @@ kotlinx-fuzz                   = "0.2.2"
 kotlinx-metadata               = "0.9.0"
 kotlinx-reflect-lite           = "1.2.0-RC"
 kotlin-lincheck                = "3.2"
-kotlin-wrappers                = "2025.9.9"
+kotlin-wrappers                = "2025.9.10"
 kotlin-redacted                = "1.15.0"
 kotlin-serviceloader           = "0.0.21"
 kotlinx-multik                 = "0.2.3"
@@ -72,7 +72,7 @@ otel-alpha                     = "1.54.1-alpha"
 otel-instr                     = "2.20.1"
 otel-instr-alpha               = "2.20.1-alpha"
 otel-semconv                   = "1.37.0"
-otel-contrib                   = "1.49.0-alpha"
+otel-contrib                   = "1.50.0-alpha"
 otel-kotlin                    = "0.6.0"
 bc                             = "1.82"
 okio                           = "3.16.0"
@@ -185,12 +185,12 @@ cel                            = "0.11.0"
 kfswatch                       = "1.3.1"
 kmp-process                    = "0.4.0"
 kmbed                          = "1.8.4"
-langchain4j                    = "1.5.0"
-langchain4j-jlama              = "1.5.0-beta11"
+langchain4j                    = "1.6.0"
+langchain4j-jlama              = "1.6.0-beta12"
 langchain4j-kotlin             = "0.3.0"
 jlama                          = "0.8.4"
 mcp-kotlin                     = "0.7.2"
-koog                           = "0.4.2"
+koog                           = "0.4.3-dev-25092025-feat-856"
 mcp4k                          = "0.4.5"
 dflib                          = "2.0.0-M4"
 ldaptive                       = "2.4.2"
@@ -203,6 +203,8 @@ log4k                          = "1.1.0"
 rwmutex                        = "1.0.0"
 bluesky-ozone                  = "0.3.3"
 cidre                          = "0.2.0"
+voices                         = "0.0.3"
+onnx                           = "1.23.0"
 
 # Compose
 jetbrains-compose              = "1.10.0-alpha01"
@@ -237,7 +239,7 @@ nmcp                           = "1.1.0"
 nexus-publish                  = "2.0.0"
 vanniktech-publish             = "0.34.0"
 gradle-publish                 = "2.0.0"
-shadow                         = "9.2.1"
+shadow                         = "9.2.2"
 spotless                       = "8.0.0"
 semver-plugin                  = "0.9.0"
 gratatouille                   = "0.1.2"
@@ -681,7 +683,15 @@ jlama-native                         = { module = "com.github.tjake:jlama-native
 dflib                                = { module = "org.dflib:dflib"                                                         , version.ref = "dflib" }
 mcp-kotlin                           = { module = "io.modelcontextprotocol:kotlin-sdk"                                      , version.ref = "mcp-kotlin"}
 koog-agents                          = { module = "ai.koog:koog-agents"                                                     , version.ref = "koog"}
+koog-tools                           = { module = "ai.koog:agents-tools"                                                    , version.ref = "koog" }
+koog-executor-openai                 = { module = "ai.koog:prompt-executor-openai-client"                                   , version.ref = "koog" }
+koog-features-eventhandler           = { module = "ai.koog:agents-features-event-handler"                                   , version.ref = "koog" }
 koog-ktor                            = { module = "ai.koog:koog-ktor"                                                       , version.ref = "koog"}
+voices-chorus                        = { module = "org.pitest.voices:chorus"                                                , version.ref = "voices" }
+voices-en-uk                         = { module = "org.pitest.voices:en_uk"                                                 , version.ref = "voices" }
+voices-en-us                         = { module = "org.pitest.voices:en_us"                                                 , version.ref = "voices" }
+onnxruntime                          = { module = "com.microsoft.onnxruntime:onnxruntime"                                   , version.ref = "onnx" }
+onnxruntime-gpu                      = { module = "com.microsoft.onnxruntime:onnxruntime_gpu"                               , version.ref = "onnx" }
 
 # Social
 ozone-bluesky                        = { module = "sh.christian.ozone:bluesky"                                              , version.ref = "bluesky-ozone"}
@@ -714,7 +724,7 @@ dataviz                              = ["kotlinx-dataframe-csv",
                                         "kotlinx-kandy",
                                         "kotlinx-kandy-geo"]
 json-extra                           = ["kotlinx-jsonpath","json-schema-validator"]
-keystore                             = ["ayza","directory-keystore"]
+keystore                             = ["ayza"]
 otel                                 = ["otel-instr-annotations",
                                         "otel-semconv",
                                         "otel-instr-ktor",
