@@ -231,14 +231,14 @@ dependencies {
   implementation(libs.kotlinx.datetime)
   implementation(libs.kotlinx.collections.immutable)
   implementation(libs.kotlin.redacted.annotations)
-  implementation(libs.jspecify)
   implementation(libs.bundles.keystore)
+  implementation(libs.jspecify)
   implementation(libs.slf4j.api)
   // implementation(libs.slf4j.jul)
 
   // Auto-service
   ksp(libs.ksp.auto.service)
-  implementation(libs.google.auto.annotations)
+  compileOnly(libs.google.auto.annotations)
 
   // Test dependencies
   testImplementation(platform(libs.junit.bom))

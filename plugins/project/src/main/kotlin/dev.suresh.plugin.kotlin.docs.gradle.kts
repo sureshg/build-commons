@@ -1,6 +1,5 @@
 import common.*
 import java.time.Year
-import org.hildan.github.changelog.plugin.GitHubChangelogExtension
 import org.jetbrains.dokka.gradle.engine.parameters.VisibilityModifier
 
 plugins {
@@ -10,9 +9,8 @@ plugins {
   // `test-report-aggregation`
 }
 
-// The following plugins and config apply only to a root project.
 if (isRootProject) {
-  apply(plugin = "org.hildan.github.changelog")
+  // apply(plugin = "org.hildan.github.changelog")
 
   // Combined test reports
   val allTestReports by
@@ -118,8 +116,4 @@ spotless {
     leadingTabsToSpaces(2)
     endWithNewline()
   }
-}
-
-pluginManager.withPlugin("org.hildan.github.changelog") {
-  configure<GitHubChangelogExtension> { githubUser = project.githubUser }
 }

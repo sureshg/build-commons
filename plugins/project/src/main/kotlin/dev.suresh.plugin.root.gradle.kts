@@ -10,7 +10,6 @@ plugins {
   id("dev.suresh.plugin.kotlin.docs")
   id("dev.suresh.plugin.publishing")
   com.github.`ben-manes`.versions
-  com.dorongold.`task-tree`
   // id("gg.jte.gradle")
   // com.autonomousapps.`dependency-analysis`
 }

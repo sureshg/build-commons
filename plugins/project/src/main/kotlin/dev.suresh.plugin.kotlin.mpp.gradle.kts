@@ -56,7 +56,6 @@ kotlin {
     api(libs.kotlin.redacted.annotations)
     api(libs.kotlin.retry)
     api(libs.kotlin.logging)
-    api(libs.kotlinx.html)
     api(libs.ktor.client.core)
     api(libs.ktor.client.cio)
     api(libs.ktor.client.content.negotiation)
@@ -67,6 +66,7 @@ kotlin {
     api(libs.ktor.client.serialization)
     api(libs.ktor.client.websockets)
     api(libs.ktor.serialization.json)
+    // api(libs.kotlinx.html)
 
     testImplementation(kotlin("test"))
     testImplementation(libs.kotlinx.coroutines.test)

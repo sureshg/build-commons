@@ -43,16 +43,17 @@ fun KotlinMultiplatformExtension.jvmTarget(project: Project) =
         jvmMain {
           // dependsOn(jvmCommon)
           dependencies {
-            // api(libs.kotlin.stdlib)
-            api(libs.kotlin.metadata.jvm)
             api(libs.ktor.client.java)
             api(libs.slf4j.api)
-            api(libs.slf4j.jul)
             api(libs.kotlinx.coroutines.slf4j)
-            api(libs.jspecify)
             api(libs.bundles.keystore)
-            api(libs.google.auto.annotations)
+            api(libs.jspecify)
+            // api(libs.kotlin.stdlib)
+            // api(libs.kotlin.metadata.jvm)
+            // api(libs.slf4j.jul)
+
             ksp(libs.ksp.auto.service)
+            compileOnly(libs.google.auto.annotations)
           }
         }
 
