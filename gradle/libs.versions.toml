@@ -264,8 +264,8 @@ jib-nativeimage-extn           = "0.1.0"
 includegit-plugin              = "0.1.6"
 tomlj                          = "1.1.1"
 animalsniffer                  = "2.0.1"
-badass-runtime                 = "1.13.1-patch-1"
-badass-jlink                   = "3.1.0"
+badass-runtime                 = "2.0.0-rc"
+badass-jlink                   = "3.1.4-rc"
 jlink-jib                      = "0.4.1"
 jextract                       = "1.0.0-beta-1"
 maven-plugin-api               = "4.0.0-rc-4"
@@ -791,8 +791,8 @@ poko                                 = { id = "dev.drewhamilton.poko"           
 animalsniffer                        = { id = "ru.vyarus.animalsniffer"                                        , version.ref = "animalsniffer"}
 build-vercraft                       = { id = "com.akuleshov7.vercraft.plugin-gradle"                          , version.ref = "vercraft" }
 kmbed-plugin                         = { id = "io.karma.kmbed.kmbed-gradle-plugin"                             , version.ref = "kmbed" }
-badass-jlink                         = { id = "com.dua3.gradle.jlink"                                          , version.ref = "badass-jlink" }
-badass-runtime                       = { id = "com.dua3.gradle.runtime"                                        , version.ref = "badass-runtime" }
+badass-jlink                         = { id = "org.beryx.jlink"                                                , version.ref = "badass-jlink" }
+badass-runtime                       = { id = "org.beryx.runtime"                                              , version.ref = "badass-runtime" }
 jlink-jib                            = { id = "com.ryandens.jlink-jib"                                         , version.ref = "jlink-jib" }
 jextract                             = { id = "de.infolektuell.jextract"                                       , version.ref = "jextract" }
 gradlex-maven-plugin                 = { id = "org.gradlex.maven-plugin-development"                           , version.ref = "gradlex-maven-plugin" }
