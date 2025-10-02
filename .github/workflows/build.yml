@@ -67,7 +67,7 @@ jobs:
           # cache: 'gradle'
 
       - name: 🐘 Setup Gradle
-        uses: gradle/actions/setup-gradle@v4
+        uses: gradle/actions/setup-gradle@v5
 
       - name: 🏗️ Gradle Build & Test
         id: gradle-build
@@ -116,7 +116,7 @@ jobs:
           check-latest: true
 
       - name: 🐘 Setup Gradle
-        uses: gradle/actions/setup-gradle@v4
+        uses: gradle/actions/setup-gradle@v5
 
       - name: ⚙️ Build Changelog
         id: github_release
