@@ -65,6 +65,12 @@ dependencyResolutionManagement {
 
   // Enable back after the KMP Node.js repo fix.
   // repositoriesMode = RepositoriesMode.PREFER_SETTINGS
+
+  // versionCatalogs {
+  //   create("ktorLibs") {
+  //      from("io.ktor:ktor-version-catalog:${versionCatalog?.getString("ktor")}")
+  //   }
+  // }
 }
 
 @Suppress("UnstableApiUsage")
