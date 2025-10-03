@@ -38,7 +38,7 @@ kotlinx-fuzz                   = "0.2.2"
 kotlinx-metadata               = "0.9.0"
 kotlinx-reflect-lite           = "1.2.0-RC"
 kotlin-lincheck                = "3.3"
-kotlin-wrappers                = "2025.10.0"
+kotlin-wrappers                = "2025.10.1"
 kotlin-redacted                = "1.15.0"
 kotlin-serviceloader           = "0.0.21"
 kotlinx-multik                 = "0.2.3"
@@ -190,7 +190,7 @@ langchain4j-jlama              = "1.7.1-beta14"
 langchain4j-kotlin             = "0.3.0"
 jlama                          = "0.8.4"
 mcp-kotlin                     = "0.7.2"
-koog                           = "0.5.0-rc"
+koog                           = "0.5.0"
 mcp4k                          = "0.4.5"
 dflib                          = "2.0.0-M4"
 ldaptive                       = "2.4.2"
@@ -203,7 +203,7 @@ log4k                          = "1.1.1"
 rwmutex                        = "1.0.0"
 bluesky-ozone                  = "0.3.3"
 cidre                          = "0.3.0"
-voices                         = "0.0.4"
+voices                         = "0.0.6"
 onnx                           = "1.23.0"
 
 # Compose
@@ -691,6 +691,8 @@ koog-ktor                            = { module = "ai.koog:koog-ktor"           
 voices-chorus                        = { module = "org.pitest.voices:chorus"                                                , version.ref = "voices" }
 voices-en-uk                         = { module = "org.pitest.voices:en_uk"                                                 , version.ref = "voices" }
 voices-en-us                         = { module = "org.pitest.voices:en_us"                                                 , version.ref = "voices" }
+voices-model-downloader              = { module = "org.pitest.voices:model-downloader"                                      , version.ref = "voices" }
+voices-alba                          = { module = "org.pitest.voices:alba"                                                  , version.ref = "voices" }
 onnxruntime                          = { module = "com.microsoft.onnxruntime:onnxruntime"                                   , version.ref = "onnx" }
 onnxruntime-gpu                      = { module = "com.microsoft.onnxruntime:onnxruntime_gpu"                               , version.ref = "onnx" }
 
