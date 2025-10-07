@@ -1,6 +1,5 @@
 import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 import com.google.cloud.tools.jib.gradle.JibTask
-import com.google.devtools.ksp.gradle.KspAATask
 import common.*
 import java.io.*
 import java.util.spi.ToolProvider
@@ -93,7 +92,7 @@ tasks {
   buildConfig.configure { enabled = buildConfigExtn.enabled.get() }
 
   kotlin.sourceSets.main { kotlin.srcDirs(buildConfig) }
-  withType<KspAATask>().configureEach { dependsOn(buildConfig) }
+  // withType<KspAATask>().configureEach { dependsOn(buildConfig) }
 
   // Configure "compileJava" and "compileTestJava" tasks.
   withType<JavaCompile>().configureEach { configureJavac(project) }
