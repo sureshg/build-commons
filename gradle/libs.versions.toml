@@ -66,8 +66,8 @@ spring-depmgmt                 = "1.1.7"
 ktor                           = "3.3.1"
 swagger-codegen                = "3.0.74"
 ktor-cohort                    = "2.8.0"
+java-http                      = "1.1.1"
 fusionauth-jwt                 = "5.3.3"
-fusionauth-http                = "1.1.1"
 otel                           = "1.54.1"
 otel-alpha                     = "1.54.1-alpha"
 otel-instr                     = "2.20.1"
@@ -417,8 +417,8 @@ jsch                                 = { module = "com.github.mwiede:jsch"      
 ayza                                 = { module = "io.github.hakky54:ayza"                                     , version.ref = "ayza"}
 ayza-for-pem                         = { module = "io.github.hakky54:ayza-for-pem"                             , version.ref = "ayza"}
 oshi-core                            = { module = "com.github.oshi:oshi-core-java25"                           , version.ref = "oshi"}
+java-http                            = { module = "io.fusionauth:java-http"                                    , version.ref = "java-http"}
 fusionauth-jwt                       = { module = "io.fusionauth:fusionauth-jwt"                               , version.ref = "fusionauth-jwt"}
-fusionauth-http                      = { module = "io.fusionauth:java-http"                                    , version.ref = "fusionauth-http"}
 # airlift-aircompressor              = { module = "io.airlift:aircompressor"                                   , version.ref = "airlift-aircompressor"}
 # airlift-security                   = { module = "io.airlift:security"                                        , version.ref = "airlift-security"}
 # airlift-security-jwks              = { module = "io.airlift:security-jwks"                                   , version.ref = "airlift-security"}
