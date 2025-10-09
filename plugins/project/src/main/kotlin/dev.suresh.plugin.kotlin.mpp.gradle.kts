@@ -4,11 +4,7 @@ import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 import com.google.cloud.tools.jib.gradle.JibTask
 import common.*
 import org.gradle.internal.os.OperatingSystem
-import org.jetbrains.kotlin.gradle.targets.js.nodejs.*
-import org.jetbrains.kotlin.gradle.targets.js.npm.*
-import org.jetbrains.kotlin.gradle.targets.js.npm.tasks.*
-import org.jetbrains.kotlin.gradle.targets.wasm.nodejs.*
-import org.jetbrains.kotlin.gradle.targets.wasm.npm.*
+import org.jetbrains.kotlin.gradle.targets.js.npm.tasks.KotlinNpmInstallTask
 import tasks.*
 
 plugins {
@@ -199,47 +195,22 @@ tasks {
   }
 }
 
-// var npmEnabled: String? by rootProject.extra
-
-plugins.withType<NodeJsPlugin> {
-  the<NodeJsEnvSpec>().apply {
-    download = true
-    // version = libs.versions.nodejs.version.get()
-    // downloadBaseUrl = "https://nodejs.org/download/nightly"
-  }
-
-  rootProject.the<NpmExtension>().apply {
-    lockFileDirectory = project.rootDir.resolve("gradle/kotlin-js-store")
-  }
-}
-
-plugins.withType<WasmNodeJsPlugin> {
-  the<WasmNodeJsEnvSpec>().apply {
-    download = true
-    // version = libs.versions.nodejs.version.get()
-    // downloadBaseUrl = "https://nodejs.org/download/nightly"
-  }
-  rootProject.the<WasmNpmExtension>().apply {
-    lockFileDirectory = project.rootDir.resolve("gradle/kotlin-js-store/wasm")
-  }
-}
-
 // Expose shared js/wasm resource as configuration to be consumed by other projects.
 // https://docs.gradle.org/current/userguide/cross_project_publications.html#sec:simple-sharing-artifacts-between-projects
 artifacts {
   if (isSharedProject) {
-    tasks.findByName("jsProcessResources")?.let {
+    tasks.findByName("jsProcessResources")?.let { task ->
       val sharedJsResources by configurations.consumable("sharedJsResources")
-      add(sharedJsResources.name, provider { it })
+      add(sharedJsResources.name, provider { task })
     }
 
-    tasks.findByName("wasmJsProcessResources")?.let {
+    tasks.findByName("wasmJsProcessResources")?.let { task ->
       val sharedWasmResources by configurations.consumable("sharedWasmResources")
-      add(sharedWasmResources.name, provider { it })
+      add(sharedWasmResources.name, provider { task })
     }
   }
 }
 
-dependencies {
-  // add("kspJvm", project(":ksp-processor"))
-}
+// var npmEnabled: String? by rootProject.extra
+// plugins.withType<NodeJsPlugin> { the<NodeJsEnvSpec>().apply {} }
+// plugins.withType<WasmNodeJsPlugin> { the<WasmNodeJsEnvSpec>().apply {} }
