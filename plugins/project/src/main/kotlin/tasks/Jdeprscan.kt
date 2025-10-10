@@ -2,6 +2,7 @@ package tasks
 
 import common.*
 import java.io.*
+import java.nio.file.Path
 import javax.inject.*
 import org.gradle.api.*
 import org.gradle.api.file.*
@@ -29,6 +30,8 @@ constructor(
 
   @get:[Input Optional]
   val classPath = objects.listProperty<File>()
+
+  @get:Input abstract val javaHome: Property<Path>
 
   @get:Internal internal val projectName = project.name
 
@@ -62,8 +65,8 @@ constructor(
       add(jarFile.get().asFile.absolutePath)
     }
 
-    // java bin directory
-    val jdeprscan = project.javaToolchainPath.resolve("bin").resolve("jdeprscan")
+    // jdeprscan binary path
+    val jdeprscan = javaHome.get().resolve("bin").resolve("jdeprscan")
     val bos = ByteArrayOutputStream()
     val execResult =
         execOps.exec {

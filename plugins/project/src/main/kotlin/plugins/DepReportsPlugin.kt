@@ -22,6 +22,7 @@ class DepReportsPlugin : Plugin<Project> {
   override fun apply(target: Project) =
       with(target) {
         pluginManager.withPlugin("java-base") {
+          val projectLayout = project.layout
           val listResolvedArtifacts by
               tasks.registering(ListResolvedArtifacts::class) {
                 // Get the runtime-resolved artifacts
@@ -35,16 +36,17 @@ class DepReportsPlugin : Plugin<Project> {
                 artifactFiles =
                     resolvedArtifacts.map {
                       it.map { resolvedArtifactResult ->
-                        layout.projectDirectory.file(resolvedArtifactResult.file.absolutePath)
+                        projectLayout.projectDirectory.file(
+                            resolvedArtifactResult.file.absolutePath
+                        )
                       }
                     }
-                outputFile.convention(layout.buildDirectory.file("resolved-artifacts.txt"))
+                outputFile.convention(projectLayout.buildDirectory.file("resolved-artifacts.txt"))
               }
         }
       }
 }
 
-@CacheableTask
 abstract class ListResolvedArtifacts : DefaultTask() {
 
   @get:Input abstract val artifactIds: ListProperty<ComponentArtifactIdentifier>

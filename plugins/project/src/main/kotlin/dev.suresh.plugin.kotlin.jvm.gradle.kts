@@ -157,10 +157,10 @@ tasks {
       description = "Print Java Platform Module dependencies of the application."
       group = LifecycleBasePlugin.BUILD_GROUP
 
-      val shadowJar = named<ShadowJar>("shadowJar")
-      doLast {
-        val jarFile = shadowJar.get().archiveFile.get().asFile
+      val shadowJarFile = tasks.named<ShadowJar>("shadowJar").flatMap { it.archiveFile }
+      val release = project.javaRelease.get()
 
+      doLast {
         val jdeps =
             ToolProvider.findFirst("jdeps").orElseGet { error("jdeps tool is missing in the JDK!") }
         val out = StringWriter()
@@ -172,26 +172,29 @@ tasks {
             "-R",
             "--print-module-deps",
             "--ignore-missing-deps",
-            "--multi-release=${javaRelease.get()}",
-            jarFile.absolutePath,
+            "--multi-release=$release",
+            shadowJarFile.get().asFile.absolutePath,
         )
 
         val modules = out.toString()
         logger.quiet(
             """
-            |Application modules for OpenJDK-${javaRelease.get()} are,
-            |${modules.split(",").mapIndexed { i, module -> " ${(i + 1).toString()
-                      .padStart(2)}) $module" }.joinToString(System.lineSeparator())}
+            |Application modules for OpenJDK-$release are,
+            |${modules.split(",")
+                      .mapIndexed { i, module -> " ${(i + 1).toString()
+                      .padStart(2)}) $module" }
+                      .joinToString(System.lineSeparator())}
             """
                 .trimMargin()
         )
       }
-      dependsOn(shadowJar)
+      dependsOn("shadowJar")
     }
 
     val jdepExtn = extensions.create<JdeprscanExtension>("jdeprscan")
     register<Jdeprscan>("jdeprscan", jdepExtn).configure {
       jarFile = named<ShadowJar>("shadowJar").flatMap { it.archiveFile }
+      javaHome = project.javaToolchainPath
     }
   }
 

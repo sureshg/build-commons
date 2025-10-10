@@ -621,25 +621,23 @@ fun Project.appRunCmd(binary: Path, args: List<String>): String {
 
 /** Returns the JDK install path provided by the [JavaToolchainService] */
 val Project.javaToolchainPath
-  get(): Path {
+  get(): Provider<Path> {
     val defToolchain = extensions.findByType(JavaPluginExtension::class)?.toolchain
     val javaToolchainSvc = extensions.findByType(JavaToolchainService::class)
-    // val jvm: JavaVersion? = org.gradle.internal.jvm.Jvm.current().javaVersion
 
     val jLauncher =
         when (defToolchain != null) {
           true -> javaToolchainSvc?.launcherFor(defToolchain)
-          else -> javaToolchainSvc?.launcherFor { configureJvmToolchain(project) }
-        }?.orNull
-
-    return jLauncher?.metadata?.installationPath?.asFile?.toPath()
-        ?: error("Requested JDK version ($javaVersion) is not available.")
+          else -> javaToolchainSvc?.launcherFor { languageVersion = toolchainVersion }
+        }
+    return jLauncher?.map { it.metadata?.installationPath?.asFile?.toPath() }
+        ?: error("Unable to find the JDK toolchain installation path")
   }
 
 /** Return incubator modules of the tool chain JDK */
 val Project.incubatorModules
   get(): String {
-    val javaCmd = project.javaToolchainPath.resolve("bin").resolve("java")
+    val javaCmd = project.javaToolchainPath.get().resolve("bin").resolve("java")
     val bos = ByteArrayOutputStream()
     val execResult =
         providers.exec {
