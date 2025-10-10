@@ -4,7 +4,12 @@ import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 import com.google.cloud.tools.jib.gradle.JibTask
 import common.*
 import org.gradle.internal.os.OperatingSystem
+import org.gradle.kotlin.dsl.*
+import org.jetbrains.kotlin.gradle.targets.js.nodejs.*
+import org.jetbrains.kotlin.gradle.targets.js.npm.*
 import org.jetbrains.kotlin.gradle.targets.js.npm.tasks.KotlinNpmInstallTask
+import org.jetbrains.kotlin.gradle.targets.wasm.nodejs.*
+import org.jetbrains.kotlin.gradle.targets.wasm.npm.*
 import tasks.*
 
 plugins {
@@ -21,7 +26,7 @@ plugins {
   // org.gradle.kotlin.`kotlin-dsl`
 }
 
-configurations.configureEach { resolutionStrategy { failOnNonReproducibleResolution() } }
+// configurations.configureEach { resolutionStrategy { failOnNonReproducibleResolution() } }
 
 kotlin {
   jvmToolchain { configureJvmToolchain(project) }
@@ -195,22 +200,39 @@ tasks {
   }
 }
 
+// var npmEnabled: String? by rootProject.extra
+plugins.withType<NodeJsPlugin> {
+  the<NodeJsEnvSpec>().apply {
+    download = true
+    // version = libs.versions.nodejs.version.get()
+  }
+  rootProject.the<NpmExtension>().apply {
+    lockFileDirectory = project.rootDir.resolve("gradle/kotlin-js-store")
+    packageLockMismatchReport = LockFileMismatchReport.WARNING
+  }
+}
+
+plugins.withType<WasmNodeJsPlugin> {
+  the<WasmNodeJsEnvSpec>().apply { download = true }
+
+  rootProject.the<WasmNpmExtension>().apply {
+    lockFileDirectory = project.rootDir.resolve("gradle/kotlin-js-store/wasm")
+    packageLockMismatchReport = LockFileMismatchReport.WARNING
+  }
+}
+
 // Expose shared js/wasm resource as configuration to be consumed by other projects.
 // https://docs.gradle.org/current/userguide/cross_project_publications.html#sec:simple-sharing-artifacts-between-projects
 artifacts {
   if (isSharedProject) {
-    tasks.findByName("jsProcessResources")?.let { task ->
+    tasks.findByName("jsProcessResources")?.let {
       val sharedJsResources by configurations.consumable("sharedJsResources")
-      add(sharedJsResources.name, provider { task })
+      add(sharedJsResources.name, provider { it })
     }
 
-    tasks.findByName("wasmJsProcessResources")?.let { task ->
+    tasks.findByName("wasmJsProcessResources")?.let {
       val sharedWasmResources by configurations.consumable("sharedWasmResources")
-      add(sharedWasmResources.name, provider { task })
+      add(sharedWasmResources.name, provider { it })
     }
   }
 }
-
-// var npmEnabled: String? by rootProject.extra
-// plugins.withType<NodeJsPlugin> { the<NodeJsEnvSpec>().apply {} }
-// plugins.withType<WasmNodeJsPlugin> { the<WasmNodeJsEnvSpec>().apply {} }

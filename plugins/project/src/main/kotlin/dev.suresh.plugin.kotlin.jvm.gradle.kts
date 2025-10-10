@@ -26,13 +26,13 @@ apply(plugin = "dev.suresh.plugin.depreports")
 // Load the build script from a file
 // apply(from = rootDir.resolve("project.plugin.gradle.kts"))
 
-configurations.configureEach {
-  resolutionStrategy {
-    failOnNonReproducibleResolution()
-    // eachDependency { if (requested.name.contains("intellij-coverage")) {
-    // useVersion(libs.versions.intellij.coverage.get()) }}
-  }
-}
+// configurations.configureEach {
+//  resolutionStrategy {
+//    failOnNonReproducibleResolution()
+//    eachDependency { if (requested.name.contains("intellij-coverage")) {
+//    useVersion(libs.versions.intellij.coverage.get()) }}
+//  }
+// }
 
 java {
   toolchain { configureJvmToolchain(project) }
