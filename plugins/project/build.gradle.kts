@@ -105,10 +105,10 @@ dependencies {
   implementation(libs.plugins.jte.dep)
   implementation(libs.plugins.jib.dep)
   implementation(libs.plugins.vanniktech.publish.dep)
-  implementation(libs.plugins.exoquery.dep)
   implementation(libs.jib.nativeimage.extn)
   implementation(files(libs.javaClass.superclass.protectionDomain.codeSource.location))
   // implementation(libs.plugins.kopy.dep)
+  // implementation(libs.plugins.exoquery.dep)
   // implementation(libs.kmpmt)
   // compileOnly(libs.jte.kotlin)
 }
