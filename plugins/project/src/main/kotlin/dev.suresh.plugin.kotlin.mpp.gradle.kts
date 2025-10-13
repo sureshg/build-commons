@@ -45,7 +45,6 @@ kotlin {
     api(platform(libs.kotlinx.coroutines.bom))
     api(platform(libs.kotlinx.serialization.bom))
     api(platform(libs.ktor.bom))
-    api(platform(libs.kotlin.wrappers.bom))
 
     api(libs.kotlinx.coroutines.core)
     api(libs.kotlinx.datetime)
