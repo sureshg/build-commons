@@ -746,6 +746,7 @@ otel-agent-extn                      = ["otel-instr-api",
 
 [plugins]
 kotlin-multiplatform                 = { id = "org.jetbrains.kotlin.multiplatform"                             , version.ref = "kotlin"}
+kotlin-jvm                           = { id = "org.jetbrains.kotlin.jvm"                                       , version.ref = "kotlin"}
 kotlinx-serialization                = { id = "org.jetbrains.kotlin.plugin.serialization"                      , version.ref = "kotlin"}
 kotlin-powerassert                   = { id = "org.jetbrains.kotlin.plugin.power-assert"                       , version.ref = "kotlin"}
 kotlin-allopen                       = { id = "org.jetbrains.kotlin.plugin.allopen"                            , version.ref = "kotlin"}
