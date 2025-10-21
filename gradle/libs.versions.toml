@@ -92,7 +92,7 @@ intellij-markdown              = "0.7.3"
 jgit                           = "7.4.0.202509020913-r"
 jte                            = "3.2.1"
 sshj                           = "0.40.0"
-jsch                           = "2.27.3"
+jsch                           = "2.27.4"
 pty4j                          = "0.13.11"
 oshi                           = "6.9.1"
 junit                          = "6.0.0"
@@ -113,7 +113,7 @@ jmh                            = "1.37"
 mrjar                          = "0.1.1"
 ktfmt                          = "0.59"
 google-javaformat              = "1.30.0"
-palantir-javaformat            = "2.80.0"
+palantir-javaformat            = "2.81.0"
 google-auto-value              = "1.11.0"
 google-auto-service            = "1.1.1"
 google-tink                    = "1.19.0"
@@ -250,7 +250,7 @@ kmpmt                          = "0.1.1"
 tasktree                       = "4.0.1"
 sigstore                       = "2.0.0-rc2"
 reproducible-builds            = "1.1"
-autonomousapps-depanalysis     = "3.1.0"
+autonomousapps-depanalysis     = "3.2.0"
 autonomousapps-bestpractices   = "0.10"
 graalvm-nativeimage            = "0.11.2"
 github-depgraph                = "0.1.0"
@@ -378,6 +378,7 @@ ktor-client-okhttp                   = { module = "io.ktor:ktor-client-okhttp"  
 ktor-client-jetty                    = { module = "io.ktor:ktor-client-jetty"                                       , version.ref = "ktor"}
 ktor-client-serialization            = { module = "io.ktor:ktor-client-serialization"                               , version.ref = "ktor"}
 ktor-client-websockets               = { module = "io.ktor:ktor-client-websockets"                                  , version.ref = "ktor"}
+ktor-client-webrtc                   = { module = "io.ktor:ktor-client-webrtc"                                      , version.ref = "ktor"}
 ktor-client-content-negotiation      = { module = "io.ktor:ktor-client-content-negotiation"                         , version.ref = "ktor"}
 ktor-client-auth                     = { module = "io.ktor:ktor-client-auth"                                        , version.ref = "ktor"}
 ktor-client-logging                  = { module = "io.ktor:ktor-client-logging"                                     , version.ref = "ktor"}
@@ -616,6 +617,7 @@ otel-sdk-extn                        = { module = "io.opentelemetry:opentelemetr
 otel-semconv                         = { module = "io.opentelemetry.semconv:opentelemetry-semconv"                                          , version.ref = "otel-semconv"}
 otel-contrib-noop                    = { module = "io.opentelemetry.contrib:opentelemetry-noop-api"                                         , version.ref = "otel-contrib"}
 otel-contrib-samplers                = { module = "io.opentelemetry.contrib:opentelemetry-samplers"                                         , version.ref = "otel-contrib"}
+otel-contrib-cel-sampler             = { module = "io.opentelemetry.contrib:opentelemetry-cel-sampler"                                      , version.ref = "otel-contrib"}
 otel-contrib-jfrevents               = { module = "io.opentelemetry.contrib:opentelemetry-jfr-events"                                       , version.ref = "otel-contrib"}
 
 otel-instr-bom                       = { module = "io.opentelemetry.instrumentation:opentelemetry-instrumentation-bom"                      , version.ref = "otel-instr"}
