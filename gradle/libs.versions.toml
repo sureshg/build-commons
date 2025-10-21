@@ -215,7 +215,7 @@ jetbrains-compose-nav          = "2.9.1"
 jetbrains-compose-adaptive     = "1.2.0-alpha07"
 jetbrains-compose-icons        = "1.7.3"
 kobweb                         = "0.23.3"
-detekt                         = "1.23.8"
+detekt                         = "2.0.0-alpha.1"
 detekt-compose-rules           = "0.4.27"
 compose-hotreload              = "1.0.0-rc02"
 compose-icons                  = "1.1.1"
@@ -786,7 +786,7 @@ jib                                  = { id = "com.google.cloud.tools.jib"      
 sigstore                             = { id = "dev.sigstore.sign"                                              , version.ref = "sigstore" }
 sigstore-base                        = { id = "dev.sigstore.sign-base"                                         , version.ref = "sigstore" }
 buildkonfig                          = { id = "com.codingfeline.buildkonfig"                                   , version.ref = "buildkonfig"}
-detekt                               = { id = "io.github.detekt.gradle.compiler-plugin"                        , version.ref = "detekt"}
+detekt                               = { id = "dev.detekt"                                                     , version.ref = "detekt"}
 nmcp-project                         = { id = "com.gradleup.nmcp"                                              , version.ref = "nmcp"}
 nmcp-aggregation                     = { id = "com.gradleup.nmcp.aggregation"                                  , version.ref = "nmcp"}
 vanniktech-publish                   = { id = "com.vanniktech.maven.publish"                                   , version.ref = "vanniktech-publish" }
