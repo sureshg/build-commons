@@ -229,8 +229,6 @@ val Project.runJvmArgs
         addAll(defaultJvmArgs)
         addAll(
             listOf(
-                "--show-version",
-                "-XX:+PrintCommandLineFlags",
                 "--enable-native-access=ALL-UNNAMED",
                 // "--illegal-native-access=warn",
                 // "--sun-misc-unsafe-memory-access=warn",
@@ -295,6 +293,8 @@ val Project.runJvmArgs
                 "-Dcom.sun.management.jmxremote.authenticate=false",
                 "-Dcom.sun.management.jmxremote.ssl=false",
                 "-Djava.rmi.server.hostname=0.0.0.0",
+                // "--show-version",
+                // "-XX:+PrintCommandLineFlags",
                 // "-XX:+UseLargePages",
                 // "-XX:+UseEpsilonGC",
                 // "-XX:+AlwaysPreTouch",
