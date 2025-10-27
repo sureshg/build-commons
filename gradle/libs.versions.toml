@@ -146,7 +146,7 @@ ksoup                          = "0.2.5"
 java-keyring                   = "1.0.4"
 java-keychain                  = "1.1.0"
 webjars-xterm                  = "5.3.0"
-arrow-suspendapp               = "2.2.0-beta.6"
+arrow-suspendapp               = "2.2.0-beta.7"
 hikariCP                       = "7.0.2"
 h2                             = "2.4.240"
 micrometer                     = "1.16.0-RC1"
@@ -209,6 +209,7 @@ voices                         = "0.0.8"
 onnx                           = "1.23.2"
 angus-mail                     = "2.1.0-M1"
 simplemail                     = "8.12.6"
+javelit                        = "0.56.0"
 
 # Compose
 jetbrains-compose              = "1.10.0-alpha03"
@@ -662,7 +663,7 @@ kobwebx-serialization                = { module = "com.varabyte.kobwebx:kobwebx-
 silk-foundation                      = { module = "com.varabyte.kobweb:silk-foundation"                                     , version.ref = "kobweb" }
 silk-icons-fa                        = { module = "com.varabyte.kobwebx:silk-icons-fa"                                      , version.ref = "kobweb" }
 silk-icons-mdi                       = { module = "com.varabyte.kobwebx:silk-icons-mdi"                                     , version.ref = "kobweb" }
-
+javelit                              = { module = "io.javelit:javelit"                                                      , version.ref = "javelit" }
 # Native
 kfswatch                             = { module = "io.github.irgaly.kfswatch:kfswatch"                                      , version.ref = "kfswatch" }
 kmp-process                          = { module = "io.matthewnelson.kmp-process:process"                                    , version.ref = "kmp-process" }
