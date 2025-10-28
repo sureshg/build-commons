@@ -17,6 +17,7 @@ plugins {
   id("dev.suresh.plugin.common")
   id("dev.suresh.plugin.kotlin.docs")
   // com.javiersc.kotlin.kopy
+  // `java-test-fixtures`
   // `test-suite-base`
 }
 
