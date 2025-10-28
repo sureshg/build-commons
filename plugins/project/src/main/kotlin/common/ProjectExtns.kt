@@ -413,7 +413,6 @@ fun KotlinCommonCompilerOptions.configureKotlinCommon(project: Project) =
       freeCompilerArgs.addAll(
           "-Xcontext-parameters",
           "-Xexpect-actual-classes",
-          "-Xskip-prerelease-check",
           "-Xwhen-guards",
           "-Xmulti-dollar-interpolation",
           "-Xnon-local-break-continue",
@@ -422,6 +421,8 @@ fun KotlinCommonCompilerOptions.configureKotlinCommon(project: Project) =
           "-Xreturn-value-checker=check",
           "-Xcontext-sensitive-resolution",
           "-Xannotation-default-target=param-property",
+          "-Xdata-flow-based-exhaustiveness",
+          // "-Xskip-prerelease-check",
           // "-Xsuppress-version-warnings",
           // "-P",
           // "plugin:...=..."

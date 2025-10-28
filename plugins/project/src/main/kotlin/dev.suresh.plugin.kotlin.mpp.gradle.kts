@@ -98,7 +98,8 @@ kotlin {
   // val compilation = commonTarget.compilations["main"]
 
   // Add a task output as sourceSet
-  // compilation.defaultSourceSet.kotlin.srcDir(buildConfig)
+  // compilation.defaultSourceSet.generatedKotlin.srcDir(buildConfig)
+  // OR sourceSets.getByName("main").generatedKotlin.srcDir(buildConfig)
 
   // Add new sourceSet
   // val newSourceSet = sourceSets.create("gen")
