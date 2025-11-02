@@ -32,7 +32,6 @@ import org.gradle.jvm.toolchain.*
 import org.gradle.kotlin.dsl.*
 import org.jetbrains.kotlin.gradle.dsl.*
 import org.jetbrains.kotlin.gradle.plugin.*
-import org.jetbrains.kotlin.gradle.targets.js.npm.tasks.KotlinNpmInstallTask
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 // val logger = LoggerFactory.getLogger("build-logic")
@@ -557,10 +556,6 @@ fun KotlinJsCompilerOptions.configureKotlinJs() {
   optIn.addAll("kotlin.js.ExperimentalJsExport", "kotlin.js.ExperimentalWasmJsInterop")
   // sourceMap = true
   // sourceMapEmbedSources = "always"
-}
-
-fun KotlinNpmInstallTask.configureKotlinNpm() {
-  args.add("--ignore-engines")
 }
 
 /**

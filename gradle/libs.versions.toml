@@ -38,7 +38,7 @@ kotlinx-fuzz                   = "0.2.2"
 kotlinx-metadata               = "0.9.0"
 kotlinx-reflect-lite           = "1.2.0-RC"
 kotlin-lincheck                = "3.3.2"
-kotlin-wrappers                = "2025.10.14"
+kotlin-wrappers                = "2025.11.0"
 kotlin-redacted                = "1.15.0"
 kotlin-serviceloader           = "0.0.21"
 kotlinx-multik                 = "0.2.3"
@@ -145,7 +145,7 @@ parsus                         = "0.6.1"
 ksoup                          = "0.2.5"
 java-keyring                   = "1.0.4"
 java-keychain                  = "1.1.0"
-arrow-suspendapp               = "2.2.0-beta.11"
+arrow-suspendapp               = "2.2.0"
 hikariCP                       = "7.0.2"
 h2                             = "2.4.240"
 micrometer                     = "1.16.0-RC1"
@@ -220,6 +220,7 @@ jetbrains-compose-adaptive     = "1.2.0"
 jetbrains-compose-icons        = "1.7.3"
 antdesign                      = "1.0.0"
 kobweb                         = "0.23.3"
+summon                         = "0.4.2.1"
 detekt                         = "2.0.0-alpha.1"
 detekt-compose-rules           = "0.4.27"
 compose-hotreload              = "1.0.0-rc02"
@@ -261,7 +262,7 @@ graalvm-nativeimage            = "0.11.2"
 github-depgraph                = "0.1.0"
 github-changelog               = "2.2.0"
 buildkonfig                    = "0.17.1"
-gmazzo-buildconfig             = "5.7.0"
+gmazzo-buildconfig             = "5.7.1"
 cyclonedx-plugin               = "1.10.0"
 modulegraph                    = "0.13.0"
 exposed-plugin                 = "0.2.1"
@@ -664,6 +665,7 @@ silk-foundation                      = { module = "com.varabyte.kobweb:silk-foun
 silk-icons-fa                        = { module = "com.varabyte.kobwebx:silk-icons-fa"                                      , version.ref = "kobweb" }
 silk-icons-mdi                       = { module = "com.varabyte.kobwebx:silk-icons-mdi"                                     , version.ref = "kobweb" }
 antdesign-ui                         = { module = "digital.guimauve.antdesign:ui"                                           , version.ref = "antdesign" }
+summon                               = { module = "io.github.codeyousef:summon"                                             , version.ref = "summon" }
 javelit                              = { module = "io.javelit:javelit"                                                      , version.ref = "javelit" }
 
 # Native

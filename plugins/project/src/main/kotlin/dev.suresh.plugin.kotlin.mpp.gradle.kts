@@ -7,7 +7,6 @@ import org.gradle.internal.os.OperatingSystem
 import org.gradle.kotlin.dsl.*
 import org.jetbrains.kotlin.gradle.targets.js.nodejs.*
 import org.jetbrains.kotlin.gradle.targets.js.npm.*
-import org.jetbrains.kotlin.gradle.targets.js.npm.tasks.KotlinNpmInstallTask
 import org.jetbrains.kotlin.gradle.targets.wasm.nodejs.*
 import org.jetbrains.kotlin.gradle.targets.wasm.npm.*
 import tasks.*
@@ -140,9 +139,8 @@ tasks {
   // withType<KspAATask>().configureEach { dependsOn(buildConfig) }
   // compileKotlinMetadata { dependsOn(buildConfig) }
 
-  withType<KotlinNpmInstallTask>().configureEach { configureKotlinNpm() }
-
   // withType<Kotlin2JsCompile>().configureEach {}
+  // withType<KotlinNpmInstallTask>().configureEach {}
 
   withType<Jar>().configureEach {
     manifest { attributes(defaultJarManifest) }
