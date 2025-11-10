@@ -102,12 +102,12 @@ koin-annotations               = "2.3.1"
 metro                          = "0.4.0"
 kotest                         = "6.0.4"
 mockk                          = "1.14.6"
-mokkery                        = "3.0.0-Beta3"
+mokkery                        = "3.0.0-RC"
 wiremock                       = "4.0.0-beta.16"
 wiremock-kotlin                = "2.1.1"
 okhttp                         = "5.3.0"
 slf4j                          = "2.1.0-alpha1"
-logback                        = "1.5.20"
+logback                        = "1.5.21"
 logback-tyler                  = "1.0.3"
 log4j                          = "3.0.0-beta3"
 jmh                            = "1.37"
@@ -172,6 +172,7 @@ openjdk-jmc                    = "9.1.1"
 airlift-aircompressor          = "2.0.2"
 airlift-security               = "355"
 directory-keystore             = "1.1.1"
+amper                          = "1.0.0"
 maven-mima                     = "3.0.0-alpha-3"
 maven-archeologist             = "0.0.10"
 jfree-chart                    = "1.5.6"
@@ -590,8 +591,6 @@ tcp-javanioproxy                     = { module = "com.github.terma:javaniotcppr
 reflect-typeparamresolver            = { module = "net.harawata.reflection:typeparameterresolver"              , version.ref = "reflect-typeparamresolver"}
 reflect-typetools                    = { module = "net.jodah:typetools"                                        , version.ref = "reflect-typetools"}
 sourceBuddy                          = { module = "com.javax0.sourcebuddy:SourceBuddy"                         , version.ref = "sourceBuddy"}
-maven-mima                           = { module = "eu.maveniverse.maven.mima:mima"                             , version.ref = "maven-mima"}
-maven-archeologist                   = { module = "com.squareup.tools.build:maven-archeologist"                , version.ref = "maven-archeologist"}
 
 ap-jfr-converter                     = { module = "tools.profiler:jfr-converter"                               , version.ref = "async-profiler" }
 ap-loader-all                        = { module = "me.bechberger:ap-loader-all"                                , version.ref = "ap-loader-all"}
@@ -730,9 +729,12 @@ angus-mail                           = { module = "org.eclipse.angus:jakarta.mai
 simplemail                           = { module = "org.simplejavamail:simple-java-mail"                                     , version.ref = "simplemail" }
 simplemail-outlook                   = { module = "org.simplejavamail:outlook-module"                                       , version.ref = "simplemail" }
 
-# Maven Plugin
+# Dep Resolution
+amper-dependencyResolver             = { module = "org.jetbrains.amper:dependency-resolution"                               , version.ref = "amper" }
 maven-plugin-api                     = { module = "org.apache.maven:maven-plugin-api"                                       , version.ref = "maven-plugin-api" }
 maven-plugin-annotations             = { module = "rg.apache.maven.plugin-tools:maven-plugin-annotations"                   , version.ref = "maven-plugin-annotations" }
+maven-mima                           = { module = "eu.maveniverse.maven.mima:mima"                                          , version.ref = "maven-mima"}
+maven-archeologist                   = { module = "com.squareup.tools.build:maven-archeologist"                             , version.ref = "maven-archeologist"}
 
 # Formatting
 google-javaformat                    = { module = "com.google.googlejavaformat:google-java-format"                          , version.ref = "google-javaformat" }
