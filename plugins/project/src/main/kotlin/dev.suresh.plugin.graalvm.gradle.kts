@@ -39,7 +39,6 @@ graalvmNative {
       add("-O3")
       // add("-Os")
       // add("-H:+ForeignAPISupport")
-      // add("-H:+VectorAPISupport")
       // add("-H:+AddAllCharsets")
       // add("-H:+IncludeAllLocales")
       // add("-H:+IncludeAllTimeZones")
