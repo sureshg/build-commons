@@ -712,10 +712,11 @@ koog-executor-openai                 = { module = "ai.koog:prompt-executor-opena
 koog-features-eventhandler           = { module = "ai.koog:agents-features-event-handler"                                   , version.ref = "koog" }
 koog-ktor                            = { module = "ai.koog:koog-ktor"                                                       , version.ref = "koog"}
 voices-chorus                        = { module = "org.pitest.voices:chorus"                                                , version.ref = "voices" }
+voices-alba                          = { module = "org.pitest.voices:alba"                                                  , version.ref = "voices" }
 voices-en-uk                         = { module = "org.pitest.voices:en_uk"                                                 , version.ref = "voices" }
 voices-en-us                         = { module = "org.pitest.voices:en_us"                                                 , version.ref = "voices" }
 voices-model-downloader              = { module = "org.pitest.voices:model-downloader"                                      , version.ref = "voices" }
-voices-alba                          = { module = "org.pitest.voices:alba"                                                  , version.ref = "voices" }
+voices-openvoice-phonemizer          = { module = "org.pitest.voices:openvoice-phonemizer"                                  , version.ref = "voices" }
 onnxruntime                          = { module = "com.microsoft.onnxruntime:onnxruntime"                                   , version.ref = "onnx" }
 onnxruntime-gpu                      = { module = "com.microsoft.onnxruntime:onnxruntime_gpu"                               , version.ref = "onnx" }
 
