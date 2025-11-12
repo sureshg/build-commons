@@ -210,7 +210,7 @@ voices                         = "0.0.8"
 onnx                           = "1.23.2"
 angus-mail                     = "2.1.0-M1"
 simplemail                     = "8.12.6"
-javelit                        = "0.67.0"
+javelit                        = "0.68.0"
 
 # Compose
 compose                        = "1.10.0-beta01"
