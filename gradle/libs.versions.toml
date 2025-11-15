@@ -58,13 +58,14 @@ kopy                           = "0.20.2+2.2.21"
 poko                           = "0.20.1"
 mappie                         = "2.2.21-1.6.1"
 akkurate                       = "0.11.0"
-kaml                           = "0.102.0"
+kaml                           = "0.103.0"
 snakeyaml-engine-kmp           = "4.0.1"
 konsist                        = "0.17.3"
 decoroutinator                 = "2.5.8"
 spring-boot                    = "4.0.0-RC2"
 spring-depmgmt                 = "1.1.7"
 ktor                           = "3.3.2"
+webauthn4j                     = "0.30.0.RELEASE"
 swagger-codegen                = "3.0.75"
 ktor-cohort                    = "2.8.0"
 java-http                      = "1.4.0"
@@ -354,6 +355,7 @@ ktor-server-swagger                  = { module = "io.ktor:ktor-server-swagger" 
 ktor-server-openapi                  = { module = "io.ktor:ktor-server-openapi"                                     , version.ref = "ktor"}
 ktor-server-http-redirect            = { module = "io.ktor:ktor-server-http-redirect"                               , version.ref = "ktor"}
 ktor-server-compression              = { module = "io.ktor:ktor-server-compression"                                 , version.ref = "ktor"}
+ktor-server-sessions                 = { module = "io.ktor:ktor-server-sessions"                                    , version.ref = "ktor"}
 ktor-server-rate-limit               = { module = "io.ktor:ktor-server-rate-limit"                                  , version.ref = "ktor"}
 ktor-server-double-receive           = { module = "io.ktor:ktor-server-double-receive"                              , version.ref = "ktor"}
 ktor-server-request-validation       = { module = "io.ktor:ktor-server-request-validation"                          , version.ref = "ktor"}
@@ -374,6 +376,7 @@ ktor-server-test-host                = { module = "io.ktor:ktor-server-test-host
 ktor-serialization-json              = { module = "io.ktor:ktor-serialization-kotlinx-json"                         , version.ref = "ktor"}
 ktor-serialization-xml               = { module = "io.ktor:ktor-serialization-kotlinx-xml"                          , version.ref = "ktor"}
 swagger-codegen                      = { module = "io.swagger.codegen.v3:swagger-codegen"                           , version.ref = "swagger-codegen"}
+webauthn4j-core                      = { module = "com.webauthn4j:webauthn4j-core"                                  , version.ref = "webauthn4j"}
 
 ktor-client-core                     = { module = "io.ktor:ktor-client-core"                                        , version.ref = "ktor"}
 ktor-client-cio                      = { module = "io.ktor:ktor-client-cio"                                         , version.ref = "ktor"}
