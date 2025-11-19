@@ -38,6 +38,7 @@ native-image. These plugins handle configuring the most common build tasks, incl
     * `kopy`
     * `power-assert`
     * `atomicfu`
+    * `dataframe`
 * And many other common build tasks
 
 These plugins help you focus on writing code, not configuring your build. They provide a solid foundation for your

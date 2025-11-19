@@ -91,6 +91,7 @@ dependencies {
   implementation(libs.plugins.kotlin.powerassert.dep)
   implementation(libs.plugins.kotlin.js.plainobjects.dep)
   implementation(libs.plugins.kotlin.ksp.dep)
+  implementation(libs.plugins.kotlin.dataframe.dep)
   implementation(libs.plugins.kotlinx.atomicfu.dep)
   implementation(libs.plugins.kotlinx.serialization.dep)
   implementation(libs.plugins.kotlinx.kover.dep)
