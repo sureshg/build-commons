@@ -37,7 +37,7 @@ permissions:
 
 env:
   releaseBuild: ${{ github.event_name == 'push' && contains(github.ref, 'refs/tags/') }}
-  runSandboxBuild: false
+  runSandboxBuild: true
 
 jobs:
   build:
