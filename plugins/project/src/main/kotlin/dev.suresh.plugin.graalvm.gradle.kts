@@ -3,7 +3,6 @@
 import common.*
 import common.Platform
 import me.saket.bytesize.*
-import org.jetbrains.kotlin.gradle.utils.extendsFrom
 
 plugins {
   application
@@ -119,44 +118,6 @@ graalvmNative {
   toolchainDetection = true
 }
 
-/**
- * Creates a custom sourceset(`graal`) for GraalVM native image build time configurations. The
- * following configurations will
- * - Creates a `graal` source set.
- * - Add `main` output to `graal` compile and runtime classpath.
- * - Add `main` dependencies to `graal` compile and runtime classpath.
- * - Add `graal` dependencies (graalImplementation) to native-image classpath.
- * - Add `graal` output to native-image classpath.
- *
- * For each source set added to the project, the Java plugins add a few
- * [dependency configurations](https://docs.gradle.org/current/userguide/java_plugin.html#java_source_set_configurations)
- * - graalImplementation
- * - graalCompileOnly
- * - graalRuntimeOnly
- * - graalCompileClasspath (CompileOnly + Implementation)
- * - graalRuntimeClasspath (RuntimeOnly + Implementation)
- *
- * [Configure-Custom-SourceSet](https://docs.gradle.org/current/userguide/java_testing.html#sec:configuring_java_integration_tests)
- */
-val graal by
-    sourceSets.registering {
-      compileClasspath += sourceSets.main.get().output
-      runtimeClasspath += sourceSets.main.get().output
-    }
-
-configurations {
-  val graalImplementation by existing
-  val graalRuntimeOnly by existing
-
-  // graalImplementation extendsFrom main source set implementation
-  graalImplementation.extendsFrom(implementation)
-  graalRuntimeOnly.extendsFrom(runtimeOnly)
-
-  // Finally, nativeImage classpath extendsFrom graalImplementation
-  // This way all main + graal dependencies are also available at native image build time.
-  nativeImageClasspath.extendsFrom(graalImplementation)
-}
-
 tasks {
   val archiveTgz by
       registering(Tar::class) {
@@ -182,7 +143,6 @@ tasks {
       }
 
   nativeCompile { finalizedBy(archiveTgz) }
-
   // shadowJar { mergeServiceFiles() }
 }
 
@@ -201,10 +161,4 @@ val niArchiveName
     append(".tar.gz")
   }
 
-dependencies {
-  // Dependencies required for native-image build. Use "graalCompileOnly" for compile only deps.
-  "graalCompileOnly"(libs.graal.sdk)
-  nativeImageCompileOnly(graal.map { it.output })
-  compileOnly(libs.graal.sdk)
-  // "graalImplementation"(libs.classgraph)
-}
+dependencies { compileOnly(libs.graal.sdk) }
