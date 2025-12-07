@@ -38,6 +38,8 @@ permissions:
 env:
   releaseBuild: ${{ github.event_name == 'push' && contains(github.ref, 'refs/tags/') }}
   runSandboxBuild: true
+  JAVA_DIST: zulu
+  JAVA_VERSION: '25'
 
 jobs:
   build:
@@ -45,9 +47,7 @@ jobs:
     strategy:
       fail-fast: true
       matrix:
-        os: [ ubuntu-latest ]
-        distribution: [ zulu ]
-        java: [ 25 ]
+        os: [ "ubuntu-latest" ]
 
     runs-on: ${{ matrix.os }}
     continue-on-error: false
@@ -58,12 +58,12 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: ☕ Install ${{ matrix.distribution }} JDK ${{ matrix.java }}
+      - name: ☕ Install ${{ env.JAVA_DIST }} JDK ${{ env.JAVA_VERSION }}
         id: install-java
         uses: actions/setup-java@v5
         with:
-          distribution: ${{ matrix.distribution }}
-          java-version: ${{ matrix.java }}
+          distribution: ${{ env.JAVA_DIST }}
+          java-version: ${{ env.JAVA_VERSION }}
           check-latest: true
           # cache: 'gradle'
 
@@ -111,12 +111,12 @@ jobs:
           fetch-depth: 0
           submodules: recursive
 
-      - name: ☕ Install Zulu JDK 25
+      - name: ☕ Install ${{ env.JAVA_DIST }} JDK ${{ env.JAVA_VERSION }}
         id: install-java
         uses: actions/setup-java@v5
         with:
-          distribution: zulu
-          java-version: 25
+          distribution: ${{ env.JAVA_DIST }}
+          java-version: ${{ env.JAVA_VERSION }}
           check-latest: true
 
       - name: 🐘 Setup Gradle
