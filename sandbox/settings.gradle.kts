@@ -43,7 +43,7 @@ dependencyResolutionManagement {
     create("libs") {
       // from(files("gradle/libs.versions.toml"))
       from("dev.suresh.build:catalog:+")
-      version("java", "21")
+      version("java", "25")
     }
   }
 }

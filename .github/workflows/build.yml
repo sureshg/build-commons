@@ -47,7 +47,7 @@ jobs:
       matrix:
         os: [ ubuntu-latest ]
         distribution: [ zulu ]
-        java: [ 21 ]
+        java: [ 25 ]
 
     runs-on: ${{ matrix.os }}
     continue-on-error: false
@@ -111,12 +111,12 @@ jobs:
           fetch-depth: 0
           submodules: recursive
 
-      - name: ☕ Install Zulu JDK 21
+      - name: ☕ Install Zulu JDK 25
         id: install-java
         uses: actions/setup-java@v5
         with:
           distribution: zulu
-          java-version: 21
+          java-version: 25
           check-latest: true
 
       - name: 🐘 Setup Gradle

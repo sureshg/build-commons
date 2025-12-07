@@ -46,11 +46,11 @@ Kotlin/Java projects, handling the boilerplate and common tasks so you can get s
 
 ## Development Environment Setup
 
-* Install Java 21 or later
+* Install Java 25 or later
 
   ```bash
   $ curl -s "https://get.sdkman.io" | bash
-  $ sdk i java 21.0.6-zulu
+  $ sdk i java 25.0.1-zulu
   ```
 
 * Import the Gradle project. The initial sync may take some time as it downloads all dependencies.
@@ -213,7 +213,7 @@ is [automatically with Gradle][gradle_verification].
 
   ```bash
   # Update the Gradle Daemon JVM
-  $ ./gradlew updateDaemonJvm --jvm-version=21 --jvm-vendor=adoptium
+  $ ./gradlew updateDaemonJvm --jvm-version=25 --jvm-vendor=adoptium
   ```
 
 </details>
@@ -225,9 +225,9 @@ is [automatically with Gradle][gradle_verification].
 
 <!-- Badges -->
 
-[java_url]: https://www.azul.com/downloads/?version=java-21-lts&package=jdk#zulu
+[java_url]: https://www.azul.com/downloads/?version=java-25-lts&package=jdk#zulu
 
-[java_img]: https://img.shields.io/badge/OpenJDK-21-e76f00?logo=openjdk&logoColor=e76f00
+[java_img]: https://img.shields.io/badge/OpenJDK-25-e76f00?logo=openjdk&logoColor=e76f00
 
 [kt_url]: https://github.com/JetBrains/kotlin/releases/latest
 
