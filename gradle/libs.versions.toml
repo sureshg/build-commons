@@ -26,7 +26,7 @@ kotlin-dokka                   = "2.1.0"
 kotlinx-io                     = "0.8.2"
 kotlinx-atomicfu               = "0.30.0-beta"
 kotlinx-coroutines             = "1.10.2"
-kotlinx-datetime               = "0.7.1-0.6.x-compat"
+kotlinx-datetime               = "0.7.1"
 kotlinx-datetime-zoneinfo      = "2025b-spi.0.7.1"
 kotlinx-serialization          = "1.9.0"
 kotlinx-rpc                    = "0.10.1"
@@ -42,13 +42,13 @@ kotlin-wrappers                = "2025.12.2"
 kotlin-redacted                = "1.15.1"
 kotlin-serviceloader           = "0.0.22"
 kotlinx-multik                 = "0.2.3"
-kotlinx-dataframe              = "1.0.0-dev-9063"
+kotlinx-dataframe              = "1.0.0-Beta4"
 kotlinx-kandy                  = "0.9.0-dev-86"
 kotlin-statistics              = "0.4.0-RC1"
 kotlin-base32                  = "1.0.0"
 gradle-kotlin-dsl              = "6.4.2"
 exoquery-plugin                = "2.2.20-2.0.0.PL"
-exoquery-sql                   = "2.0.0.PL.RC3"
+exoquery-sql                   = "2.0.0.PL"
 exposed                        = "1.0.0-rc-4"
 postgresql                     = "42.7.8"
 embedded-postgres              = "2.2.0"
@@ -766,7 +766,8 @@ dataviz                              = ["kotlinx-dataframe-csv",
                                         "kotlinx-kandy-geo"]
 json-extra                           = ["kotlinx-jsonpath","json-schema-validator"]
 keystore                             = ["ayza"]
-otel                                 = ["otel-instr-annotations",
+otel                                 = ["otel-api",
+                                        "otel-instr-annotations",
                                         "otel-semconv",
                                         "otel-instr-ktor",
                                         "otel-instr-logback-mdc",
