@@ -81,7 +81,7 @@ jobs:
 
       - name: 📦 Upload Plugin artifact
         if: steps.gradle-build.outcome == 'success'
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v6
         with:
           name: plugin-artifacts.zip
           path: |
@@ -92,7 +92,7 @@ jobs:
 
       - name: 📄 Upload Version Catalog
         if: steps.gradle-build.outcome == 'success'
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v6
         with:
           name: libs.versions.toml
           path: catalog/build/version-catalog/libs.versions.toml
