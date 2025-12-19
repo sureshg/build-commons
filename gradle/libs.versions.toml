@@ -225,6 +225,7 @@ compose-nav3                   = "1.1.0-alpha01"
 compose-adaptive               = "1.3.0-alpha03"
 compose-icons                  = "1.7.3"
 compose-fontawesome            = "1.1.1"
+compose-hotreload              = "1.1.0-alpha03"
 kobweb                         = "0.23.3"
 detekt                         = "2.0.0-alpha.1"
 detekt-compose-rules           = "0.5.3"
@@ -795,6 +796,7 @@ kotlinx-fuzz                         = { id = "kotlinx.fuzz.gradle"             
 kotlinx-rpc                          = { id = "org.jetbrains.kotlinx.rpc.plugin"                               , version.ref = "kotlinx-rpc" }
 kotlinx-kover                        = { id = "org.jetbrains.kotlinx.kover"                                    , version.ref = "kotlinx-kover" }
 jetbrains-compose                    = { id = "org.jetbrains.compose"                                          , version.ref = "compose"}
+jetbrains-compose-hotreload          = { id = "org.jetbrains.compose.hot-reload"                               , version.ref = "compose-hotreload"}
 jetbrains-ktor                       = { id = "io.ktor.plugin"                                                 , version.ref = "ktor" }
 jetbrains-exposed                    = { id = "com.jetbrains.exposed.gradle.plugin"                            , version.ref = "exposed-plugin" }
 jetbrains-dokka                      = { id = "org.jetbrains.dokka"                                            , version.ref = "kotlin-dokka"}
