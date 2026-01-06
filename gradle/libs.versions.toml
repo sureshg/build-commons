@@ -189,7 +189,7 @@ cel                            = "0.11.1"
 kfswatch                       = "1.4.0"
 kommand                        = "2.3.0"
 kmp-process                    = "0.5.0"
-kmbed                          = "1.8.4"
+ktembed                        = "0.1.5"
 langchain4j                    = "1.10.0"
 langchain4j-jlama              = "1.10.0-beta18"
 langchain4j-kotlin             = "0.3.0"
@@ -686,7 +686,7 @@ kommand                              = { module = "com.kgit2:kommand"           
 log4k-coroutines                     = { module = "io.github.smyrgeorge:log4k-coroutines"                                   , version.ref = "log4k" }
 log4k-slf4j                          = { module = "io.github.smyrgeorge:log4k-slf4j"                                        , version.ref = "log4k" }
 rwmutex                              = { module = "com.mayakapps.rwmutex:rwmutex"                                           , version.ref = "rwmutex" }
-kmbed-runtime                        = { module = "io.karma.kmbed:kmbed-runtime"                                            , version.ref = "kmbed" }
+ktembed-runtime                      = { module = "dev.ktool:ktembed-runtime"                                               , version.ref = "ktembed" }
 cidre                                = { module = "at.asitplus:cidre"                                                       , version.ref = "cidre" }
 
 # Wasm
@@ -834,7 +834,7 @@ spring-depmgmt                       = { id = "io.spring.dependency-management" 
 mappie                               = { id = "tech.mappie.plugin"                                             , version.ref = "mappie" }
 poko                                 = { id = "dev.drewhamilton.poko"                                          , version.ref = "poko" }
 animalsniffer                        = { id = "ru.vyarus.animalsniffer"                                        , version.ref = "animalsniffer"}
-kmbed-plugin                         = { id = "io.karma.kmbed.kmbed-gradle-plugin"                             , version.ref = "kmbed" }
+ktembed-plugin                       = { id = "dev.ktool.ktembed"                                              , version.ref = "ktembed" }
 badass-jlink                         = { id = "org.beryx.jlink"                                                , version.ref = "badass-jlink" }
 badass-runtime                       = { id = "org.beryx.runtime"                                              , version.ref = "badass-runtime" }
 jlink-jib                            = { id = "com.ryandens.jlink-jib"                                         , version.ref = "jlink-jib" }
