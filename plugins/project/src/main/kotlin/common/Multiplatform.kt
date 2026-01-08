@@ -178,7 +178,6 @@ fun KotlinMultiplatformExtension.nativeTargets(
         )
       }
 
-      macosX64 { configureAll() }
       macosArm64 { configureAll() }
       linuxX64 { configureAll() }
       linuxArm64 { configureAll() }

@@ -35,7 +35,7 @@ kotlin {
   @OptIn(org.jetbrains.kotlin.gradle.dsl.abi.ExperimentalAbiValidation::class)
   abiValidation {
     enabled = false
-    filters { excluded { byNames.addAll("BuildConfig", $$"BuildConfig$Host") } }
+    filters { exclude.byNames.addAll("BuildConfig", $$"BuildConfig$Host") }
     klib { keepUnsupportedTargets = false }
   }
 
