@@ -9,10 +9,10 @@ plugins {
   org.graalvm.buildtools.native
 }
 
-val quickBuildEnabled = project.hasProperty("quick")
-val muslEnabled = project.hasProperty("musl")
-val reportsEnabled = project.hasProperty("reports")
-val agentEnabled = project.hasProperty("agent")
+val muslEnabled = gradleBooleanProp("musl")
+val reportsEnabled = gradleBooleanProp("reports")
+val quickBuildEnabled = gradleBooleanProp("quick")
+val agentEnabled = gradleBooleanProp("agent")
 
 // val semverExtn = extensions.getByType<SemverExtension>()
 
@@ -59,7 +59,7 @@ graalvmNative {
 
       if (Platform.isLinux) {
         when {
-          muslEnabled -> {
+          muslEnabled.get() -> {
             add("--static")
             add("--libc=musl")
             // add("-H:CCompilerOption=-Wl,-z,stack-size=2097152")
@@ -83,7 +83,7 @@ graalvmNative {
       }
 
       if (java.toolchain.vendor.get().matches("Oracle.*")) {
-        if (reportsEnabled) {
+        if (reportsEnabled.get()) {
           add("-H:+BuildReport")
         }
         // add("--enable-sbom=classpath,embed")
@@ -151,7 +151,7 @@ val niArchiveName
     append("-")
     append(project.version)
     append("-")
-    if (muslEnabled) {
+    if (muslEnabled.get()) {
       append("static-")
     }
     append(Platform.currentOS.id)
