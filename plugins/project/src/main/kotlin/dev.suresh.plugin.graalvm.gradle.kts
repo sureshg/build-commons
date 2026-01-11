@@ -21,7 +21,6 @@ graalvmNative {
     imageName = project.name
     useFatJar = false
     sharedLibrary = false
-    fallback = false
     verbose = debugEnabled
     quickBuild = quickBuildEnabled
     richOutput = true
