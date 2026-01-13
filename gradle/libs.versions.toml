@@ -38,6 +38,7 @@ kotlinx-browser                = "0.5.0"
 kotlinx-benchmark              = "0.4.15"
 kotlinx-fuzz                   = "0.2.2"
 kotlinx-metadata               = "0.9.0"
+kotlinx-schema                 = "0.0.3"
 kotlinx-reflect-lite           = "1.2.0-RC"
 kotlin-lincheck                = "3.4"
 kotlin-wrappers                = "2026.1.5"
@@ -317,6 +318,8 @@ kotlinx-io-filesystem                = { module = "org.jetbrains.kotlinx:kotlinx
 kotlinx-io-okio                      = { module = "org.jetbrains.kotlinx:kotlinx-io-okio"                           , version.ref = "kotlinx-io"}
 kotlinx-fuzz-jazzer                  = { module = "org.jetbrains:kotlinx.fuzz.jazzer"                               , version.ref = "kotlinx-fuzz"}
 kotlinx-reflect-lite                 = { module = "org.jetbrains.kotlinx:kotlinx.reflect.lite"                      , version.ref = "kotlinx-reflect-lite"}
+kotlinx-schema-ksp                   = { module = "org.jetbrains.kotlinx:kotlinx-schema-ksp"                        , version.ref = "kotlinx-schema"}
+kotlinx-schema-annotations           = { module = "org.jetbrains.kotlinx:kotlinx-schema-annotations"                , version.ref = "kotlinx-schema"}
 kotlinx-collections-immutable        = { module = "org.jetbrains.kotlinx:kotlinx-collections-immutable"             , version.ref = "kotlinx-collections-immutable"}
 kotlinx-html                         = { module = "org.jetbrains.kotlinx:kotlinx-html"                              , version.ref = "kotlinx-html"}
 kotlinx-browser                      = { module = "org.jetbrains.kotlinx:kotlinx-browser"                           , version.ref = "kotlinx-browser"}
