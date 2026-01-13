@@ -116,7 +116,7 @@ jmh                            = "1.37"
 mrjar                          = "0.1.1"
 ktfmt                          = "0.61"
 google-javaformat              = "1.33.0"
-palantir-javaformat            = "2.83.0"
+palantir-javaformat            = "2.84.0"
 google-auto-value              = "1.11.1"
 google-auto-service            = "1.1.1"
 google-tink                    = "1.20.0"
@@ -245,7 +245,7 @@ swagger-style                  = "https://unpkg.com/swagger-ui-themes@3.0.1/them
 
 # Plugin versions
 benmanes                       = "0.53.0"
-caupain                        = "1.7.1"
+caupain                        = "1.8.0"
 foojay-resolver                = "1.0.0"
 gradle-develocity              = "4.3"
 nmcp                           = "1.4.3"
