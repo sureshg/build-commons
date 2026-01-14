@@ -320,6 +320,7 @@ kotlinx-fuzz-jazzer                  = { module = "org.jetbrains:kotlinx.fuzz.ja
 kotlinx-reflect-lite                 = { module = "org.jetbrains.kotlinx:kotlinx.reflect.lite"                      , version.ref = "kotlinx-reflect-lite"}
 kotlinx-schema-ksp                   = { module = "org.jetbrains.kotlinx:kotlinx-schema-ksp"                        , version.ref = "kotlinx-schema"}
 kotlinx-schema-annotations           = { module = "org.jetbrains.kotlinx:kotlinx-schema-annotations"                , version.ref = "kotlinx-schema"}
+kotlinx-schema-json                  = { module = "org.jetbrains.kotlinx:kotlinx-schema-json"                       , version.ref = "kotlinx-schema"}
 kotlinx-collections-immutable        = { module = "org.jetbrains.kotlinx:kotlinx-collections-immutable"             , version.ref = "kotlinx-collections-immutable"}
 kotlinx-html                         = { module = "org.jetbrains.kotlinx:kotlinx-html"                              , version.ref = "kotlinx-html"}
 kotlinx-browser                      = { module = "org.jetbrains.kotlinx:kotlinx-browser"                           , version.ref = "kotlinx-browser"}
