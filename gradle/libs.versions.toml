@@ -256,7 +256,7 @@ gradle-publish                 = "2.0.0"
 shadow                         = "9.3.1"
 spotless                       = "8.1.0"
 semver-plugin                  = "0.9.0"
-gratatouille                   = "0.2.1"
+gratatouille                   = "0.2.2"
 kmpmt                          = "0.1.1"
 tasktree                       = "4.0.1"
 sigstore                       = "2.0.0"
@@ -403,16 +403,18 @@ ktor-client-encoding                 = { module = "io.ktor:ktor-client-encoding"
 ktor-client-mock                     = { module = "io.ktor:ktor-client-mock"                                        , version.ref = "ktor"}
 
 # krpc
-kotlinx-rpc-bom                         = { module = "org.jetbrains.kotlinx:kotlinx-rpc-bom"                        , version.ref = "kotlinx-rpc"}
-kotlinx-rpc-krpc-server                 = { module = "org.jetbrains.kotlinx:kotlinx-rpc-krpc-server"                , version.ref = "kotlinx-rpc"}
-kotlinx-rpc-krpc-client                 = { module = "org.jetbrains.kotlinx:kotlinx-rpc-krpc-client"                , version.ref = "kotlinx-rpc"}
-
-kotlinx-rpc-runtime                     = { module = "org.jetbrains.kotlinx:kotlinx-rpc-runtime"                    , version.ref = "kotlinx-rpc"}
-kotlinx-rpc-runtime-client              = { module = "org.jetbrains.kotlinx:kotlinx-rpc-runtime-client"             , version.ref = "kotlinx-rpc"}
-kotlinx-rpc-runtime-server              = { module = "org.jetbrains.kotlinx:kotlinx-rpc-runtime-server"             , version.ref = "kotlinx-rpc"}
-kotlinx-rpc-transport-ktor-client       = { module = "org.jetbrains.kotlinx:kotlinx-rpc-transport-ktor-client"      , version.ref = "kotlinx-rpc"}
-kotlinx-rpc-transport-ktor-server       = { module = "org.jetbrains.kotlinx:kotlinx-rpc-transport-ktor-server"      , version.ref = "kotlinx-rpc"}
-kotlinx-rpc-runtime-serialization-json  = { module = "org.jetbrains.kotlinx:kotlinx-rpc-runtime-serialization-json" , version.ref = "kotlinx-rpc"}
+kotlinx-rpc-bom                     = { module = "org.jetbrains.kotlinx:kotlinx-rpc-bom"                            , version.ref = "kotlinx-rpc"}
+kotlinx-rpc-core                    = { module = "org.jetbrains.kotlinx:kotlinx-rpc-core"                           , version.ref = "kotlinx-rpc"}
+kotlinx-rpc-krpc-core               = { module = "org.jetbrains.kotlinx:kotlinx-rpc-krpc-core"                      , version.ref = "kotlinx-rpc"}
+kotlinx-rpc-krpc-client             = { module = "org.jetbrains.kotlinx:kotlinx-rpc-krpc-client"                    , version.ref = "kotlinx-rpc"}
+kotlinx-rpc-krpc-server             = { module = "org.jetbrains.kotlinx:kotlinx-rpc-krpc-server"                    , version.ref = "kotlinx-rpc"}
+kotlinx-rpc-krpc-ktor-core          = { module = "org.jetbrains.kotlinx:kotlinx-rpc-krpc-ktor-core"                 , version.ref = "kotlinx-rpc"}
+kotlinx-rpc-krpc-ktor-client        = { module = "org.jetbrains.kotlinx:kotlinx-rpc-krpc-ktor-client"               , version.ref = "kotlinx-rpc"}
+kotlinx-rpc-krpc-ktor-server        = { module = "org.jetbrains.kotlinx:kotlinx-rpc-krpc-ktor-server"               , version.ref = "kotlinx-rpc"}
+kotlinx-rpc-krpc-ser-core           = { module = "org.jetbrains.kotlinx:kotlinx-rpc-krpc-serialization-core"        , version.ref = "kotlinx-rpc"}
+kotlinx-rpc-krpc-ser-cbor           = { module = "org.jetbrains.kotlinx:kotlinx-rpc-krpc-serialization-cbor"        , version.ref = "kotlinx-rpc"}
+kotlinx-rpc-krpc-ser-json           = { module = "org.jetbrains.kotlinx:kotlinx-rpc-krpc-serialization-json"        , version.ref = "kotlinx-rpc"}
+kotlinx-rpc-krpc-ser-protobuf       = { module = "org.jetbrains.kotlinx:kotlinx-rpc-krpc-serialization-protobuf"    , version.ref = "kotlinx-rpc"}
 
 evas                                 = { module = "io.sellmair:evas"                                           , version.ref = "evas"}
 konsist                              = { module = "com.lemonappdev:konsist"                                    , version.ref = "konsist" }
