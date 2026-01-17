@@ -421,6 +421,7 @@ fun KotlinCommonCompilerOptions.configureKotlinCommon(project: Project) =
           "-Xcontext-sensitive-resolution",
           "-Xannotation-default-target=param-property",
           "-Xdata-flow-based-exhaustiveness",
+          "-Xexplicit-backing-fields",
           // "-Xskip-prerelease-check",
           // "-Xsuppress-version-warnings",
           // "-P",
