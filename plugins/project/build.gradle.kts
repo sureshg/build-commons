@@ -1,7 +1,6 @@
 @file:Suppress("UnstableApiUsage")
 
 import common.*
-import gg.jte.gradle.GenerateJteTask
 
 plugins {
   plugin.kotlin.dsl
@@ -66,17 +65,6 @@ gradlePlugin {
 
     // val settingsPlugin by registering {}
   }
-}
-
-tasks {
-  withType<GenerateJteTask>().configureEach { mustRunAfter("sourcesJar") }
-
-  // Include the generated catalog accessors to the final jar
-  // named<Jar>("jar") {
-  //    from(sourceSets.main.get().output)
-  //    from(files(libs.javaClass.superclass.protectionDomain.codeSource.location))
-  //    archiveClassifier = ""
-  // }
 }
 
 dependencies {
