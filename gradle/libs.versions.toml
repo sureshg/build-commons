@@ -342,6 +342,7 @@ kotlin-cryptography-optimal          = { module = "dev.whyoleg.cryptography:cryp
 kotlin-base32                        = { module = "com.osmerion.kotlin:kotlin-base32"                               , version.ref = "kotlin-base32"}
 jspecify                             = { module = "org.jspecify:jspecify"                                           , version.ref = "jspecify"}
 kmpmt                                = { module = "com.jakewharton.kmpmt:kmpmt-gradle-plugin"                       , version.ref = "kmpmt" }
+dokka-playground-samples-plugin      = { module = "org.jetbrains.dokka:kotlin-playground-samples-plugin"            , version.ref = "kotlin-dokka" }
 
 ktor-bom                             = { module = "io.ktor:ktor-bom"                                                , version.ref = "ktor"}
 ktor-serialization                   = { module = "io.ktor:ktor-serialization"                                      , version.ref = "ktor"}
