@@ -24,7 +24,7 @@ bc-plugins                     = "2.32.0"
 kotlinx-kover                  = "0.9.4"
 kotlin-dokka                   = "2.2.0-Beta"
 kotlinx-io                     = "0.8.2"
-kotlinx-atomicfu               = "0.30.0"
+kotlinx-atomicfu               = "0.31.0"
 kotlinx-coroutines             = "1.10.2"
 kotlinx-datetime               = "0.7.1"
 kotlinx-datetime-zoneinfo      = "2025c-spi.0.7.1"
@@ -102,7 +102,7 @@ oshi                           = "6.9.2"
 junit                          = "6.1.0-M1"
 koin                           = "4.2.0-beta4"
 metro                          = "0.4.0"
-kotest                         = "6.1.0"
+kotest                         = "6.1.1"
 mockk                          = "1.14.7"
 mokkery                        = "3.1.1"
 wiremock                       = "4.0.0-beta.25"
@@ -215,6 +215,8 @@ angus-mail                     = "2.1.0-M1"
 simplemail                     = "8.12.6"
 javelit                        = "0.79.0"
 jwalker                        = "1.1.0"
+hashsmith                      = "0.1.8"
+tui4j                          = "0.3.0"
 
 # Compose
 compose                        = "1.11.0-alpha01"
@@ -735,6 +737,8 @@ voices-openvoice-phonemizer          = { module = "org.pitest.voices:openvoice-p
 onnxruntime                          = { module = "com.microsoft.onnxruntime:onnxruntime"                                   , version.ref = "onnx" }
 onnxruntime-gpu                      = { module = "com.microsoft.onnxruntime:onnxruntime_gpu"                               , version.ref = "onnx" }
 jwalker                              = { module = "io.github.epieffe:jwalker"                                               , version.ref = "jwalker" }
+hashsmith                            = { module = "io.github.bluuewhale:hashsmith"                                          , version.ref = "hashsmith" }
+tui4j                                = { module = "com.williamcallahan:tui4j"                                               , version.ref = "tui4j" }
 
 # Social
 ozone-bluesky                        = { module = "sh.christian.ozone:bluesky"                                              , version.ref = "bluesky-ozone"}
