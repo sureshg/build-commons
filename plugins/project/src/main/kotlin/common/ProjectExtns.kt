@@ -552,8 +552,12 @@ fun TestLoggingContainer.configureLogEvents() {
 }
 
 fun KotlinJsCompilerOptions.configureKotlinJs() {
-  freeCompilerArgs.addAll("-Xir-per-file", "-Xes-long-as-bigint")
   target = "es2015"
+  freeCompilerArgs.addAll(
+      "-Xir-per-file",
+      "-Xes-long-as-bigint",
+      "-Xenable-suspend-function-exporting",
+  )
   optIn.addAll("kotlin.js.ExperimentalJsExport", "kotlin.js.ExperimentalWasmJsInterop")
   // sourceMap = true
   // sourceMapEmbedSources = "always"
