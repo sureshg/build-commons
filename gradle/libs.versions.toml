@@ -365,6 +365,7 @@ ktor-server-openapi                  = { module = "io.ktor:ktor-server-openapi" 
 ktor-server-routing-openapi          = { module = "io.ktor:ktor-server-routing-openapi"                             , version.ref = "ktor"}
 ktor-server-http-redirect            = { module = "io.ktor:ktor-server-http-redirect"                               , version.ref = "ktor"}
 ktor-server-compression              = { module = "io.ktor:ktor-server-compression"                                 , version.ref = "ktor"}
+ktor-server-compression-zstd         = { module = "io.ktor:ktor-server-compression-zstd"                            , version.ref = "ktor"}
 ktor-server-sessions                 = { module = "io.ktor:ktor-server-sessions"                                    , version.ref = "ktor"}
 ktor-server-rate-limit               = { module = "io.ktor:ktor-server-rate-limit"                                  , version.ref = "ktor"}
 ktor-server-double-receive           = { module = "io.ktor:ktor-server-double-receive"                              , version.ref = "ktor"}
