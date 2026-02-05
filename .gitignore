@@ -29,3 +29,7 @@ jre/
 
 # Gradle release
 cx.json
+
+# AI Assistants
+.claude/
+.junie/
