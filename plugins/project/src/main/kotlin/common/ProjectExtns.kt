@@ -496,29 +496,37 @@ fun Test.configureJavaTest() {
   // timeout = 10.minutes.toJavaDuration()
   // filter { setExcludePatterns() }
 
-  afterSuite(
-      KotlinClosure2({ desc: TestDescriptor, result: TestResult ->
-        if (desc.parent == null) { // will match the outermost suite
-          val status =
-              when {
-                result.failedTestCount > 0 -> "❌ FAILED"
-                result.skippedTestCount == result.testCount -> "⚠️SKIPPED"
-                else -> "✅ PASSED"
-              }
-          println(
-              """
-              |
-              |Test Results: $status
-              |━━━━━━━━━━━━━━━━━━━━━━━
-              |Total    : ${result.testCount}
-              |Passed   : ${result.successfulTestCount}
-              |Failed   : ${result.failedTestCount}
-              |Skipped  : ${result.skippedTestCount}
-              |"""
-                  .trimMargin()
-          )
+  addTestListener(
+      object : TestListener {
+        override fun beforeSuite(suite: TestDescriptor) {
+          if (suite.parent == null) {
+            println("\n🧪 Starting test suite: ${suite.displayName}")
+          }
         }
-      })
+
+        override fun afterSuite(desc: TestDescriptor, result: TestResult) {
+          if (desc.parent == null) { // will match the outermost suite
+            val status =
+                when {
+                  result.failedTestCount > 0 -> "❌ FAILED"
+                  result.skippedTestCount == result.testCount -> "⚠️SKIPPED"
+                  else -> "✅ PASSED"
+                }
+            println(
+                """
+                |
+                |Test Results: $status
+                |━━━━━━━━━━━━━━━━━━━━━━━
+                |Total    : ${result.testCount}
+                |Passed   : ${result.successfulTestCount}
+                |Failed   : ${result.failedTestCount}
+                |Skipped  : ${result.skippedTestCount}
+                |"""
+                    .trimMargin()
+            )
+          }
+        }
+      }
   )
 }
 
@@ -675,7 +683,7 @@ fun Project.versionCatalogMapOf(name: String = "libs") = run {
  */
 fun Project.printVersionCatalog() {
   if (debugEnabled) {
-    catalogs.catalogNames.map { cat ->
+    catalogs.catalogNames.forEach { cat ->
       println("=== Catalog $cat ===")
       val catalog = catalogs.named(cat)
       catalog.versionAliases.forEach { alias ->

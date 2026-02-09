@@ -54,10 +54,7 @@ dokka {
     externalDocumentationLinks {
       register("kotlinx.coroutines") { url("https://kotlinlang.org/api/kotlinx.coroutines/") }
       register("kotlinx.serialization") { url("https://kotlinlang.org/api/kotlinx.serialization/") }
-      register("kotlinx-datetime") {
-        url("https://kotlinlang.org/api/kotlinx-datetime/")
-        packageListUrl("https://kotlinlang.org/api/kotlinx-datetime/kotlinx-datetime/package-list")
-      }
+      register("kotlinx-datetime") { url("https://kotlinlang.org/api/kotlinx-datetime/") }
       register("ktor") { url("https://api.ktor.io/") }
     }
 
