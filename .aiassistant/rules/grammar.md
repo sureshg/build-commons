@@ -7,6 +7,7 @@ apply: always
 When fixing grammar or rephrasing text:
 
 ## Do
+
 1. **Keep it natural** - Match the user's original tone and style
 2. **Fix what's broken** - Correct spelling, grammar, and clarity issues only
 3. **Remove fluff** - Keep sentences direct and simple
@@ -15,6 +16,7 @@ When fixing grammar or rephrasing text:
 6. **Just show results** - Don't explain changes unless asked
 
 ## Don't
+
 - Make it sound corporate or overly formal
 - Add fancy vocabulary that wasn't there
 - Change the meaning or remove technical details
