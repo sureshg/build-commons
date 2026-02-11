@@ -24,12 +24,12 @@ build-commons/
 
 ## Commands
 
-| Command | Purpose |
-|---------|---------|
-| `./gradlew build` | Build all modules |
-| `./gradlew publishToMavenLocal` | Publish plugins locally |
-| `./gradlew -p sandbox :build` | Test plugins with sandbox |
-| `caupain --no-cache` | Check dependency updates |
+| Command                         | Purpose                   |
+|---------------------------------|---------------------------|
+| `./gradlew build`               | Build all modules         |
+| `./gradlew publishToMavenLocal` | Publish plugins locally   |
+| `./gradlew -p sandbox :build`   | Test plugins with sandbox |
+| `caupain --no-cache`            | Check dependency updates  |
 
 ## Testing
 
@@ -68,13 +68,13 @@ When updating `gradle/libs.versions.toml`:
 
 ## Key Plugins
 
-| Plugin ID | Purpose |
-|-----------|---------|
-| `dev.suresh.plugin.root` | Root project configuration |
-| `dev.suresh.plugin.kotlin.jvm` | Kotlin JVM projects |
-| `dev.suresh.plugin.kotlin.mpp` | Kotlin Multiplatform |
-| `dev.suresh.plugin.publishing` | Maven Central publishing |
-| `dev.suresh.plugin.graalvm` | GraalVM native-image |
+| Plugin ID                      | Purpose                    |
+|--------------------------------|----------------------------|
+| `dev.suresh.plugin.root`       | Root project configuration |
+| `dev.suresh.plugin.kotlin.jvm` | Kotlin JVM projects        |
+| `dev.suresh.plugin.kotlin.mpp` | Kotlin Multiplatform       |
+| `dev.suresh.plugin.publishing` | Maven Central publishing   |
+| `dev.suresh.plugin.graalvm`    | GraalVM native-image       |
 
 ## PR Guidelines
 
@@ -94,8 +94,8 @@ When updating `gradle/libs.versions.toml`:
 
 See `.aiassistant/rules/` for comprehensive instructions:
 
-| File | Purpose |
-|------|---------|
-| `kotlin.md` | Kotlin coding standards, multiplatform patterns |
-| `version-updates.md` | Version catalog update process |
-| `grammar.md` | Writing and grammar style guidelines |
+| File                 | Purpose                                         |
+|----------------------|-------------------------------------------------|
+| `kotlin.md`          | Kotlin coding standards, multiplatform patterns |
+| `version-updates.md` | Version catalog update process                  |
+| `grammar.md`         | Writing and grammar style guidelines            |
