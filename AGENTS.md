@@ -33,20 +33,11 @@ build-commons/
 
 ## Testing
 
-1. **Always test changes** using the sandbox project:
+1. Use the sandbox project:
+
    ```bash
    ./gradlew publishToMavenLocal
    ./gradlew -p sandbox :build
-   ```
-
-2. **Verify plugin behavior** by running sandbox tasks:
-   ```bash
-   ./gradlew -p sandbox :dependencyUpdates --no-parallel
-   ```
-
-3. **Check task graph** for build verification:
-   ```bash
-   ./gradlew build --task-graph
    ```
 
 ## Code Style

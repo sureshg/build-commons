@@ -56,7 +56,8 @@ Kotlin/Java projects, handling the boilerplate and common tasks so you can get s
 * Import the Gradle project. The initial sync may take some time as it downloads all dependencies.
 
 > [!IMPORTANT]
-> For the best and fastest experience, use the latest version of [IntelliJ IDEA](https://www.jetbrains.com/idea/download).
+> For the best and fastest experience, use the latest version
+> of [IntelliJ IDEA](https://www.jetbrains.com/idea/download).
 > Upgrade now!
 
 ## Build & Testing
@@ -64,8 +65,8 @@ Kotlin/Java projects, handling the boilerplate and common tasks so you can get s
   ```bash
   $ ./gradlew build
 
-  # Check dependency updates
-  $ caupain
+  # Update the dependencies
+  $ junie --guidelines-filename=.aiassistant/rules/version-updates.md "Update the dependency versions"
 
   # OR
   $ ./gradlew dependencyUpdates --no-parallel
