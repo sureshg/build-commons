@@ -17,6 +17,7 @@ Run `caupain --no-cache` to update the version catalog.
 1. Only update version values in the `[versions]` section
 2. Preserve exact formatting (quotes, spacing, alignment, line order)
 3. Never modify `.gradle.kts` or `.gradle` build files
+4. Never run Gradle builds for validation — just apply the version catalog changes
 
 ## Example
 ```toml
