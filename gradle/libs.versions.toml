@@ -157,6 +157,7 @@ hoplite                        = "3.0.0.RC1"
 config4k                       = "0.7.0"
 shedlock                       = "7.6.0"
 sherlock                       = "1.0.3"
+delayedqueue                   = "0.5.1"
 sqids                          = "0.1.0"
 tsid                           = "2.1.4"
 expiringmap                    = "0.5.11"
@@ -489,6 +490,7 @@ shedlock-jdbc                        = { module = "net.javacrumbs.shedlock:shedl
 sherlock-sql                         = { module = "com.coditory.sherlock:sherlock-sql"                         , version.ref = "sherlock"}
 config4k                             = { module = "io.github.config4k:config4k"                                , version.ref = "config4k"}
 hoplite-hocon                        = { module = "com.sksamuel.hoplite:hoplite-hocon"                         , version.ref = "hoplite"}
+delayedqueue-jvm                     = { module = "org.funfix:delayedqueue-jvm"                                , version.ref = "delayedqueue"}
 expiringmap                          = { module = "net.jodah:expiringmap"                                      , version.ref = "expiringmap"}
 password4j                           = { module = "com.password4j:password4j"                                  , version.ref = "password4j"}
 otp-java                             = { module = "com.github.bastiaanjansen:otp-java"                         , version.ref = "otp"}
