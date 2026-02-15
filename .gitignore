@@ -1,17 +1,10 @@
 # Mac OSX
 .DS_Store
 
-# IntelliJ IDEA
+# JetBrains
 .idea/
 *.iml
 out/
-
-# Gradle
-.gradle
-build
-reports
-!docs/reports
-!gradle-wrapper.jar
 
 # Java
 hs_err_pid*
@@ -23,13 +16,23 @@ jre/
 # Kotlin
 **/.kotlin
 
+# Gradle
+.gradle
+build
+reports
+!docs/reports
+!gradle-wrapper.jar
+cx.json
+
 # Kobweb ignores
 **/.kobweb/*
 !**/.kobweb/conf.yaml
 
-# Gradle release
-cx.json
-
-# AI Assistants
-.claude/
+# AI Agents & Tools
 .junie/
+.claude/settings.local.json
+.claude/statsig/
+.claude/todos/
+CLAUDE.local.md
+.codex/
+.cursor/
