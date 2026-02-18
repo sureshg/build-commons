@@ -98,8 +98,7 @@ kotlin {
 Copy [gradle/libs.versions.toml](gradle/libs.versions.toml) and update the project-related metadata
 (`group`, `app-mainclass`, etc.).
 
-> [!IMPORTANT]
-> **Don't change** the existing version names in the catalog as they are referenced by the plugins.
+⚠️ **Don't change** the existing version names in the catalog as they are referenced by the plugins.
 
 </details>
 
