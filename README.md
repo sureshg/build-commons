@@ -5,187 +5,161 @@
 [![OpenJDK Version][java_img]][java_url]
 [![Kotlin release][kt_img]][kt_url]
 
-Gradle project and settings [plugins](https://docs.gradle.org/current/samples/sample_convention_plugins.html) that
-simplify bootstrapping `Kotlin/Java` projects targeting JVM, Multiplatform (Native/JS/Wasm/Wasi), and GraalVM
-native-image. These plugins handle configuring the most common build tasks, including:
+Gradle convention [plugins](https://docs.gradle.org/current/samples/sample_convention_plugins.html) that simplify
+bootstrapping **Kotlin/Java** projects targeting JVM, Multiplatform (Native/JS/Wasm/Wasi), and GraalVM native-image.
+Focus on writing code — these plugins handle the rest:
 
-* `Maven Central` & `GHCR` publishing for artifacts & container images (`Jib`)
-* Code coverage for `JVM` and `Kotlin Multiplatform` projects
-* Project versioning (`SemVer`) based on `Git tags`
-* Code formatting to enforce consistent code style
-* Artifact signing
-* Java/Kotlin toolchain configuration
-* Target platform (`JVM`, `JS`, `WASM`, `WASI`, `Native`) configuration
-* Testing & reports
-* `KSP` & annotation processors
-* `GraalVM Native` image
-* Documentation (`JavaDoc`, `Dokka`)
-* Benchmarking (`JMH`)
-* Binary compatibility (`ABI`) validation
-* Deprecated API scanning (using `jdeprscan`)
-* Building truly executable JAR files
-* Build configuration generation
-* Version catalog to control artifact versions and build configurations
-* Automatic configuration of essential dependencies such as:
-    * `kotlinx-datetime`
-    * `kotlinx-coroutines`
-    * `ktor-client`
-    * `kotlinx-serialization`
-    * `kotlinx-io`
-    * `Logging`
-* Automatic configuration of `compiler plugins` such as:
-    * `redacted`
-    * `kopy`
-    * `power-assert`
-    * `atomicfu`
-    * `dataframe`
-* And many other common build tasks
+- **Publishing** — Maven Central, GHCR, container images (Jib), artifact signing
+- **Build & Toolchain** — Java/Kotlin toolchain, target platforms (JVM, JS, WASM, WASI, Native), build config generation
+- **Coverage, Formatting & ABI** — Code coverage (JVM & KMP), code formatting, binary compatibility (ABI) validation,
+  deprecated API scanning (`jdeprscan`)
+- **Versioning** — SemVer based on Git tags
+- **Testing & Docs** — Testing, reports, JavaDoc, Dokka
+- **Benchmarking** — JMH benchmarking via [kotlinx-benchmark](https://github.com/Kotlin/kotlinx-benchmark)
+- **Processors** — KSP & annotation processors, GraalVM native-image, executable JARs
+- **Version Catalog** — Controls artifact versions and build configurations
+- **Auto-configured Dependencies** — `kotlinx-datetime`, `kotlinx-coroutines`, `ktor-client`, `kotlinx-serialization`,
+  `kotlinx-io`, logging
+- **Auto-configured Compiler Plugins** — `redacted`, `kopy`, `power-assert`, `atomicfu`, `dataframe`
 
-These plugins help you focus on writing code, not configuring your build. They provide a solid foundation for your
-Kotlin/Java projects, handling the boilerplate and common tasks so you can get started quickly.
+## 🔌 Published Plugins
 
-## Development Environment Setup
+- `dev.suresh.plugin.root` — Root project configuration and shared settings
+- `dev.suresh.plugin.common` — Common conventions for all subprojects
+- `dev.suresh.plugin.kotlin.jvm` — Kotlin JVM project setup
+- `dev.suresh.plugin.kotlin.mpp` — Kotlin Multiplatform project setup
+- `dev.suresh.plugin.graalvm` — GraalVM native-image support
+- `dev.suresh.plugin.kotlin.docs` — Documentation generation (Dokka)
+- `dev.suresh.plugin.kotlin.benchmark` — JMH benchmarking support
+- `dev.suresh.plugin.publishing` — Maven Central publishing and signing
+- `dev.suresh.plugin.repos` — Repository configuration (settings plugin)
+- `dev.suresh.plugin.catalog` — Version catalog management
 
-* Install Java 25 or later
+## 🚀 How to Use
 
-  ```bash
-  $ curl -s "https://get.sdkman.io" | bash
-  $ sdk i java 25.0.1-zulu
-  ```
+<details>
+<summary><b>1. Configure <code>settings.gradle.kts</code></b></summary>
 
-* Import the Gradle project. The initial sync may take some time as it downloads all dependencies.
-
-> [!IMPORTANT]
-> For the best and fastest experience, use the latest version
-> of [IntelliJ IDEA](https://www.jetbrains.com/idea/download).
-> Upgrade now!
-
-## Build & Testing
-
-  ```bash
-  $ ./gradlew build
-
-  # Update the dependencies
-  $ junie --guidelines-filename=.aiassistant/rules/version-updates.md "Update the dependency versions"
-
-  # OR
-  $ ./gradlew dependencyUpdates --no-parallel
-  ```
-
-For testing, a separate [sandbox project](/sandbox) is available with the plugin and version catalog applied in
-`settings.gradle.kts`. First, publish the plugin to the local Maven repository, then run the sandbox project.
-
-   ```bash
-   # Publish the plugins to Maven local
-   $ ./gradlew publishToMavenLocal
-
-   # Build the sandbox app using the published plugin
-   $ ./gradlew -p sandbox :build
-   $ sandbox/build/libs/sandbox
-
-   # Show task graph
-   $ ./gradlew build  --task-graph
-
-   # Run other plugin tasks
-   $ ./gradlew -p sandbox :dependencyUpdates --no-parallel
-
-   # To see the plugin classpath
-   $ ./gradlew -p sandbox :buildEnvironment | grep -i "dev.suresh"
-   ```
-
-## Publishing
-
-Push a new tag to trigger the release workflow and publish the plugin
-to [Maven Central](https://repo.maven.apache.org/maven2/dev/suresh/build/). That's it! 🎉
-The next version will be based on the semantic version scope (`major`, `minor`, `patch`).
-
-   ```bash
-   $ ./gradlew pushSemverTag "-Psemver.scope=patch"
-
-   # To see the current version
-   # ./gradlew v
-
-   # Print the new version
-   # ./gradlew printSemver "-Psemver.scope=patch"
-
-   # For a specific version
-   # git tag -am "v1.2.3 release" v1.2.3
-   # git push origin --tags
-   ```
-
-## Published Plugins
-
-| **Gradle Plugin ID**                 | **Version**                                                                                                                                                                             |
-|--------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `dev.suresh.plugin.root`             | [![](https://img.shields.io/maven-central/v/dev.suresh.plugin.root/dev.suresh.plugin.root.gradle.plugin?logo=gradle&logoColor=white&color=00B4E6)][plugins_url]                         |
-| `dev.suresh.plugin.common`           | [![](https://img.shields.io/maven-central/v/dev.suresh.plugin.common/dev.suresh.plugin.common.gradle.plugin?logo=gradle&logoColor=white&color=00B4E6)][plugins_url]                     |
-| `dev.suresh.plugin.graalvm`          | [![](https://img.shields.io/maven-central/v/dev.suresh.plugin.graalvm/dev.suresh.plugin.graalvm.gradle.plugin?logo=gradle&logoColor=white&color=00B4E6)][plugins_url]                   |
-| `dev.suresh.plugin.kotlin.jvm`       | [![](https://img.shields.io/maven-central/v/dev.suresh.plugin.kotlin.jvm/dev.suresh.plugin.kotlin.jvm.gradle.plugin?logo=gradle&logoColor=white&color=00B4E6)][plugins_url]             |
-| `dev.suresh.plugin.kotlin.mpp`       | [![](https://img.shields.io/maven-central/v/dev.suresh.plugin.kotlin.mpp/dev.suresh.plugin.kotlin.mpp.gradle.plugin?logo=gradle&logoColor=white&color=00B4E6)][plugins_url]             |
-| `dev.suresh.plugin.kotlin.docs`      | [![](https://img.shields.io/maven-central/v/dev.suresh.plugin.kotlin.docs/dev.suresh.plugin.kotlin.docs.gradle.plugin?logo=gradle&logoColor=white&color=00B4E6)][plugins_url]           |
-| `dev.suresh.plugin.kotlin.benchmark` | [![](https://img.shields.io/maven-central/v/dev.suresh.plugin.kotlin.benchmark/dev.suresh.plugin.kotlin.benchmark.gradle.plugin?logo=gradle&logoColor=white&color=00B4E6)][plugins_url] |
-| `dev.suresh.plugin.publishing`       | [![](https://img.shields.io/maven-central/v/dev.suresh.plugin.publishing/dev.suresh.plugin.publishing.gradle.plugin?logo=gradle&logoColor=white&color=00B4E6)][plugins_url]             |
-| `dev.suresh.plugin.repos`            | [![](https://img.shields.io/maven-central/v/dev.suresh.plugin.repos/dev.suresh.plugin.repos.gradle.plugin?logo=gradle&logoColor=white&color=00B4E6)][plugins_url]                       |
-| `dev.suresh.plugin.catalog`          | [![](https://img.shields.io/maven-central/v/dev.suresh.plugin.catalog/dev.suresh.plugin.catalog.gradle.plugin?logo=gradle&logoColor=white&color=00B4E6)][plugins_url]                   |
-
-## How to Use
-
-- Apply the following configuration to `settings.gradle.kts` of your project:
-
-   ```kotlin
-    pluginManagement {
-       resolutionStrategy {
-         eachPlugin {
-           if (requested.id.id.startsWith("dev.suresh.plugin")) {
-             useVersion("<plugin version>")
-           }
-         }
-       }
-
-       repositories {
-         gradlePluginPortal()
-         mavenCentral()
-       }
+```kotlin
+pluginManagement {
+    resolutionStrategy {
+        eachPlugin {
+            if (requested.id.id.startsWith("dev.suresh.plugin")) {
+                useVersion("<plugin version>")
+            }
+        }
     }
 
-    plugins { id("dev.suresh.plugin.repos") }
-   ```
+    repositories {
+        gradlePluginPortal()
+        mavenCentral()
+    }
+}
 
-- Apply the required plugins to your `root` or `sub` project `build.gradle.kts`:
+plugins { id("dev.suresh.plugin.repos") }
+```
 
-  ```kotlin
-  // Kotlin JVM
-  plugins {
+</details>
+
+<details>
+<summary><b>2. Apply plugins in <code>build.gradle.kts</code></b></summary>
+
+```kotlin
+// Kotlin JVM
+plugins {
     id("dev.suresh.plugin.root")
     id("dev.suresh.plugin.kotlin.jvm")
     id("dev.suresh.plugin.publishing")
     // id("dev.suresh.plugin.graalvm")
     application
-  }
+}
 
-  // Kotlin Multiplatform
-  plugins {
+// Kotlin Multiplatform
+plugins {
     id("dev.suresh.plugin.root")
     id("dev.suresh.plugin.kotlin.mpp")
     id("dev.suresh.plugin.publishing")
-  }
+}
 
-  kotlin {
+kotlin {
     jvmTarget(project)
     jsTarget(project)
     wasmJsTarget(project)
     wasmWasiTarget(project)
     nativeTargets(project) {}
-  }
-  ```
+}
+```
 
-- Use the version catalog by copying [gradle/libs.versions.toml](gradle/libs.versions.toml) and changing the
-  project-related metadata like `group`, `app-mainclass`, etc.
+</details>
+
+<details>
+<summary><b>3. Set up the version catalog</b></summary>
+
+Copy [gradle/libs.versions.toml](gradle/libs.versions.toml) and update the project-related metadata
+(`group`, `app-mainclass`, etc.).
 
 > [!IMPORTANT]
 > **Don't change** the existing version names in the catalog as they are referenced by the plugins.
 
-## Verifying Artifacts
+</details>
+
+## 🏗️ Build & Test
+
+> [!IMPORTANT]
+> Requires Java **25+** (`sdk i java 25.0.1-zulu`) and the
+> latest [IntelliJ IDEA](https://www.jetbrains.com/idea/download).
+
+```bash
+# Build all modules
+$ ./gradlew build
+
+# Update dependencies
+$ junie --guidelines-filename=.aiassistant/rules/version-updates.md "Update the dependency versions"
+# OR
+$ ./gradlew dependencyUpdates --no-parallel
+```
+
+A separate [sandbox project](/sandbox) is available for testing with the plugins applied:
+
+```bash
+# Publish plugins to Maven local
+$ ./gradlew publishToMavenLocal
+
+# Build the sandbox app
+$ ./gradlew -p sandbox :build
+$ sandbox/build/libs/sandbox
+
+# Show task graph
+$ ./gradlew build --task-graph
+
+# Run other plugin tasks
+$ ./gradlew -p sandbox :dependencyUpdates --no-parallel
+
+# See the plugin classpath
+$ ./gradlew -p sandbox :buildEnvironment | grep -i "dev.suresh"
+```
+
+## 📦 Publishing a Release
+
+Push a new tag to trigger the release workflow and publish
+to [Maven Central](https://repo.maven.apache.org/maven2/dev/suresh/build/). The next version is based on the semantic
+version scope (`major`, `minor`, `patch`).
+
+```bash
+$ ./gradlew pushSemverTag "-Psemver.scope=patch"
+
+# See the current version
+# $ ./gradlew v
+
+# Print the new version
+# $ ./gradlew printSemver "-Psemver.scope=patch"
+
+# For a specific version
+# $ git tag -am "v1.2.3 release" v1.2.3
+# $ git push origin --tags
+```
+
+### Verifying Artifacts
 
 The published artifacts are signed using this [key][signing_key]. The best way to verify artifacts
 is [automatically with Gradle][gradle_verification].
@@ -193,7 +167,6 @@ is [automatically with Gradle][gradle_verification].
 [gradle_verification]: https://docs.gradle.org/current/userguide/dependency_verification.html#sec:signature-verification
 
 [signing_key]: https://keyserver.ubuntu.com/pks/lookup?op=get&search=0xc124db3a8ad1c13f7153decdf209c085c8b53ca1
-
 
 <details>
 <summary>Misc</summary>
@@ -219,7 +192,7 @@ is [automatically with Gradle][gradle_verification].
 
 </details>
 
-## References
+## 📚 References
 
 - [Kotlin DSL Plugin](https://docs.gradle.org/current/userguide/kotlin_dsl.html#sec:kotlin-dsl_plugin)
 - [Pre-compiled Script Plugins](https://docs.gradle.org/current/userguide/implementing_gradle_plugins_precompiled.html#sec:applying_external_plugins)
@@ -249,3 +222,4 @@ is [automatically with Gradle][gradle_verification].
 [sty_url]: https://kotlinlang.org/docs/coding-conventions.html
 
 [sty_img]: https://img.shields.io/badge/style-Kotlin--Official-40c4ff.svg?style=for-the-badge&logo=kotlin&logoColor=40c4ff
+
