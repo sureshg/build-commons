@@ -78,7 +78,7 @@ otel-alpha                     = "1.59.0-alpha"
 otel-instr                     = "2.25.0"
 otel-instr-alpha               = "2.25.0-alpha"
 otel-semconv                   = "1.39.0"
-otel-contrib                   = "1.53.0-alpha"
+otel-contrib                   = "1.54.0-alpha"
 otel-kotlin                    = "0.7.0"
 jackson                        = "3.0.4"
 bc                             = "1.83"
@@ -428,6 +428,7 @@ kotlinx-rpc-krpc-ser-json           = { module = "org.jetbrains.kotlinx:kotlinx-
 kotlinx-rpc-krpc-ser-protobuf       = { module = "org.jetbrains.kotlinx:kotlinx-rpc-krpc-serialization-protobuf"    , version.ref = "kotlinx-rpc"}
 
 kopy-compilerPlugin                  = { module = "com.javiersc.kotlin:kopy-compiler"                          , version.ref = "kopy"}
+kopy-runtime                         = { module = "com.javiersc.kotlin:kopy-runtime"                           , version.ref = "kopy"}
 evas                                 = { module = "io.sellmair:evas"                                           , version.ref = "evas"}
 konsist                              = { module = "com.lemonappdev:konsist"                                    , version.ref = "konsist" }
 akkurate-core                        = { module = "dev.nesk.akkurate:akkurate-core"                            , version.ref = "akkurate"}
