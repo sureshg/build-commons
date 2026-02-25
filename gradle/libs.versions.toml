@@ -52,7 +52,7 @@ exoquery-plugin                = "2.3.0-2.0.4.PL"
 exoquery-sql                   = "2.0.4.PL"
 exposed                        = "1.0.0"
 postgresql                     = "42.7.10"
-embedded-postgres              = "2.2.0"
+embedded-postgres              = "2.2.1"
 embedded-postgres-bom          = "18.2.0"
 evas                           = "1.4.0"
 kopy                           = "0.22.0+2.3.10"
@@ -212,6 +212,7 @@ rwmutex                        = "1.0.0"
 bluesky-ozone                  = "0.3.3"
 cidre                          = "0.3.1"
 voices                         = "0.0.9"
+inference4j                    = "0.8.0"
 onnx                           = "1.24.2"
 angus-mail                     = "2.1.0-M1"
 simplemail                     = "8.12.6"
@@ -237,7 +238,7 @@ antdesign                      = "1.0.0"
 compose-fluent                 = "0.1.0"
 kottie                         = "2.2.0"
 mosaic                         = "0.18.0"
-filekit-dialogs                = "0.12.0"
+filekit-dialogs                = "0.13.0"
 
 # NPM Dependencies
 npm-highlightjs                = "11.11.1"
@@ -734,7 +735,8 @@ koog-tools                           = { module = "ai.koog:agents-tools"        
 koog-executor-openai                 = { module = "ai.koog:prompt-executor-openai-client"                                   , version.ref = "koog" }
 koog-features-eventhandler           = { module = "ai.koog:agents-features-event-handler"                                   , version.ref = "koog" }
 koog-ktor                            = { module = "ai.koog:koog-ktor"                                                       , version.ref = "koog"}
-dokimos-koog                         = { module = "dev.dokimos:dokimos-koog"                                                  , version.ref = "dokimos" }
+inference4j-genai                    = { module = "io.github.inference4j:inference4j-genai"                                 , version.ref = "inference4j"}
+dokimos-koog                         = { module = "dev.dokimos:dokimos-koog"                                                , version.ref = "dokimos" }
 voices-chorus                        = { module = "org.pitest.voices:chorus"                                                , version.ref = "voices" }
 voices-alba                          = { module = "org.pitest.voices:alba"                                                  , version.ref = "voices" }
 voices-en-uk                         = { module = "org.pitest.voices:en_uk"                                                 , version.ref = "voices" }
