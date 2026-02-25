@@ -221,4 +221,3 @@ is [automatically with Gradle][gradle_verification].
 [sty_url]: https://kotlinlang.org/docs/coding-conventions.html
 
 [sty_img]: https://img.shields.io/badge/style-Kotlin--Official-40c4ff.svg?style=for-the-badge&logo=kotlin&logoColor=40c4ff
-
