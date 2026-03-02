@@ -561,8 +561,13 @@ fun TestLoggingContainer.configureLogEvents() {
 
 fun KotlinJsCompilerOptions.configureKotlinJs() {
   target = "es2015"
+  moduleKind = JsModuleKind.MODULE_ES
   freeCompilerArgs.addAll(
       "-Xir-per-file",
+      "-Xir-minimized-member-names",
+      "-Xir-generate-inline-anonymous-functions",
+      "-Xgenerate-polyfills=false",
+      "-Xgenerate-dts",
       "-Xes-long-as-bigint",
       "-Xenable-suspend-function-exporting",
   )
