@@ -36,3 +36,4 @@ cx.json
 CLAUDE.local.md
 .codex/
 .cursor/
+.env
