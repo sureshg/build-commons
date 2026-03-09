@@ -30,7 +30,7 @@ kotlinx-datetime               = "0.7.1"
 kotlinx-datetime-zoneinfo      = "2025c-spi.0.7.1"
 kotlinx-serialization          = "1.10.0"
 kotlinx-rpc                    = "0.10.2"
-kotlinx-dataframe              = "1.0.0-dev-9710"
+kotlinx-dataframe              = "1.0.0-Beta4"
 kotlinx-kandy                  = "0.8.3"
 kotlinx-collections-immutable  = "0.4.0"
 kotlinx-html                   = "0.12.0"
@@ -59,7 +59,7 @@ kopy                           = "0.22.0+2.3.10"
 poko                           = "0.21.3"
 mappie                         = "2.3.10-2.4.1"
 akkurate                       = "0.11.0"
-kaml                           = "0.104.0"
+kotaml                         = "0.106.0"
 snakeyaml-engine-kmp           = "4.0.1"
 konsist                        = "0.17.3"
 decoroutinator                 = "2.6.1"
@@ -499,7 +499,7 @@ embedded-postgres                    = { module = "io.zonky.test:embedded-postgr
 embedded-postgres-bom                = { module = "io.zonky.test.postgres:embedded-postgres-binaries-bom"      , version.ref = "embedded-postgres-bom"}
 
 # Yaml
-kaml                                 = { module = "com.charleskorn.kaml:kaml"                                  , version.ref = "kaml"}
+kotaml                               = { module = "io.heapy.kotaml:kotaml"                                     , version.ref = "kotaml"}
 snakeyaml-engine-kmp                 = { module = "it.krzeminski:snakeyaml-engine-kmp"                         , version.ref = "snakeyaml-engine-kmp"}
 
 # Database IDs
