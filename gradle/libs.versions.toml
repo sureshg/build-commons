@@ -107,6 +107,7 @@ metro                          = "0.4.0"
 kotest                         = "6.1.5"
 mockk                          = "1.14.9"
 mokkery                        = "3.2.0"
+mokksy                         = "0.8.1"
 wiremock                       = "4.0.0-beta.29"
 wiremock-kotlin                = "2.1.1"
 okhttp                         = "5.3.2"
@@ -566,6 +567,7 @@ koin-test-junit5                     = { module = "io.insert-koin:koin-test-juni
 koin-annotations                     = { module = "io.insert-koin:koin-annotations"                            , version.ref = "koin"}
 mockk                                = { module = "io.mockk:mockk"                                             , version.ref = "mockk"}
 mockk-bdd                            = { module = "io.mockk:mockk-bdd"                                         , version.ref = "mockk"}
+mokksy                               = { module = "dev.mokksy:mokksy"                                          , version.ref = "mokksy"}
 classgraph                           = { module = "io.github.classgraph:classgraph"                            , version.ref = "classgraph"}
 jctools-core                         = { module = "org.jctools:jctools-core"                                   , version.ref = "jctools"}
 slf4j-api                            = { module = "org.slf4j:slf4j-api"                                        , version.ref = "slf4j"}
