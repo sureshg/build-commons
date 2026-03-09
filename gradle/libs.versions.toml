@@ -234,7 +234,7 @@ detekt                         = "2.0.0-alpha.2"
 detekt-compose-rules           = "0.5.6"
 antdesign                      = "1.0.0"
 compose-fluent                 = "0.1.0"
-kottie                         = "2.2.0"
+kottie                         = "2.3.0"
 mosaic                         = "0.18.0"
 filekit-dialogs                = "0.13.0"
 
