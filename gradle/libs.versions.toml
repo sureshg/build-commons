@@ -249,7 +249,7 @@ swagger-style                  = "https://unpkg.com/swagger-ui-themes@3.0.1/them
 
 # Plugin versions
 benmanes                       = "0.53.0"
-caupain                        = "1.8.1"
+caupain                        = "1.9.0"
 foojay-resolver                = "1.0.0"
 gradle-develocity              = "4.3.2"
 nmcp                           = "1.4.4"
