@@ -68,14 +68,13 @@ constructor(
     // jdeprscan binary path
     val jdeprscan = javaHome.get().resolve("bin").resolve("jdeprscan")
     val bos = ByteArrayOutputStream()
-    val execResult =
-        execOps.exec {
-          workingDir = layout.buildDirectory.get().asFile
-          commandLine = listOf(jdeprscan.toString())
-          args = jdsArgs
-          standardOutput = bos
-          errorOutput = bos
-        }
+    val execResult = execOps.exec {
+      workingDir = layout.buildDirectory.get().asFile
+      commandLine = listOf(jdeprscan.toString())
+      args = jdsArgs
+      standardOutput = bos
+      errorOutput = bos
+    }
     execResult.assertNormalExitValue()
     val deprecations = bos.toString(Charsets.UTF_8)
     println(deprecations)

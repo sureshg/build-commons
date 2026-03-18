@@ -35,8 +35,9 @@ fun Project.configureJava9ModuleInfoCompilation(
   val moduleOutputs = listOf(parentCompilation.output.allOutputs)
   val compileClasspathConfiguration =
       parentCompilation.configurations.compileDependencyConfiguration
-  val sourceSetNameCapitalized =
-      sourceSetName.replaceFirstChar { it.titlecase(Locale.getDefault()) }
+  val sourceSetNameCapitalized = sourceSetName.replaceFirstChar {
+    it.titlecase(Locale.getDefault())
+  }
   val javaCompileClasspath = configurations["${sourceSetName}CompileClasspath"]
   javaCompileClasspath.extendsFrom(compileClasspathConfiguration)
 

@@ -648,14 +648,13 @@ val Project.incubatorModules
   get(): String {
     val javaCmd = project.javaToolchainPath.get().resolve("bin").resolve("java")
     val bos = ByteArrayOutputStream()
-    val execResult =
-        providers.exec {
-          workingDir = layout.buildDirectory.get().asFile
-          commandLine = listOf(javaCmd.toString())
-          args = listOf("--list-modules")
-          standardOutput = bos
-          errorOutput = bos
-        }
+    val execResult = providers.exec {
+      workingDir = layout.buildDirectory.get().asFile
+      commandLine = listOf(javaCmd.toString())
+      args = listOf("--list-modules")
+      standardOutput = bos
+      errorOutput = bos
+    }
     execResult.result.get().assertNormalExitValue()
     return bos.toString(Charsets.UTF_8)
         .lines()
@@ -730,18 +729,17 @@ fun Project.addFileToJavaComponent(file: File) {
 }
 
 /** Adds the give java module to all jvm tasks. Eg: `withModule("jdk.incubator.vector", false)` */
-fun Project.withJavaModule(moduleName: String, supportedInNative: Boolean = false) =
-    tasks.run {
-      val argsToAdd = listOf("--add-modules", moduleName)
-      withType<JavaCompile>().configureEach { options.compilerArgs.addAll(argsToAdd) }
-      withType<Test>().configureEach { jvmArgs(argsToAdd) }
-      withType<JavaExec>().configureEach { jvmArgs(argsToAdd) }
-      if (supportedInNative) {
-        project.pluginManager.withPlugin("org.graalvm.buildtools.native") {
-          configure<GraalVMExtension> { binaries.all { jvmArgs(argsToAdd) } }
-        }
-      }
+fun Project.withJavaModule(moduleName: String, supportedInNative: Boolean = false) = tasks.run {
+  val argsToAdd = listOf("--add-modules", moduleName)
+  withType<JavaCompile>().configureEach { options.compilerArgs.addAll(argsToAdd) }
+  withType<Test>().configureEach { jvmArgs(argsToAdd) }
+  withType<JavaExec>().configureEach { jvmArgs(argsToAdd) }
+  if (supportedInNative) {
+    project.pluginManager.withPlugin("org.graalvm.buildtools.native") {
+      configure<GraalVMExtension> { binaries.all { jvmArgs(argsToAdd) } }
     }
+  }
+}
 
 fun Project.gradleBooleanProp(name: String): Provider<Boolean> =
     providers.gradleProperty(name).map(String::toBoolean).orElse(false)
