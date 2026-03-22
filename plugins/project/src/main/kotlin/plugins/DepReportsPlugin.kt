@@ -45,6 +45,7 @@ class DepReportsPlugin : Plugin<Project> {
       }
 }
 
+@CacheableTask
 abstract class ListResolvedArtifacts : DefaultTask() {
 
   @get:Input abstract val artifactIds: ListProperty<ComponentArtifactIdentifier>
