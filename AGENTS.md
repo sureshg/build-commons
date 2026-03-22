@@ -19,7 +19,7 @@ build-commons/
 
 ## Setup
 
-- **Java**: 25+ (install via `sdk i java 25.0.1-zulu`)
+- **Java**: 25+ (install via `sdk i java 25.0.2-zulu`)
 - **Build**: Gradle with Kotlin DSL
 
 ## Commands
@@ -59,13 +59,25 @@ When updating `gradle/libs.versions.toml`:
 
 ## Key Plugins
 
-| Plugin ID                      | Purpose                    |
-|--------------------------------|----------------------------|
-| `dev.suresh.plugin.root`       | Root project configuration |
-| `dev.suresh.plugin.kotlin.jvm` | Kotlin JVM projects        |
-| `dev.suresh.plugin.kotlin.mpp` | Kotlin Multiplatform       |
-| `dev.suresh.plugin.publishing` | Maven Central publishing   |
-| `dev.suresh.plugin.graalvm`    | GraalVM native-image       |
+### Project Plugins
+
+| Plugin ID                              | Purpose                  |
+|----------------------------------------|--------------------------|
+| `dev.suresh.plugin.root`               | Root project config      |
+| `dev.suresh.plugin.kotlin.jvm`         | Kotlin JVM projects      |
+| `dev.suresh.plugin.kotlin.mpp`         | Kotlin Multiplatform     |
+| `dev.suresh.plugin.kotlin.docs`        | Kotlin documentation     |
+| `dev.suresh.plugin.kotlin.benchmark`   | Kotlin benchmarking      |
+| `dev.suresh.plugin.publishing`         | Maven Central publishing |
+| `dev.suresh.plugin.graalvm`            | GraalVM native-image     |
+| `dev.suresh.plugin.depreports`         | Dependency reports       |
+
+### Settings Plugins
+
+| Plugin ID                    | Purpose             |
+|------------------------------|---------------------|
+| `dev.suresh.plugin.repos`    | Repository settings |
+| `dev.suresh.plugin.catalog`  | Catalog settings    |
 
 ## PR Guidelines
 
@@ -85,8 +97,7 @@ When updating `gradle/libs.versions.toml`:
 
 See `.aiassistant/rules/` for comprehensive instructions:
 
-| File                 | Purpose                                         |
-|----------------------|-------------------------------------------------|
-| `kotlin.md`          | Kotlin coding standards, multiplatform patterns |
-| `version-updates.md` | Version catalog update process                  |
-| `grammar.md`         | Writing and grammar style guidelines            |
+| File         | Purpose                                         |
+|--------------|-------------------------------------------------|
+| `kotlin.md`  | Kotlin coding standards, multiplatform patterns |
+| `grammar.md` | Writing and grammar style guidelines            |
