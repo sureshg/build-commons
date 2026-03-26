@@ -21,7 +21,7 @@ org-url                        = "https://suresh.dev"
 
 # Dependency Versions
 bc-plugins                     = "2.44.0"
-kotlinx-kover                  = "0.9.7"
+kotlinx-kover                  = "0.9.8"
 kotlin-dokka                   = "2.2.0-Beta"
 kotlinx-io                     = "0.9.0"
 kotlinx-atomicfu               = "0.32.1"
@@ -252,7 +252,7 @@ swagger-style                  = "https://unpkg.com/swagger-ui-themes@3.0.1/them
 benmanes                       = "0.53.0"
 caupain                        = "1.9.1"
 foojay-resolver                = "1.0.0"
-gradle-develocity              = "4.3.2"
+gradle-develocity              = "4.4.0"
 nmcp                           = "1.4.4"
 nexus-publish                  = "2.0.0"
 vanniktech-publish             = "0.36.0"
