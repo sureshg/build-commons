@@ -41,11 +41,11 @@ kotlinx-metadata               = "0.9.0"
 kotlinx-schema                 = "0.4.4"
 kotlinx-reflect-lite           = "1.2.0-RC"
 kotlin-lincheck                = "3.5"
-kotlin-wrappers                = "2026.4.2"
+kotlin-wrappers                = "2026.4.3"
 kotlin-redacted                = "1.16.0"
 kotlin-serviceloader           = "0.0.22"
 kotlinx-multik                 = "0.3.0"
-kotlin-statistics              = "0.4.0-RC1"
+kstats                         = "0.4.0"
 kotlin-base32                  = "1.0.1"
 fuzzykot                       = "1.0.0"
 gradle-kotlin-dsl              = "6.6.0"
@@ -337,10 +337,10 @@ kotlinx-kandy                        = { module = "org.jetbrains.kotlinx:kandy-l
 kotlinx-kandy-geo                    = { module = "org.jetbrains.kotlinx:kandy-geo"                                 , version.ref = "kotlinx-kandy"}
 kotlinx-kandy-echarts                = { module = "org.jetbrains.kotlinx:kandy-echarts"                             , version.ref = "kotlinx-kandy"}
 kotlin-lincheck                      = { module = "org.jetbrains.lincheck:lincheck"                                 , version.ref = "kotlin-lincheck"}
-kotlin-statistics                    = { module = "org.jetbrains.kotlinx:kotlin-statistics"                         , version.ref = "kotlin-statistics"}
+kstats-core                          = { module = "org.oremif:kstats-core"                                          , version.ref = "kstats"}
 kotlin-ksp-api                       = { module = "com.google.devtools.ksp:symbol-processing-api"                   , version.ref = "kotlin-ksp"}
 kotlin-redacted-annotations          = { module = "dev.zacsweers.redacted:redacted-compiler-plugin-annotations"     , version.ref = "kotlin-redacted"}
-kotlin-redacted-compilerPlugin       = { module = "dev.zacsweers.redacted:redacted-compiler-plugin"                  , version.ref = "kotlin-redacted"}
+kotlin-redacted-compilerPlugin       = { module = "dev.zacsweers.redacted:redacted-compiler-plugin"                 , version.ref = "kotlin-redacted"}
 kotlin-cryptography-core             = { module = "dev.whyoleg.cryptography:cryptography-core"                      , version.ref = "kotlin-cryptography"}
 kotlin-cryptography-random           = { module = "dev.whyoleg.cryptography:cryptography-random"                    , version.ref = "kotlin-cryptography"}
 kotlin-cryptography-optimal          = { module = "dev.whyoleg.cryptography:cryptography-provider-optimal"          , version.ref = "kotlin-cryptography"}
@@ -563,8 +563,8 @@ google-tink                          = { module = "com.google.crypto.tink:tink" 
 ksp-auto-service                     = { module = "dev.zacsweers.autoservice:auto-service-ksp"                 , version.ref = "ksp-auto-service"}
 sweetspi-runtime                     = { module = "dev.whyoleg.sweetspi:sweetspi-runtime"                      , version.ref = "sweetspi"}
 sweetspi-processor                   = { module = "dev.whyoleg.sweetspi:sweetspi-processor"                    , version.ref = "sweetspi"}
-javable-annotations                  = { module = "me.kpavlov.javable:javable-annotations"                    , version.ref = "javable"}
-javable-ksp                          = { module = "me.kpavlov.javable:javable-ksp"                              , version.ref = "javable"}
+javable-annotations                  = { module = "me.kpavlov.javable:javable-annotations"                     , version.ref = "javable"}
+javable-ksp                          = { module = "me.kpavlov.javable:javable-ksp"                             , version.ref = "javable"}
 koin-bom                             = { module = "io.insert-koin:koin-bom"                                    , version.ref = "koin"}
 koin-core                            = { module = "io.insert-koin:koin-core"                                   , version.ref = "koin"}
 koin-core-coroutines                 = { module = "io.insert-koin:koin-core-coroutines"                        , version.ref = "koin"}
