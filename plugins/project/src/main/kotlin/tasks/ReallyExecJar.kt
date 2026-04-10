@@ -59,7 +59,7 @@ abstract class ReallyExecJar : DefaultTask() {
     // Add shell preamble and validate the executable jar
     ZipPrefixer.applyPrefixBytesToZip(binFile, shellStub.encodeToByteArray())
     ZipPrefixer.validateZipOffsets(binFile)
-    binFile.setPosixFilePermissions(PosixFilePermissions.fromString("rwxr-xr-x"))
+    val _ = binFile.setPosixFilePermissions(PosixFilePermissions.fromString("rwxr-xr-x"))
     logger.quiet(
         TextColors.magenta(
             "Executable Binary: ${binFile.pathString} ${binFile.fileSize().decimalBytes}"

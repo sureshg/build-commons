@@ -1,7 +1,5 @@
 @file:Suppress("UnstableApiUsage")
 
-import com.javiersc.semver.settings.gradle.plugin.SemverSettingsExtension
-
 pluginManagement {
   repositories {
     gradlePluginPortal()
@@ -48,7 +46,7 @@ dependencyResolutionManagement {
   }
 }
 
-configure<SemverSettingsExtension> { gitDir = file("$rootDir/../.git") }
+semver { gitDir = file("$rootDir/../.git") }
 
 plugins { id("dev.suresh.plugin.repos") version "+" }
 

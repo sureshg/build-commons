@@ -1,9 +1,7 @@
 @file:Suppress("UnstableApiUsage")
 
-import com.gradle.develocity.agent.gradle.scan.PublishedBuildScan
-import com.javiersc.semver.settings.gradle.plugin.SemverSettingsExtension
 import common.*
-import kotlinx.kover.gradle.aggregation.settings.dsl.KoverSettingsExtension
+import common.GithubAction
 import org.gradle.api.JavaVersion.VERSION_21
 import org.gradle.kotlin.dsl.*
 import org.gradle.toolchains.foojay.FoojayToolchainResolver
@@ -82,12 +80,12 @@ toolchainManagement {
   }
 }
 
-configure<SemverSettingsExtension> {
+semver {
   // val ktVersion = versionCatalog?.getString("kotlin").orEmpty()
   // mapVersion { it.copy(metadata = ktVersion).toString() }
 }
 
-configure<KoverSettingsExtension> {
+kover {
   enableCoverage()
   reports {
     excludedClasses.addAll("*.generated.*", "dev.suresh.example.*")
@@ -113,8 +111,19 @@ develocity {
 
     publishing.onlyIf { GithubAction.isEnabled }
     uploadInBackground = false
+
     tag("GITHUB_ACTION")
-    buildScanPublished { addJobSummary() }
+    buildScanPublished {
+      with(GithubAction) {
+        setOutput("build_scan_uri", buildScanUri)
+        addJobSummary(
+            """
+                     | ##### 🚀 Gradle BuildScan [URL](${buildScanUri.toASCIIString()})
+                     """
+                .trimMargin()
+        )
+      }
+    }
   }
 }
 
@@ -153,17 +162,6 @@ fun RepositoryHandler.mavenSnapshot() {
     }
   }
 }
-
-/** Add build scan details to the GitHub Job summary report! */
-fun PublishedBuildScan.addJobSummary() =
-    with(GithubAction) {
-      setOutput("build_scan_uri", buildScanUri)
-      addJobSummary(
-          """
-          | ##### 🚀 Gradle BuildScan [URL](${buildScanUri.toASCIIString()})"""
-              .trimMargin()
-      )
-    }
 
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
