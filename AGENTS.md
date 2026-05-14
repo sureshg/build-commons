@@ -29,7 +29,6 @@ build-commons/
 | `./gradlew build`               | Build all modules         |
 | `./gradlew publishToMavenLocal` | Publish plugins locally   |
 | `./gradlew -p sandbox :build`   | Test plugins with sandbox |
-| `caupain --no-cache`            | Check dependency updates  |
 
 ## Testing
 
@@ -55,29 +54,28 @@ When updating `gradle/libs.versions.toml`:
 - Only modify version values in `[versions]` section
 - Preserve exact formatting (quotes, spacing, alignment)
 - Never modify `.gradle.kts` files for version changes
-- Run `caupain --no-cache` to check for updates
 
 ## Key Plugins
 
 ### Project Plugins
 
-| Plugin ID                              | Purpose                  |
-|----------------------------------------|--------------------------|
-| `dev.suresh.plugin.root`               | Root project config      |
-| `dev.suresh.plugin.kotlin.jvm`         | Kotlin JVM projects      |
-| `dev.suresh.plugin.kotlin.mpp`         | Kotlin Multiplatform     |
-| `dev.suresh.plugin.kotlin.docs`        | Kotlin documentation     |
-| `dev.suresh.plugin.kotlin.benchmark`   | Kotlin benchmarking      |
-| `dev.suresh.plugin.publishing`         | Maven Central publishing |
-| `dev.suresh.plugin.graalvm`            | GraalVM native-image     |
-| `dev.suresh.plugin.depreports`         | Dependency reports       |
+| Plugin ID                            | Purpose                  |
+|--------------------------------------|--------------------------|
+| `dev.suresh.plugin.root`             | Root project config      |
+| `dev.suresh.plugin.kotlin.jvm`       | Kotlin JVM projects      |
+| `dev.suresh.plugin.kotlin.mpp`       | Kotlin Multiplatform     |
+| `dev.suresh.plugin.kotlin.docs`      | Kotlin documentation     |
+| `dev.suresh.plugin.kotlin.benchmark` | Kotlin benchmarking      |
+| `dev.suresh.plugin.publishing`       | Maven Central publishing |
+| `dev.suresh.plugin.graalvm`          | GraalVM native-image     |
+| `dev.suresh.plugin.depreports`       | Dependency reports       |
 
 ### Settings Plugins
 
-| Plugin ID                    | Purpose             |
-|------------------------------|---------------------|
-| `dev.suresh.plugin.repos`    | Repository settings |
-| `dev.suresh.plugin.catalog`  | Catalog settings    |
+| Plugin ID                   | Purpose             |
+|-----------------------------|---------------------|
+| `dev.suresh.plugin.repos`   | Repository settings |
+| `dev.suresh.plugin.catalog` | Catalog settings    |
 
 ## PR Guidelines
 
