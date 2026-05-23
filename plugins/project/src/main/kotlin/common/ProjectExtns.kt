@@ -296,7 +296,6 @@ val Project.runJvmArgs
                 // "-XX:+UseEpsilonGC",
                 // "-XX:+AlwaysPreTouch",
                 // "-XX:+UseStringDeduplication",
-                // "-XX:+UseCompactObjectHeaders",
                 // "-XX:OnOutOfMemoryError='kill -9 %p'",
                 // "-ea",
                 // "-XshowSettings:vm",
