@@ -14,7 +14,6 @@ import org.gradle.api.Action
 import org.gradle.api.JavaVersion
 import org.gradle.api.Project
 import org.gradle.api.Task
-import org.gradle.api.artifacts.Configuration
 import org.gradle.api.artifacts.ExternalDependency
 import org.gradle.api.artifacts.VersionCatalogsExtension
 import org.gradle.api.artifacts.component.*
@@ -708,7 +707,7 @@ fun Project.printTaskGraph() {
 @Suppress("UnstableApiUsage")
 fun Project.addFileToJavaComponent(file: File) {
   // Here's a configuration to declare the outgoing variant
-  val executable: Configuration by
+  val executable =
       configurations.consumable("executable") {
         description = "Declares executable outgoing variant"
         attributes {

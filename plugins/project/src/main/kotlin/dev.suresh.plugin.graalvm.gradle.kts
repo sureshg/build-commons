@@ -118,8 +118,8 @@ graalvmNative {
 }
 
 tasks {
-  val archiveTgz by
-      registering(Tar::class) {
+  val archiveTgz =
+      register<Tar>("archiveTgz") {
         archiveFileName = niArchiveName
         compression = Compression.GZIP
         destinationDirectory = project.layout.buildDirectory

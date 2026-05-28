@@ -13,8 +13,8 @@ if (isRootProject) {
   // apply(plugin = "org.hildan.github.changelog")
 
   // Combined test reports
-  val allTestReports by
-      tasks.registering(TestReport::class) {
+  val allTestReports =
+      tasks.register<TestReport>("allTestReports") {
         group = LifecycleBasePlugin.VERIFICATION_GROUP
         description = "Generates aggregated test report for all tests."
         destinationDirectory = layout.buildDirectory.dir("reports/allTests")

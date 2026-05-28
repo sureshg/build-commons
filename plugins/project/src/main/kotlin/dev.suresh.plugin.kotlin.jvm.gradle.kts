@@ -85,7 +85,7 @@ redacted {
 }
 
 // Java agent configuration for jib
-val javaAgent by configurations.registering { isTransitive = false }
+val javaAgent = configurations.register("javaAgent") { isTransitive = false }
 
 tasks {
   val buildConfigExtn = extensions.create<BuildConfigExtension>("buildConfig")
@@ -144,8 +144,8 @@ tasks {
   }
 
   pluginManager.withPlugin("com.gradleup.shadow") {
-    val buildExecutable by
-        registering(ReallyExecJar::class) {
+    val buildExecutable =
+        register<ReallyExecJar>("buildExecutable") {
           jarFile = named<ShadowJar>("shadowJar").flatMap { it.archiveFile }
           javaOpts = runJvmArgs
           execJarFile = layout.buildDirectory.dir("libs").map { it.file(project.name) }
@@ -201,8 +201,8 @@ tasks {
 
   // Copy OpenTelemetry Java agent for jib
   pluginManager.withPlugin("com.google.cloud.tools.jib") {
-    val copyOtelAgent by
-        registering(Copy::class) {
+    val copyOtelAgent =
+        register<Copy>("copyOtelAgent") {
           from(javaAgent) {
             eachFile {
               if (name.startsWith("opentelemetry-javaagent")) {

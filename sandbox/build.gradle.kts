@@ -2,7 +2,7 @@ import common.*
 import org.gradle.kotlin.dsl.*
 import tasks.*
 
-val enableKmpExec by extra(true)
+extra.set("enableKmpExec", true)
 
 plugins {
   id("dev.suresh.plugin.root") version "+"

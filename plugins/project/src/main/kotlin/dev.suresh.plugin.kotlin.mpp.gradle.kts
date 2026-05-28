@@ -168,8 +168,8 @@ tasks {
   }
 
   pluginManager.withPlugin("com.gradleup.shadow") {
-    val buildExecutable by
-        registering(ReallyExecJar::class) {
+    val buildExecutable =
+        register<ReallyExecJar>("buildExecutable") {
           // https://gradleup.com/shadow/kotlin-plugins/
           jarFile = named<ShadowJar>("shadowJar").flatMap { it.archiveFile }
           javaOpts = runJvmArgs
@@ -181,7 +181,7 @@ tasks {
 
     // Shows how to register a shadowJar task for the default jvm target
     register<ShadowJar>("shadowJvmJar") {
-      val main by kotlin.jvm().compilations
+      val main = kotlin.jvm().compilations.getByName("main")
       // allOutputs == classes + resources
       from(main.output.allOutputs)
       val runtimeDepConfig =
@@ -224,12 +224,12 @@ plugins.withType<WasmNodeJsPlugin> {
 artifacts {
   if (isSharedProject) {
     tasks.findByName("jsProcessResources")?.let {
-      val sharedJsResources by configurations.consumable("sharedJsResources")
+      val sharedJsResources = configurations.consumable("sharedJsResources")
       add(sharedJsResources.name, provider { it })
     }
 
     tasks.findByName("wasmJsProcessResources")?.let {
-      val sharedWasmResources by configurations.consumable("sharedWasmResources")
+      val sharedWasmResources = configurations.consumable("sharedWasmResources")
       add(sharedWasmResources.name, provider { it })
     }
   }

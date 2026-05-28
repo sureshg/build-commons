@@ -23,10 +23,10 @@ class DepReportsPlugin : Plugin<Project> {
       with(target) {
         pluginManager.withPlugin("java-base") {
           val projectLayout = project.layout
-          val listResolvedArtifacts by
-              tasks.registering(ListResolvedArtifacts::class) {
+          val listResolvedArtifacts =
+              tasks.register<ListResolvedArtifacts>("listResolvedArtifacts") {
                 // Get the runtime-resolved artifacts
-                val runtimeClasspath by target.configurations
+                val runtimeClasspath = target.configurations.getByName("runtimeClasspath")
                 val resolvedArtifacts = runtimeClasspath.incoming.artifacts.resolvedArtifacts
 
                 // Transform the artifacts

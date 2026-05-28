@@ -79,23 +79,24 @@ tasks {
     filePermissions { unix("rw-rw-r--") }
   }
 
-  val githubActionOutput by registering {
-    description = "Set Github workflow action output for this build"
-    group = BasePlugin.BUILD_GROUP
+  val githubActionOutput =
+      register("githubActionOutput") {
+        description = "Set Github workflow action output for this build"
+        group = BasePlugin.BUILD_GROUP
 
-    val projectName = project.name
-    val projectGroup = project.group
-    val projectVersion = project.version
+        val projectName = project.name
+        val projectGroup = project.group
+        val projectVersion = project.version
 
-    doLast {
-      with(GithubAction) {
-        setOutput("name", projectName)
-        setOutput("group", projectGroup)
-        setOutput("version", projectVersion)
-        setOutput("artifact_name", "$projectName-$projectVersion")
+        doLast {
+          with(GithubAction) {
+            setOutput("name", projectName)
+            setOutput("group", projectGroup)
+            setOutput("version", projectVersion)
+            setOutput("artifact_name", "$projectName-$projectVersion")
+          }
+        }
       }
-    }
-  }
 
   // Set GitHub workflow action output for this build
   build { finalizedBy(githubActionOutput) }
