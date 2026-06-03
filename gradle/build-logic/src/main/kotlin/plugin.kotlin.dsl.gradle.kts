@@ -19,7 +19,6 @@ kotlin {
     jvmTarget = dslJavaVersion.map(JvmTarget::fromTarget)
     freeCompilerArgs.addAll(
         "-Xjdk-release=${dslJavaVersion.get()}",
-        "-Xcontext-parameters",
         "-Xno-param-assertions",
         "-Xno-call-assertions",
         "-Xno-receiver-assertions",

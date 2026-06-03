@@ -408,13 +408,12 @@ fun KotlinCommonCompilerOptions.configureKotlinCommon(project: Project) =
       suppressWarnings = false
       verbose = false
       freeCompilerArgs.addAll(
-          "-Xcontext-parameters",
           "-Xexpect-actual-classes",
           "-Xreport-all-warnings",
           "-Xreturn-value-checker=check",
           "-Xcontext-sensitive-resolution",
-          "-Xannotation-default-target=param-property",
-          "-Xexplicit-backing-fields",
+          "-Xname-based-destructuring=complete",
+          "-Xcollection-literals",
           // "-Xskip-prerelease-check",
           // "-Xsuppress-version-warnings",
           // "-P",
