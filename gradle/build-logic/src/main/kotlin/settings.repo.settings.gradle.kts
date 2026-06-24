@@ -6,8 +6,8 @@ import org.tomlj.*
 val versionCatalog: TomlTable? by lazy {
   // A hack to read version-catalog from settings
   runCatching {
-        Toml.parse(file("$rootDir/gradle/libs.versions.toml").readText()).getTable("versions")
-      }
+    Toml.parse(file("$rootDir/gradle/libs.versions.toml").readText()).getTable("versions")
+  }
       .getOrNull()
 }
 
