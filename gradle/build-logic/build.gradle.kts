@@ -85,7 +85,6 @@ dependencies {
   // https://github.com/gradle/gradle/issues/15383#issuecomment-779893192
   implementation(files(libs.javaClass.superclass.protectionDomain.codeSource.location))
   implementation(libs.plugins.spotless.dep)
-  implementation(libs.plugins.shadow.dep)
   implementation(libs.plugins.semver.dep)
   implementation(libs.plugins.benmanes.dep)
   implementation(libs.plugins.vanniktech.publish.dep)
