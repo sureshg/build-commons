@@ -30,6 +30,7 @@ dependencyResolutionManagement {
 plugins {
   id("org.gradle.toolchains.foojay-resolver")
   id("com.javiersc.semver")
+  id("io.github.ben-manes.versions.settings")
 }
 
 toolchainManagement {

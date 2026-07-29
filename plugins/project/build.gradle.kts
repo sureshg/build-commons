@@ -90,7 +90,6 @@ dependencies {
   implementation(libs.plugins.spotless.dep)
   implementation(libs.plugins.shadow.dep)
   implementation(libs.plugins.semver.dep)
-  implementation(libs.plugins.benmanes.dep)
   implementation(libs.plugins.jte.dep)
   implementation(libs.plugins.jib.dep)
   implementation(libs.plugins.vanniktech.publish.dep)

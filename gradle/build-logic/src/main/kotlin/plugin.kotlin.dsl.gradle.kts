@@ -5,7 +5,6 @@ import org.jetbrains.kotlin.gradle.dsl.*
 
 plugins {
   id("org.gradle.kotlin.kotlin-dsl")
-  com.github.`ben-manes`.versions
   com.diffplug.spotless
 }
 

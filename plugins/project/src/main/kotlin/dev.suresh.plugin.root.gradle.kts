@@ -9,7 +9,6 @@ plugins {
   wrapper
   id("dev.suresh.plugin.kotlin.docs")
   id("dev.suresh.plugin.publishing")
-  com.github.`ben-manes`.versions
   // id("gg.jte.gradle")
   // com.autonomousapps.`dependency-analysis`
 }
@@ -51,15 +50,8 @@ if (skipTest) {
 }
 
 tasks {
-  // Dependency version updates
-  dependencyUpdates {
-    checkConstraints = true
-    gradle.includedBuilds.forEach { incBuild ->
-      incBuild.projectDir
-          .resolve("build.gradle.kts")
-          .takeIf { it.exists() }
-          ?.let { dependsOn(incBuild.task(":dependencyUpdates")) }
-    }
+  register("allDependencyUpdates") {
+    gradle.includedBuilds.forEach { dependsOn(it.task(":dependencyUpdates")) }
   }
 
   spotlessApply {

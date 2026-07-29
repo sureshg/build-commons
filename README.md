@@ -115,7 +115,10 @@ $ ./gradlew build
 # Update dependencies
 $ junie --guidelines-filename=.aiassistant/rules/version-updates.md "Update the dependency versions"
 # OR
-$ ./gradlew dependencyUpdates --no-parallel
+$ ./gradlew dependencyUpdates
+
+# Same, but also reports the included builds
+$ ./gradlew allDependencyUpdates
 ```
 
 A separate [sandbox project](/sandbox) is available for testing with the plugins applied:
@@ -132,7 +135,7 @@ $ sandbox/build/libs/sandbox
 $ ./gradlew build --task-graph
 
 # Run other plugin tasks
-$ ./gradlew -p sandbox :dependencyUpdates --no-parallel
+$ ./gradlew -p sandbox :dependencyUpdates
 
 # See the plugin classpath
 $ ./gradlew -p sandbox :buildEnvironment | grep -i "dev.suresh"

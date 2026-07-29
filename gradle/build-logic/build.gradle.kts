@@ -70,8 +70,6 @@ tasks {
     enableStricterValidation = true
   }
 
-  dependencyUpdates { checkConstraints = true }
-
   register("cleanAll") {
     description = "Cleans all projects"
     group = LifecycleBasePlugin.CLEAN_TASK_NAME
@@ -86,7 +84,7 @@ dependencies {
   implementation(files(libs.javaClass.superclass.protectionDomain.codeSource.location))
   implementation(libs.plugins.spotless.dep)
   implementation(libs.plugins.semver.dep)
-  implementation(libs.plugins.benmanes.dep)
+  implementation(libs.plugins.benmanes.settings.dep)
   implementation(libs.plugins.vanniktech.publish.dep)
   implementation(libs.plugins.foojay.resolver.dep)
   implementation(libs.plugins.jte.dep)
@@ -94,12 +92,11 @@ dependencies {
   implementation(libs.tomlj)
   implementation(libs.bytesize)
 
-  // For 'Kotlin Gradle plugin' in pre-compiled script plugins
+  // Kotlin Gradle and 'kotlin-dsl' plugins used by the pre-compiled script plugins,
+  // aligned with the Kotlin version embedded in Gradle.
+  implementation(enforcedPlatform(embeddedKotlin("bom")))
   implementation(embeddedKotlin("gradle-plugin"))
-  // For 'kotlin-dsl' plugin in pre-compiled script plugins
-  implementation(libs.plugins.kotlin.dsl.dep) {
-    version { strictly(expectedKotlinDslPluginsVersion) }
-  }
+  implementation("org.gradle.kotlin:gradle-kotlin-dsl-plugins:$expectedKotlinDslPluginsVersion")
 }
 
 /**

@@ -4,7 +4,6 @@ import common.*
 plugins {
   idea
   wrapper
-  com.github.`ben-manes`.versions
   com.diffplug.spotless
 }
 
@@ -73,16 +72,9 @@ spotless {
 }
 
 tasks {
-
-  // Dependency version updates
-  dependencyUpdates {
-    checkConstraints = true
-    gradle.includedBuilds.forEach { incBuild ->
-      incBuild.projectDir
-          .resolve("build.gradle.kts")
-          .takeIf { it.exists() }
-          ?.let { dependsOn(incBuild.task(":dependencyUpdates")) }
-    }
+  register("allDependencyUpdates") {
+    description = "Report all dependency updates"
+    gradle.includedBuilds.forEach { dependsOn(it.task(":dependencyUpdates")) }
   }
 
   spotlessApply {

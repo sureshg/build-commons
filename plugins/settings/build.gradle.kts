@@ -16,5 +16,6 @@ dependencies {
   implementation(libs.plugins.gradle.develocity.dep)
   implementation(libs.plugins.semver.dep)
   implementation(libs.plugins.foojay.resolver.dep)
+  implementation(libs.plugins.benmanes.settings.dep)
   implementation(libs.tomlj)
 }

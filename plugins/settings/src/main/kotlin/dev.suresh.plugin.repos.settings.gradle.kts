@@ -49,6 +49,7 @@ plugins {
   id("org.gradle.toolchains.foojay-resolver")
   id("org.jetbrains.kotlinx.kover.aggregation")
   id("com.javiersc.semver")
+  id("io.github.ben-manes.versions.settings")
   // id("dev.suresh.plugin.include")
 }
 
