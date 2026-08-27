@@ -60,7 +60,7 @@ jobs:
 
       - name: ☕ Install ${{ env.JAVA_DIST }} JDK ${{ env.JAVA_VERSION }}
         id: install-java
-        uses: actions/setup-java@v5
+        uses: actions/setup-java@v6
         with:
           distribution: ${{ env.JAVA_DIST }}
           java-version: ${{ env.JAVA_VERSION }}
@@ -113,7 +113,7 @@ jobs:
 
       - name: ☕ Install ${{ env.JAVA_DIST }} JDK ${{ env.JAVA_VERSION }}
         id: install-java
-        uses: actions/setup-java@v5
+        uses: actions/setup-java@v6
         with:
           distribution: ${{ env.JAVA_DIST }}
           java-version: ${{ env.JAVA_VERSION }}
