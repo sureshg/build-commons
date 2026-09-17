@@ -10,7 +10,6 @@ plugins {
 }
 
 val muslEnabled = gradleBooleanProp("musl")
-val reportsEnabled = gradleBooleanProp("reports")
 val quickBuildEnabled = gradleBooleanProp("quick")
 val agentEnabled = gradleBooleanProp("agent")
 
@@ -25,35 +24,31 @@ graalvmNative {
     quickBuild = quickBuildEnabled
     richOutput = true
     buildArgs = buildList {
-      add("--native-image-info")
       add("--enable-preview")
       add("--enable-native-access=ALL-UNNAMED")
-      add("--enable-https")
       add("--future-defaults=all")
-      add("-R:MaxHeapSize=64m")
+      add("-H:MaxHeapSize=64m")
       add("-H:+UnlockExperimentalVMOptions")
-      add("-H:+VectorAPISupport")
       add("-H:+ReportExceptionStackTraces")
       add("-O3")
-      // add("-Os")
-      // add("-H:+ForeignAPISupport")
+
+      // add("-Werror")
+      // add("-H:+RuntimeClassLoading")
+      // add("-H:+GraalJITCompileAtRuntime")
       // add("-H:+AddAllCharsets")
       // add("-H:+IncludeAllLocales")
       // add("-H:+IncludeAllTimeZones")
       // add("-H:IncludeResources=.*(message\\.txt|\\app.properties)\$")
       // add("--features=graal.aot.RuntimeFeature")
-      // add("--enable-url-protocols=http,https,jar,unix")
-      // add("--enable-all-security-services")
       // add("--initialize-at-build-time=kotlinx,kotlin,org.slf4j")
       // add("-EBUILD_NUMBER=${project.version}")
       // add("-ECOMMIT_HASH=${semverExtn.commits.get().first().hash}")
 
       val monOpts = buildString {
         append("heapdump,jfr,jvmstat,threaddump,nmt")
-        // if (Platform.isUnix) {
-        //   append(",")
-        //   append("jcmd")
-        // }
+        if (Platform.isUnix) {
+          append(",jcmd")
+        }
       }
       add("--enable-monitoring=$monOpts")
 
@@ -66,7 +61,6 @@ graalvmNative {
           }
           else -> add("--static-nolibc")
         }
-        add("-H:+StripDebugInfo")
       }
 
       // Use the compatibility mode when build image on GitHub Actions.
@@ -78,15 +72,7 @@ graalvmNative {
       if (debugEnabled) {
         add("-H:+TraceNativeToolUsage")
         add("-H:+TraceSecurityServices")
-        add("--trace-class-initialization=kotlin.annotation.AnnotationRetention")
         // add("--debug-attach")
-      }
-
-      if (java.toolchain.vendor.get().matches("Oracle.*")) {
-        if (reportsEnabled.get()) {
-          add("-H:+BuildReport")
-        }
-        // add("--enable-sbom=classpath,embed")
       }
       // https://www.graalvm.org/latest/reference-manual/native-image/overview/Options/
     }
