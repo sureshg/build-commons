@@ -3,6 +3,7 @@ package common
 import org.gradle.api.Project
 import org.gradle.api.file.DuplicatesStrategy
 import org.gradle.kotlin.dsl.*
+import org.jetbrains.kotlin.gradle.ExperimentalJsTestDsl
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 import org.jetbrains.kotlin.gradle.plugin.KotlinPlatformType
 import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
@@ -83,11 +84,10 @@ fun KotlinJsTargetDsl.webConfig(project: Project) =
           // sourceMaps = true
         }
 
-        runTask { sourceMaps = false }
-        testTask {
-          enabled = true
-          testLogging { configureLogEvents() }
-          useKarma { useChromeHeadless() }
+        @OptIn(ExperimentalJsTestDsl::class)
+        test {
+          headless = providers.environmentVariable("IS_IN_CI").map { it.toBoolean() }.orElse(false)
+          chromium()
         }
 
         // distribution { outputDirectory = file("$projectDir/docs") }
