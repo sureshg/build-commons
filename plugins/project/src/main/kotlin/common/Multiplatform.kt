@@ -74,7 +74,7 @@ fun KotlinMultiplatformExtension.jvmTarget(project: Project) =
       }
     }
 
-fun KotlinJsTargetDsl.webConfig(project: Project) =
+fun KotlinJsTargetDsl.webConfig(project: Project, useNewTestDsl: Boolean = true) =
     with(project) {
       browser {
         commonWebpackConfig {
@@ -84,10 +84,19 @@ fun KotlinJsTargetDsl.webConfig(project: Project) =
           // sourceMaps = true
         }
 
-        @OptIn(ExperimentalJsTestDsl::class)
-        test {
-          headless = providers.environmentVariable("IS_IN_CI").map { it.toBoolean() }.orElse(false)
-          chromium()
+        if (useNewTestDsl) {
+          @OptIn(ExperimentalJsTestDsl::class)
+          test {
+            headless = runsOnCI
+            chromium()
+          }
+        } else {
+          // The new test {} DSL doesn't support wasmJs yet
+          testTask {
+            enabled = true
+            testLogging { configureLogEvents() }
+            useKarma { useChromeHeadless() }
+          }
         }
 
         // distribution { outputDirectory = file("$projectDir/docs") }
@@ -123,7 +132,7 @@ fun KotlinMultiplatformExtension.jsTarget(project: Project) {
 }
 
 fun KotlinMultiplatformExtension.wasmJsTarget(project: Project) {
-  wasmJs { webConfig(project) }
+  wasmJs { webConfig(project, useNewTestDsl = false) }
   webDeps(project)
 }
 
