@@ -314,7 +314,8 @@ val Project.runJvmArgs
                 // "-XX:NativeMemoryTracking=[off|summary|detail]",
                 // "-XX:+PrintNMTStatistics",
                 // "-XX:OnError=\"gdb - %p\"", // Attach gdb on segfault
-                // "-Djava.security.properties=/path/to/custom/java.security", // == to override
+                // "-Djava.security.properties=/path/to/custom/java.security", // == to
+                // override
                 // "-Duser.timezone=\"PST8PDT\"",
                 // ----- Networking -----
                 // "-Djdk.net.hosts.file=/etc/host/style/file",
@@ -348,7 +349,7 @@ val Project.runJvmArgs
                 // "-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005",
                 // "-agentlib:jdwp=transport=dt_socket,server=n,address=host:5005,suspend=y,onthrow=<FQ
                 // exception class name>,onuncaught=<y/n>"
-            )
+            ),
         )
       }
     }
@@ -383,7 +384,7 @@ fun JavaCompile.configureJavac(project: Project) =
               // add("--patch-module")
               // add("$moduleName=${sourceSets.main.get().output.asPath}")
               // add("-Xplugin:unchecked") // compiler plugin
-            }
+            },
         )
 
         // Add the Kotlin classes to the module path (compileKotlinJvm)
@@ -514,11 +515,11 @@ fun Test.configureJavaTest() {
                 |Failed   : ${result.failedTestCount}
                 |Skipped  : ${result.skippedTestCount}
                 |"""
-                    .trimMargin()
+                    .trimMargin(),
             )
           }
         }
-      }
+      },
   )
 }
 

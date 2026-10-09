@@ -121,7 +121,7 @@ develocity {
             """
                      | ##### 🚀 Gradle BuildScan [URL](${buildScanUri.toASCIIString()})
                      """
-                .trimMargin()
+                .trimMargin(),
         )
       }
     }
@@ -143,7 +143,9 @@ fun RepositoryHandler.nodeJS() {
     forRepository {
       ivy(versionCatalog?.getString("repo-nodejs").orEmpty()) {
         name = "Node Distributions at $url"
-        patternLayout { artifact("v[revision]/[artifact](-v[revision]-[classifier]).[ext]") }
+        patternLayout {
+          artifact("v[revision]/[artifact](-v[revision]-[classifier]).[ext]")
+        }
         metadataSources { artifact() }
         content { includeModule("org.nodejs", "node") }
       }

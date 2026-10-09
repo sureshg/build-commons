@@ -97,7 +97,7 @@ constructor(
 
       val runtimeClasspath =
           project.configurations.named("runtimeClasspath").get().files.joinToString(
-              separator = File.pathSeparator
+              separator = File.pathSeparator,
           ) {
             it.absolutePath
           }

@@ -30,16 +30,22 @@ class DepReportsPlugin : Plugin<Project> {
                 val resolvedArtifacts = runtimeClasspath.incoming.artifacts.resolvedArtifacts
 
                 // Transform the artifacts
-                artifactIds = resolvedArtifacts.map { it.map(ResolvedArtifactResult::getId) }
+                artifactIds = resolvedArtifacts.map {
+                  it.map(ResolvedArtifactResult::getId)
+                }
                 artifactVariants = resolvedArtifacts.map {
                   it.map(ResolvedArtifactResult::getVariant)
                 }
                 artifactFiles = resolvedArtifacts.map {
                   it.map { resolvedArtifactResult ->
-                    projectLayout.projectDirectory.file(resolvedArtifactResult.file.absolutePath)
+                    projectLayout.projectDirectory.file(
+                        resolvedArtifactResult.file.absolutePath,
+                    )
                   }
                 }
-                outputFile.convention(projectLayout.buildDirectory.file("resolved-artifacts.txt"))
+                outputFile.convention(
+                    projectLayout.buildDirectory.file("resolved-artifacts.txt"),
+                )
               }
         }
       }

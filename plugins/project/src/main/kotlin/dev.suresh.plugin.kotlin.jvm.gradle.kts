@@ -157,7 +157,9 @@ tasks {
 
       doLast {
         val jdeps =
-            ToolProvider.findFirst("jdeps").orElseGet { error("jdeps tool is missing in the JDK!") }
+            ToolProvider.findFirst("jdeps").orElseGet {
+              error("jdeps tool is missing in the JDK!")
+            }
         val out = StringWriter()
         val pw = PrintWriter(out)
         jdeps.run(
@@ -180,7 +182,7 @@ tasks {
                       .padStart(2)}) $module" }
                       .joinToString(System.lineSeparator())}
             """
-                .trimMargin()
+                .trimMargin(),
         )
       }
       dependsOn("shadowJar")
@@ -210,7 +212,9 @@ tasks {
 
     processResources { dependsOn(copyOtelAgent) }
 
-    withType<JibTask>().configureEach { notCompatibleWithConfigurationCache("because Jib#3132") }
+    withType<JibTask>().configureEach {
+      notCompatibleWithConfigurationCache("because Jib#3132")
+    }
   }
 }
 

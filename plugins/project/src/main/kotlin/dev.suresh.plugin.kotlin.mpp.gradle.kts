@@ -187,7 +187,9 @@ tasks {
   }
 
   pluginManager.withPlugin("com.google.cloud.tools.jib") {
-    withType<JibTask>().configureEach { notCompatibleWithConfigurationCache("because Jib#3132") }
+    withType<JibTask>().configureEach {
+      notCompatibleWithConfigurationCache("because Jib#3132")
+    }
   }
 }
 

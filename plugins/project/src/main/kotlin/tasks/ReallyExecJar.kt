@@ -62,8 +62,8 @@ abstract class ReallyExecJar : DefaultTask() {
     val _ = binFile.setPosixFilePermissions(PosixFilePermissions.fromString("rwxr-xr-x"))
     logger.quiet(
         TextColors.magenta(
-            "Executable Binary: ${binFile.pathString} ${binFile.fileSize().decimalBytes}"
-        )
+            "Executable Binary: ${binFile.pathString} ${binFile.fileSize().decimalBytes}",
+        ),
     )
   }
 }

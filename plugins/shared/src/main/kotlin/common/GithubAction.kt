@@ -76,7 +76,7 @@ object GithubAction {
               endLine = endLine,
               col = col,
               endColumn = endColumn,
-          )
+          ),
       )
 
   /**
@@ -103,7 +103,7 @@ object GithubAction {
               endLine = endLine,
               col = col,
               endColumn = endColumn,
-          )
+          ),
       )
 
   /**
@@ -130,7 +130,7 @@ object GithubAction {
               endLine = endLine,
               col = col,
               endColumn = endColumn,
-          )
+          ),
       )
 
   /** Creates an expandable group with a title in the log. */
@@ -170,7 +170,7 @@ object GithubAction {
           |::stop-commands::$token
           |${messages.joinToString(System.lineSeparator())}
           |::$token::"""
-              .trimMargin()
+              .trimMargin(),
       )
     }
   }

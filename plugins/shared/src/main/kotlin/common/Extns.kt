@@ -120,7 +120,9 @@ inline fun <reified T> sysProp(): ReadOnlyProperty<Any?, T> = ReadOnlyProperty {
   when {
     // Handle enum values
     kType.isSubtypeOf(typeOf<Enum<*>?>()) ->
-        T::class.java.enumConstants.filterIsInstance<Enum<*>>().singleOrNull { it.name == propVal }
+        T::class.java.enumConstants.filterIsInstance<Enum<*>>().singleOrNull {
+          it.name == propVal
+        }
 
     // Handle primitive and collection types
     else ->

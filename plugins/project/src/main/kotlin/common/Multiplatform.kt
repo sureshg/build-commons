@@ -156,7 +156,7 @@ fun KotlinMultiplatformExtension.wasmWasiTarget(project: Project) =
         compilations.all {
           compileTaskProvider.configure {
             compilerOptions.freeCompilerArgs.addAll(
-                listOf("-Xwasm-use-traps-instead-of-exceptions")
+                listOf("-Xwasm-use-traps-instead-of-exceptions"),
             )
           }
         }

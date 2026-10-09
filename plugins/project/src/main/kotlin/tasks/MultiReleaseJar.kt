@@ -57,7 +57,7 @@ fun Project.configureJava9ModuleInfoCompilation(
     dependsOn(modulePath)
     classpath = objects.fileCollection().from()
     options.compilerArgumentProviders.add(
-        JigsawArgumentsProvider(moduleName, moduleFiles, modulePath)
+        JigsawArgumentsProvider(moduleName, moduleFiles, modulePath),
     )
   }
 }
